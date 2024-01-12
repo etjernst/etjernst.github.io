@@ -1,9 +1,11 @@
 {
+  "meta": {
+    "theme": "elegant"
+  },  
   "basics": {
     "name": "Emilia Tjernström",
     "email": "emilia.tjernstrom@monash.edu",
-    "website": "emiliatjernstrom.com",
-    "label": "Senior Research Fellow"
+    "url": "https://emiliatjernstrom.com"
   },
   "work": [
     {
