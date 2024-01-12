@@ -3,13 +3,7 @@
     "name": "Emilia Tjernström",
     "email": "emilia.tjernstrom@monash.edu",
     "website": "emiliatjernstrom.com",
-    "label:" "Senior Research Fellow"
-    "profiles": [
-      {
-        "network": "Twitter",
-        "username": "etjernst",
-        "url": "https://twitter.com/etjernst"
-      }
+    "label": "Senior Research Fellow"
   },
   "work": [
     {
@@ -76,18 +70,6 @@
       "endDate": "Present"
     }
   ],
-  // "volunteer": [
-  //   {
-  //     "organization": "People's Climate March",
-  //     "position": "Lead Organizer",
-  //     "url": "https://example.com",
-  //     "startDate": "2014-04-01",
-  //     "endDate": "2015-07-01",
-  //     "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-  //     "highlights": [
-  //       "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.","Men of the year 2014 by Time magazine"
-  //     ]
-  //   }],
   "education": [
     {
       "institution": "University of California Davis",
@@ -115,9 +97,9 @@
   ],
   "awards": [
     {
-      "title": "Monash Business School Dean’s Award for Excellence in Research",
+      "title": "Monash Business School Dean's Award for Excellence in Research",
       "date": "2022",
       "awarder": "Monash Business School"
     }
-  ],
+  ]
 }
