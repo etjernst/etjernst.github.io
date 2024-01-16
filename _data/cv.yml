@@ -6,14 +6,14 @@
       year: 2022
       description:
         - title: Monash Data Futures Institute
-          description:
+          contents:
             - Affiliate since 2022 
         - title: Monash Sustainable Development Institute
-          description:
-            - Affiliate since 2022
+            contents:
+              - Affiliate since 2022 
         - title: Monash Impact Labs Affiliate
-          description:
-            - Affiliate since 2023
+            contents:
+              - Affiliate since 2023
 
 #   - title: Professor of Theoretical Physics
 #   year: 1933 - 1955
