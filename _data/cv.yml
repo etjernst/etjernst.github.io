@@ -6,12 +6,15 @@
       Centre for Development Economics & Sustainability
       year: 2022
       description:
-        - title: Monash Data Futures Institute Affiliate
-          year: 2022 
-        - title: Monash Sustainable Development Institute Affiliate
-          year: 2022
+        - title: Monash Data Futures Institute
+          description:
+            - Affiliate since 2022 
+        - title: Monash Sustainable Development Institute
+          description:
+            - Affiliate since 2022
         - title: Monash Impact Labs Affiliate
-          year: 2023
+          description:
+            - Affiliate since 2023
 
   - title: Professor of Theoretical Physics
   year: 1933 - 1955
