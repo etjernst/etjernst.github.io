@@ -2,10 +2,11 @@
   type: time_table
   contents:
     - title: Senior Research Fellow
+      year: 2022
       institution: 
+      contents:
         - Monash University
         - Centre for Development Economics & Sustainability
-      year: 2022
       description:
         - title: Affiliations
           contents:
