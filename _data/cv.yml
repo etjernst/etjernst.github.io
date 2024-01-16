@@ -2,9 +2,9 @@
   type: time_table
   contents:
     - title: Senior Research Fellow
+      institution: Monash University,
+      Centre for Development Economics & Sustainability
       year: 2022
-      institution: Monash University
-        - Centre for Development Economics & Sustainability
       description:
         - title: Monash Data Futures Institute Affiliate
           year: 2022 
@@ -12,6 +12,13 @@
           year: 2022
         - title: Monash Impact Labs Affiliate
           year: 2023
+
+  - title: Professor of Theoretical Physics
+  year: 1933 - 1955
+  institution: Institute for Advanced Study, Princeton University
+  description:
+
+
 
 - title: Education
   type: time_table
