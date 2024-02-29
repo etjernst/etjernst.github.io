@@ -24,39 +24,19 @@
       "endDate": "2022"
     },
     {
-      "name": "University of Wisconsin Madison",
+      "name": "University of Wisconsin Madison, Robert M. La Follette School of Public Affairs",
       "position": "Assistant Professor",
-      "department": "Robert M. La Follette School of Public Affairs",
       "startDate": "2015",
       "endDate": "2020"
     },
     {
-      "name": "University of Wisconsin Madison",
+      "name": "University of Wisconsin Madison, Agricultural and Applied Economics",
       "position": "Assistant Professor",
-      "department": "Agricultural and Applied Economics",
       "startDate": "2016",
-      "endDate": "2020"
-    },
-    {
-      "name": "University of Wisconsin Madison",
-      "position": "Faculty Affiliate",
-      "department": "Center for Demography and Ecology",
-      "startDate": "2016",
-      "endDate": "2020"
-    },
-    {
-      "name": "University of Wisconsin Madison",
-      "position": "Faculty Affiliate",
-      "department": "UW Center for Financial Security",
-      "startDate": "2017",
-      "endDate": "2020"
-    },
-    {
-      "name": "University of Wisconsin Madison",
-      "position": "Faculty Affiliate",
-      "department": "African Studies Program",
-      "startDate": "2018",
-      "endDate": "Present"
+      "endDate": "2020",
+      "highlights":   ["Faculty affiliate, Center for Demography and Ecology (2016-)", 
+                      "Faculty affiliate, UW Center for Financial Security (2017-)",
+                      "Faculty affiliate, African Studies Program (2018-)"]
     }
   ],
   "education": [
@@ -125,12 +105,12 @@
     },
     {
       "title": "Henry A. Jastro Graduate Research Fellowship",
-      "date": "2012-2013",
+      "date": "2012",
       "awarder": "UC Davis"
     },
     {
       "title": "Departmental Fellowship",
-      "date": "2009-2010",
+      "date": "2009",
       "awarder": "Agricultural and Resource Economics, UC Davis"
     },
     {
