@@ -1,7 +1,4 @@
-{
-  "meta": {
-    "theme": "elegant"
-  },  
+{  
   "basics": {
     "name": "Emilia Tjernström",
     "email": "emilia.tjernstrom@monash.edu",
@@ -13,21 +10,11 @@
       "position": "Senior Research Fellow",
       "department": "Centre for Development Economics & Sustainability",
       "startDate": "2022",
-      "endDate": "Present"
-    },
-    {
-      "name": "Monash University",
-      "position": "Affiliate",
-      "department": "Monash Data Futures Institute",
-      "startDate": "2023",
-      "endDate": "Present"
-    },
-    {
-      "name": "Monash University",
-      "position": "Affiliate",
-      "department": "Monash Sustainable Development Institute",
-      "startDate": "2022",
-      "endDate": "Present"
+      "endDate": "Present",
+      "summary": "Research-only position",
+      "highlights":   ["Affiliate, Monash Data Futures Institute (since 2023)", 
+                      "Affiliate, Monash Sustainable Development Institute (since 2022)",
+                      "Affiliate, Monash Impact Labs (since 2023)"]
     },
     {
       "name": "University of Sydney",
