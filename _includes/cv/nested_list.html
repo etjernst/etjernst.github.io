@@ -3,11 +3,11 @@
       <li class="list-group-item">
       <h5 class="font-italic">{{ content.title }}</h5>
       {% if content.items %}
-        <ul class="subitems">
-          {% for subitem in content.items %}
-            <li><span class="subitem">{{ subitem }}</span></li>
-          {% endfor %}
-        </ul>
+      <ul class="subitems" style="padding-left: 5px;">
+        {% for subitem in content.items %}
+          <li><span class="subitem">{{ subitem }}</span></li>
+        {% endfor %}
+      </ul>
       {% endif %}
       </li>
     {% endfor %}
