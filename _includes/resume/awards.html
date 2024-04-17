@@ -19,7 +19,9 @@
         {{ content.title }}
         {% endif %}  </h6>
         <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">{{content.awarder}}</h6>
-        <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic;">{{content.summary}}</h6>
+        <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic;">{{content.summary}}
+          {{ content.summary | replace: '[here]', '<a href="' | append: content.summary_url | append: '">here</a>' }}
+        </h6>
       </div>
     </div>
   </li>
