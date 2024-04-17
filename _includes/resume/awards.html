@@ -21,7 +21,7 @@
         <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">{{content.awarder}}</h6>
         <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; font-style: italic;">
           {% if content.summary_url %}
-          {{ content.summary | replace: '[here]', '<a href="' | append: content.summary_url | append: '">here</a>' }}
+          {{ content.summary | replace: '[here]', '<a href="' | append: content.summary_url | append: '">(link)</a>' }}
           {% else %}
           {{ content.summary }}
           {% endif %}
