@@ -2,19 +2,16 @@
 layout: page
 permalink: /publications/
 title: publications
-description: argh
+description: 
 nav: true
 nav_order: 2
-toc:
-  - title: peer-reviewed
-    url: #peer-reviewed
-  - title: policy-briefs
-    url: #policy-briefs  
-  - title: non-refereed
-    url: #non-refereed
-    
 ---
 <!-- _pages/publications.md -->
+
+* [peer-reviewed pubs](#peer-reviewed)
+* [policy briefs](policy-briefs)
+* [non-refereed pubs](#non-refereed)
+
 <div class="publications">
 
 <h3 id="peer-reviewed">peer-reviewed</h3>
