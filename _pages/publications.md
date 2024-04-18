@@ -9,7 +9,7 @@ nav_order: 2
 <!-- _pages/publications.md -->
 
 * [peer-reviewed pubs](#peer-reviewed)
-* [policy briefs](policy-briefs)
+* [policy briefs](#policy-briefs)
 * [non-refereed pubs](#non-refereed)
 
 <div class="publications" id="top">
@@ -24,14 +24,16 @@ nav_order: 2
 <div class="publications">
 
 <h3 id="policy-briefs">policy briefs</h3>
-<ul>
-[back to top](#top)
-</ul>
+
+<a href="#top">back to top</a>
+
 <ul>
 {% bibliography --query @*[keywords=policy\_brief] %}
 </ul>
 
 <h3 id="non-refereed">non-refereed pubs</h3>
+
+<a href="#top">back to top</a>
 
 [back to top](#top)
 
