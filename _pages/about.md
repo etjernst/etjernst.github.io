@@ -16,14 +16,6 @@ latest_posts: false  # includes a list of the newest posts
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 
-_styles: >
-  .figure img {
-    background: #bbb;
-    border: 1px solid rgba(0, 210, 0, 0.1);
-    box-shadow: 0 10px 10px rgba(0, 210, 7, 0.5);
-    margin-bottom: 12px;
-  }
-
 ---
 
 My research draws on insights from behavioral economics and employs econometrics, field-, and lab-in-the-field experiments to examine a variety of topics in development economics <br> <br>
