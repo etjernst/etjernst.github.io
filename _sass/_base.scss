@@ -444,10 +444,11 @@ footer.sticky-bottom {
   .card {
     background-color: var(--global-card-bg-color);
     border: 0px solid var(--global-divider-color);
+    border-color: transparent;
 
     .list-group-item {
       background-color: inherit;
-      border-color: var(--global-divider-color);
+      border-color: transparent;
 
       .badge {
         color: var(--global-card-bg-color) !important;
