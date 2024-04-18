@@ -18,7 +18,7 @@ nav_order: 2
 
 <h2>Non-Refereed Publications</h2>
 <ul>
-{% bibliography --query @*[non\_refereed\_pubs] %}
+{% bibliography --query @*[keywords=non_refereed_pubs OR policy_brief] %}
 </ul> -->
 
 </div>
