@@ -20,12 +20,12 @@ toc:
 
 <h3>policy briefs</h3>
 <ul>
-{% bibliography --query @*[keywords=policy_brief] %}
+{% bibliography --query @*[keywords=policy\_brief] %}
 </ul>
 
 <h3>non-refereed pubs</h3>
 <ul>
-{% bibliography --query @*[keywords=non_refereed_pubs] %}
+{% bibliography --query @*[keywords=non\_refereed\_pubs] %}
 </ul>
 
 </div>
