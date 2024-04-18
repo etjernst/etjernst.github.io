@@ -25,7 +25,7 @@ nav_order: 2
 
 <h3 id="policy-briefs">policy briefs</h3>
 <ul>
-[back to top](top)
+[back to top](#top)
 </ul>
 <ul>
 {% bibliography --query @*[keywords=policy\_brief] %}
@@ -33,7 +33,7 @@ nav_order: 2
 
 <h3 id="non-refereed">non-refereed pubs</h3>
 
-[back to top](top)
+[back to top](#top)
 
 <ul>
 {% bibliography --query @*[keywords=non\_refereed\_pubs] %}
