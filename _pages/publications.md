@@ -6,6 +6,13 @@ nav: true
 nav_order: 2
 toc:
   sidebar: left
+  - title: peer-reviewed
+    url: #peer-reviewed
+  - title: policy-briefs
+    url: #policy-briefs  
+  - title: non-refereed
+    url: #non-refereed-pubs
+    
 ---
 <!-- _pages/publications.md -->
 <div class="publications">
