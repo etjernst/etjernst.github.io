@@ -36,8 +36,6 @@ nav_order: 2
 
 <a href="#top">back to top</a>
 
-[back to top](#top)
-
 <ul>
 {% bibliography --query @*[keywords=non\_refereed\_pubs] %}
 </ul>
