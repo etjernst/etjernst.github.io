@@ -10,14 +10,15 @@ toc:
 <!-- _pages/publications.md -->
 <div class="publications">
 
-<h3>peer-reviewed</h3>
+<h3>Policy Notes</h3>
 <ul>
-{% bibliography --query @*[keywords=peer\_reviewed] %}
+{% bibliography --query @*[keywords=policy_brief] %}
 </ul>
 
-<h3>policy notes & other</h3>
+<h3>Other Non-Peer-Reviewed Publications</h3>
 <ul>
-{% bibliography --query @*[keywords=non\_refereed\_pubs OR policy\_brief] %}
+{% bibliography --query @*[keywords=non_refereed_pubs] %}
 </ul>
+
 
 </div>
