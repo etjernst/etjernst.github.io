@@ -17,7 +17,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 
 _styles: >
-  .img {
+  .figure img {
     background: #bbb;
     border: 1px solid rgba(0, 210, 0, 0.1);
     box-shadow: 0 10px 10px rgba(0, 210, 7, 0.5);
