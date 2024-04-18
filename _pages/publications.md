@@ -8,12 +8,12 @@ nav_order: 2
 ---
 <!-- _pages/publications.md -->
 
-<div class="publications" id="top">
 
 * [peer-reviewed pubs](#peer-reviewed)
 * [policy briefs](#policy-briefs)
 * [non-refereed pubs](#non-refereed)
 
+<div class="publications" id="top">
 
 <h3 id="peer-reviewed">peer-reviewed</h3>
 
