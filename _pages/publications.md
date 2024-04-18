@@ -24,9 +24,9 @@ nav_order: 2
 <div class="publications">
 
 <h3 id="policy-briefs">policy briefs</h3>
-
+<ul>
 [back to top](top)
-
+</ul>
 <ul>
 {% bibliography --query @*[keywords=policy\_brief] %}
 </ul>
