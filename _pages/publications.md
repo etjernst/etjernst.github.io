@@ -9,7 +9,7 @@ nav_order: 2
 <!-- _pages/publications.md -->
 <div class="publications">
 
-{% bibliography}
+{% bibliography %}
 
 <!-- <h2>Peer-Reviewed Publications</h2>
 <ul>
