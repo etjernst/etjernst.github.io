@@ -58,9 +58,9 @@ table.table a {
 figure,
 img {
   max-width: 90vw;
-  border-color: rgba(1, 1, 1, 0);
+  border-color: var(--global-bg-color);
   background-color: transparent;
-  box-shadow: 0 0px 0px rgba(1, 1, 1, 0);
+  box-shadow: 0 0px 0px var(--global-bg-color);
 }
 
 blockquote {
