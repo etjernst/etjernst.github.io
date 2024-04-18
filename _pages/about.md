@@ -20,7 +20,7 @@ _styles: >
   .img {
     background: #bbb;
     border: 1px solid rgba(0, 210, 0, 0.1);
-    box-shadow: 0 10px 10px rgba(210, 7, 7, 0.5);
+    box-shadow: 0 10px 10px rgba(0, 210, 7, 0.5);
     margin-bottom: 12px;
   }
 
