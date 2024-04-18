@@ -180,15 +180,17 @@ blockquote {
 
 .profile.float-right {
   margin-left: 1rem;
+  color: var(--global-bg-color);
 }
 
 .profile.float-left {
   margin-right: 1rem;
+  color: var(--global-bg-color);
 }
 
 @media (min-width: 576px) {
   .profile {
-    width: 30%;
+    width: 25%;
 
     .address {
       p {
@@ -729,7 +731,7 @@ footer.sticky-bottom {
       .links {
         a.btn {
           color: var(--global-text-color);
-          border: 1px solid var(--grey-color-light);
+          border: 1px solid var(--global-footer-text-color);
           padding-left: 1rem;
           padding-right: 1rem;
           padding-top: 0.25rem;
