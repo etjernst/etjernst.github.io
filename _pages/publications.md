@@ -4,19 +4,20 @@ permalink: /publications/
 title: publications
 nav: true
 nav_order: 2
-
+toc:
+  sidebar: left
 ---
 <!-- _pages/publications.md -->
 <div class="publications">
 
-<h2>Peer-Reviewed Publications</h2>
+<h3>peer-reviewed</h3>
 <ul>
 {% bibliography --query @*[keywords=peer\_reviewed] %}
 </ul>
 
-<h2>Non-Refereed Publications</h2>
+<h3>policy notes & other</h3>
 <ul>
-{% bibliography --query @*[keywords=non_refereed_pubs OR policy_brief] %}
+{% bibliography --query @*[keywords=non\_refereed\_pubs OR policy\_brief] %}
 </ul>
 
 </div>
