@@ -35,7 +35,7 @@ toc:
 
 <h3 id="policy-briefs">policy briefs</h3>
 
-<a href="#publications">back to top</a>
+<a href="#top">back to top</a>
 
 <ul>
 {% bibliography --query @*[keywords=policy\_brief] %}
