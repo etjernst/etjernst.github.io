@@ -277,7 +277,7 @@ scholar:
   last_name: [Tjernström]
   first_name: [Emilia]
 
-  style: econometrica
+  style: apa
   locale: en
 
   source: /_bibliography/
