@@ -99,7 +99,7 @@ div.list-groups {
   flex-wrap: wrap; /* Allow wrapping of flex items */
   justify-content: flex-start; /* Align items to the start of the container */
   flex-direction: row; /* Arrange items in a row */
-  align-content: start; /* Center content along the cross axis */
+  align-content: flex-start; /* Center content along the cross axis */
 }
 
 /* Individual list group container */
