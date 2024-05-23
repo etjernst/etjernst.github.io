@@ -99,7 +99,7 @@ div.list-groups {
   flex-wrap: wrap; /* Allow wrapping of flex items */
   justify-content: flex-start; /* Align items to the start of the container */
   flex-direction: row; /* Arrange items in a row */
-  align-content: flex-start; /* Center content along the cross axis */
+  align-content: center; /* Center content along the cross axis */
 }
 
 /* Individual list group container */
@@ -130,29 +130,86 @@ td.list-group-name {
   font-size: 0.8rem; /* Font size for name */
 }
 
-/* Level cell in list group */
 td.list-group-level {
-  font-size: 0.8rem; /* Font size for level */
-  padding-left: 0.5rem; /* Space to the left of the level */
+  font-size: 0.8rem;
+  padding-left: 0.5rem;
 }
 
-/* School cell in list group */
 td.list-group-school {
-  font-size: 0.7rem; /* Font size for school name */
-  padding-left: 0.5rem; /* Space to the left of the school name */
-  text-align: center; /* Center-align text */
+  font-size: 0.7rem;
+  padding-left: 0.5rem;
+  text-align: center;
 }
 
-/* Paragraph for time elements in list group, likely displaying years or periods */
 p.list-group-time {
-  font-size: 0.7rem; /* Font size for time elements */
-  padding-left: 0.5rem; /* Space to the left of the time elements */
-  text-align: left; /* Align text to the left */
+  font-size: 0.7rem;
+  padding-left: 0.5rem;
+  text-align: left; /* Align groups left */
+  
+/* Container for all list groups */
+div.list-groups {
+  display: flex; /* Flexbox layout */
+  flex-wrap: wrap; /* Allow wrapping of flex items */
+  justify-content: flex-start; /* Align items to the start of the container */
+  flex-direction: row; /* Arrange items in a row */
+  align-content: center; /* Center content along the cross axis */
 }
 
-/* Link cell in list group */
+/* Individual list group container */
+div.list-group {
+  display: flex; /* Flexbox layout */
+  flex-wrap: wrap; /* Allow wrapping of flex items */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: flex-start; /* Align items to the start of the container */
+  margin-bottom: 2rem; /* Space below each list group */
+}
+
+/* Category cell in list group, potentially containing years */
+td.list-group-category {
+  color: var(--global-theme-color); /* Text color for category */
+  margin-bottom: 0.5rem; /* Space below category */
+}
+
+/* Icon cell for category in list group */
+td.list-group-category-icon {
+  font-size: 0.8rem; /* Font size for icons */
+  color: var(--global-theme-color); /* Color for icons */
+  width: 1.4rem; /* Width of the icon container */
+  padding-right: 0.4rem; /* Space to the right of the icon */
+}
+
+/* Name cell in list group */
+td.list-group-name {
+  font-size: 0.8rem; /* Font size for name */
+}
+
+td.list-group-level {
+  font-size: 0.8rem;
+  padding-left: 0.5rem;
+  align-items: flex-start; /* Align items to the start of the container */
+}
+
+td.list-group-school {
+  font-size: 0.7rem;
+  padding-left: 0.5rem;
+  text-align: center;
+}
+
+p.list-group-time {
+  font-size: 0.7rem;
+  padding-left: 0.5rem;
+  text-align: left; /* Align groups left */
+  align-items: flex-start; /* Align items to the start of the container */
+}
+
 td.list-group-link {
-  padding-left: 0.5rem; /* Space to the left of the link */
+  padding-left: 0.5rem;
+}
+
+}
+
+td.list-group-link {
+  padding-left: 0.5rem;
 }
 
 /*****************************
