@@ -93,57 +93,66 @@ div.container-pdf {
  * CV LIST_GROUPS styles
  *****************************/
 
+/* Container for all list groups */
 div.list-groups {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  flex-direction: row;
-  align-content: center;
+  display: flex; /* Flexbox layout */
+  flex-wrap: wrap; /* Allow wrapping of flex items */
+  justify-content: flex-start; /* Align items to the start of the container */
+  flex-direction: row; /* Arrange items in a row */
+  align-content: start; /* Center content along the cross axis */
 }
 
+/* Individual list group container */
 div.list-group {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 2rem;
+  display: flex; /* Flexbox layout */
+  flex-wrap: wrap; /* Allow wrapping of flex items */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: flex-start; /* Align items to the start of the container */
+  margin-bottom: 2rem; /* Space below each list group */
 }
 
+/* Category cell in list group, potentially containing years */
 td.list-group-category {
-  color: var(--global-theme-color);
-  margin-bottom: 0.5rem;
+  color: var(--global-theme-color); /* Text color for category */
+  margin-bottom: 0.5rem; /* Space below category */
 }
 
+/* Icon cell for category in list group */
 td.list-group-category-icon {
-  font-size: 0.8rem;
-  color: var(--global-theme-color);
-  width: 1.4rem;
-  padding-right: 0.4rem;
+  font-size: 0.8rem; /* Font size for icons */
+  color: var(--global-theme-color); /* Color for icons */
+  width: 1.4rem; /* Width of the icon container */
+  padding-right: 0.4rem; /* Space to the right of the icon */
 }
 
+/* Name cell in list group */
 td.list-group-name {
-  font-size: 0.8rem;
+  font-size: 0.8rem; /* Font size for name */
 }
 
+/* Level cell in list group */
 td.list-group-level {
-  font-size: 0.8rem;
-  padding-left: 0.5rem;
+  font-size: 0.8rem; /* Font size for level */
+  padding-left: 0.5rem; /* Space to the left of the level */
 }
 
+/* School cell in list group */
 td.list-group-school {
-  font-size: 0.7rem;
-  padding-left: 0.5rem;
-  text-align: center;
+  font-size: 0.7rem; /* Font size for school name */
+  padding-left: 0.5rem; /* Space to the left of the school name */
+  text-align: center; /* Center-align text */
 }
 
+/* Paragraph for time elements in list group, likely displaying years or periods */
 p.list-group-time {
-  font-size: 0.7rem;
-  padding-left: 0.5rem;
-  text-align: left; /* Align groups left */
+  font-size: 0.7rem; /* Font size for time elements */
+  padding-left: 0.5rem; /* Space to the left of the time elements */
+  text-align: left; /* Align text to the left */
 }
 
+/* Link cell in list group */
 td.list-group-link {
-  padding-left: 0.5rem;
+  padding-left: 0.5rem; /* Space to the left of the link */
 }
 
 /*****************************
@@ -171,7 +180,7 @@ ul.timeline li {
 
 span.badge-toc {
   color: var(--global-bg-color);
-  background-color: var(--global-danger-block);
+  background-color: var(--global-theme-color);
   border-radius: 0.125rem;
   padding: 0.125rem 0.5rem 0.125rem 0.5rem;
   font-weight: 700 !important;
