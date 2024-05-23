@@ -135,7 +135,7 @@ blockquote {
 
 .card {
   background-color: var(--global-card-bg-color);
-  box-shadow: 0 0px 0px rgba(1, 1, 1, 0);
+  box-shadow: 0 0px 0px var(--global-card-bg-color);
   img {
     width: 100%;
     box-shadow: none;
