@@ -453,8 +453,9 @@ footer.sticky-bottom {
       border-color: transparent;
 
       .badge {
-        color: var(--global-theme-color) !important;
-        background-color: var(--global-card-bg-color) !important;
+        color: var(--global-theme-color) !important;              // Sets the text color to the global theme color
+        background-color: var(--global-card-bg-color) !important; // Sets the background color to the global card background color
+        border: none;                                             // Removes any border from the badge
       }
     }
   }
