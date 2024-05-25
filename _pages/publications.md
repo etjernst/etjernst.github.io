@@ -41,9 +41,10 @@ toc:
 
 <h3 id="working-papers">working papers</h3>
 
-* Paper title: Learning from others etc
-  * Authors: 
-  * R&R
+<ul>
+<li> Paper title XYZ</li>
+<li> Authors etc.</li>
+</ul>
 
 <!-- <ul>
 {% bibliography --query @*[keywords=working\_papers] %}
