@@ -47,7 +47,7 @@ toc:
 </ul>
 
 <!-- <ul>
-{% bibliography --query @*[keywords=working\_papers] %}
+{% bibliography --query @*[keywords=working\_paper] %}
 </ul> -->
 </div>
 
