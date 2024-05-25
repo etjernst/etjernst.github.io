@@ -295,13 +295,13 @@ scholar:
   details_layout: bibtex.html
   details_link: Details
 
-  query: "@*"
-  group_by: year
-  group_order: descending
+  # query: "@*"
+  # group_by: year
+  # group_order: descending
 
   sort_by: date
   order: descending
-  type_order: [article, inbook, book, unpublished, misc, report, conference, incollections, inproceedings, proceedings]
+  type_order: [article, unpublished, techreport, report]
   type_names: {article: journal articles, unpublished: working papers, techreport: policy briefs, report: other writing}
 
 # Display different badges withs stats for your publications
