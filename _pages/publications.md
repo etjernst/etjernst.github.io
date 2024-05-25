@@ -24,6 +24,7 @@ toc:
 </div>
 
 * [peer-reviewed pubs](#peer-reviewed)
+* [working papers](#working-papers)
 * other writing
   * [policy briefs](#policy-briefs)
   * [non-refereed pubs](#non-refereed)
