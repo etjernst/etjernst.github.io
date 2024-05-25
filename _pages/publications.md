@@ -19,7 +19,7 @@ toc:
 ---
 <!-- _pages/publications.md -->
 
-<div class="post" id="top">
+<!-- <div class="post" id="top">
 
 </div>
 
@@ -65,7 +65,7 @@ toc:
 {% bibliography --query @*[keywords=non\_refereed\_pubs] %}
 </ul>
 
-</div>
+</div> -->
 
 
 
