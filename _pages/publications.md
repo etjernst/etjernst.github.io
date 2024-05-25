@@ -21,8 +21,9 @@ toc:
 
 
 * [peer-reviewed pubs](#peer-reviewed)
-* [policy briefs](#policy-briefs)
-* [non-refereed pubs](#non-refereed)
+* Other writing
+  * [policy briefs](#policy-briefs)
+  * [non-refereed pubs](#non-refereed)
 
 <div class="publications" id="top">
 
