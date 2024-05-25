@@ -299,6 +299,12 @@ scholar:
   group_by: year
   group_order: descending
 
+  sort_by: date
+  order: descending
+  type_order: [article, inbook, book, unpublished, misc, report, conference, incollections, inproceedings, proceedings]
+  type_names: {unpublished: working papers, report: reports, article: journal articles, 
+        inproceedings: conference articles & others}
+
 # Display different badges withs stats for your publications
 enable_publication_badges:
   altmetric: true # Altmetric badge (https://www.altmetric.com/products/altmetric-badges/)
@@ -313,7 +319,6 @@ more_authors_animation_delay: 5  # more authors are revealed on click using anim
 
 # Enables publication thumbnails. If disabled, none of the publications will display thumbnails, even if specified in the bib entry.
 enable_publication_thumbnails: true
-
 # -----------------------------------------------------------------------------
 # Jekyll Link Attributes
 # -----------------------------------------------------------------------------
