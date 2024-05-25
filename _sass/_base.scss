@@ -451,13 +451,15 @@ footer.sticky-bottom {
     .list-group-item {
       background-color: inherit;
       border-color: transparent;
+      display: flex;               // Make the list group item a flex container
+
 
       .badge {
         color: var(--global-theme-color) !important;              // Sets the text color to the global theme color
         background-color: var(--global-card-bg-color) !important; // Sets the background color to the global card background color
         border: none;                                             // Removes any border from the badge
         box-shadow: none !important;                        // Removes any shadow from the badge and uses !important to override other styles
-        margin-right: auto;                                       // Pushes the badge to the left
+        align-self: flex-start;                                   // Aligns the badge itself to the start of the flex container
       }
     }
   }
