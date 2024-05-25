@@ -302,8 +302,7 @@ scholar:
   sort_by: date
   order: descending
   type_order: [article, inbook, book, unpublished, misc, report, conference, incollections, inproceedings, proceedings]
-  type_names: {unpublished: working papers, report: reports, article: journal articles, 
-        inproceedings: conference articles & others}
+  type_names: {article: journal articles, unpublished: working papers, techreport: policy briefs, report: other writing}
 
 # Display different badges withs stats for your publications
 enable_publication_badges:
