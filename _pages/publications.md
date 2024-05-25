@@ -7,8 +7,10 @@ nav: true
 nav_order: 2
 toc:
   - name: peer-reviewed
-  - name: policy briefs
-  - name: non-refereed pubs
+  - name: other writing
+  - subsections:
+    - name: policy briefs
+    - name: non-refereed pubs
     # if a section has subsections, you can add them as follows:
     # subsections:
     #   - name: Example Child Subsection 1
