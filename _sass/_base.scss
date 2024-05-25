@@ -451,8 +451,6 @@ footer.sticky-bottom {
     .list-group-item {
       background-color: inherit;
       border-color: transparent;
-      display: flex;               // Make the list group item a flex container
-
 
       .badge {
         color: var(--global-theme-color) !important;              // Sets the text color to the global theme color
