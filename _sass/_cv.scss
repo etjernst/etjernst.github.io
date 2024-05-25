@@ -242,6 +242,7 @@ span.badge-toc {
   font-weight: 700 !important;               // Sets font weight to bold and uses !important to override other styles
   display: inline-block;                     // Makes the element an inline-block element
   inline-size: fit-content;                  // Adjusts the width of the element to fit its content
+  font-size: 1.2rem;                         // Adds a font size of 1.2rem (you can adjust this value as needed)
 }
 
 ul.timeline li::before {
