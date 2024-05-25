@@ -19,20 +19,32 @@ toc:
 ---
 <!-- _pages/publications.md -->
 
+<div class="post" id="top">
+
+</div>
 
 * [peer-reviewed pubs](#peer-reviewed)
 * other writing
   * [policy briefs](#policy-briefs)
   * [non-refereed pubs](#non-refereed)
 
-<div class="publications" id="top">
-
+<div class="publications">
 <h3 id="peer-reviewed">peer-reviewed</h3>
 
 <ul>
 {% bibliography --query @*[keywords=peer\_reviewed] %}
 </ul>
 </div>
+
+<div class="publications" id="working-papers">
+
+<h3 id="working-papers">working papers</h3>
+
+<ul>
+{% bibliography --query @*[keywords=working\_papers] %}
+</ul>
+</div>
+
 
 <div class="publications">
 
