@@ -456,6 +456,7 @@ footer.sticky-bottom {
         color: var(--global-theme-color) !important;              // Sets the text color to the global theme color
         background-color: var(--global-card-bg-color) !important; // Sets the background color to the global card background color
         border: none;                                             // Removes any border from the badge
+        box-shadow: none !important;                        // Removes any shadow from the badge and uses !important to override other styles
       }
     }
   }
