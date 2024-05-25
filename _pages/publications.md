@@ -42,13 +42,8 @@ toc:
 <h3 id="working-papers">working papers</h3>
 
 <ul>
-<li> Paper title XYZ</li>
-<li> Authors etc.</li>
-</ul>
-
-<!-- <ul>
 {% bibliography --query @*[keywords=working\_paper] %}
-</ul> -->
+</ul>
 </div>
 
 
