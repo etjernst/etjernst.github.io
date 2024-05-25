@@ -19,9 +19,16 @@ toc:
 ---
 <!-- _pages/publications.md -->
 
-<!-- <div class="post" id="top">
 
+<div class="publications">
+  <ul>
+  {% bibliography -f papers --group_by type %}
+  </ul>
 </div>
+
+
+---
+
 
 * [peer-reviewed pubs](#peer-reviewed)
 * [working papers](#working-papers)
@@ -65,10 +72,6 @@ toc:
 {% bibliography --query @*[keywords=non\_refereed\_pubs] %}
 </ul>
 
-</div> -->
-
-
-
-<div class="publications">
- {% bibliography -f papers --group_by type %}
 </div>
+
+
