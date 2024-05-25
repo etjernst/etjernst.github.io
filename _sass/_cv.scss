@@ -215,47 +215,47 @@ td.list-group-link {
 /*****************************
  * CV TOC styles
  *****************************/
-
-a.anchor {
-  display: block;
-  position: relative;
-  top: -50px;
-  visibility: hidden;
+ a.anchor {
+  display: block;          // Makes the anchor element a block-level element
+  position: relative;      // Positions the anchor element relative to its normal position
+  top: -50px;              // Moves the anchor element 50 pixels up
+  visibility: hidden;      // Hides the anchor element from view
 }
 
 ul.timeline {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 2rem;        // Adds a 2rem margin at the top of the timeline
+  margin-bottom: 2rem;     // Adds a 2rem margin at the bottom of the timeline
 }
 
 ul.timeline li {
-  position: relative;
-  min-height: 2.2rem;
-  color: var(--global-text-color);
-  list-style-position: inside;
+  position: relative;          // Positions the list item relative to its normal position
+  min-height: 2.2rem;          // Sets a minimum height of 2.2rem for the list item
+  color: var(--global-text-color);  // Sets the text color to a global variable
+  list-style-position: inside; // Positions the list item markers inside the content flow
 }
 
 span.badge-toc {
-  color: var(--global-bg-color);
-  background-color: var(--global-theme-color);
-  border-radius: 0.125rem;
-  padding: 0.125rem 0.5rem 0.125rem 0.5rem;
-  font-weight: 700 !important;
-  display: inline-block;
-  inline-size: fit-content;
+  color: var(--global-bg-color);              // Sets the text color to the global background color
+  background-color: var(--global-theme-color); // Sets the background color to the global theme color
+  border-radius: 0.125rem;                    // Rounds the corners with a radius of 0.125rem
+  padding: 0.125rem 0.5rem 0.125rem 0.5rem;   // Adds padding: 0.125rem on top and bottom, 0.5rem on left and right
+  font-weight: 700 !important;               // Sets font weight to bold and uses !important to override other styles
+  display: inline-block;                     // Makes the element an inline-block element
+  inline-size: fit-content;                  // Adjusts the width of the element to fit its content
 }
 
 ul.timeline li::before {
-  content: "";
-  min-height: 2.5rem;
-  width: 1px;
-  background: var(--global-text-color);
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  left: 2px;
-  top: -0.5rem;
+  content: "";                           // Inserts an empty content before each list item
+  min-height: 2.5rem;                    // Sets a minimum height of 2.5rem for the pseudo-element
+  width: 1px;                            // Sets the width of the pseudo-element to 1px
+  background: var(--global-text-color);  // Sets the background color to the global text color
+  margin: 0;                             // Removes any margin around the pseudo-element
+  padding: 0;                            // Removes any padding around the pseudo-element
+  position: absolute;                    // Positions the pseudo-element absolutely within the list item
+  left: 2px;                             // Positions the pseudo-element 2px from the left of the list item
+  top: -0.5rem;                          // Positions the pseudo-element 0.5rem above the top of the list item
 }
+
 
 /*ul.timeline::before {
      content: "●";
