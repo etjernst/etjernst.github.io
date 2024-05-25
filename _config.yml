@@ -299,7 +299,7 @@ scholar:
   # group_by: year
   # group_order: descending
 
-  sort_by: date
+  sort_by: year
   order: descending
   type_order: [article, unpublished, techreport, report]
   type_names: {article: journal articles, unpublished: working papers, techreport: policy briefs, report: other writing}
