@@ -799,11 +799,12 @@ footer.sticky-bottom {
       }
 
       div.abstract.hidden {
-        border: dashed 1px var(--global-bg-color);
+        border: dashed 0px var(--global-bg-color);
       }
 
       div.abstract.hidden.open {
-        border-color: var(--global-text-color);
+        border-color: var(--global-bg-color);
+        border: 0px;
       }
     }
   }
