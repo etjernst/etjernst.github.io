@@ -133,10 +133,12 @@
         <div class="periodical">
           {{ periodical | strip }}
         </div>
-        <div class="periodical note">
-          {{ entry.note | newline_to_br | strip }}
-        </div>
-
+        {% if entry.note %}
+          <div class="periodical note">
+            {{ entry.note | newline_to_br | strip }}
+          </div>
+        {% endif %}
+        
           <!-- Links/Buttons -->
           <div class="links">
           {%- if entry.abstract %}
