@@ -1087,5 +1087,6 @@ nav[data-toggle="toc"] {
 .note {
   color: var(--global-theme-color); /* Change this to the desired font color */
   font-style: italic; /* Optional: Make the text italic */
-  display: inline; /* Ensure it only affects the text */
+  padding: 0px;
+  border-left: 0px;
 }
