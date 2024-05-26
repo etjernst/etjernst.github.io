@@ -654,10 +654,6 @@ footer.sticky-bottom {
       font-size: 1.5rem;
     }
   }
-  .note {
-    color: #ff5733; /* Change this to the desired font color */
-    font-style: italic; /* Optional: Make the text italic */
-  }
 
   h2.bibliography {
     color: var(--global-divider-color);
@@ -1086,4 +1082,9 @@ nav[data-toggle="toc"] {
 
 #toc-sidebar {
   z-index: 1;
+}
+
+.note {
+color: #ff5733; /* Change this to the desired font color */
+font-style: italic; /* Optional: Make the text italic */
 }
