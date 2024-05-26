@@ -20,6 +20,8 @@ toc:
 <!-- _pages/publications.md -->
 
 
+[Link to Working Papers](#working-papers)
+
 <div class="publications">
   <ul>
   {% bibliography -f papers --group_by type %}
