@@ -134,7 +134,7 @@
           {{ periodical | strip }}
         </div>
         <div class="periodical">
-          {{ entry.note | strip }}
+          {{ entry.note | newline_to_br | strip }}
         </div>
 
           <!-- Links/Buttons -->
