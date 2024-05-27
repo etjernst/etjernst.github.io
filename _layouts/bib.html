@@ -169,17 +169,12 @@
             {{ entry.note | newline_to_br | strip }}
           </div>
         {% endif %}
-          <!-- Add pre-reg field -->
-        {% if entry['pre-reg'] %}
-          <div class="pre-reg">
-            <a href="{{ entry['pre-reg'] }}" target="_blank">pre-reg</a>
-          </div>
-        {% endif %}
-          <!-- Links/Buttons -->
-          <div class="links">
+        <!-- Links/Buttons -->
+        <div class="links">
           {%- if entry.abstract %}
-            <a class="abstract btn btn-sm z-depth-0" role="button">abstract</a>
+          <a class="abstract btn btn-sm z-depth-0" role="button">abstract</a>
           {%- endif %}
+          <!-- Add pre-reg field -->
           {%- if entry.pre-reg %}
           <a href="{{ entry.pre-reg }}" class="btn btn-sm z-depth-0" role="button">pre-reg</a>
           {%- endif %}
