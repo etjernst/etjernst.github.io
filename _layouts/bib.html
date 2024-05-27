@@ -114,16 +114,20 @@
         {% assign proceedings = "inproceedings,incollection" | split: ','%}
         {% assign thesis = "thesis,mastersthesis,phdthesis" | split: ','%}
         {% if entry.type == "article" -%}
-          {%- capture entrytype -%}<em>{{entry.journal}}</em>{%- endcapture -%}
+          <h3 id="published"></h3>
+        {%- capture entrytype -%}<em>{{entry.journal}}</em>{%- endcapture -%}
         {%- elsif proceedings contains entry.type -%}
           {%- capture entrytype -%}<em>In {{entry.booktitle}}</em> {%- endcapture -%}
         {%- elsif thesis contains entry.type -%}
           {%- capture entrytype -%}<em>{{entry.school}}</em> {%- endcapture -%}
         {% elsif entry.type == "techreport" %}
-          <h2 id="policy-briefs">policy briefs</h2>
+          <h3 id="policy-briefs"></h3>
           {%- capture entrytype -%}<em>{{entry.institution}}</em>{%- endcapture %}
         {% elsif entry.type == "report" %}
-          <h2 id="other-writing">other writing</h2>
+          <h3 id="other-writing"></h3>
+          {%- capture entrytype -%}{%- endcapture %}    
+        {% elsif entry.type == "unpublished" %}
+          <h3 id="working-papers"></h3>
           {%- capture entrytype -%}{%- endcapture %}    
         {%- else -%}
           {%- capture entrytype -%}{%- endcapture -%}
