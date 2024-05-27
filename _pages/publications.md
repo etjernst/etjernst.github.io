@@ -19,6 +19,10 @@ toc:
 ---
 <!-- _pages/publications.md -->
 
+* [publications](#published)
+* [working papers](#working-papers)
+* [other writing](#policy-briefs)
+* [policy briefs](#other-writing)
 
 <div class="publications">
   <ul>
