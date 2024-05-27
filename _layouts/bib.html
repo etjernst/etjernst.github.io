@@ -1,25 +1,11 @@
 ---
 ---
 <!-- _layouts/bib.html -->
-    {% assign added_headings = "" | split: "" %} <!-- Initialize an empty array to keep track of added headings -->
-
-    {% for entry in site.data.publications %}
-      {% assign proceedings = "inproceedings,incollection" | split: ',' %}
-      {% assign thesis = "thesis,mastersthesis,phdthesis" | split: ',' %}
-
-      {% if entry.type == "article" and "published" not in added_headings %}
-        <h3 id="published"></h3>
-        {% assign added_headings = added_headings | push: "published" %}
-      {% elsif entry.type == "techreport" and "policy-briefs" not in added_headings %}
-        <h3 id="policy-briefs"></h3>
-        {% assign added_headings = added_headings | push: "policy-briefs" %}
-      {% elsif entry.type == "report" and "other-writing" not in added_headings %}
-        <h3 id="other-writing"></h3>
-        {% assign added_headings = added_headings | push: "other-writing" %}
-      {% elsif entry.type == "unpublished" and "working-papers" not in added_headings %}
-        <h3 id="working-papers"></h3>
-        {% assign added_headings = added_headings | push: "working-papers" %}
-      {% endif %}
+      <!-- Initialize flags for each type to track if the heading has been added -->
+      {% assign added_published_heading = false %}
+      {% assign added_policy_briefs_heading = false %}
+      {% assign added_other_writing_heading = false %}
+      {% assign added_working_papers_heading = false %}
 
       <div class="row">
         {%- if site.enable_publication_thumbnails -%}
@@ -133,6 +119,31 @@
         <!-- Journal/Book title and date -->
         {% assign proceedings = "inproceedings,incollection" | split: ','%}
         {% assign thesis = "thesis,mastersthesis,phdthesis" | split: ','%}
+
+         <!-- Add heading for published articles if not already added -->
+        {% if entry.type == "article" and added_published_heading == false %}
+          <h3 id="published">Published</h3>
+          {% assign added_published_heading = true %}
+        {% endif %}
+
+        <!-- Add heading for policy briefs if not already added -->
+        {%- if entry.type == "techreport" and added_policy_briefs_heading == false %}
+          <h3 id="policy-briefs">Policy Briefs</h3>
+          {% assign added_policy_briefs_heading = true %}
+        {% endif %}
+
+        <!-- Add heading for other writing if not already added -->
+        {%- if entry.type == "report" and added_other_writing_heading == false %}
+          <h3 id="other-writing">Other Writing</h3>
+          {% assign added_other_writing_heading = true %}
+        {% endif %}
+
+        <!-- Add heading for working papers if not already added -->
+        {%- if entry.type == "unpublished" and added_working_papers_heading == false %}
+          <h3 id="working-papers">Working Papers</h3>
+          {% assign added_working_papers_heading = true %}
+        {% endif %}
+
         {% if entry.type == "article" -%}
           <h3 id="published"></h3>
         {%- capture entrytype -%}<em>{{entry.journal}}</em>{%- endcapture -%}
@@ -140,15 +151,6 @@
           {%- capture entrytype -%}<em>In {{entry.booktitle}}</em> {%- endcapture -%}
         {%- elsif thesis contains entry.type -%}
           {%- capture entrytype -%}<em>{{entry.school}}</em> {%- endcapture -%}
-        {% elsif entry.type == "techreport" %}
-          <h3 id="policy-briefs"></h3>
-          {%- capture entrytype -%}<em>{{entry.institution}}</em>{%- endcapture %}
-        {% elsif entry.type == "report" %}
-          <h3 id="other-writing"></h3>
-          {%- capture entrytype -%}{%- endcapture %}    
-        {% elsif entry.type == "unpublished" %}
-          <h3 id="working-papers"></h3>
-          {%- capture entrytype -%}{%- endcapture %}    
         {%- else -%}
           {%- capture entrytype -%}{%- endcapture -%}
         {%- endif -%}
