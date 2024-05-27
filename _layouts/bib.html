@@ -1,6 +1,26 @@
 ---
 ---
 <!-- _layouts/bib.html -->
+    {% assign added_headings = "" | split: "" %} <!-- Initialize an empty array to keep track of added headings -->
+
+    {% for entry in site.data.publications %}
+      {% assign proceedings = "inproceedings,incollection" | split: ',' %}
+      {% assign thesis = "thesis,mastersthesis,phdthesis" | split: ',' %}
+
+      {% if entry.type == "article" and "published" not in added_headings %}
+        <h3 id="published"></h3>
+        {% assign added_headings = added_headings | push: "published" %}
+      {% elsif entry.type == "techreport" and "policy-briefs" not in added_headings %}
+        <h3 id="policy-briefs"></h3>
+        {% assign added_headings = added_headings | push: "policy-briefs" %}
+      {% elsif entry.type == "report" and "other-writing" not in added_headings %}
+        <h3 id="other-writing"></h3>
+        {% assign added_headings = added_headings | push: "other-writing" %}
+      {% elsif entry.type == "unpublished" and "working-papers" not in added_headings %}
+        <h3 id="working-papers"></h3>
+        {% assign added_headings = added_headings | push: "working-papers" %}
+      {% endif %}
+
       <div class="row">
         {%- if site.enable_publication_thumbnails -%}
         <div class="col-sm-2 {% if entry.preview %}preview{% else %}abbr{% endif %}">
