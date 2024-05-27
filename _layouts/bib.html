@@ -6,6 +6,29 @@
       {% assign added_policy_briefs_heading = false %}
       {% assign added_other_writing_heading = false %}
       {% assign added_working_papers_heading = false %}
+      <!-- Add heading for published articles if not already added -->
+      {% if entry.type == "article" and added_published_heading == false %}
+      <h3 id="published">Published</h3>
+      {% assign added_published_heading = true %}
+      {% endif %}
+
+      <!-- Add heading for policy briefs if not already added -->
+      {% if entry.type == "techreport" and added_policy_briefs_heading == false %}
+      <h3 id="policy-briefs">Policy Briefs</h3>
+      {% assign added_policy_briefs_heading = true %}
+      {% endif %}
+
+      <!-- Add heading for other writing if not already added -->
+      {% if entry.type == "report" and added_other_writing_heading == false %}
+      <h3 id="other-writing">Other Writing</h3>
+      {% assign added_other_writing_heading = true %}
+      {% endif %}
+
+      <!-- Add heading for working papers if not already added -->
+      {% if entry.type == "unpublished" and added_working_papers_heading == false %}
+      <h3 id="working-papers">Working Papers</h3>
+      {% assign added_working_papers_heading = true %}
+      {% endif %}
 
       <div class="row">
         {%- if site.enable_publication_thumbnails -%}
@@ -119,30 +142,6 @@
         <!-- Journal/Book title and date -->
         {% assign proceedings = "inproceedings,incollection" | split: ','%}
         {% assign thesis = "thesis,mastersthesis,phdthesis" | split: ','%}
-
-         <!-- Add heading for published articles if not already added -->
-        {% if entry.type == "article" and added_published_heading == false %}
-          <h3 id="published">Published</h3>
-          {% assign added_published_heading = true %}
-        {% endif %}
-
-        <!-- Add heading for policy briefs if not already added -->
-        {%- if entry.type == "techreport" and added_policy_briefs_heading == false %}
-          <h3 id="policy-briefs">Policy Briefs</h3>
-          {% assign added_policy_briefs_heading = true %}
-        {% endif %}
-
-        <!-- Add heading for other writing if not already added -->
-        {%- if entry.type == "report" and added_other_writing_heading == false %}
-          <h3 id="other-writing">Other Writing</h3>
-          {% assign added_other_writing_heading = true %}
-        {% endif %}
-
-        <!-- Add heading for working papers if not already added -->
-        {%- if entry.type == "unpublished" and added_working_papers_heading == false %}
-          <h3 id="working-papers">Working Papers</h3>
-          {% assign added_working_papers_heading = true %}
-        {% endif %}
 
         {% if entry.type == "article" -%}
           <h3 id="published"></h3>
