@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-A test inline announcement.
+I am looking forward to presenting "Selection and Heterogeneity in the Returns to Migration" at the [2024 Africa Meeting of the Econometric Society](https://ensea.ed.ci/partenaires/africa-meeting-of-the-econometric-society-afes-2024/?lang=en)
