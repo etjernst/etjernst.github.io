@@ -4,6 +4,15 @@
       "email": "emilia.tjernstrom@monash.edu",
       "url": "https://emiliatjernstrom.com/"
     },
+    "publications": [
+    {
+      "name": "Article title",
+      "publisher": "Journal name",
+      "releaseDate": "2020-07-01",
+      "url": "URL",
+      "summary": "Abstract"
+    },
+    ],
     "work": [
       {
         "name": "Monash University, Centre for Development Economics & Sustainability",
