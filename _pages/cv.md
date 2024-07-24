@@ -1,5 +1,5 @@
 ---
-layout: cv
+layout: none
 permalink: /cv/
 title: cv
 nav: true
@@ -10,6 +10,11 @@ toc:
 
 ---
 
-Below is a simplified version of my resume. You can find a full version in the pdf :point_right:
-
-Please check the [research page]([url](https://emiliatjernstrom.com/research)) for [publications]([url](https://emiliatjernstrom.com/research/#published)), [working papers]([url](https://emiliatjernstrom.com/research/#working-papers)), [policy briefs]([url](https://emiliatjernstrom.com/research/#policy-briefs)), or [other writing]([url](https://emiliatjernstrom.com/research/#other-writing))
+<html>
+<head>
+  <meta http-equiv="refresh" content="0; url=https://emiliatjernstrom.com/assets/pdf/Tjernstrom-CV.pdf" />
+</head>
+<body>
+  <p>If you are not redirected automatically, please click <a href="https://emiliatjernstrom.com/assets/pdf/Tjernstrom-CV.pdf">here</a> to get to my CV.</p>
+</body>
+</html>
