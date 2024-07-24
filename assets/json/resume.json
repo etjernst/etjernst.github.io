@@ -4,25 +4,6 @@
       "email": "emilia.tjernstrom@monash.edu",
       "url": "https://emiliatjernstrom.com/"
     },
-    "publications": [
-    	{
-    		"name": "PublicationTitle1",
-    		"publisher": "PublisherName1",
-    		"releaseDate": "2014-10-01",
-    		"website": "http://your-publication-doi.org",
-    		"summary": "Description1...",
-    		"authors": [
-    			"FirstAuthorName",
-    			"SecondAuthorName"
-    		],
-    		"citations": [
-    			{
-    				"APA": "Full-APA-Citation",
-    				"MLA": "Full-MLA-Citation"
-    			}
-    		]
-    	}
-    ],
     "work": [
       {
         "name": "Monash University, Centre for Development Economics & Sustainability",
