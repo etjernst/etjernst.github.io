@@ -1,5 +1,5 @@
 ---
-layout: cv
+layout: none
 permalink: /cv/
 title: cv
 nav: true
@@ -10,4 +10,11 @@ toc:
 
 ---
 
-Below is a simplified version of my resume. You can find a full version in the pdf :point_right:
+<html>
+<head>
+  <meta http-equiv="refresh" content="0; url=https://emiliatjernstrom.com/assets/pdf/Tjernstrom-CV.pdf" />
+</head>
+<body>
+  <p>If you are not redirected automatically, please click <a href="https://emiliatjernstrom.com/assets/pdf/Tjernstrom-CV.pdf">here</a> to get to my CV.</p>
+</body>
+</html>
