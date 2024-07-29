@@ -21,8 +21,8 @@ toc:
 
 * [publications](#published)
 * [working papers](#working-papers)
-* [other writing](#other-writing)
 * [policy briefs](#policy-briefs)
+* [other writing](#other-writing)
 
 <div class="publications">
   <ul>
