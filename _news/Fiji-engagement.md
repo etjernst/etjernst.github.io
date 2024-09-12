@@ -7,7 +7,7 @@ related_posts: false
 ---
 
 Following a fabulous outreach trip before Easter, we held another highly successful trip in July.
-{% include figure.liquid loading="eager" path="assets/img/March-Fiji.jpg" class="img-fluid rounded z-depth-1" %}
+{% include figure.html path="assets/img/March-Fiji.jpg" class="img-fluid rounded z-depth-1" %}
 
 We had the privilege of meeting Professor Biman Prasad, Minister of Finance, Strategic, Planning, National Development and Statistics as well as 
 Dr. Michael Sivendra, Permanent Secretary for Ministry of Environment and Climate Change, Fiji Government. Both of them were enthusiastic about our work to evaluate the impacts of climate-responsive social protection efforts in Fiji and the potential for drawing on our findings for evidence-based policy-making.
