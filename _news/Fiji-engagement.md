@@ -16,22 +16,6 @@ Dr. Michael Sivendra, Permanent Secretary for Ministry of Environment and Climat
 
 <img src="assets\img\FinanceMin.jpg" width="100%">
 
-<!-- 
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/PS-enviro.jpg" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Left: Professor Biman Prasad, Minister of Finance, Strategic, Planning, National Development and Statistics. Right: Dr. Michael Sivendra, Permanent Secretary for Ministry of Environment and Climate Change, Fiji Government and his team.
-</div>
-
-We also got to indulge in some delicious fresh coconuts :grin:
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-    {% include figure.html path="assets/img/Coconuts.jpg" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div> -->
-
 
 ### Related news
 [CDES highlight](https://www.monash.edu/business/cdes/news-and-updates/newsletter/department-highlights) discussing engagement trip to Suva in July, 2024
