@@ -18,7 +18,7 @@ category: ongoing
     </div>
 </div>
 <div class="caption">
-    Measurements of CO and SO2 in Lagos, Nigeria
+    Left: CO & SO2 measurements in Lagos, Nigeria. Right: generators
 </div>
 
 ## Sustainable spillovers: health and environmental impacts of solar energy adoption 
