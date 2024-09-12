@@ -47,9 +47,3 @@ This pilot project has received support from the Abdul Latif Jameel Poverty Acti
 
 - [Social Protection Initiative (SPI) project page](https://www.povertyactionlab.org/initiative-project/impact-shock-responsive-social-protection-fiji)
 
-
-
-
-
-Project thumbnail by <a href="https://unsplash.com/@nicolasweldingh?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Nicolas Weldingh</a> on <a href="https://unsplash.com/photos/green-coconut-palm-tree-on-brown-soil-4MOpFRn08GE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  
