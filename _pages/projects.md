@@ -2,7 +2,7 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Ongoing field work projects
+description: ongoing field work projects
 nav: true
 nav_order: 3
 display_categories: [ongoing]
