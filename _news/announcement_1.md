@@ -1,8 +1,0 @@
----
-layout: post
-date: 2024-05-27 17:00:00-0400
-inline: true
-related_posts: false
----
-
-I am looking forward to presenting "Selection and Heterogeneity in the Returns to Migration" at the [2024 Africa Meeting of the Econometric Society](https://ensea.ed.ci/partenaires/africa-meeting-of-the-econometric-society-afes-2024/?lang=en)
