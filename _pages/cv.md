@@ -4,7 +4,7 @@ permalink: /cv/
 title: cv
 nav: true
 cv_pdf: Tjernstrom-CV.pdf
-nav_order: 3
+nav_order: 4
 toc:
   sidebar: left
 
