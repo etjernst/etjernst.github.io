@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Honored to have met so many policy-makers in Fiji with an interest in evidence-based policy-making!
+title: :airplane: Honored to have met so many policy-makers in Fiji with an interest in evidence-based policy-making!
 date: 2024-07-10 17:00:00-0400
 tags: Fiji
 inline: false

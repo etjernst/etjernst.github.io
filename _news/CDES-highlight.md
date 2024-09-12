@@ -7,7 +7,7 @@ inline: false
 related_posts: false
 ---
 
-[CDES's newsletter](https://www.monash.edu/business/cdes/news-and-updates/newsletter/department-highlights) highlights our project on shock-responsive social protection in Fiji, as well as my recent engagement trip to Suva (July 2024)
+:newspaper: [CDES's newsletter](https://www.monash.edu/business/cdes/news-and-updates/newsletter/department-highlights) highlights our project on shock-responsive social protection in Fiji, as well as my recent engagement trip to Suva (July 2024)
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">

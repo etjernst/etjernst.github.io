@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-New **[blog post](https://www.theigc.org/blogs/climate-information-and-farm-productivity)** up, discussing our upcoming work evaluating Climate Information Services (CIS) in Ethiopia!
+:scroll: New **[blog post](https://www.theigc.org/blogs/climate-information-and-farm-productivity)** up, discussing our upcoming work evaluating Climate Information Services (CIS) in Ethiopia!
