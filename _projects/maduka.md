@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Market-level effects of competition: prices, quality, and mechanisms
+title: Market-level effects of competition---prices, quality, and mechanisms
 description: Randomizing store entry in rural markets to shed light on how competition affects product quality
 img: assets/img/maduka_graphic.png
 importance: 1
@@ -31,7 +31,7 @@ Collaborators on this project include
 
 ### Funding
 
-This project has received support from PEDL and the National Science Foundation.
+This project received support from PEDL and the National Science Foundation.
 
 ### Links
 
