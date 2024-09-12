@@ -14,10 +14,10 @@ Dr. Michael Sivendra, Permanent Secretary for Ministry of Environment and Climat
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/FinanceMin.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/FinanceMin.jpg" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/PS-enviro.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/PS-enviro.jpg" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -27,7 +27,7 @@ Dr. Michael Sivendra, Permanent Secretary for Ministry of Environment and Climat
 We also got to indulge in some delicious fresh coconuts :grin:
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-    {% include figure.liquid loading="eager" path="assets/img/Coconuts.jpg" class="img-fluid rounded z-depth-1" %}
+    {% include figure.html path="assets/img/Coconuts.jpg" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
