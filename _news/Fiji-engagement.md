@@ -25,7 +25,13 @@ Dr. Michael Sivendra, Permanent Secretary for Ministry of Environment and Climat
 </div>
 
 We also got to indulge in some delicious fresh coconuts :grin:
-{% include figure.liquid loading="eager" path="assets/img/Coconuts.jpg" class="img-fluid rounded z-depth-1" %}
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid loading="eager" path="assets/img/Coconuts.jpg" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
+
 ### Related news
 [CDES highlight](https://www.monash.edu/business/cdes/news-and-updates/newsletter/department-highlights) discussing engagement trip to Suva in July, 2024
 
