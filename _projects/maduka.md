@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Market-level effects of competition---prices, quality, and mechanisms
-description: Randomizing store entry in rural markets to shed light on how competition affects product quality
+title: Randomizing competition
+description: A market-level field experiment of store entry in rural markets to shed light on how competition affects product quality
 img: assets/img/maduka_graphic.png
 importance: 1
 category: ongoing
@@ -14,12 +14,14 @@ category: ongoing
     </div>
 </div>
 <div class="caption">
-    Small-scale retail shops in rural Kenya selling agricultural inputs. 
+    Small-scale retail shops in rural Kenya selling agricultural inputs
 </div>
+
+## Market-level effects of competition: prices, quality, and mechanisms
 
 ### Project overview
 
-Conventional wisdom has it that market competition drives down prices. The effect of competition on product quality, however, is theoretically ambiguous. This project uses a market-level experiment to identify the causal effect of market entry on agricultural input markets. We randomize the roll-out of new agricultural retail stores in rural Kenya, where agricultural input markets are served by small-scale retail shops with spatial monopoly power. We use this experimental variation in competitive pressure to estimate the effect on prices, product quality, and firm behavior including entry and exit decisions.
+Conventional wisdom has it that market competition drives down prices. The effect of competition on product quality, however, is ambiguous. This project uses a market-level experiment to identify the causal effect of market entry on agricultural input markets. We randomize the roll-out of new agricultural retail stores in rural Kenya, where agricultural input markets are served by small-scale retail shops with spatial monopoly power. We use this experimental variation in competitive pressure to estimate the effect on prices, product quality, and firm behavior including entry and exit decisions.
 
 ### Research team
 
@@ -31,7 +33,7 @@ Collaborators on this project include
 
 ### Funding
 
-This project received support from PEDL and the National Science Foundation.
+This project has received support from PEDL and the National Science Foundation
 
 ### Links
 
