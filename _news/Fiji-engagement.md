@@ -4,7 +4,7 @@ title: Honored to have met so many policy-makers in Fiji with an interest in evi
 date: 2024-07-10 17:00:00-0400
 tags: Fiji
 inline: false
-related_posts: true
+related_posts: false
 ---
 
 Following a fabulous outreach trip before Easter, we held another highly successful trip in July.

@@ -3,8 +3,8 @@ layout: post
 title: CDES newsletter discusses our project on shock-responsive social protection in Fiji
 date: 2024-07-01 17:00:00-0400
 tags: Fiji
-inline: true
-related_posts: true
+inline: false
+related_posts: false
 ---
 
 [CDES's newsletter](https://www.monash.edu/business/cdes/news-and-updates/newsletter/department-highlights) highlights our project on shock-responsive social protection in Fiji, as well as my recent engagement trip to Suva (July 2024)
