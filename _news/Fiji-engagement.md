@@ -7,6 +7,16 @@ related_posts: false
 ---
 
 Following a fabulous outreach trip before Easter, we held another highly successful trip in July.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/March-Fiji.jpg" class="img-fluid rounded" %}
+    </div>
+</div>
+<div class="caption">
+    Praneel Pritesh, Krishnan Narasimhan, PS Nadakuitavuki (Ministry of Women, Children, and Social Protection), Rozia Bi, and Sinja Buri
+</div>
+
 {% include figure.html path="assets/img/March-Fiji.jpg" class="img-fluid rounded z-depth-1" %}
 
 We had the privilege of meeting Professor Biman Prasad, Minister of Finance, Strategic, Planning, National Development and Statistics as well as 
