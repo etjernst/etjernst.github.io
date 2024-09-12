@@ -10,7 +10,7 @@ category: ongoing
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/maduka_graphic.png" title="Ag-input stores" class="img-fluid rounded data-zoomable" %}
+        {% include figure.html path="assets/img/maduka_graphic.png" title="Ag-input stores" class="img-fluid rounded" zoomable=true %}
     </div>
 </div>
 <div class="caption">
