@@ -2,7 +2,7 @@
 layout: page
 title: Climate insurance for social protection
 description:
-img: assets/img/PalmTreeDown.jpg
+img: assets/img/palmStorm.png
 importance: 3
 category: ongoing
 ---
