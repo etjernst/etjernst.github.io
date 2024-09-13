@@ -43,7 +43,6 @@ published: true
   }
 
   .project-description {
-    flex-grow: 1;
     flex-shrink: 0; /* Prevents shrinking */
     max-height: 6em; /* Limit description height to fit */
     flex-grow: 1;
