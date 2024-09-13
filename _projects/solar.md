@@ -10,10 +10,10 @@ category: ongoing
 
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.html path="assets/img/generatorAQ.jpg" title="Air quality measurements near generators" class="img-fluid rounded" zoomable=true %}
     </div>
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-3 mt-3 mt-md-0">
         {% include figure.html path="assets/img/generators-1.jpg" title="Air quality measurements near generators" class="img-fluid rounded" zoomable=true %}
     </div>
 </div>
