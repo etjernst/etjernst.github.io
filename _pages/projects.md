@@ -13,11 +13,11 @@ published: true
 <style>
   /* Define styles for uniform box sizing */
   .grid .project-card {
-    width: 300px;  /* Set a fixed width for all project boxes */
-    height: 350px; /* Set a fixed height for all project boxes */
+    width: 330px;  /* Set a fixed width for all project boxes */
+    height: 400px; /* Set a fixed height for all project boxes */
     overflow: hidden;
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: none;
+    padding: 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
