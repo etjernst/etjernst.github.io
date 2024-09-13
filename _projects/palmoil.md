@@ -9,7 +9,7 @@ category: ongoing
 
 ## Agricultural productivity, poverty, and the environment
 
-<div class="row">
+<div class="row justify-content-center"> 
     <div class="col-sm-6 mt-3 mt-md-0">
         {% include figure.html path="assets/img/smallholder.jpg" title="Prof. Biman Prasad" class="img-fluid rounded" zoomable=true %}
     </div>
