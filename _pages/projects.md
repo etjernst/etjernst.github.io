@@ -35,10 +35,12 @@ published: true
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
+    max-height: 3em; /* Limit title to two lines */
     text-overflow: ellipsis; /* Truncate long titles with ellipsis */
   }
 
   .project-description {
+    max-height: 6em; /* Limit description height to fit */
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
