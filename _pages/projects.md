@@ -16,8 +16,8 @@ published: true
     width: 330px;  /* Set a fixed width for all project boxes */
     height: 400px; /* Set a fixed height for all project boxes */
     overflow: hidden;
-    border: none;
     padding: 15px;
+    border: none;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -37,13 +37,21 @@ published: true
     overflow: hidden;
     max-height: 3em; /* Limit title to two lines */
     text-overflow: ellipsis; /* Truncate long titles with ellipsis */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Limit title to 3 lines */
   }
 
   .project-description {
+    flex-grow: 1;
     max-height: 6em; /* Limit description height to fit */
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Limit description to 2 lines */
+    line-height: 1.4em;
   }
 </style>
 
