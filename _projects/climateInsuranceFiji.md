@@ -17,13 +17,13 @@ This work promises to offer valuable insights into a pioneering intervention in 
 
 
 <div class="row">
-    <div class="col-sm mt-5 mt-md-0">
+    <div class="col-sm-6 mt-3 mt-md-0">
         {% include figure.html path="assets/img/FinanceMin.jpg" title="Prof. Biman Prasad" class="img-fluid rounded" zoomable=true %}
     </div>
-    <div class="col-sm mt-2 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.html path="assets/img/PS-enviro.jpg" title="PS Environment" class="img-fluid rounded" zoomable=true %}
     </div>
-    <div class="col-sm mt-1 mt-md-0">
+    <div class="col-sm-2 mt-3 mt-md-0">
         {% include figure.html path="assets/img/Coconuts.jpg" title="Sometimes you just need a coconut" class="img-fluid rounded" zoomable=true %}
     </div>
 </div>
