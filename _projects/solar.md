@@ -30,8 +30,8 @@ Rapid urbanization is straining electricity grids in many developing countries. 
 ### Research team
 
 Collaborators on this project include 
-- Lori Beaman (Northwestern)
-- Josh Deutschmann (University of Chicago)
+- [Lori Beaman](https://faculty.wcas.northwestern.edu/lab823/) (Northwestern)
+- [Josh Deutschmann](https://jwdeutschmann.com/) (University of Chicago)
 - R. Subramanian (Center for Study of Science, Technology and Policy)
 
 Field work partners: Oxford Policy Management, Nigeria
