@@ -44,9 +44,9 @@ Working with J-PAL Indonesia, we are currently developing and piloting three int
 ### Research team
 
 Collaborators on this project include 
-- Ryan Edwards (Crawford School of Public Policy, Australian National University)
-- Alin Halimatussadiah (Institute for Economic and Social Research Faculty of Economics and Business Universitas Indonesia)
-- Elan Satriawan (Universitas Gadjah Mada and National Team for the Acceleration of Poverty Reduction, TNP2K)
+- [Ryan Edwards](https://www.ryanbedwards.com/) (Crawford School of Public Policy, Australian National University)
+- [Alin Halimatussadiah](https://lpem.org/member/dr-alin-halimatussadiah/) (Institute for Economic and Social Research Faculty of Economics and Business Universitas Indonesia)
+- [Elan Satriawan](https://feb.ugm.ac.id/en/profile/lecturers/2252-elan-satriawan) (Universitas Gadjah Mada and National Team for the Acceleration of Poverty Reduction, TNP2K)
 
 ### Funding
 
