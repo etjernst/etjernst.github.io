@@ -35,9 +35,9 @@ This work promises to offer valuable insights into a pioneering intervention in 
 ### Research team
 
 Collaborators on this project include 
-- Russell Toth (University of Sydney)
-- Kushneel Prakash (University of Melbourne)
-- Sinja Buri (UNU-EHS)
+- [Russell Toth](https://sites.google.com/cornell.edu/russell-toth/russell-toth-development-economist) (University of Sydney)
+- [Kushneel Prakash](https://sites.google.com/view/kushneelprakash/about-me) (University of Melbourne)
+- [Sinja Buri](https://unu.edu/ehs/about/expert/sinja-buri) (UNU-EHS)
 
 ### Funding
 
