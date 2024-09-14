@@ -26,10 +26,10 @@ Conventional wisdom has it that market competition drives down prices. The effec
 ### Research team
 
 Collaborators on this project include 
-- Josh Deutschmann (University of Chicago)
-- Felipe Parra (PhD student at UW-Madison)
-- Jeremy Foltz (UW-Madison)
-- Tim Njagi (Tegemeo Institute)
+- [Josh Deutschmann](https://jwdeutschmann.com/) (University of Chicago)
+- [Felipe Parra](https://ffparra303.github.io) (PhD student at UW-Madison)
+- [Jeremy Foltz](https://aae.wisc.edu/faculty/jdfoltz/) (UW-Madison)
+- [Tim Njagi](https://scholar.google.it/citations?user=Tq9mSlMAAAAJ&hl=en) (Tegemeo Institute)
 
 ### Funding
 
