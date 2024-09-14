@@ -24,7 +24,7 @@ Global palm oil demand casts a long shadow by contributing to deforestation, a m
 
 Using field experimental methods, this project aims to identify solutions to the PSR's enrollment challenges. By rolling out the most promising solutions in a randomized controlled trial, we seek to understand how to best reduce the well-documented environment-development trade-offs associated with Indonesia's recent agricultural development, thereby advancing sustainable development in Indonesia and beyond.
 
-Working with J-PAL Indonesia, we are currently developing and piloting three interventions with smallholders in South Sumatra. 
+Working with [J-PAL South East Asia](https://www.povertyactionlab.org/southeast-asia), we are currently developing and piloting three interventions with smallholders in South Sumatra. 
 
 <div class="row">
     <div class="col-sm-4 mt-3 mt-md-0">
