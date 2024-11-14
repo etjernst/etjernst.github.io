@@ -2,7 +2,7 @@
 layout: post
 title: MRR webinar
 date: 2024-11-07 17:00:00-0400
-tags: Fiji
+tags: presentations
 inline: true
 related_posts: false
 ---
