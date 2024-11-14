@@ -3,7 +3,7 @@
 layout: post
 title: One Acre Fund paper accepted
 date: 2024-11-13 17:00:00-0400
-tags: publications
+tags: pubs
 inline: true
 related_posts: false
 ---
