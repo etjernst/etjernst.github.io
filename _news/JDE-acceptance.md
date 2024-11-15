@@ -8,7 +8,7 @@ inline: true
 related_posts: false
 ---
 
-:fireworks: Thrilled that "[Relaxing Multiple Agricultural Productivity Constraints at Scale](https://emiliatjernstrom.com/assets/pdf/DDST_2024.pdf)" was just accepted for publication in the Journal of Development Economics!
+Thrilled that "[Relaxing Multiple Agricultural Productivity Constraints at Scale](https://emiliatjernstrom.com/assets/pdf/DDST_2024.pdf)" was just accepted for publication in the Journal of Development Economics!
 
 ---
 layout: post
