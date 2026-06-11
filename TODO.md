@@ -25,12 +25,9 @@ Remaining:
 
 ## 3. Old content still appearing
 
-Diagnosis (2026-06-11): the al-folio theme's demo blog posts (`_posts/2015-*` through `_posts/2023-*`) still build and are listed in the deployed `sitemap.xml` under `/blog/...`, even though the blog nav page is hidden (`_pages/blog.md` has `published: false`).
-Hiding the blog page does not stop Jekyll from generating the individual post pages, their tag/category archive pages, and the RSS feed entries, so search engines index them.
+Mostly resolved 2026-06-11: deleted the al-folio demo posts in `_posts/`, the demo projects 4/5, and the al-folio Medium feed in `external_sources` (all were built into the sitemap and indexed even with the blog page unpublished).
 
-Fix when ready:
+Remaining:
 
-- Delete the demo files in `_posts/` (or set `published: false` in each post's front matter).
-- Also delete the two leftover demo projects `_projects/4_project.md` and `_projects/5_project.md` (already `published: false`, so low priority).
-- After deploy, the URLs 404; optionally request removal/recrawl in Google Search Console to clear them from search results faster.
-- If old content also appears from a pre-al-folio site (e.g., a university page or earlier host), that is outside this repo; check where the search results actually point before assuming this repo is the source.
+- Optionally request removal/recrawl in Google Search Console so the now-404 `/blog/...` URLs drop out of search results faster.
+- User reports other mystery stale content somewhere; when it resurfaces, check where the URL actually points---if it is a pre-al-folio site (university page, earlier host), the fix is outside this repo.
