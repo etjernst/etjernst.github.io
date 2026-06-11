@@ -7,9 +7,13 @@ Excluded from the Jekyll build via `_config.yml`, so this never appears on the s
 
 Implement [Goldsmith-Pinkham's llms.txt for academic papers](https://paulgp.com/2026/03/10/llms-txt-for-academic-papers.html): serve a plain-text (Markdown) version of each paper alongside the PDF so LLMs can read them cheaply and accurately.
 
-- Most papers have .tex source available (in their respective project repos, not here).
-- Rough plan: convert each paper's .tex to a single markdown/plain-text file, drop them in something like `assets/llms/`, add an `llms.txt` index at the site root listing the papers with links, and optionally link the text version from each bib entry.
-- Needs a small decision first: file layout (`/assets/llms/<key>.md` vs `/papers/<key>.txt`) and whether to auto-generate from .tex (pandoc) or hand-curate.
+Layout decided and implemented for the first paper (2026-06-11): one bundle per paper at `assets/llms/<citekey>/` containing `llms.txt` (orientation: what/context/methods/results/limitations/navigation/status), `paper.md` (pandoc conversion, citations kept as bib keys), `references.bib`, and `figures/*.png`; a site-root `llms.txt` indexes the bundles.
+
+Remaining:
+
+- Add bundles for the other papers with .tex source (in their respective project repos).
+- Conversion recipe per the aq_ssa bundle: strip the project preamble but keep custom macros pandoc needs (e.g., `\figref`), then `pandoc main.tex -f latex -t markdown --wrap=none` (NOT `--citeproc`, which hangs/hogs memory on big bibs), then point figure paths at PNGs and add a plain-text header (no YAML front matter, or Jekyll converts the .md to HTML).
+- Consider linking each bundle from its bib entry on the publications page.
 
 ## 2. Clean up the literature review resource
 

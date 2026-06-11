@@ -1,0 +1,64 @@
+# Air Quality in Sub-Saharan Africa: Measurement Issues and Empirical Challenges
+
+Author: Emilia Tjernström (Macquarie University)
+Contact: emilia.tjernstrom@mq.edu.au
+
+## What is this paper about?
+
+This is a review article, not an original empirical study.
+It synthesizes what economists know about fine particulate matter (PM2.5) exposure in sub-Saharan Africa (SSA), and its central argument is methodological: because the region has almost no ground-based monitoring, nearly all empirical work relies on satellite-, model-, or sensor-based pollution measures whose measurement error is non-classical and spatially structured.
+The paper provides a framework for thinking about how each data product's error structure interacts with common identification strategies (fixed effects, IV, RCTs), and re-reads the existing SSA evidence on health, agriculture, and labor through that lens.
+
+## Important context
+
+- The paper is guidance for applied economists choosing pollution data for SSA research; it is not an epidemiological review (it points readers to Abera et al. 2021 for that).
+- "Measurement error" here rarely means classical attenuation. The paper's recurring point is that errors in pollution products correlate with true exposure, with covariates, and with outcomes (e.g., satellite retrievals understate dust-driven pollution; sensor humidity bias covaries with weather that independently affects health), so bias can go in either direction and can exceed one in multiplicative terms.
+- A distinctive contribution is the fixed-effects decomposition: location and time fixed effects absorb some error components but can worsen the noise-to-signal ratio in the residual variation that identification then relies on (following Griliches and Hausman 1986).
+- The author co-founded AfriqAir, a low-cost sensor network in Africa (disclosed in the paper; no financial interest).
+- Monitor counts and completeness statistics were compiled by the author from OpenAQ, AirQo, and WAQI APIs in April 2026 and are original to this review.
+
+## Data and methods
+
+- Review article: no original causal estimation.
+- Original descriptive analysis: a compilation of publicly accessible reference-grade monitors worldwide (about 17,000 monitors, of which 285, or 1.7%, are in SSA, roughly 230 of those in South Africa) and a completeness measure for SSA monitors on OpenAQ (median completeness 37% of potential hours over April 2016 to April 2026).
+- A simple econometric framework (Equations 1-5) characterizes classical error, non-classical error, Berkson error from gridded assignment, and a fixed-effects error decomposition.
+- Data products reviewed: reference monitors, low-cost sensors (LCS), chemical transport models (GEOS-Chem), reanalysis (MERRA-2, CAMS-RA), satellite AOD retrievals (MODIS/MAIAC), and hybrid/machine-learning products (van Donkelaar et al. 2016; Shen et al. 2024; Westervelt et al. 2025).
+
+## Key results
+
+- SSA averages 0.03 PM2.5 monitors per million inhabitants; population-weighted distance to the nearest monitor is roughly 500 km. Public reference-monitor data have deteriorated since 2024 (South Africa stopped sharing via OpenAQ in March 2024; US embassy monitors went dark in March 2025); only one SSA monitor on OpenAQ reported data in Q1 2026.
+- SSA's population-weighted PM2.5 rose from about 25 to about 30 micrograms per cubic meter over 1998-2023 (six times the WHO guideline), while East and South Asia have begun declining. West Africa is the most polluted sub-region.
+- Validation evidence: MERRA-2 explains less than 10% of PM2.5 variation in Kenya and South Africa; it misattributes Ghana's particulate matter to dust year-round; low-cost sensor errors in Accra are roughly five times larger in the dusty Harmattan season than in the wet season.
+- Re-readings of influential studies: dust-IV mortality estimates (Heft-Neal et al. 2020; Adhvaryu et al. 2024) credibly sign effects but conflate dust-specific toxicity with PM2.5 mass, and their gridded exposure data smooth the spikes that matter; the gas-flaring agriculture study (Nwokolo 2026) shows IV estimates 3.5 times OLS, consistent with severe attenuation from satellite under-detection of small flares interacting with household fixed effects.
+- Recommendations: match estimation time scales to pollution variation (daily, not annual), separate physiological harm from behavioral avoidance, develop locally estimated exposure-response functions, report results across multiple data products (disagreement bounds effects), and treat sensor calibration as part of research design.
+
+## Limitations and scope
+
+- The review covers outdoor (ambient) PM2.5 only. Indoor/household air pollution---the dominant exposure source for much of SSA---is explicitly out of scope, as are other pollutants (NO2, SO2, ozone).
+- The framework's bias expressions assume linear models; the paper flags but does not develop the nonlinear case.
+- The monitor inventory counts publicly accessible monitors and includes inactive sites; it understates total monitoring (some networks do not share data publicly) and overstates functional capacity.
+- The completeness analysis covers only OpenAQ monitors because AirQo and WAQI APIs do not expose hourly observation counts.
+- The paper does not provide a quantitative meta-analysis or formal bias corrections for the studies it reviews; its assessments of likely bias direction in specific studies are qualitative applications of the framework, not re-estimations.
+- This is the author accepted manuscript, not the copyedited version of record.
+
+## Navigation guide
+
+- Section 1 (Introduction): pollution levels, trends, and sources in SSA; why the region differs from Asia.
+- Section 2.1 (Framework): the measurement-error framework; read this first if you want the analytical core. Equations 2 (non-classical bias), 3 (Berkson), and 4 (fixed-effects decomposition) carry the paper.
+- Sections 2.2-2.3 (Data products): reference monitors, low-cost sensors, CTMs, reanalysis, satellites, hybrids---each ends with implications for empirical work. Use as a reference when choosing a data product.
+- Section 3 (From concentrations to outcomes): critical review of the SSA evidence on health/mortality, agriculture, and labor/human capital.
+- Section 4 (Implications): research agenda; summary points and future issues lists condense the whole paper.
+- Terms & Definitions section at the end defines the atmospheric-science vocabulary.
+
+## Publication status
+
+Forthcoming in the Annual Review of Resource Economics, Volume 18 (2026).
+This bundle contains the author accepted manuscript (not copyedited or typeset by Annual Reviews; not the version of record).
+
+## Bundle contents
+
+- llms.txt: this file
+- paper.md: full text converted from LaTeX (pandoc, citations resolved)
+- references.bib: full bibliography
+- figures/: PNG versions of the paper's figures
+- PDF: https://emiliatjernstrom.com/assets/pdf/Tjernstrom_2026.pdf
