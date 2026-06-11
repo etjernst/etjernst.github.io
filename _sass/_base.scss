@@ -1092,3 +1092,20 @@ nav[data-toggle="toc"] {
   padding: 0px;
   border-left: 0px;
 }
+// Skip-to-content link: visually hidden until focused via keyboard
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 2000; // above the fixed navbar
+  padding: 0.5rem 1rem;
+  background: var(--global-theme-color);
+  color: var(--global-bg-color);
+  border-radius: 0 0 4px 4px;
+  transition: top 0.2s ease-in-out;
+
+  &:focus {
+    top: 0;
+    color: var(--global-bg-color);
+  }
+}
