@@ -213,6 +213,7 @@ exclude:
   - Gemfile.lock
   - vendor
   - SITE_UPDATE_GUIDE.md
+  - TODO.md
 keep_files:
   - CNAME
   - .nojekyll
