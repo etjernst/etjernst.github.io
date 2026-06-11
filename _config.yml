@@ -8,7 +8,8 @@ middle_name:
 last_name: Tjernström
 email: emilia.tjernstrom@mq.edu.au
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Emilia Tjernstrom's website
+  Emilia Tjernström, Associate Professor of Economics at Macquarie Business School.
+  Development economics, technology adoption, and air quality in sub-Saharan Africa.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
@@ -73,7 +74,7 @@ x_username: etjernst # your X handle
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 linkedin_username: # your LinkedIn user name
 telegram_username: # your Telegram user name
-scholar_userid: # your Google Scholar ID
+scholar_userid: iWV3kkUAAAAJ # your Google Scholar ID
 semanticscholar_id: # your Semantic Scholar ID
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 orcid_id: 0000-0003-2202-6001 # your ORCID ID
