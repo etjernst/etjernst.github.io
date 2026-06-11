@@ -5,15 +5,18 @@ Contact: emilia.tjernstrom@mq.edu.au
 
 ## What is this paper about?
 
-This is a review article, not an original empirical study.
-It synthesizes what economists know about fine particulate matter (PM2.5) exposure in sub-Saharan Africa (SSA), and its central argument is methodological: because the region has almost no ground-based monitoring, nearly all empirical work relies on satellite-, model-, or sensor-based pollution measures whose measurement error is non-classical and spatially structured.
-The paper provides a framework for thinking about how each data product's error structure interacts with common identification strategies (fixed effects, IV, RCTs), and re-reads the existing SSA evidence on health, agriculture, and labor through that lens.
+This paper is a guide for applied economists studying air pollution in sub-Saharan Africa (SSA), a region where the data environment is unusually constrained: almost no ground-based monitoring exists, so nearly all empirical work relies on satellite-, model-, or sensor-based pollution measures.
+The analytical core is a measurement-error framework that maps each major pollution data product to the error structure it generates and traces how those errors interact with the workhorse identification strategies (fixed effects, IV, RCTs).
+A central lesson is that the comfortable intuition "measurement error just attenuates, so my estimates are conservative" routinely fails here: errors correlate with true exposure, with covariates, and with outcomes, so bias can run in either direction, including above one on the multiplicative scale.
+The paper then re-reads the existing SSA evidence on health, agriculture, and labor through this lens, showing concretely where measurement error interacts with each study's design, and closes with a research agenda that treats exposure measurement as part of identification.
 
 ## Important context
 
 - The paper is guidance for applied economists choosing pollution data for SSA research; it is not an epidemiological review (it points readers to Abera et al. 2021 for that).
-- "Measurement error" here rarely means classical attenuation. The paper's recurring point is that errors in pollution products correlate with true exposure, with covariates, and with outcomes (e.g., satellite retrievals understate dust-driven pollution; sensor humidity bias covaries with weather that independently affects health), so bias can go in either direction and can exceed one in multiplicative terms.
-- A distinctive contribution is the fixed-effects decomposition: location and time fixed effects absorb some error components but can worsen the noise-to-signal ratio in the residual variation that identification then relies on (following Griliches and Hausman 1986).
+- The measurement-error framework (Section 2.1) is the paper's analytical backbone and rewards a careful read. It characterizes four error structures and their consequences. Classical error is the only case where the attenuation intuition holds. Non-classical error allows the multiplicative bias factor to exceed one, so estimates amplify rather than attenuate. Berkson error arises from assigning gridded pollution values to survey clusters: it is unbiased in linear models but flattens nonlinear dose-response curves. A fourth decomposition shows which error components fixed effects absorb and which they concentrate.
+- The fixed-effects result is the least intuitive of the four: location and time fixed effects can make measurement-error bias worse, not better, because they absorb the persistent signal while leaving the noise in the residual variation that identification then relies on (following Griliches and Hausman 1986). The paper applies this concretely to a gas-flaring study where IV estimates are 3.5 times the OLS (household fixed effects) estimates.
+- The framework also covers failure modes specific to common designs: IV strategies fail when the instrument (wind direction, dust transport) shifts aerosol composition and therefore the measurement error itself; RCTs that collect outcomes with low-cost sensors can face differential error by treatment arm when treatment changes the particle mix that sensors respond to.
+- Concrete examples of non-classical error run throughout: satellite retrievals understate dust-driven pollution and overstate clean conditions; sensor humidity bias covaries with weather that independently affects health; chemical transport models build emissions from economic proxies, so their errors correlate with economic activity.
 - The author co-founded AfriqAir, a low-cost sensor network in Africa (disclosed in the paper; no financial interest).
 - Monitor counts and completeness statistics were compiled by the author from OpenAQ, AirQo, and WAQI APIs in April 2026 and are original to this review.
 
@@ -29,7 +32,7 @@ The paper provides a framework for thinking about how each data product's error 
 - SSA averages 0.03 PM2.5 monitors per million inhabitants; population-weighted distance to the nearest monitor is roughly 500 km. Public reference-monitor data have deteriorated since 2024 (South Africa stopped sharing via OpenAQ in March 2024; US embassy monitors went dark in March 2025); only one SSA monitor on OpenAQ reported data in Q1 2026.
 - SSA's population-weighted PM2.5 rose from about 25 to about 30 micrograms per cubic meter over 1998-2023 (six times the WHO guideline), while East and South Asia have begun declining. West Africa is the most polluted sub-region.
 - Validation evidence: MERRA-2 explains less than 10% of PM2.5 variation in Kenya and South Africa; it misattributes Ghana's particulate matter to dust year-round; low-cost sensor errors in Accra are roughly five times larger in the dusty Harmattan season than in the wet season.
-- Re-readings of influential studies: dust-IV mortality estimates (Heft-Neal et al. 2020; Adhvaryu et al. 2024) credibly sign effects but conflate dust-specific toxicity with PM2.5 mass, and their gridded exposure data smooth the spikes that matter; the gas-flaring agriculture study (Nwokolo 2026) shows IV estimates 3.5 times OLS, consistent with severe attenuation from satellite under-detection of small flares interacting with household fixed effects.
+- Re-readings of influential studies: dust-IV mortality estimates (Heft-Neal et al. 2020; Adhvaryu et al. 2024) credibly sign effects but conflate dust-specific toxicity with PM2.5 mass, and their gridded exposure data smooth the spikes that matter. The gas-flaring agriculture study (Nwokolo 2026) shows IV estimates 3.5 times the OLS (household fixed effects) estimates, consistent with severe attenuation from satellite under-detection of small flares interacting with household fixed effects.
 - Recommendations: match estimation time scales to pollution variation (daily, not annual), separate physiological harm from behavioral avoidance, develop locally estimated exposure-response functions, report results across multiple data products (disagreement bounds effects), and treat sensor calibration as part of research design.
 
 ## Limitations and scope
@@ -44,7 +47,7 @@ The paper provides a framework for thinking about how each data product's error 
 ## Navigation guide
 
 - Section 1 (Introduction): pollution levels, trends, and sources in SSA; why the region differs from Asia.
-- Section 2.1 (Framework): the measurement-error framework; read this first if you want the analytical core. Equations 2 (non-classical bias), 3 (Berkson), and 4 (fixed-effects decomposition) carry the paper.
+- Section 2.1 (Framework): the measurement-error framework; read this first if you want the analytical core. Equations 2 (non-classical bias), 3 (Berkson), and 4 (fixed-effects decomposition) are the analytical core.
 - Sections 2.2-2.3 (Data products): reference monitors, low-cost sensors, CTMs, reanalysis, satellites, hybrids---each ends with implications for empirical work. Use as a reference when choosing a data product.
 - Section 3 (From concentrations to outcomes): critical review of the SSA evidence on health/mortality, agriculture, and labor/human capital.
 - Section 4 (Implications): research agenda; summary points and future issues lists condense the whole paper.
