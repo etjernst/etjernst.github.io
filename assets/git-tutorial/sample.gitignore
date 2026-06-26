@@ -8,6 +8,7 @@ data/
 
 # Logs and temporary output
 *.log
+*.smcl
 *.tmp
 
 # Operating-system and editor clutter

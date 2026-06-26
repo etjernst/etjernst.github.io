@@ -109,7 +109,12 @@ category: for students
 <span class="gt-num">02</span>
 <p class="gt-eyebrow">follow along</p>
 <h2>Build a real repository</h2>
-<p>Let us make a real one, so every command is yours and not mine. Make a folder, move into it, and turn it into a repository:</p>
+<p>Two one-time setup steps first, needed only once per computer. Tell git who you are, so your commits carry your name, and have new repositories start on a branch called <code>main</code>:</p>
+<pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main</code></pre>
+<p>One note on where you type all this. On a Mac, use the built-in Terminal. On Windows, use Git Bash rather than PowerShell, because PowerShell writes files in a format that breaks the <code>echo</code> examples below.</p>
+<p>Now make a real repository of your own, so every command is one you actually run. Make a folder, move into it, and turn it into a repository:</p>
 <pre><code>mkdir thesis
 cd thesis
 git init</code></pre>
@@ -122,7 +127,7 @@ git status</code></pre>
         clean.do
 
 nothing added to commit but untracked files present</code></pre>
-<p>"Untracked" means git can see the file but is not yet recording its history. Saving a snapshot takes two steps, and this is the bit everyone trips on. You stage what you want with <code>git add</code>, then record it with <code>git commit</code>. Watch the file move from untracked to staged to committed:</p>
+<p>Your real output may carry a couple of extra lines; that is normal. "Untracked" means git can see the file but is not yet recording its history. Saving a snapshot takes two steps, and this is the bit everyone trips on. You stage what you want with <code>git add</code>, then record it with <code>git commit</code>. Watch the file move from untracked to staged to committed:</p>
 <pre><code>git add clean.do
 git commit -m "Add initial cleaning script"</code></pre>
 <pre><code>[main (root-commit) a1b2c3d] Add initial cleaning script
@@ -156,6 +161,7 @@ echo "*.csv" &gt;&gt; .gitignore</code></pre>
 <p>From now on <code>git status</code> quietly skips everything in your <code>data/</code> folder and every <code>.dta</code> and <code>.csv</code> file. Commit the <code>.gitignore</code> itself, so anyone who clones the repository inherits the same rules:</p>
 <pre><code>git add .gitignore
 git commit -m "Ignore data files"</code></pre>
+<p>One catch worth knowing now: <code>.gitignore</code> only stops git from tracking files it is not already tracking. If you committed a data file before adding it to <code>.gitignore</code>, git keeps tracking it. Tell git to forget it with <code>git rm --cached data.csv</code>, which leaves the file on your disk, then commit the change.</p>
 <div class="gt-callout">Those three patterns cover Stata and CSV data in a <code>data/</code> folder. If your data lives somewhere else or comes in other formats, add a line for each: <code>*.xlsx</code>, <code>*.sav</code>, <code>*.RData</code>, and so on. The rule of thumb: <strong>if you would not email it to a stranger, it belongs in .gitignore.</strong></div>
 <p>Here is a fuller starter file that also ignores the temporary files Stata, R, and your operating system scatter around. Save it as <code>.gitignore</code> at the top of your repository and edit to taste:</p>
 <a class="gt-download" href="{{ '/assets/git-tutorial/sample.gitignore' | relative_url }}" download=".gitignore">Download a sample .gitignore</a>
@@ -172,6 +178,7 @@ data/
 
 # Logs and temporary output
 *.log
+*.smcl
 *.tmp
 
 # Operating-system and editor clutter
@@ -191,7 +198,7 @@ secrets*</code></pre>
 <p class="gt-eyebrow">the one superpower</p>
 <h2>Learn to read a diff</h2>
 <p class="gt-lede">Here is the single most useful thing on this page. A diff is git showing you, in red and green, exactly what changed. That is it.</p>
-<p>But reading a diff is how you catch the stray debugging line before it ships, how you find the one moment last Tuesday when the regression broke, and how you stay the author of your own project when an AI is typing alongside you. Two commands cover it. <code>git diff</code> shows what you have changed but not yet staged; <code>git diff --staged</code> shows what you are about to commit. Red lines (a leading <code>-</code>) were removed, green lines (a leading <code>+</code>) were added, and a line you edited shows up as both, stacked.</p>
+<p>But reading a diff is how you catch the stray debugging line before it ships, how you find the one moment last Tuesday when the regression broke, and how you stay the author of your own project when an AI is typing alongside you. Two commands cover it. <code>git diff</code> shows what you have changed but not yet staged; <code>git diff --staged</code> shows what you are about to commit. A leading <code>-</code> marks a red line you removed; a leading <code>+</code> marks a green line you added. A line you edited appears as both, stacked.</p>
 <p>On GitHub the same diff gets friendlier. A single new line looks like this:</p>
 <div style="border:1px solid #d0d7de; border-radius:8px; overflow:hidden; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.7; margin:1.1rem 0;">
   <div style="background:#f6f8fa; border-bottom:1px solid #d0d7de; padding:7px 12px; color:#57606a;">clean.do</div>
@@ -221,10 +228,11 @@ git commit -m "Drop duplicate household IDs before the merge"</code></pre>
 <span class="gt-num">05</span>
 <p class="gt-eyebrow">going online</p>
 <h2>Put it on GitHub</h2>
-<p>So far this lives only on your laptop. GitHub gives it a backup and a home. On <a href="https://github.com/">github.com</a>, click New, name the repository, leave it empty (no README for now, since you already have one locally), and create it. GitHub hands you a URL ending in <code>.git</code>. Connect the two and send your commits up:</p>
+<p>So far this lives only on your laptop. GitHub gives it a backup and a home. On <a href="https://github.com/">github.com</a>, click New, name the repository, and leave it completely empty. Do not let GitHub add a README or a <code>.gitignore</code> for you. If it creates even one file, the repository starts its own separate history, and GitHub rejects your first push with a confusing error. Once the empty repository exists, GitHub hands you a URL ending in <code>.git</code>. Connect the two and send your commits up:</p>
 <pre><code>git remote add origin https://github.com/yourname/thesis.git
 git branch -M main
 git push -u origin main</code></pre>
+<div class="gt-callout">The first time you push, GitHub needs to confirm it is really you. It opens a browser sign-in through the Git Credential Manager, or asks for a Personal Access Token you generate in your GitHub account settings. Your ordinary GitHub website password will not work here, and that is expected.</div>
 <p><code>origin</code> is just the conventional name for your GitHub copy, and <code>-u</code> remembers the connection so that from now on a bare <code>git push</code> does the job. Refresh the GitHub page and your files and history are sitting there.</p>
 <p>From here the daily rhythm has a shape worth burning into memory, because pushing is the last step, not the only one. You cannot push what you have not committed, and you cannot commit what you have not staged. The full loop:</p>
 <pre><code>git pull                  <span class="o"># 1. grab anything new on GitHub</span>
@@ -234,7 +242,7 @@ git diff                  <span class="o"># 3. read what changed</span>
 git add clean.do          <span class="o"># 4. stage it</span>
 git commit -m "Winsorize income before the regression"   <span class="o"># 5. commit it</span>
 git push                  <span class="o"># 6. send your commits up</span></code></pre>
-<p>Pull at the start so you begin from the latest version, work in the middle, and push when you reach a natural stopping point. <code>git push</code> does exactly one thing: it uploads commits you have already made. Skip the stage and commit, and there is simply nothing for it to send.</p>
+<p>Pull at the start so you begin from the latest version, work in the middle, and push when you reach a natural stopping point. Pull while your working tree is clean; if git ever complains about local changes, commit them first. <code>git push</code> does exactly one thing: it uploads commits you have already made. Skip the stage and commit, and there is simply nothing for it to send.</p>
 </section>
 
 <section class="gt-sec gt-shade reveal" id="share">
@@ -271,10 +279,11 @@ git push                  <span class="o"># 6. send your commits up</span></code
 <span class="gt-num">07</span>
 <p class="gt-eyebrow">undo</p>
 <h2>When it goes wrong, and it will</h2>
-<p>The reward for committing often is that mistakes stop being scary. Say you let an AI rewrite your whole cleaning script and it is quietly broken. One command throws away the mess and drops you back at your last commit:</p>
+<p>The reward for committing often is that mistakes stop being scary. Say that you let an AI rewrite your whole cleaning script and it is quietly broken. One command throws away the mess and drops you back at your last commit:</p>
 <pre><code>git restore clean.do      <span class="o"># just this file</span>
 git restore .             <span class="o"># everything uncommitted</span></code></pre>
-<p>Anything you had committed is safe; only the uncommitted edits vanish. This is the command that lets you be brave. Try the wild idea, and if it flops, <code>git restore .</code> and you are home.</p>
+<p>Anything you committed is safe; only your uncommitted edits to tracked files vanish. Two honest caveats. If you already ran <code>git add</code> on the broken version, use <code>git restore --staged --worktree .</code> instead, which undoes the staged and unstaged changes together. And if the AI created brand-new files, git is not tracking them yet. <code>git restore</code> leaves those alone, so you delete them by hand.</p>
+<p>With that caveat, this is the command that lets you be brave. Try the wild idea, and if it flops, <code>git restore .</code> and you are home.</p>
 </section>
 
 <section class="gt-sec gt-shade reveal" id="ai">
@@ -293,7 +302,7 @@ git restore .             <span class="o"># everything uncommitted</span></code>
 <details class="gt-more">
 <summary>A worked example: ask the AI to explain a diff and draft the message</summary>
 <div class="gt-more-body">
-<p>Say <code>git diff</code> shows you this, and you are not certain what changed or how to describe it:</p>
+<p>Say that <code>git diff</code> shows you this, and you are not certain what changed or how to describe it:</p>
 <pre><code><span class="del">-egen mean_income = mean(income)</span>
 <span class="add">+egen mean_income = mean(income), by(village)</span></code></pre>
 <p>Paste it into the AI with a prompt like:</p>
@@ -302,7 +311,7 @@ Explain in one sentence what changed and what it now
 does differently, then suggest a short commit message.</code></pre>
 <p>You get back something like: the mean is now computed within each village rather than across the whole sample, so <code>mean_income</code> becomes a village-level average. And a commit message it might draft:</p>
 <pre><code>git commit -m "Compute mean income by village, not pooled"</code></pre>
-<p>You read the diff, confirm the explanation matches what you actually see, and only then commit. The AI drafted the words; you stayed the author.</p>
+<p>You read the diff, confirm that the explanation matches what you actually see, and only then commit. The AI drafted the words; you stayed the author.</p>
 </div>
 </details>
 </section>
