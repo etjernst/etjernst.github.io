@@ -18,6 +18,9 @@ category: for students
   max-width:740px; margin:1.5rem auto 0;
 }
 .gittut *{box-sizing:border-box;}
+/* Align the al-folio page header (full container width) with the narrow body column,
+   so the title and description never reach into the floating TOC's left gutter. */
+#main-content .post-header{max-width:740px; margin-left:auto; margin-right:auto;}
 .gittut .gt-sec{position:relative; padding:2.3rem 0;}
 .gittut .gt-sec:first-of-type{padding-top:1rem;}
 .gittut .gt-sec.gt-shade{background:var(--paper-alt); border:1px solid var(--border); border-radius:16px; padding:2.3rem 1.9rem; margin:1.1rem 0;}
@@ -49,7 +52,7 @@ category: for students
 .gittut .gt-toc li{margin:.18rem 0; break-inside:avoid;}
 .gittut .gt-toc a{color:var(--ink); border-bottom:none;}
 .gittut .gt-toc a:hover{color:var(--accent);}
-@media (min-width:1200px){
+@media (min-width:1240px){
   .gittut .gt-toc{position:fixed; top:118px; left:calc(50vw - 592px); width:200px; margin:0; padding:0; background:none; border:none; border-radius:0; max-height:calc(100vh - 150px); overflow:auto;}
   .gittut .gt-toc p{margin:0 0 .6rem;}
   .gittut .gt-toc ol{columns:1; padding-left:1.15rem; font-size:.9rem;}
