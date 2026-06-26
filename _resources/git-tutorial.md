@@ -102,7 +102,7 @@ category: for students
 <h2>You already know why you need this</h2>
 <p class="gt-lede">Picture your thesis folder. In it: <code>paper_final.do</code>, <code>paper_final_v2.do</code>, <code>paper_final_USE_THIS.do</code>, and <code>paper_final_v2_actually.do</code>. You can't remember which one made Figure 3, one of them is broken, and it is 11 p.m. the night before the submission deadline.</p>
 <p>We have all lived in this folder, and it is a miserable place to live. Git is the way out, and the best part is how little of it you need: a handful of commands gets you almost the entire payoff. Open a terminal and follow along, because reading about git works about as well as reading about swimming.</p>
-<p>One more reason, and it matters more every month. When you paste a chunk of your script into an AI and it hands back a "fixed" version, git is what lets you see exactly what it changed, and undo it if it is wrong. The habit this page teaches is the same one that keeps that borrowed code honest.</p>
+<p>One more reason, and it matters more every month. When you paste a chunk of your script into an AI and it hands back a "fixed" version, git is what lets you see exactly what it changed, and undo it if it is wrong. The habit that this page teaches is the same one that keeps that borrowed code honest.</p>
 </section>
 
 <section class="gt-sec gt-shade reveal" id="build">
@@ -114,7 +114,7 @@ category: for students
 git config --global user.email "you@example.com"
 git config --global init.defaultBranch main</code></pre>
 <p>One note on where you type all this. On a Mac, use the built-in Terminal. On Windows, use Git Bash rather than PowerShell, because PowerShell writes files in a format that breaks the <code>echo</code> examples below.</p>
-<p>Now make a real repository of your own, so every command is one you actually run. Make a folder, move into it, and turn it into a repository:</p>
+<p>Now make a real repository of your own, so every command is one that you actually run. Make a folder, move into it, and turn it into a repository:</p>
 <pre><code>mkdir thesis
 cd thesis
 git init</code></pre>
@@ -127,7 +127,7 @@ git status</code></pre>
         clean.do
 
 nothing added to commit but untracked files present</code></pre>
-<p>Your real output may carry a couple of extra lines; that is normal. "Untracked" means git can see the file but is not yet recording its history. Saving a snapshot takes two steps, and this is the bit everyone trips on. You stage what you want with <code>git add</code>, then record it with <code>git commit</code>. Watch the file move from untracked to staged to committed:</p>
+<p>Your real output may carry a couple of extra lines; that is normal. "Untracked" means that git can see the file but is not yet recording its history. Saving a snapshot takes two steps, and this is the bit everyone trips on. You stage what you want with <code>git add</code>, then record it with <code>git commit</code>. Watch the file move from untracked to staged to committed:</p>
 <pre><code>git add clean.do
 git commit -m "Add initial cleaning script"</code></pre>
 <pre><code>[main (root-commit) a1b2c3d] Add initial cleaning script
@@ -297,7 +297,7 @@ git restore .             <span class="o"># everything uncommitted</span></code>
 <h3>Read the diff of what it gave you</h3>
 <p>Ask it to fix one line and you may get forty changed lines back. <code>git diff</code> shows you the other thirty-nine before they quietly become part of your project. Reviewing the diff is now a bigger part of the work than typing the lines ever was.</p>
 <h3>Let it help you fix errors</h3>
-<p>When a command fails, copy the error message together with the few lines that produced it, paste both into the AI, and ask what went wrong. The exact error text is the most useful thing you can hand it. And because you committed first, you can try its suggested fix, read the diff, and <code>git restore .</code> if it makes things worse.</p>
+<p>When a command fails, copy the error message together with the few lines that produced it, paste both into the AI, and ask what went wrong. The exact error text is the most useful thing that you can hand it. And because you committed first, you can try its suggested fix, read the diff, and <code>git restore .</code> if it makes things worse.</p>
 <div class="gt-callout">Pasting a confusing diff back to the AI and asking it to explain the change, or to draft your commit message, is fair game and genuinely handy. The line that does not move: <strong>you understand the code yourself before it goes in.</strong></div>
 <details class="gt-more">
 <summary>A worked example: ask the AI to explain a diff and draft the message</summary>
