@@ -1,0 +1,21 @@
+# Data: never commit raw or confidential data
+data/
+*.dta
+*.csv
+*.xlsx
+*.sav
+*.RData
+
+# Logs and temporary output
+*.log
+*.smcl
+*.tmp
+
+# Operating-system and editor clutter
+.DS_Store
+Thumbs.db
+*~
+
+# Secrets: API keys, passwords, tokens
+.env
+secrets*
