@@ -107,7 +107,11 @@ category: for students
 <span class="gt-num">02</span>
 <p class="gt-eyebrow">follow along</p>
 <h2>Build a real repository</h2>
-<p>The fastest way to learn this is to do it. We'll set git up, start a repository, and save a couple of snapshots, so every command is one that you actually run.</p>
+<p>The fastest way to learn this is to do it. We'll install git, set it up, start a repository, and save a couple of snapshots, so every command is one that you actually run.</p>
+
+<h3>Install git</h3>
+<p>First you need git itself. On Windows, download Git for Windows from <a href="https://git-scm.com/downloads">git-scm.com</a> and accept the defaults; that also installs Git Bash, the terminal you'll type in. On a Mac, run <code>xcode-select --install</code> in the Terminal app, or download from the same site. To check that it worked, run:</p>
+<pre><code>git --version   <span class="o"># prints the version if git is installed</span></code></pre>
 
 <h3>Set git up, once per computer</h3>
 <p>Before your first repository, tell git who you are, so git signs your snapshots with your name. You only ever do this once on a given computer:</p>
