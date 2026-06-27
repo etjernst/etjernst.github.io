@@ -110,33 +110,36 @@ category: for students
 <span class="gt-num">02</span>
 <p class="gt-eyebrow">follow along</p>
 <h2>Build a real repository</h2>
-<p>The fastest way to learn this is to do it. We'll install git, set it up, start a repository, and save a couple of snapshots, so every command is one that you actually run.</p>
+<p>The fastest way to learn git is to use it. So let's install git, set it up, start a repository, and save a couple of snapshots, so that you try out all the most useful commands.</p>
 
 <h3>Install git</h3>
-<p>First you need git itself. On Windows, download Git for Windows from <a href="https://git-scm.com/downloads">git-scm.com</a> and accept the defaults; that also installs Git Bash, the terminal you'll type in. On a Mac, run <code>xcode-select --install</code> in the Terminal app, or download from the same site. To check that it worked, run:</p>
+<p>First you need git itself. On **Windows**, download Git for Windows from <a href="https://git-scm.com/downloads">git-scm.com</a> and accept the defaults. This will also install Git Bash, the terminal that you'll type in. On a **Mac**, run <code>xcode-select --install</code> in the Terminal app, or download from the same site. To check that it worked, open bash (Windows) or the terminal (Mac) and run:</p>
 <pre><code>git --version   <span class="o"># prints the version if git is installed</span></code></pre>
 
-<h3>Set git up, once per computer</h3>
-<p>Before your first repository, tell git who you are, so git signs your snapshots with your name. You only ever do this once on a given computer:</p>
+<h3>Set up git, once per computer</h3>
+<p>Before starting a repository, you should tell git who you are, so that it can sign your snapshots with your name. You only need to do this once on a given computer:</p>
 <pre><code>git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 git config --global init.defaultBranch main   <span class="o"># new repos start on a branch called "main"</span></code></pre>
-<p>One note on where you type all this. On a Mac, use the built-in Terminal app. On Windows, use Git Bash (it comes with git), not PowerShell, which formats files in a way that breaks the examples below.</p>
+<p>On Mac, you do all this in the built-in Terminal app. On Windows, you should use Git Bash, not PowerShell.</p>
 
 <h3>Start a repository</h3>
 <p>Make a folder for your project, move into it, and turn it into a repository:</p>
-<pre><code>mkdir thesis    <span class="o"># make a project folder</span>
-cd thesis       <span class="o"># move into it</span>
-git init        <span class="o"># start tracking this folder</span></code></pre>
-<p>That creates a hidden <code>.git</code> folder where your whole history will live. You never open it yourself.</p>
+<pre><code>mkdir thesis    <span class="o"># create a project folder</span>
+cd thesis       <span class="o"># "move" into it, i.e. tell git to use this as working directory</span>
+git init        <span class="o"># start tracking this folder with git</span></code></pre>
+<p>That creates a hidden <code>.git</code> folder where your whole history will live. You never need to open this folder yourself.</p>
 
 <h3>Save your first snapshot</h3>
-<p>Make a file to track, then check the state of things. <code>git status</code> answers "what's going on in here?", and it's the command you'll run most:</p>
+<p>Make a file to track, then check the state of things.</p>
+<p><code>git status</code> answers "what's been going on in this folder?", and it's the command that you'll run most often:</p>
 <pre><code>echo "use survey_data, clear" &gt; clean.do   <span class="o"># create a one-line file</span>
 git status                                 <span class="o"># see what has changed</span></code></pre>
-<p>Saving a snapshot takes two steps, and this is the bit everyone trips on. You stage the change you want with <code>git add</code>, then record it with <code>git commit</code>. The message after <code>-m</code> is your note to future-you about what's in this snapshot:</p>
+<p>Saving a "snapshot" takes two steps, which can be a bit confusing: you first have to "stage" the change that you want to save using <code>git add</code>, and then you "record" it with <code>git commit</code>.</p>
+<p>In Git, "staging" is the process of selecting which changes you want to group together. Committing is then permanently saving that group as a snapshot of your project. You can think of staging as an online shopping cart, and committing like clicking "buy" (i.e., save all these chages together as a snapshot).</p>
+<p>The message that you type after <code>-m</code> is your note to future-you about what's in this snapshot:</p>
 <pre><code>git add clean.do                              <span class="o"># stage: mark this file to be saved</span>
-git commit -m "Add initial cleaning script"   <span class="o"># record the snapshot</span></code></pre>
+git commit -m "Add initial cleaning script"   <span class="o"># commit: record the snapshot</span></code></pre>
 <p>That's your first commit.</p>
 
 <h3>Change something, then save again</h3>
@@ -145,23 +148,23 @@ git commit -m "Add initial cleaning script"   <span class="o"># record the snaps
 git diff                                  <span class="o"># show what changed since the last commit</span>
 git add clean.do                          <span class="o"># stage the change</span>
 git commit -m "Restrict sample to 2010 onward"</code></pre>
-<p><code>git diff</code> is the one to dwell on, and the next section is all about reading it. To see the snapshots you've taken so far:</p>
+<p><code>git diff</code> is SUPER useful, and we'll go over how to read it in the next section. To see the snapshots you've taken so far, type:</p>
 <pre><code>git log --oneline   <span class="o"># list your commits, newest first</span></code></pre>
-<p>Each line is a labeled snapshot you can return to. That's the whole loop: change, check, stage, commit. Everything else on this page is a variation on it.</p>
+<p>Each line is a labeled snapshot that you can return to. That's the whole loop: change, check, stage, commit. Everything else on this page is a variation on it.</p>
 </section>
 
 <section class="gt-sec reveal" id="gitignore">
 <span class="gt-num">03</span>
 <p class="gt-eyebrow">before you go online</p>
 <h2>Keep data out of git</h2>
-<p class="gt-lede">Some files should never go into git: your data, anything confidential, and the cruft your software leaves behind.</p>
-<p>This matters most for data. Once you push a file to GitHub it lives on someone else's server, and even if you delete it later it lingers in the history. Proprietary survey data, anything with personal information, an API key pasted into a script: none of it should leave your laptop this way. The fix is one file named <code>.gitignore</code> that lists what git should skip.</p>
+<p class="gt-lede">Some files should never go into git: your data, anything confidential, and the junk that your software leaves behind.</p>
+<p>This matters most for data. Once you push a file to GitHub, it lives on someone else's server! Even if you delete it later, it lingers in the history. Proprietary survey data, anything with personal information, API keys pasted into a script: these are all examples of things you never want to leave your computer. The fix is a file named <code>.gitignore</code>, which lists the things that git should skip.</p>
 
 <h3>How a .gitignore works</h3>
 <p>A <code>.gitignore</code> is a plain text file with one pattern per line. Git checks every file against those patterns and quietly ignores the matches. Three kinds of pattern cover almost everything:</p>
 <ul>
-<li><code>*.dta</code>: the <code>*</code> is a wildcard that stands for any name, so this ignores every file ending in <code>.dta</code>.</li>
-<li><code>data/</code>: a trailing slash means a folder, so git ignores everything inside <code>data/</code>.</li>
+<li><code>*.tex</code>: the <code>*</code> is a wildcard that stands for any name, so this ignores every file ending in <code>.tex</code>.</li>
+<li><code>data/</code>: a trailing slash means a folder, so git ignores everything inside the folder called <code>data/</code>.</li>
 <li><code>secret_key.txt</code>: a plain name ignores exactly that one file.</li>
 </ul>
 
@@ -208,11 +211,12 @@ secrets*</code></pre>
 
 <section class="gt-sec gt-shade reveal" id="diff">
 <span class="gt-num">04</span>
-<p class="gt-eyebrow">the one superpower</p>
+<p class="gt-eyebrow">a superpower</p>
 <h2>Learn to read a diff</h2>
-<p class="gt-lede">Here's the single most useful thing on this page. A diff is git showing you, in red and green, exactly what changed. That's it.</p>
-<p>Reading a diff is how you catch the stray debugging line before it ships, how you find the one moment last Tuesday when the regression broke, and how you stay the author of your own project when an AI is typing alongside you. Two commands cover it. <code>git diff</code> shows what you've changed but not yet staged; <code>git diff --staged</code> shows what you're about to commit. A leading <code>-</code> marks a red line you removed; a leading <code>+</code> marks a green line you added. A line you edited appears as both, stacked.</p>
-<p>On GitHub the same diff gets friendlier. A single new line looks like this:</p>
+<p class="gt-lede">Here's the single most useful thing on this page. A diff is git showing you, in red and green, exactly what changed in a file that you just committed. That's it.</p>
+<p>Reading a diff can help you figure out why your regression no longer runs (hint: that edit you made at 1 a.m. last Tuesday), and how you can make sure you remain the author of your own project even if you're leaning on AI to help troubleshoot your code.</p>
+<p>Two commands: <code>git diff</code> shows you what you've changed but haven't yet staged; <code>git diff --staged</code> shows you what you've staged and what you are about to commit. A leading <code>-</code> marks a red line you removed; a leading <code>+</code> marks a green line you added. A line that you have edited appears as both, stacked.</p>
+<p>I prefer to read diffs on GitHub, where a single new line will look like this:</p>
 <div style="border:1px solid #d0d7de; border-radius:8px; overflow:hidden; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.7; margin:1.1rem 0;">
   <div style="background:#f6f8fa; border-bottom:1px solid #d0d7de; padding:7px 12px; color:#57606a;">clean.do</div>
   <div>
@@ -228,13 +232,13 @@ secrets*</code></pre>
     <div style="display:flex; background:#e6ffec;"><span style="display:inline-block; width:2.4em; text-align:right; padding:0 8px; color:#8c959f; background:#ccffd8;">13</span><span style="padding:0 10px; white-space:pre;"><span style="color:#1a7f37;">+</span> drop if income &lt; 0 | missing(income)</span></div>
   </div>
 </div>
-<p>The diff shows you what changed; your commit message should say it in words, so the history is readable later. Compare a message that helps future-you with one that doesn't:</p>
+<p>The diff shows you what changed, so make your commit messages useful to future-you. They should say what you've done in words, to make the history readable later on. Compare a useless message to a helpful one:</p>
 <pre><code><span class="o"># Vague: useless to future-you</span>
 git commit -m "update"
 
 <span class="o"># Clear: says exactly what changed</span>
 git commit -m "Drop duplicate household IDs before the merge"</code></pre>
-<div class="gt-callout">The habit that pays off forever: <strong>commit small and often, with a message that says what changed.</strong> And read your own diff before every commit, so you always know what you're saving.</div>
+<div class="gt-callout">I recommend getting used to <strong>commiting small and often, with a message that says what changed.</strong> It's also a good habit to read your own diff before every commit, so that you always know what you're saving---especially if you are using AI to help with your code.</div>
 </section>
 
 <section class="gt-sec reveal" id="github">
@@ -244,8 +248,8 @@ git commit -m "Drop duplicate household IDs before the merge"</code></pre>
 <p>So far this lives only on your laptop. GitHub gives it a backup, a home, and a way to share it.</p>
 
 <h3>Connect your repository to GitHub</h3>
-<p>On <a href="https://github.com/">github.com</a>, click New, name the repository, and leave it completely empty. Don't let GitHub add a README or a <code>.gitignore</code> for you. If it creates even one file, the repository starts its own separate history, and GitHub rejects your first push with a confusing error.</p>
-<p>GitHub then gives you a URL ending in <code>.git</code>. Connect your local repository to it and send your commits up:</p>
+<p>On <a href="https://github.com/">github.com</a>, click New, name the repository, and leave it completely empty. Don't let GitHub add a README or a <code>.gitignore</code> for you. If it creates even one file, the repository starts its own separate history, and GitHub will reject your first push with a confusing error.</p>
+<p>GitHub will then give you a URL ending in <code>.git</code>. Connect your local repository to it and send your commits up:</p>
 <pre><code>git remote add origin https://github.com/yourname/thesis.git   <span class="o"># link to GitHub</span>
 git branch -M main         <span class="o"># name your branch "main"</span>
 git push -u origin main    <span class="o"># send commits up, and remember this link</span></code></pre>
@@ -253,13 +257,13 @@ git push -u origin main    <span class="o"># send commits up, and remember this 
 <p><code>origin</code> is just the conventional name for your GitHub copy, and <code>-u</code> remembers the link, so from now on a bare <code>git push</code> does the job. Refresh the GitHub page and your files and history are sitting there.</p>
 
 <h3>Your everyday routine</h3>
-<p>This is the rhythm to burn into memory, because once you're set up it's the whole job. Every time you sit down to work, you run the same short loop:</p>
+<p>This will be your main workflow: every time you sit down to work, you run the same short loop:</p>
 <pre><code>git pull                  <span class="o"># 1. start from the latest version on GitHub</span>
 <span class="o"># ... edit your files ...</span>
 git status                <span class="o"># 2. what did I change?</span>
 git diff                  <span class="o"># 3. read the changes</span>
-git add clean.do          <span class="o"># 4. stage what you want to keep</span>
-git commit -m "Winsorize income before the regression"   <span class="o"># 5. save a snapshot</span>
+git add clean.do          <span class="o"># 4. stage the code changes that you want to keep</span>
+git commit -m "Winsorize income before running regression"   <span class="o"># 5. save a snapshot</span>
 git push                  <span class="o"># 6. send it to GitHub</span></code></pre>
 <p>Pull at the start so you begin from the latest version. Work. Then stage, commit, and push when you reach a natural stopping point. You can't push what you haven't committed, and you can't commit what you haven't staged. That's why the order matters. Pull while your working tree is clean; if git complains about local changes, commit them first.</p>
 </section>
@@ -274,17 +278,17 @@ git push                  <span class="o"># 6. send it to GitHub</span></code></
 <img src="{{ '/assets/git-tutorial/add-collaborator.png' | relative_url }}" alt="The Collaborators page in GitHub repository settings, with a box to add someone by username">
 <figcaption>Settings &rarr; Collaborators &rarr; Add people, then enter their GitHub username.</figcaption>
 </figure>
-<p>Now the genuinely useful part. On GitHub you can link to one exact file, or even one exact line, and send that link in an email. Instead of "the code for Figure 3 is somewhere in my analysis script," you send a link that opens at precisely that line:</p>
+<p>Now the cool bit: GitHub lets you link to specific lines within a file and easily send that link in an email. Instead of "the code for Figure 3 is somewhere in my analysis script," you can send a link that opens at precisely that line:</p>
 <ol>
 <li>Open the file on GitHub and click the number next to the line where the code starts. Shift-click a second line number to select a range.</li>
 <li>The address bar updates with the lines, something like <code>.../analysis.do#L42-L60</code>.</li>
-<li>Copy that link and paste it into your email. It opens right at the code that makes Figure 3.</li>
+<li>Copy that link and paste it into your email. It will open right at the code you wanted to share.</li>
 </ol>
 <figure>
 <img src="{{ '/assets/git-tutorial/line-permalink.png' | relative_url }}" alt="A range of lines selected on GitHub, highlighted, with the line numbers in the URL">
 <figcaption>Click a line number, shift-click another for a range, and the link points straight at that code.</figcaption>
 </figure>
-<div class="gt-callout">Press <code>y</code> on the keyboard before you copy, and GitHub rewrites the address into a permalink tied to the current commit. That link keeps pointing at the same code even after you edit the file later.</div>
+<div class="gt-callout">Press <code>y</code> on the keyboard before you copy (or click "copy permalink"), and GitHub rewrites the address into a permalink tied to the current commit. That link keeps pointing at the same code even if you edit the file later! (I told you this was going to be cool!)</div>
 <details class="gt-more">
 <summary>Even better: open an issue and keep the discussion next to the code</summary>
 <div class="gt-more-body">
@@ -298,25 +302,26 @@ git push                  <span class="o"># 6. send it to GitHub</span></code></
 <span class="gt-num">07</span>
 <p class="gt-eyebrow">undo</p>
 <h2>When it goes wrong, and it will</h2>
-<p>The reward for committing often is that mistakes stop being scary. Say that you let an AI rewrite your whole cleaning script and it's quietly broken. One command throws away the mess and drops you back at your last commit:</p>
+<p>The reward for committing often is that mistakes stop being scary. Say that you let an AI rewrite your whole cleaning script and now it's broken and you can't figure out why. With a single command, you can throw away the mess and get teleported back to your last commit:</p>
 <pre><code>git restore clean.do   <span class="o"># just this file</span>
 git restore .          <span class="o"># everything uncommitted</span></code></pre>
-<p>Anything you committed is safe; only your uncommitted edits to tracked files vanish. Two honest caveats. If you already ran <code>git add</code> on the broken version, use <code>git restore --staged --worktree .</code> instead, which undoes the staged and unstaged changes together. And if the AI created brand-new files, git isn't tracking them yet. <code>git restore</code> leaves those alone, so you delete them by hand.</p>
-<p>With that caveat, this is the command that lets you be brave. Try the wild idea, and if it flops, <code>git restore .</code> and you're home.</p>
+<p>Anything you committed is safe; only your uncommitted edits to tracked files vanish.</p> 
+<p>If you've already run <code>git add</code> on the broken version, you will need to use <code>git restore --staged --worktree .</code> instead, which undoes the staged and unstaged changes together.</p>
+<p>With that caveat, this is the command that lets you be brave. Try the wild idea, and if it flops, <code>git restore .</code> and you're back to the "safe" version of your code.</p>
 </section>
 
 <section class="gt-sec gt-shade reveal" id="ai">
 <span class="gt-num">08</span>
 <p class="gt-eyebrow">the modern bit</p>
 <h2>Git in the age of AI</h2>
-<p>An AI will hand you code that's fast, confident, and occasionally wrong in ways that are easy to miss. The single most important habit has nothing to do with git: make sure that you understand any code an AI gives you before you use it. If you can't explain what a line does, don't ship it, no matter who or what wrote it.</p>
-<p>Git is what makes that habit safe to practice. Three moves cover it.</p>
-<h3>Commit before you paste in a big rewrite</h3>
-<p>With a clean snapshot behind you, whatever the AI does is one <code>git restore .</code> from undone, so you can try the bold suggestion without fear.</p>
-<h3>Read the diff of what it gave you</h3>
-<p>Ask it to fix one line and you may get forty changed lines back. <code>git diff</code> shows you the other thirty-nine before they quietly become part of your project. Reviewing the diff is now a bigger part of the work than typing the lines ever was.</p>
-<h3>Let it help you fix errors</h3>
-<p>When a command fails, copy the error message together with the few lines that produced it, paste both into the AI, and ask what went wrong. The exact error text is the most useful thing that you can hand it. And because you committed first, you can try its suggested fix, read the diff, and <code>git restore .</code> if it makes things worse.</p>
+<p>An AI will hand you code that's fast, confident, and occasionally wrong in ways that are easy to miss. The single most important habit has nothing to do with git: make sure that you understand any code an AI gives you before you use it. If you can't explain what a line does, it should not be part of your thesis---no matter who or what wrote it.</p>
+<p>Git can help make this an easy and safe habit:</p>
+<h3>1. Commit immediately before you paste in a big rewrite</h3>
+<p>If you have committed a clean snapshot that you know works, then whatever the AI suggests is one <code>git restore .</code> away from being undone, so you can try stuff without fear.</p>
+<h3>2. Read the diff of what the AI suggested</h3>
+<p>Sometimes when you ask AI to fix a simple problem, it gives you back 40 new lines of code with a lot of complicated loops and "unit tests" and emojis in the comments. <code>git diff</code> shows you exactly what changed compared to your previous commit, so that you can inspect it before it becomes part of your project. Reviewing the diff is now a bigger part of the work than typing the lines ever was.</p>
+<h3>3. Let it help you fix errors</h3>
+<p>When a command fails (in git or in Stata or in Python), copy over the error message together with the few lines that produced it, paste both into the AI, and ask what went wrong. The exact error text is the most useful thing that you can hand an AI. And because you committed first, you can try its suggested fix, read the diff, and <code>git restore .</code> if it makes things worse.</p>
 <details class="gt-more">
 <summary>A worked example: "I pushed, but nothing changed on GitHub"</summary>
 <div class="gt-more-body">
@@ -329,7 +334,7 @@ git restore .          <span class="o"># everything uncommitted</span></code></p
 <pre><code>git add clean.do
 git commit -m "Add winsorizing step"
 git push</code></pre>
-<p>The lesson is the workflow, not the AI: push is the last step, never the only one. But when an error leaves you stuck, pasting it word for word into an AI is the fastest way to learn what it means.</p>
+<p>This will remind you that `push` is the last step, not the only step. But whenever an error leaves you stuck, pasting it word for word into an AI is the fastest way to learn what it means.</p>
 </div>
 </details>
 <div class="gt-callout">Pasting a confusing diff or error back to the AI and asking it to explain, or to draft your commit message, is fair game and genuinely handy. The line that doesn't move: <strong>you understand the code yourself before it goes in.</strong></div>
