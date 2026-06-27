@@ -101,7 +101,7 @@ category: for students
 <span class="gt-num">01</span>
 <p class="gt-eyebrow">the problem</p>
 <h2>You already know why you need this</h2>
-<p class="gt-lede">Picture your thesis folder. In it: <code>paper_final.do</code>, <code>paper_final_v2.do</code>, <code>paper_final_USE_THIS.do</code>, and <code>paper_final_v2_actually.do</code>. You can't remember which one made Figure 3, one of them is broken, and it's 11 p.m. the night before the submission deadline.</p>
+<p class="gt-lede">Picture your thesis folder. <br>In it: <code>paper_final.do</code>, <code>paper_final_v2.do</code>, <code>paper_final_USE_THIS.do</code>, and <code>paper_final_v2_actually.do</code>. You can't remember which one made Figure 3, one of them is broken, and it's 11 p.m. the night before the submission deadline.</p>
 <p>We've all lived in this folder, and it's a miserable place to live. Git is the way out, and the best part is how little of it you need: a handful of commands gets you almost the entire payoff. Open a terminal and follow along, because reading about git works about as well as reading about swimming.</p>
 <p>One more reason, and it matters more every month. When you paste a chunk of your script into an AI and it hands back a "fixed" version, git is what lets you see exactly what it changed, and undo it if it's wrong. The habit that this page teaches is the same one that keeps that borrowed code honest.</p>
 </section>
