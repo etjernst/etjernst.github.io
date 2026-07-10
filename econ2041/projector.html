@@ -4,28 +4,45 @@
 <meta charset="utf-8">
 <title>ECON2041 class aggregate</title>
 <style>
-  body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: #f7f5f0; color: #222; }
-  header { display: flex; align-items: baseline; gap: 24px; padding: 18px 28px 6px; }
-  h1 { font-size: 1.5rem; margin: 0; }
-  #n-counter { font-size: 2.2rem; font-weight: 700; color: #4a7fb5; }
-  #round-label { font-size: 1.2rem; color: #555; }
-  #hist { width: 96vw; height: 62vh; display: block; margin: 8px auto; }
+  :root {
+    color-scheme: light;
+    --bg: #f5f1e8; --ink: #241f1a; --muted: #8a8175; --accent: #76232f;
+    --surface: #fffdf8; --rule: #e6ddcd; --gold: #c9a24b; --truth: #0f7a63;
+  }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         margin: 0; background: var(--bg); color: var(--ink);
+         -webkit-font-smoothing: antialiased; }
+  header { display: flex; align-items: baseline; gap: 24px; padding: 18px 28px 0; }
+  h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -.015em; margin: 0; }
+  #n-counter { font-size: 2rem; font-weight: 800; color: var(--accent);
+               font-variant-numeric: tabular-nums; }
+  #round-label { font-size: 1.15rem; color: var(--muted); }
+  #round-prompt { margin: 2px 28px 0; font-size: 1.15rem; color: var(--ink); max-width: 80ch; }
+  #hist { width: 96vw; height: 60vh; display: block; margin: 8px auto; }
   .strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-           padding: 10px 28px; background: #eee; font-size: .9rem; }
+           padding: 10px 28px; background: #efe9dc; font-size: .9rem;
+           border-top: 1px solid var(--rule); }
   .strip input[type=text], .strip input[type=number] {
-    padding: 6px; border: 1px solid #bbb; border-radius: 6px; }
-  .strip button { padding: 7px 12px; border: 0; border-radius: 6px;
-                  background: #4a7fb5; color: #fff; cursor: pointer; }
-  .strip button.warn { background: #c0392b; }
-  #ctl-status { color: #2c7a2c; min-width: 120px; }
-  #qr-box { position: fixed; right: 18px; top: 14px; text-align: center; font-size: .85rem; }
+    padding: 7px; border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--surface); color: var(--ink); font-family: inherit; font-size: .9rem; }
+  .strip select { padding: 7px; border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--surface); color: var(--ink); font-family: inherit; font-size: .9rem; }
+  .strip button { padding: 8px 13px; border: 0; border-radius: 8px; font-family: inherit;
+                  font-size: .9rem; font-weight: 700;
+                  background: var(--accent); color: #fff; cursor: pointer; }
+  .strip button:active { transform: translateY(1px); }
+  .strip button.warn { background: var(--truth); }
+  #ctl-status { color: var(--truth); font-weight: 600; min-width: 120px; }
+  #qr-box { position: fixed; right: 18px; top: 14px; text-align: center;
+            font-size: .85rem; color: var(--muted); }
   /* wage-style rounds: truth toggle + computed takeaway under the canvas */
   #wage-bar { display: none; align-items: center; gap: 16px; padding: 2px 28px; }
   #truth-toggle-btn { font-size: 1.05rem; font-weight: 700; padding: 10px 18px;
-      border: 0; border-radius: 8px; background: #0f7a63; color: #fff; cursor: pointer; }
+      border: 0; border-radius: 8px; background: var(--truth); color: #fff;
+      cursor: pointer; font-family: inherit; }
   #truth-toggle-btn:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
   #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.25rem; max-width: 72ch; }
-  #wage-takeaway b { color: #76232f; }
+  #wage-takeaway b { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -34,6 +51,7 @@
   <span id="round-label">loading…</span>
   <span id="n-counter">N = 0</span>
 </header>
+<p id="round-prompt"></p>
 
 <canvas id="hist"></canvas>
 <div id="wage-bar">
@@ -62,7 +80,7 @@
   <span id="ctl-status"></span>
 </div>
 
-<div id="qr-overlay" style="display:none; position:fixed; inset:0; background:rgba(247,245,240,.97);
+<div id="qr-overlay" style="display:none; position:fixed; inset:0; background:rgba(245,241,232,.97);
      z-index:10; text-align:center; padding-top:8vh;">
   <h2 style="font-size:2.2rem; margin-bottom:4vh;">Commit your answer before you leave</h2>
   <div id="qr-overlay-img"></div>
