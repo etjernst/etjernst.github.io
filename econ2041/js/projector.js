@@ -299,7 +299,9 @@
     var prefix = conf.axis_prefix ? String(conf.axis_prefix) : '';
     var truthObj = (d.truth && typeof d.truth === 'object') ? d.truth : null;
 
-    if ((d.n || 0) < 3) {
+    // Waiting placeholder only holds pre-reveal (no truth in the payload);
+    // once revealed, always draw the rows and truth marks even at N = 1.
+    if ((d.n || 0) < 3 && !truthObj) {
       ctx.font = '32px system-ui, sans-serif';
       ctx.fillStyle = '#8a8175';
       ctx.fillText('Waiting for answers…  N = ' + (d.n || 0), 60, H / 2);
@@ -701,6 +703,14 @@
     coldOpen: coldOpen,
     liveMode: liveMode,
     toggleTruth: toggleTruth,
+  };
+
+  // Test-only handle: lets tests/test_projector_render.js drive the wage
+  // renderer against a stubbed canvas. Mirrors PORTAL._test in portal.js.
+  window.AGG_PROJECTOR._test = {
+    drawWageRows: drawWageRows,
+    wageFields: wageFields,
+    setShowTruth: function (v) { state.showTruth = v; },
   };
 
   document.addEventListener('DOMContentLoaded', function () {
