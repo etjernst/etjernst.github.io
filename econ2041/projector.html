@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ECON2041 class aggregate</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: #f7f5f0; color: #222; }
+  header { display: flex; align-items: baseline; gap: 24px; padding: 18px 28px 6px; }
+  h1 { font-size: 1.5rem; margin: 0; }
+  #n-counter { font-size: 2.2rem; font-weight: 700; color: #4a7fb5; }
+  #round-label { font-size: 1.2rem; color: #555; }
+  #hist { width: 96vw; height: 62vh; display: block; margin: 8px auto; }
+  .strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+           padding: 10px 28px; background: #eee; font-size: .9rem; }
+  .strip input[type=text], .strip input[type=number] {
+    padding: 6px; border: 1px solid #bbb; border-radius: 6px; }
+  .strip button { padding: 7px 12px; border: 0; border-radius: 6px;
+                  background: #4a7fb5; color: #fff; cursor: pointer; }
+  .strip button.warn { background: #c0392b; }
+  #ctl-status { color: #2c7a2c; min-width: 120px; }
+  #qr-box { position: fixed; right: 18px; top: 14px; text-align: center; font-size: .85rem; }
+  /* wage-style rounds: truth toggle + computed takeaway under the canvas */
+  #wage-bar { display: none; align-items: center; gap: 16px; padding: 2px 28px; }
+  #truth-toggle-btn { font-size: 1.05rem; font-weight: 700; padding: 10px 18px;
+      border: 0; border-radius: 8px; background: #0f7a63; color: #fff; cursor: pointer; }
+  #truth-toggle-btn:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
+  #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.25rem; max-width: 72ch; }
+  #wage-takeaway b { color: #76232f; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Class aggregate</h1>
+  <span id="round-label">loading…</span>
+  <span id="n-counter">N = 0</span>
+</header>
+
+<canvas id="hist"></canvas>
+<div id="wage-bar">
+  <button id="truth-toggle-btn" onclick="AGG_PROJECTOR.toggleTruth()">Truth unlocks at reveal</button>
+</div>
+<p id="wage-takeaway"></p>
+<div id="qr-box"></div>
+
+<div class="strip">
+  <input id="token-input" type="text" placeholder="instructor token" size="16">
+  <button onclick="AGG_PROJECTOR.saveToken()">Save token</button>
+  <span>|</span>
+  <select id="round-select" onchange="AGG_PROJECTOR.selectRound()"></select>
+  <input id="new-label" type="text" placeholder="new round label" size="14">
+  <input id="new-prompt" type="text" placeholder="prompt shown to students" size="28">
+  <input id="new-truth" type="number" step="any" placeholder="truth" size="7">
+  <label><input id="new-lock" type="checkbox"> lock first answer</label>
+  <button onclick="AGG_PROJECTOR.newRound()">Create</button>
+  <button onclick="AGG_PROJECTOR.open()">Open</button>
+  <button onclick="AGG_PROJECTOR.close()">Close</button>
+  <button class="warn" onclick="AGG_PROJECTOR.reveal()">Reveal truth</button>
+  <button onclick="AGG_PROJECTOR.coldOpen()">Cold open</button>
+  <button onclick="AGG_PROJECTOR.liveMode()">Live</button>
+  <button onclick="AGG_PROJECTOR.simulate()">Fallback (s)</button>
+  <button onclick="AGG_QR.toggle()">Big QR (q)</button>
+  <span id="ctl-status"></span>
+</div>
+
+<div id="qr-overlay" style="display:none; position:fixed; inset:0; background:rgba(247,245,240,.97);
+     z-index:10; text-align:center; padding-top:8vh;">
+  <h2 style="font-size:2.2rem; margin-bottom:4vh;">Commit your answer before you leave</h2>
+  <div id="qr-overlay-img"></div>
+  <p id="qr-overlay-url" style="font-size:2rem; font-family:ui-monospace,monospace;"></p>
+  <p style="color:#777">tap your saved portal link, or scan</p>
+</div>
+
+<script>
+  window.AGG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXHmTGnRXYJ6La5t1LBELctAbnKodoW-pfZflYI1_tcUHWKoca3LAtY4GKshbF-CJgRw/exec';
+</script>
+<script src="js/projector.js"></script>
+<script>
+  // QR for the portal, generated remotely when online, URL text always shown
+  // as the offline fallback. The corner badge is permanent; the full-screen
+  // overlay is the exit-commit slide (button or keypress "q").
+  (function () {
+    var portalUrl = window.location.href.replace(/projector\.html.*/, 'portal.html');
+    var shortUrl = portalUrl.replace(/^https?:\/\//, '');
+
+    function qrImg(size) {
+      var img = new Image();
+      img.width = size; img.height = size;
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' +
+                size + '&data=' + encodeURIComponent(portalUrl);
+      return img;
+    }
+
+    var box = document.getElementById('qr-box');
+    var img = qrImg(140);
+    img.onload = function () { box.appendChild(img); addText(box, ''); };
+    img.onerror = function () { addText(box, ''); };
+    function addText(target, style) {
+      var p = document.createElement('div');
+      p.textContent = shortUrl;
+      target.appendChild(p);
+    }
+
+    var overlay = document.getElementById('qr-overlay');
+    var overlayReady = false;
+    window.AGG_QR = {
+      toggle: function () {
+        var showing = overlay.style.display !== 'none';
+        if (showing) { overlay.style.display = 'none'; return; }
+        if (!overlayReady) {
+          overlayReady = true;
+          document.getElementById('qr-overlay-img').appendChild(qrImg(360));
+          document.getElementById('qr-overlay-url').textContent = shortUrl;
+        }
+        overlay.style.display = 'block';
+      },
+    };
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'q' && document.activeElement.tagName !== 'INPUT') AGG_QR.toggle();
+    });
+  })();
+</script>
+</body>
+</html>
