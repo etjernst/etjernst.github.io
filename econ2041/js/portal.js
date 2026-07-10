@@ -298,7 +298,10 @@
       return head + commitHtml(r) +
         (r.committed === 'unknown'
           ? '<p class="muted">Could not confirm whether you already answered; ' +
-            'submitting again is safe, your first answer is the one that counts.</p>'
+            'submitting again is safe, ' +
+            (r.lock_rule === 'lock_first'
+              ? 'your first answer is the one that counts.'
+              : 'your latest answer is the one that counts.') + '</p>'
           : '');
     }
     if (r.state === 'open') {
@@ -1071,7 +1074,14 @@
       function (state, attempt, res) {
         if (state === 'confirmed') {
           serverOffset = res.now - Date.now();
-          homeRounds = res.rounds;
+          // what needs you comes first: open rounds, then awaiting-reveal,
+          // then revealed (newest first within each group)
+          var rank = { open: 0, closed: 1, revealed: 2 };
+          homeRounds = res.rounds.slice().sort(function (a, b) {
+            var d = (rank[a.state] || 0) - (rank[b.state] || 0);
+            if (d) return d;
+            return (b.close_ts || b.reveal_ts || 0) - (a.close_ts || a.reveal_ts || 0);
+          });
           setStatus('', '');
           render();
           telemetry.log('page_view', '', { rounds: homeRounds.length });

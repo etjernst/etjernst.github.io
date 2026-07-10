@@ -52,7 +52,7 @@
     var H = canvas.height = canvas.clientHeight * 2;
     ctx.clearRect(0, 0, W, H);
     ctx.font = '28px system-ui, sans-serif';
-    ctx.fillStyle = '#666';
+    ctx.fillStyle = '#8a8175';
     if (!values.length) {
       ctx.fillText('Waiting for the first submission…', 40, H / 2);
       return;
@@ -80,7 +80,7 @@
     var plotW = W - padL - 20, plotH = H - padT - padB;
 
     // bars
-    ctx.fillStyle = '#4a7fb5';
+    ctx.fillStyle = '#c9a24b';
     for (var i = 0; i < k; i++) {
       if (!counts[i]) continue;
       var x = padL + (i / k) * plotW;
@@ -89,11 +89,11 @@
     }
 
     // x axis and labels
-    ctx.strokeStyle = '#999'; ctx.lineWidth = 2;
+    ctx.strokeStyle = '#8a8175'; ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH);
     ctx.stroke();
-    ctx.fillStyle = '#444';
+    ctx.fillStyle = '#241f1a';
     for (var t = 0; t <= 4; t++) {
       var vx = lo + (t / 4) * (hi - lo);
       var px = padL + (t / 4) * plotW;
@@ -104,9 +104,9 @@
     // truth overlay
     if (truth !== undefined && truth !== null) {
       var tx = padL + ((truth - lo) / (hi - lo)) * plotW;
-      ctx.strokeStyle = '#c0392b'; ctx.lineWidth = 6;
+      ctx.strokeStyle = '#0f7a63'; ctx.lineWidth = 6;
       ctx.beginPath(); ctx.moveTo(tx, padT); ctx.lineTo(tx, padT + plotH); ctx.stroke();
-      ctx.fillStyle = '#c0392b';
+      ctx.fillStyle = '#0f7a63';
       ctx.fillText('truth', tx + 12, padT + 34);
     }
   }
@@ -126,13 +126,13 @@
     counts.forEach(function (n, i) {
       var y = padT + i * rowH;
       var isTruth = truth !== undefined && truth !== null && Number(truth) === i;
-      ctx.fillStyle = '#444';
+      ctx.fillStyle = '#241f1a';
       ctx.fillText((options[i] || ('option ' + i)) + (isTruth ? ' ✓' : ''),
                    padL, y + rowH * 0.55, labelW - 20);
-      ctx.fillStyle = isTruth ? '#2c8a4b' : '#4a7fb5';
+      ctx.fillStyle = isTruth ? '#0f7a63' : '#c9a24b';
       var w = (n / maxC) * barMax;
       ctx.fillRect(padL + labelW, y + rowH * 0.18, Math.max(w, 3), rowH * 0.55);
-      ctx.fillStyle = '#444';
+      ctx.fillStyle = '#241f1a';
       ctx.fillText(String(n), padL + labelW + w + 16, y + rowH * 0.55);
     });
   }
@@ -178,7 +178,7 @@
       var w = tileW - 2 * pad, h = tileH - 2 * pad;
       var agg = (fields || {})[s.id] || {};
       ctx.font = '22px system-ui, sans-serif';
-      ctx.fillStyle = '#444';
+      ctx.fillStyle = '#241f1a';
       ctx.fillText(s.label, x0, y0 + 18, w);
       var chartY = y0 + 34, chartH = h - 40;
       if (s.spec.type === 'numeric') {
@@ -193,7 +193,7 @@
   function drawMiniHist(ctx, values, x0, y0, w, h, spec) {
     ctx.font = '18px system-ui, sans-serif';
     if (!values.length) {
-      ctx.fillStyle = '#999';
+      ctx.fillStyle = '#8a8175';
       ctx.fillText('no answers yet', x0, y0 + h / 2);
       return;
     }
@@ -207,13 +207,13 @@
       counts[b] += 1;
     });
     var maxC = Math.max.apply(null, counts);
-    ctx.fillStyle = '#4a7fb5';
+    ctx.fillStyle = '#c9a24b';
     for (var i = 0; i < k; i++) {
       if (!counts[i]) continue;
       var bh = (counts[i] / maxC) * (h - 24);
       ctx.fillRect(x0 + (i / k) * w + 1, y0 + (h - 24) - bh, w / k - 2, bh);
     }
-    ctx.fillStyle = '#666';
+    ctx.fillStyle = '#8a8175';
     ctx.fillText(String(lo), x0, y0 + h - 2);
     var hiLabel = String(hi);
     ctx.fillText(hiLabel, x0 + w - ctx.measureText(hiLabel).width, y0 + h - 2);
@@ -222,7 +222,7 @@
   function drawMiniCounts(ctx, counts, options, x0, y0, w, h) {
     ctx.font = '18px system-ui, sans-serif';
     if (!counts.length) {
-      ctx.fillStyle = '#999';
+      ctx.fillStyle = '#8a8175';
       ctx.fillText('no answers yet', x0, y0 + h / 2);
       return;
     }
@@ -231,12 +231,12 @@
     var labelW = w * 0.42, barMax = w - labelW - 50;
     counts.forEach(function (n, i) {
       var y = y0 + i * rowH;
-      ctx.fillStyle = '#444';
+      ctx.fillStyle = '#241f1a';
       ctx.fillText(options[i] || ('option ' + i), x0, y + rowH * 0.7, labelW - 10);
-      ctx.fillStyle = '#4a7fb5';
+      ctx.fillStyle = '#c9a24b';
       var bw = (n / maxC) * barMax;
       ctx.fillRect(x0 + labelW, y + rowH * 0.18, Math.max(bw, 2), rowH * 0.6);
-      ctx.fillStyle = '#666';
+      ctx.fillStyle = '#8a8175';
       ctx.fillText(String(n), x0 + labelW + bw + 8, y + rowH * 0.7);
     });
   }
@@ -510,6 +510,8 @@
     el('round-label').textContent = d.label +
       (state.simulating ? '  [SIMULATED]' : '') +
       (state.coldOpen ? '  [COLD OPEN]' : '');
+    var promptEl = el('round-prompt');
+    if (promptEl) promptEl.textContent = d.prompt || '';
     var wf = d.mode === 'form' ? wageFields(d.config) : null;
     syncWageChrome(d, wf);
     if (wf && d.fields) {
