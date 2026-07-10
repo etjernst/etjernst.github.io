@@ -679,8 +679,13 @@
   }
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 's' && document.activeElement.tagName !== 'INPUT') toggleSimulate();
+    if (document.activeElement.tagName === 'INPUT') return;
+    if (e.key === 's') toggleSimulate();
+    if (e.key === 'h') { document.body.classList.toggle('bare'); render(); }
   });
+
+  // fullscreen (F11) and window changes re-render at the new canvas size
+  window.addEventListener('resize', function () { render(); });
 
   function toggleTruth() {
     state.showTruth = !state.showTruth;
