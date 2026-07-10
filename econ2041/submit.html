@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECON2041 class response</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: #f7f5f0; color: #222; }
+  .card { max-width: 420px; margin: 8vh auto; background: #fff; border-radius: 14px;
+          padding: 28px; box-shadow: 0 2px 14px rgba(0,0,0,.08); }
+  h1 { font-size: 1.15rem; margin: 0 0 14px; }
+  input[type=text], input[type=number] {
+    width: 100%; box-sizing: border-box; font-size: 1.4rem; padding: 12px;
+    border: 2px solid #ccc; border-radius: 10px; margin: 8px 0 14px; }
+  button { width: 100%; font-size: 1.2rem; padding: 14px; border: 0; border-radius: 10px;
+           background: #4a7fb5; color: #fff; cursor: pointer; }
+  button:disabled { background: #a8bfd4; }
+  .badge { display: inline-block; background: #eef3f8; border-radius: 8px; padding: 4px 10px;
+           font-family: ui-monospace, monospace; font-size: .95rem; margin-bottom: 10px; }
+  #status.err { color: #c0392b; margin-top: 12px; }
+  #status.busy { color: #666; margin-top: 12px; }
+  .muted { color: #777; font-size: .95rem; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>ECON2041 live response</h1>
+
+  <div id="seed-section" style="display:none">
+    <p>Enter your personal code (it was sent to you on iLearn).</p>
+    <input id="seed-input" type="text" autocomplete="off" autocapitalize="characters" placeholder="e.g. K7KQ3M">
+    <button onclick="AGG_SUBMIT.saveSeedFromInput()">Save code</button>
+  </div>
+
+  <div id="wait-section" style="display:none">
+    <span class="badge" id="seed-badge"></span>
+    <p class="muted">No question is open right now. When one opens in lecture, refresh this page.</p>
+    <button onclick="AGG_SUBMIT.boot()">Refresh</button>
+  </div>
+
+  <div id="round-section" style="display:none">
+    <p id="prompt" style="font-size:1.1rem"></p>
+    <input id="answer-input" type="number" step="any" inputmode="decimal" placeholder="Your answer">
+    <button id="submit-btn" onclick="AGG_SUBMIT.submit()">Submit</button>
+  </div>
+
+  <div id="done-section" style="display:none">
+    <p id="done-msg" style="font-size:1.1rem">Answer received.</p>
+    <p class="muted">Watch the screen up front.</p>
+    <button onclick="AGG_SUBMIT.another()">Answer again / next round</button>
+  </div>
+
+  <div id="status"></div>
+</div>
+
+<script>
+  // Set once at deploy time: the Apps Script web app URL (ends in /exec).
+  window.AGG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXHmTGnRXYJ6La5t1LBELctAbnKodoW-pfZflYI1_tcUHWKoca3LAtY4GKshbF-CJgRw/exec';
+</script>
+<script src="js/transport.js"></script>
+<script src="js/submit.js"></script>
+</body>
+</html>
