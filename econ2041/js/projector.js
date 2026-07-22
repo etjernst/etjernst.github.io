@@ -402,9 +402,11 @@
 
       if (r.median !== undefined) {
         ctx.fillStyle = '#76232f';
+        ctx.globalAlpha = 0.82;
         ctx.beginPath();
         ctx.arc(x(r.median), cy, Math.max(ds.r + 3, 11), 0, 2 * Math.PI);
         ctx.fill();
+        ctx.globalAlpha = 1;
       }
 
       if (state.showTruth && r.truth !== undefined) {
