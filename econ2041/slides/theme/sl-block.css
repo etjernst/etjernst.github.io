@@ -1,0 +1,61 @@
+/* slides.com layout model for raw-HTML ported slides: absolutely positioned
+   blocks on the 1280x720 slide canvas (values from the approved pilot port) */
+.reveal .slides section.sl-canvas {
+  height: 720px;
+  /* slides.com clips at the deck viewport, i.e. the canvas edge */
+  overflow: hidden;
+}
+.sl-block {
+  position: absolute;
+}
+.sl-block-content {
+  position: relative;
+}
+/* slides.com crop model: the block box clips, the img keeps its own size
+   (inline px style when cropped, 100% of the block when not) */
+.sl-block[data-block-type="image"] .sl-block-content {
+  height: 100%;
+  overflow: hidden;
+}
+.sl-block[data-block-type="image"] img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: top;
+}
+.sl-block svg {
+  overflow: visible;
+}
+.sl-block[data-block-type="code"] pre {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #272822;
+  border-radius: 4px;
+}
+.sl-block[data-block-type="code"] code {
+  display: block;
+  padding: 12px;
+  font-family: "Consolas", "Monaco", monospace;
+}
+/* slides.com math blocks resolve to a 50px base before the block's inline
+   percentage (measured on the live embed) */
+.sl-block[data-block-type="math"] {
+  font-size: 50px;
+}
+.math-output {
+  display: inline-block;
+}
+.math-output .katex {
+  font-size: 1em;
+}
+.sl-block[data-block-type="text"] .katex {
+  font-size: 1em;
+}
+.katex-display {
+  margin: 0;
+}
