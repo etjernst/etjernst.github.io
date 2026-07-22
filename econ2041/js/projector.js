@@ -687,9 +687,12 @@
     }, 700);
   }
 
+  // simulate mode has no button or key: it draws data unrelated to the live
+  // round, and a stray keypress mid-lecture put fake numbers on the screen.
+  // True emergency use: AGG_PROJECTOR.simulate() from the console; liveMode()
+  // returns to real data.
   document.addEventListener('keydown', function (e) {
     if (document.activeElement.tagName === 'INPUT') return;
-    if (e.key === 's') toggleSimulate();
     if (e.key === 'h') { document.body.classList.toggle('bare'); render(); }
   });
 
