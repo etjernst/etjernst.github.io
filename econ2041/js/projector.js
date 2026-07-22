@@ -339,20 +339,6 @@
     }
 
     var padL = Math.floor(W * 0.20), padR = 60, padT = 46, padB = 70;
-    // Keep the row band clear of the fixed QR badge in the top-right. Dots
-    // encode wage values and cannot move horizontally, so drop the whole plot
-    // below the badge's bottom edge instead. Measured each render (the badge
-    // grows once the QR image loads) and capped so a tall badge cannot starve
-    // the plot.
-    var qrEl = el('qr-box');
-    if (qrEl && canvas.getBoundingClientRect && qrEl.getBoundingClientRect) {
-      var cRect = canvas.getBoundingClientRect();
-      var qRect = qrEl.getBoundingClientRect();
-      if (cRect.height > 0 && qRect.bottom > cRect.top && qRect.right > cRect.left) {
-        var qrBottom = (qRect.bottom - cRect.top) * (H / cRect.height);
-        padT = Math.min(Math.max(padT, qrBottom + 16), H * 0.35);
-      }
-    }
     var plotW = W - padL - padR, plotH = H - padT - padB;
     var rowH = plotH / rows.length;
     function x(v) { return padL + (v - lo) / (hi - lo) * plotW; }
@@ -368,7 +354,7 @@
       ctx.fillText(lbl, tx - ctx.measureText(lbl).width / 2, padT + plotH + 44);
     });
 
-    // legend, top left of the plot area (the QR badge owns the top right)
+    // legend, top left of the plot area
     var legendItems = [
       { kind: 'dot', color: '#c9a24b', text: 'one answer' },
       { kind: 'dot', color: '#76232f', text: 'class median' },
