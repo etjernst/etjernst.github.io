@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="econ2041-l0_files/libs/clipboard/clipboard.min.js"></script>
+<script src="econ2041-l0_files/libs/quarto-html/tabby.min.js"></script>
+<script src="econ2041-l0_files/libs/quarto-html/popper.min.js"></script>
+<script src="econ2041-l0_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="econ2041-l0_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="econ2041-l0_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="econ2041-l0_files/libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.22">
+
+  <title>econ2041-l0</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="econ2041-l0_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="econ2041-l0_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="econ2041-l0_files/libs/revealjs/dist/theme/quarto-cb65546d2cbf6000e9ca657679eb50ed.css">
+  <script defer="" src="vendor/katex/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link href="econ2041-l0_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="econ2041-l0_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="econ2041-l0_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="econ2041-l0_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="theme/sl-block.css">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="econ-2041" class="slide level2 title-center" data-background-image="assets/econ2041-l0/Cover.png" style="color: rgb(238, 238, 238)">
+<h2><span style="font-size:1.2em">ECON 2041</span></h2>
+<h3 id="introductory-econometrics"><span style="font-size:1.2em">Introductory Econometrics</span></h3>
+<h3 id="intro-to-unit"><span style="font-size:90px">Intro to unit</span></h3>
+</section>
+<section id="outline" class="slide level2 title-center" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.8em">Outline</span></h2>
+<ul>
+<li>
+Intro to teaching team
+</li>
+<li class="fragment" data-fragment-index="0">
+Salary prediction game
+</li>
+<li class="fragment" data-fragment-index="1">
+Technology and learning materials
+</li>
+<li class="fragment" data-fragment-index="2">
+Assessment
+</li>
+<li class="fragment" data-fragment-index="3">
+Learning outcomes
+</li>
+<li class="fragment" data-fragment-index="4">
+Plan for the semester
+</li>
+</ul>
+</section>
+<section id="section" class="slide level2 sl-canvas">
+<h2></h2>
+<div class="sl-block" data-block-id="669b9947f0911860fd45d8dbd3c84946" data-block-type="text" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left;"><h2>Teaching team</h2></div></div>
+<div class="sl-block" data-block-id="8ae31b94a50791ebb07d34294fd5e6fb" data-block-type="text" data-name="text-bb12ba" style="height: auto; width: 1120px; left: 79.9985px; top: 144px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 120%;">
+<p><strong>Unit convenor: </strong>Associate Professor Emilia Tjernstrom</p>
+<p><strong>Email:</strong>&nbsp;emilia.tjernstrom@mq.edu.au</p>
+<p><strong>Consultation hours:</strong>&nbsp;Wednesdays 9 - 11 (both in-person and Zoom)&nbsp;</p>
+</div></div>
+<div class="sl-block" data-block-id="d20b14e466e7059ff8262db1e78411b5" data-block-type="text" data-name="text-25f328" style="height: auto; width: 1120px; left: 79.9985px; top: 360px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left; font-size: 120%;">
+<p><strong>Tutors:</strong></p>
+<p>Fazeel Jaleel</p>
+<p>Syed Atif</p>
+<p>&nbsp;</p>
+<p>Tutorials start in week 2</p>
+</div></div>
+<div class="sl-block" data-block-id="b5d0ca62d9d0509f34b8a252e62daf80" data-block-type="text" data-name="text-f29b02" style="height: auto; width: 336.001px; left: 720px; top: 360px;"><div class="sl-block-content fragment" data-fragment-index="0" data-has-custom-html="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 120%;">
+<p>Yes, I know...&nbsp;</p>
+<p>It's a beast!</p>
+<p>~<em>churn</em>-strom</p>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="8c1ad10352225218b25461433f5c46ee" data-block-type="group" data-name="group-bef1bf"><div class="sl-block-content sl-block-group-content" style="transform-origin: 879.889px 257.221px; z-index: 14;">
+<div class="sl-block" data-block-id="9587a474bf13b45c6434f19f869bd2f2" data-block-type="drawing" data-name="drawing-ea173b" style="width: 223.264px; height: 137.827px; left: 753.878px; top: 103.355px;"><div class="sl-block-content fragment" data-fragment-index="0" data-points="780.71 192.11,780.71 194.24,782.84 198.51,791.37 207.04,804.16 216.63,823.34 226.22,846.8 232.62,872.38 235.82,897.96 239.01,922.48 239.01,939.53 237.95,953.39 231.55,968.31 216.63,971.51 205.97,973.64 195.31,974.71 183.58,974.71 170.79,974.71 161.2,972.58 150.54,964.05 140.95,952.33 131.35,935.27 123.89,915.02 116.43,889.43 111.1,847.86 106.84,825.48 105.77,808.42 105.77,793.5 105.77,783.9 108.97,775.38 116.43,766.85 123.89,759.39 135.62,757.26 144.14,756.19 153.74,756.19 163.33,757.26 169.73,765.78 179.32,770.05 182.52,772.18 184.65,776.44 185.72" data-timestamp="1753757908985" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="753.87841796875 103.35545349121094 223.26361083984375 137.82676696777344" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M 784.4696731002981 192.5374190715395 Q 784.47 192.54 784.67 193.48 784.88 194.43 786.25 196.28 787.62 198.14 791.47 202.15 795.32 206.17 801.88 210.9 808.43 215.64 817.95 219.96 827.47 224.29 838.97 227.22 850.47 230.15 862.99 231.89 875.51 233.63 888.11 234.9 900.72 236.16 912.08 236.2 923.45 236.24 931.82 235.22 940.19 234.21 947.03 230.49 953.88 226.77 959.67 220.52 965.46 214.28 967.29 209.14 969.12 204.01 970.13 198.73 971.15 193.46 971.62 187.66 972.08 181.87 972.14 175.98 972.19 170.08 971.98 165.1 971.77 160.12 970.2 155.28 968.63 150.44 964.56 146.01 960.48 141.58 954.43 137.19 948.38 132.79 940.01 129.09 931.64 125.4 921.23 121.93 910.83 118.46 896.73 115.85 882.63 113.24 864.88 111.42 847.12 109.59 835.74 109.01 824.36 108.43 815.76 108.36 807.15 108.29 800.23 108.61 793.3 108.94 788.71 110.75 784.12 112.56 780.09 115.9 776.06 119.24 772 123.31 767.93 127.38 764.93 132.42 761.93 137.46 760.84 141.68 759.75 145.9 759.28 150.47 758.82 155.04 758.9 159.29 758.98 163.55 760.24 166.89 761.49 170.24 764.62 173.76 767.75 177.28 770.71 178.92 773.67 180.56 774.21 182.41 774.75 184.26 773.01 185.08 771.27 185.9 770.18 184.31 769.1 182.72 770.5 181.4 771.9 180.08 773.43 181.26 774.95 182.44 774.02 184.12 773.1 185.81 768.54 183.26 763.98 180.7 760.27 176.3 756.55 171.9 755.23 167.84 753.9 163.78 753.88 159.15 753.85 154.52 754.39 149.56 754.93 144.61 756.27 139.81 757.62 135.01 761.02 129.45 764.42 123.88 768.67 119.62 772.92 115.35 777.59 111.68 782.26 108.02 787.58 106.01 792.91 104.01 800.05 103.65 807.18 103.29 815.89 103.37 824.6 103.44 836.11 104.03 847.62 104.61 865.6 106.48 883.59 108.34 898.01 111.04 912.43 113.74 923.06 117.29 933.69 120.84 942.5 124.82 951.32 128.79 957.77 133.54 964.21 138.29 968.71 143.55 973.21 148.81 974.96 154.32 976.72 159.84 976.95 164.98 977.19 170.13 977.13 176.2 977.06 182.28 976.56 188.35 976.05 194.42 974.92 200.08 973.79 205.73 971.52 211.56 969.24 217.39 962.73 224.24 956.22 231.08 948.57 235.08 940.92 239.09 932.19 240.16 923.47 241.23 911.85 241.18 900.23 241.13 887.52 239.86 874.81 238.59 862.02 236.78 849.23 234.98 837.31 231.9 825.39 228.82 815.48 224.27 805.57 219.72 798.43 215.03 791.29 210.33 786.33 206.03 781.37 201.73 779.42 198.62 777.47 195.5 777.21 194.06 776.95 192.61 776.95 192.38 776.95 192.15 777.04 191.57 777.12 190.98 777.38 190.46 777.65 189.93 778.06 189.51 778.47 189.09 778.99 188.82 779.51 188.55 780.09 188.45 780.67 188.35 781.25 188.44 781.84 188.52 782.36 188.78 782.89 189.05 783.31 189.46 783.73 189.87 784 190.39 784.27 190.91 784.37 191.49 784.47 192.07 784.47 192.3 Z" fill="rgb(0, 0, 255)"></path></svg></div></div>
+<div class="sl-block" data-block-id="f44e455df770caab53b5284f1a1f12cd" data-block-type="drawing" data-name="drawing-b1a4ad" style="width: 60.5359px; height: 187.5px; left: 945.365px; top: 223.586px;"><div class="sl-block-content fragment" data-fragment-index="0" data-points="956.59 227.29,961.92 229.42,968.31 233.68,974.71 237.95,980.04 245.41,986.44 258.2,992.83 274.19,998.16 286.98,1001.36 300.84,1003.49 311.5,1003.49 320.03,1003.49 331.75,1002.43 340.28,1000.29 347.74,997.1 356.27,994.96 363.73,993.9 371.19,991.77 377.59,990.7 380.79,988.57 382.92,986.44 386.12,983.24 389.31,980.04 392.51,974.71 396.78,971.51 397.84,969.38 399.97,967.25 399.97,965.12 401.04,962.98 402.11,960.85 403.17,957.65 404.24,954.46 405.3,952.33 406.37,949.13 408.5,947 408.5,944.86 408.5" data-timestamp="1753757911408" style="z-index: 16;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="945.3645629882812 223.58612060546875 60.535888671875 187.49951171875" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M 959.1502478566738 224.27549312747715 Q 959.15 224.28 961.74 225.53 964.33 226.79 967.63 229.02 970.93 231.25 974.07 233.91 977.21 236.57 980.22 241.14 983.23 245.72 986.3 252.48 989.38 259.25 992.49 266.78 995.6 274.31 998.09 280.99 1000.59 287.68 1002.23 294.36 1003.87 301.05 1004.78 306.39 1005.69 311.74 1005.83 316.64 1005.96 321.54 1005.85 326.98 1005.75 332.41 1005.16 336.85 1004.58 341.29 1003.49 345.39 1002.4 349.49 1000.98 353.67 999.57 357.86 998.66 361.55 997.75 365.24 997.11 368.79 996.48 372.34 995.28 375.85 994.09 379.37 992.11 382.91 990.14 386.45 987.13 389.86 984.12 393.26 980.16 396.58 976.2 399.89 973.42 401.49 970.63 403.09 967.88 404.2 965.13 405.31 961.65 406.86 958.17 408.41 955.46 409.49 952.75 410.58 951.27 410.98 949.79 411.37 947.32 410.32 944.85 409.27 945.5 406.67 946.15 404.06 948.83 404.3 951.5 404.54 951.69 407.21 951.87 409.89 949.26 410.49 946.64 411.1 945.64 408.61 944.63 406.12 949.96 403.48 955.29 400.83 957.82 399.86 960.34 398.88 963.2 398.01 966.07 397.14 968.94 395.69 971.8 394.23 975.46 391.17 979.11 388.12 982.05 384.99 984.99 381.86 986.71 379.38 988.42 376.91 989.54 374.04 990.66 371.18 991.44 367.48 992.21 363.79 993.29 359.93 994.37 356.07 995.8 352.04 997.23 348.02 998.39 344.28 999.55 340.55 1000.15 336.42 1000.76 332.29 1000.86 326.98 1000.96 321.67 1000.87 317.1 1000.77 312.53 999.89 307.38 999.01 302.22 997.46 295.82 995.91 289.42 993.44 282.81 990.97 276.21 987.93 268.83 984.9 261.45 981.66 255.29 978.43 249.13 975.78 245.39 973.12 241.65 970.12 239.37 967.11 237.09 964.19 235.29 961.27 233.49 958.81 232.37 956.36 231.24 955.78 231 955.2 230.77 954.69 230.47 954.19 230.17 953.8 229.73 953.42 229.29 953.19 228.75 952.95 228.21 952.9 227.62 952.85 227.04 952.98 226.47 953.11 225.9 953.41 225.39 953.71 224.89 954.15 224.5 954.59 224.12 955.13 223.89 955.67 223.65 956.26 223.6 956.84 223.55 957.41 223.68 957.98 223.81 958.57 224.04 Z" fill="rgb(0, 0, 255)"></path></svg></div></div>
+</div></div>
+</section>
+<section id="teaching-team" class="slide level2">
+<h2>Teaching team</h2>
+<p><strong>Unit convenor:</strong> Associate Professor Emilia Tjernstrom</p>
+<p><strong>Email:</strong>&nbsp;emilia.tjernstrom@mq.edu.au</p>
+<p><strong>Consultation hours:</strong>&nbsp;Wednesdays 9 - 11 (both in-person and Zoom)</p>
+<p>A little more about me:</p>
+<div class="columns">
+<div class="column" style="width:42%;">
+<div class="r-stack">
+<div class="fragment fade-out" data-fragment-index="0">
+<p><img data-src="assets/econ2041-l0/image-2.png" style="width:94.0%"></p>
+</div>
+<div class="fragment current-visible" data-fragment-index="0">
+<p><img data-src="assets/econ2041-l0/image.png" style="width:89.0%"></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><img data-src="assets/econ2041-l0/image-1.png" style="width:82.0%"></p>
+</div>
+</div>
+</div><div class="column" style="width:54%;">
+<div class="fragment" data-fragment-index="0">
+<p>I study how policies work &amp; for whom</p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p>I apply and develop econometric tools to understand treatment effect heterogeneity</p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p>I design &amp; run large-scale RCTs in developing countries</p>
+</div>
+</div></div>
+</section>
+<section id="teaching-team-1" class="slide level2">
+<h2>Teaching team</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><img data-src="assets/econ2041-l0/image-3.png" height="285"></p>
+</div><div class="column" style="width:48%;">
+<p><img data-src="assets/econ2041-l0/image-2.png" height="285"></p>
+</div></div>
+<p>A little more about me: I design &amp; run large-scale RCTs in developing countries</p>
+<p><img data-src="assets/econ2041-l0/image-4.png" height="215"></p>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:55%;">
+<div style="margin-top: 300px; font-size: 1.2em">
+<p>A little more about me:</p>
+</div>
+</div><div class="column" style="width:41%;">
+<p><img data-src="assets/econ2041-l0/WhatsApp_Image_2025-07-31_at_11.05.33_79f5993c.jpg" height="620"></p>
+</div></div>
+</section>
+<section id="what-will-you-earn-when-you-graduate" class="slide level2 title-center" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:135px">What will you earn when you graduate?</span></h2>
+</section>
+<section id="salary-prediction-game" class="slide level2">
+<h2>Salary prediction game</h2>
+<p>https://forms.office.com/r/NfT1CMEexT</p>
+<p><img data-src="assets/econ2041-l0/image-5.png" style="width:41.0%"></p>
+</section>
+<section class="slide level2">
+
+<p><img data-src="assets/econ2041-l0/image-6.png" style="width:14.0%"></p>
+<div class="r-stack">
+<p><img data-src="assets/econ2041-l0/image-7.png" height="500"></p>
+<div class="fragment" data-fragment-index="0">
+<p><img data-src="assets/econ2041-l0/image-8.png" style="width:67.0%"></p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><img data-src="assets/econ2041-l0/image-7.png" height="500"></p>
+</div>
+</div>
+<div style="font-size: 0.75em; text-align: right">
+<p><a href="https://au.indeed.com/career/new-graduate/salaries">New graduate salaries, Australia</a><br> last updated 28 May 2025</p>
+</div>
+</section>
+<section id="section-1" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="2e50cdf430f07b3e1e8d5b0293116522" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left;"><h2>Graduate Outcomes Survey (GOS)</h2></div></div>
+<div class="sl-block" data-block-id="b2d1967aa5fff72abbe50505aeacc910" data-block-type="text" data-id="text-53cd06" data-name="text-53cd06" style="height: auto; width: 347.368px; left: 880px; top: 648px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; font-size: 75%;"><p style="text-align:left"><a href="https://www.qilt.edu.au/surveys/Data-Visualisation/gos" target="_blank">GOS</a><br>
+Source: <a href="https://www.qilt.edu.au/surveys/graduate-outcomes-survey-(gos)" target="_blank">QILT</a></p></div></div>
+<div class="sl-block" data-block-id="2d6e9e5ee27288938bd390c917f5f977" data-block-type="shape" data-id="shape-1af02e" data-name="shape-1af02e" style="width: 557.209px; height: 60.8298px; left: 80px; top: 146.259px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 18;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+<div class="sl-block" data-block-id="9e5fdefe6d3052f5286a6df1ebed6243" data-block-type="text" data-id="text-79bf69" data-name="text-79bf69" style="height: auto; width: 421.679px; left: 98px; top: 157.174px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; color: rgb(238, 238, 238);"><p style="text-align: left;">Accounting</p></div></div>
+<div class="sl-block" data-block-id="e21f595c8924e70cbd694ff6631dc3c2" data-block-type="text" data-id="text-e4ccc4" data-name="text-e4ccc4" style="height: auto; width: 421.679px; left: 98px; top: 228.004px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; color: rgb(238, 238, 238);"><p style="text-align:left">Banking &amp; finance</p></div></div>
+<div class="sl-block" data-block-id="6e3943c540313d1ff24c2ccaa67d5337" data-block-type="text" data-id="text-b1a500" data-name="text-b1a500" style="height: auto; width: 421.679px; left: 98px; top: 298.834px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 21; color: rgb(238, 238, 238);"><p style="text-align:left">Business management</p></div></div>
+<div class="sl-block" data-block-id="e1e3688a5747b1c03cc9d38b0e311346" data-block-type="text" data-id="text-88753d" data-name="text-88753d" style="height: auto; width: 421.679px; left: 98px; top: 369.663px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; color: rgb(238, 238, 238);"><p style="text-align:left">Economics</p></div></div>
+<div class="sl-block" data-block-id="7700121a9f2cb3a27a342bed5ed78773" data-block-type="text" data-id="text-db4980" data-name="text-db4980" style="height: auto; width: 421.679px; left: 98px; top: 440.493px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 23; color: rgb(238, 238, 238);"><p style="text-align:left">Management &amp; commerce</p></div></div>
+<div class="sl-block" data-block-id="6ace54cec176efb67e2ea1121ae878cb" data-block-type="text" data-id="text-bdf5a1" data-name="text-bdf5a1" style="height: auto; width: 421.679px; left: 98px; top: 511.323px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 24; color: rgb(238, 238, 238);"><p style="text-align:left">Sales &amp; marketing</p></div></div>
+<div class="sl-block" data-block-id="584bd1adb0e0ad6f46c298e6754cb040" data-block-type="text" data-id="text-623187" data-name="text-623187" style="height: auto; width: 421.679px; left: 98px; top: 582.153px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 25; color: rgb(238, 238, 238);"><p style="text-align:left">Other</p></div></div>
+<div class="sl-block" data-block-id="312104a40eb916759b5e627cef8f8156" data-block-type="shape" data-id="shape-49fb35" data-name="shape-49fb35" style="width: 557.209px; height: 60.8298px; left: 80px; top: 217.089px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+<div class="sl-block" data-block-id="1687cd0dc3a2f33d883f3b2570b5dd09" data-block-type="shape" data-id="shape-6f2a89" data-name="shape-6f2a89" style="width: 557.209px; height: 60.8298px; left: 80px; top: 287.919px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 14;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+<div class="sl-block" data-block-id="bd2234e874ea3dee9ae86b1d0303a569" data-block-type="shape" data-id="shape-a4645d" data-name="shape-a4645d" style="width: 557.209px; height: 60.8298px; left: 80px; top: 358.748px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+<div class="sl-block" data-block-id="2d39c45166679a755c103479b2c99d2f" data-block-type="shape" data-id="shape-45d006" data-name="shape-45d006" style="width: 557.209px; height: 60.8298px; left: 80px; top: 429.578px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+<div class="sl-block" data-block-id="423476588d2d35282ed687817ae12c1e" data-block-type="shape" data-id="shape-a39c37" data-name="shape-a39c37" style="width: 557.209px; height: 60.8298px; left: 80px; top: 500.408px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+<div class="sl-block" data-block-id="453f2973d532c1059ecfbbfd02f90eb0" data-block-type="shape" data-id="shape-fa14f9" data-name="shape-fa14f9" style="width: 557.209px; height: 60.8298px; left: 80px; top: 571.238px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 10;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 557 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="557.209"></rect></svg></div></div>
+</section>
+<section id="section-2" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="84b42c3aee5fffb25b38ae7357689081" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left;"><h2>Graduate Outcomes Survey (GOS)</h2></div></div>
+<div class="sl-block" data-block-id="1deadb6b6a7c49985645885ef9cf57aa" data-block-type="text" data-id="text-53cd06" data-name="text-53cd06" style="height: auto; width: 347.368px; left: 880px; top: 648px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; font-size: 75%;"><p style="text-align:left"><a href="https://www.qilt.edu.au/surveys/Data-Visualisation/gos" target="_blank">GOS</a><br>
+Source: <a href="https://www.qilt.edu.au/surveys/graduate-outcomes-survey-(gos)" target="_blank">QILT</a></p></div></div>
+<div class="sl-block" data-block-id="ab0157865c5eef99ff04f49a70a7436c" data-block-type="shape" data-id="shape-1af02e" data-name="shape-1af02e" style="width: 720px; height: 60.8298px; left: 80px; top: 146.259px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 18;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 720 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="720"></rect></svg></div></div>
+<div class="sl-block" data-block-id="1c373b00b1aaa5a7b35c2bc35affbf9a" data-block-type="text" data-id="text-79bf69" data-name="text-79bf69" style="height: auto; width: 421.679px; left: 98px; top: 157.174px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; color: rgb(238, 238, 238);"><p style="text-align: left;">Accounting</p></div></div>
+<div class="sl-block" data-block-id="2bb5b68a268d5904d12957c01bceafde" data-block-type="text" data-id="text-e4ccc4" data-name="text-e4ccc4" style="height: auto; width: 421.679px; left: 98px; top: 228.004px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; color: rgb(238, 238, 238);"><p style="text-align:left">Banking &amp; finance</p></div></div>
+<div class="sl-block" data-block-id="1562140aaea3259920692d249020c6fe" data-block-type="text" data-id="text-b1a500" data-name="text-b1a500" style="height: auto; width: 421.679px; left: 98px; top: 298.834px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 21; color: rgb(238, 238, 238);"><p style="text-align:left">Business management</p></div></div>
+<div class="sl-block" data-block-id="9a5f576e8b5fa26043995e43a624d033" data-block-type="text" data-id="text-88753d" data-name="text-88753d" style="height: auto; width: 421.679px; left: 98px; top: 369.663px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; color: rgb(238, 238, 238);"><p style="text-align:left">Economics</p></div></div>
+<div class="sl-block" data-block-id="ccd86e5101fe17597ce251528fdeded7" data-block-type="text" data-id="text-db4980" data-name="text-db4980" style="height: auto; width: 421.679px; left: 98px; top: 440.493px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 23; color: rgb(238, 238, 238);"><p style="text-align:left">Management &amp; commerce</p></div></div>
+<div class="sl-block" data-block-id="f28327bc47964db4b0e6f91ebd60debd" data-block-type="text" data-id="text-bdf5a1" data-name="text-bdf5a1" style="height: auto; width: 421.679px; left: 98px; top: 511.323px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 24; color: rgb(238, 238, 238);"><p style="text-align:left">Sales &amp; marketing</p></div></div>
+<div class="sl-block" data-block-id="f2af7271d864c2a41380a93f2a0390f4" data-block-type="text" data-id="text-623187" data-name="text-623187" style="height: auto; width: 421.679px; left: 98px; top: 582.153px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 25; color: rgb(238, 238, 238);"><p style="text-align:left">Other</p></div></div>
+<div class="sl-block" data-block-id="28d029c4846ee2f9de488e668a297a73" data-block-type="shape" data-id="shape-49fb35" data-name="shape-49fb35" style="width: 867.402px; height: 60.8298px; left: 80px; top: 217.089px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 867 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="867.402"></rect></svg></div></div>
+<div class="sl-block" data-block-id="80fc831ef577d429073fe5ab61434281" data-block-type="shape" data-id="shape-6f2a89" data-name="shape-6f2a89" style="width: 800px; height: 60.8298px; left: 80px; top: 287.919px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 14;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 800 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="800"></rect></svg></div></div>
+<div class="sl-block" data-block-id="8490bfba1bf33ad1058ecc6b2cb4d03e" data-block-type="shape" data-id="shape-a4645d" data-name="shape-a4645d" style="width: 880px; height: 60.8298px; left: 80px; top: 358.748px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 880 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="880"></rect></svg></div></div>
+<div class="sl-block" data-block-id="eaf5bf65e20bacda2e76c650b6ac4e00" data-block-type="shape" data-id="shape-45d006" data-name="shape-45d006" style="width: 800px; height: 60.8298px; left: 80px; top: 429.578px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 800 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="800"></rect></svg></div></div>
+<div class="sl-block" data-block-id="30460a91203c51d57359c3f9a3b75525" data-block-type="shape" data-id="shape-a39c37" data-name="shape-a39c37" style="width: 720px; height: 60.8298px; left: 80px; top: 500.408px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 720 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="720"></rect></svg></div></div>
+<div class="sl-block" data-block-id="dcc14bc9c3cd0d4f8ce8d1e0ee2b1bb7" data-block-type="shape" data-id="shape-fa14f9" data-name="shape-fa14f9" style="width: 850.839px; height: 60.8298px; left: 80px; top: 571.238px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 10;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 851 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="850.839"></rect></svg></div></div>
+<div class="sl-block" data-block-id="a38fd068fc7d56b60475bc0d1597b739" data-block-type="text" data-id="text-a4a3b7" data-name="text-a4a3b7" style="height: auto; width: 421.679px; left: 657.328px; top: 157.174px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 26; color: rgb(238, 238, 238);"><p style="text-align: left;">$65,200</p></div></div>
+<div class="sl-block" data-block-id="892e9a55ad5e1cd61634c2cf677b4944" data-block-type="text" data-id="text-fb5c09" data-name="text-fb5c09" style="height: auto; width: 421.679px; left: 815.089px; top: 228.004px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 27; color: rgb(238, 238, 238);"><p style="text-align:left">$71,500</p></div></div>
+<div class="sl-block" data-block-id="a22925ea3626ef6e243d0c1d4043e2fc" data-block-type="text" data-id="text-c7df98" data-name="text-c7df98" style="height: auto; width: 421.679px; left: 749.16px; top: 298.834px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 28; color: rgb(238, 238, 238);"><p style="text-align:left">$69,400</p></div></div>
+<div class="sl-block" data-block-id="3ac8425cf8ae6fb90106918808990919" data-block-type="text" data-id="text-428e4b" data-name="text-428e4b" style="height: auto; width: 421.679px; left: 829.16px; top: 369.663px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 29; color: rgb(238, 238, 238);"><p style="text-align:left">$72,000</p></div></div>
+<div class="sl-block" data-block-id="fe8fd68e3da3fcf9b6de84a7fec7e61a" data-block-type="text" data-id="text-5593b2" data-name="text-5593b2" style="height: auto; width: 421.679px; left: 749.16px; top: 440.493px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 30; color: rgb(238, 238, 238);"><p style="text-align:left">$70,000</p></div></div>
+<div class="sl-block" data-block-id="097ab953acffbefc01f136b499b1d0dd" data-block-type="text" data-id="text-07cce9" data-name="text-07cce9" style="height: auto; width: 421.679px; left: 669.16px; top: 511.323px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 31; color: rgb(238, 238, 238);"><p style="text-align:left">$65,000</p></div></div>
+<div class="sl-block" data-block-id="59529bc93c747ae5e8cdb9a46cca86bd" data-block-type="text" data-id="text-b08c22" data-name="text-b08c22" style="height: auto; width: 421.679px; left: 805.689px; top: 582.153px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 32; color: rgb(238, 238, 238);"><p style="text-align:left">$71,000</p></div></div>
+</section>
+<section id="section-3" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="06cc947fa1bd808ece708012cd0e7952" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left;"><h2>Graduate Outcomes Survey (GOS)</h2></div></div>
+<div class="sl-block" data-block-id="8e4ce2d64f463526ec87bb78de6c5dfc" data-block-type="text" data-id="text-53cd06" data-name="text-53cd06" style="height: auto; width: 347.368px; left: 880px; top: 648px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;"><p style="text-align:left"><a href="https://www.qilt.edu.au/surveys/Data-Visualisation/gos" target="_blank">GOS</a><br>
+Source: <a href="https://www.qilt.edu.au/surveys/graduate-outcomes-survey-(gos)" target="_blank">QILT</a></p></div></div>
+<div class="sl-block sl-block-group" data-block-id="c478fba4c0bf019c963e0633b705545d" data-block-type="group" data-id="group-fd9b83" data-name="group-fd9b83"><div class="sl-block-content sl-block-group-content" style="transform-origin: 665.419px 161.925px; z-index: 24;">
+<div class="sl-block" data-block-id="bdd59ffb723886948dff440a712f271a" data-block-type="text" data-id="text-88753d" data-name="text-88753d" style="height: auto; width: 421.679px; left: 98px; top: 142.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 26; color: rgb(238, 238, 238);"><p style="text-align:left">Economics</p></div></div>
+<div class="sl-block" data-block-id="f1f36f8a2f590fca3ece57e646c9b219" data-block-type="shape" data-id="shape-a4645d" data-name="shape-a4645d" style="width: 880px; height: 60.8298px; left: 80px; top: 131.51px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 25;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 880 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="880"></rect></svg></div></div>
+<div class="sl-block" data-block-id="8a904449de997a74936c3185711b2d9d" data-block-type="text" data-id="text-428e4b" data-name="text-428e4b" style="height: auto; width: 421.679px; left: 829.16px; top: 142.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 27; color: rgb(238, 238, 238);"><p style="text-align:left">$72,000</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="40c825a72a3cb13cc0e9912154a08dad" data-block-type="group" data-id="group-45e3fb" data-name="group-45e3fb"><div class="sl-block-content sl-block-group-content" style="transform-origin: 658.384px 237.925px; z-index: 16;">
+<div class="sl-block" data-block-id="bd5dbdaaccece999e01fa13a0c9339e3" data-block-type="text" data-id="text-e4ccc4" data-name="text-e4ccc4" style="height: auto; width: 421.679px; left: 98px; top: 218.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; color: rgb(238, 238, 238);"><p style="text-align:left">Banking &amp; finance</p></div></div>
+<div class="sl-block" data-block-id="1c7d8dbe5c4ee1c5606e84f21a39a022" data-block-type="shape" data-id="shape-49fb35" data-name="shape-49fb35" style="width: 867.402px; height: 60.8298px; left: 80px; top: 207.51px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 17;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 867 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="867.402"></rect></svg></div></div>
+<div class="sl-block" data-block-id="791d4d72db3b1a15dd2044554229096b" data-block-type="text" data-id="text-fb5c09" data-name="text-fb5c09" style="height: auto; width: 421.679px; left: 815.089px; top: 218.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; color: rgb(238, 238, 238);"><p style="text-align:left">$71,500</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="5556c8a2c9581ffb4d97f6cc407c04fe" data-block-type="group" data-id="group-f20c6c" data-name="group-f20c6c"><div class="sl-block-content sl-block-group-content" style="transform-origin: 653.684px 313.755px; z-index: 36;">
+<div class="sl-block" data-block-id="8606d7b5785b564a6f459f7b54dad3cf" data-block-type="text" data-id="text-623187" data-name="text-623187" style="height: auto; width: 421.679px; left: 98px; top: 294.255px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 38; color: rgb(238, 238, 238);"><p style="text-align:left">Other</p></div></div>
+<div class="sl-block" data-block-id="d761cfaf9a3ba377486ae4315cc641a8" data-block-type="shape" data-id="shape-fa14f9" data-name="shape-fa14f9" style="width: 850.839px; height: 60.8298px; left: 80px; top: 283.34px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 37;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 851 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="850.839"></rect></svg></div></div>
+<div class="sl-block" data-block-id="93c10e860eb7c905125c5e0fae87ac5d" data-block-type="text" data-id="text-b08c22" data-name="text-b08c22" style="height: auto; width: 421.679px; left: 805.689px; top: 294.255px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 39; color: rgb(238, 238, 238);"><p style="text-align:left">$71,000</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="261c834033ef6a7ba29cb8a1af90892c" data-block-type="group" data-id="group-5132f6" data-name="group-5132f6"><div class="sl-block-content sl-block-group-content" style="transform-origin: 640px 389.585px; z-index: 28;">
+<div class="sl-block" data-block-id="cd880454d52448a98d2a37707b032a74" data-block-type="text" data-id="text-db4980" data-name="text-db4980" style="height: auto; width: 432.952px; left: 98.4812px; top: 370.085px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 30; color: rgb(238, 238, 238);"><p style="text-align:left">Management &amp; commerce</p></div></div>
+<div class="sl-block" data-block-id="db0d18e541bd47876d73dc3cb312290b" data-block-type="shape" data-id="shape-45d006" data-name="shape-45d006" style="width: 821.386px; height: 60.8298px; left: 80px; top: 359.17px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 29;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 821 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="821.386"></rect></svg></div></div>
+<div class="sl-block" data-block-id="fe3dd2b99dcc906121a1315f6b93329f" data-block-type="text" data-id="text-5593b2" data-name="text-5593b2" style="height: auto; width: 432.952px; left: 767.048px; top: 370.085px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 31; color: rgb(238, 238, 238);"><p style="text-align:left">$70,000</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="8a8d328f122c3ad57da4d520f62d4b6e" data-block-type="group" data-id="group-f8abc4" data-name="group-f8abc4"><div class="sl-block-content sl-block-group-content" style="transform-origin: 632.881px 465.925px; z-index: 20;">
+<div class="sl-block" data-block-id="66de51f45dee1a0510adea4a4ea75ec0" data-block-type="text" data-id="text-b1a500" data-name="text-b1a500" style="height: auto; width: 427.448px; left: 98.2463px; top: 445.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; color: rgb(238, 238, 238);"><p style="text-align:left">Business management</p></div></div>
+<div class="sl-block" data-block-id="eba5ccb3f69af26f996f94871e7f8444" data-block-type="shape" data-id="shape-6f2a89" data-name="shape-6f2a89" style="width: 810.945px; height: 60.8298px; left: 80px; top: 435.51px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 21;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 811 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="810.945"></rect></svg></div></div>
+<div class="sl-block" data-block-id="689c238b499e5e68c5b099262cd3bf71" data-block-type="text" data-id="text-c7df98" data-name="text-c7df98" style="height: auto; width: 427.448px; left: 758.314px; top: 445.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 23; color: rgb(238, 238, 238);"><p style="text-align:left">$69,400</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="9ca8b91d572eddd258de6709382300cd" data-block-type="group" data-id="group-d0eda6" data-name="group-d0eda6"><div class="sl-block-content sl-block-group-content" style="transform-origin: 579.504px 541.925px; z-index: 12;">
+<div class="sl-block" data-block-id="7a20f313d99ccf72dde544eac4125aa2" data-block-type="shape" data-id="shape-1af02e" data-name="shape-1af02e" style="width: 720px; height: 60.8298px; left: 80px; top: 511.51px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 720 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="720"></rect></svg></div></div>
+<div class="sl-block" data-block-id="5f8e95e03222a08c485157bc14dc1b39" data-block-type="text" data-id="text-79bf69" data-name="text-79bf69" style="height: auto; width: 421.679px; left: 98px; top: 522.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; color: rgb(238, 238, 238);"><p style="text-align: left;">Accounting</p></div></div>
+<div class="sl-block" data-block-id="349fc90df7869b99724352e35c326f9e" data-block-type="text" data-id="text-a4a3b7" data-name="text-a4a3b7" style="height: auto; width: 421.679px; left: 657.328px; top: 522.425px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; color: rgb(238, 238, 238);"><p style="text-align: left;">$65,200</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="422ebba49fafa81e80037f865bec6474" data-block-type="group" data-id="group-4472ee" data-name="group-4472ee"><div class="sl-block-content sl-block-group-content" style="transform-origin: 585.419px 617.585px; z-index: 32;">
+<div class="sl-block" data-block-id="68e6465d6e018d99489287381659b7bb" data-block-type="text" data-id="text-bdf5a1" data-name="text-bdf5a1" style="height: auto; width: 421.679px; left: 98px; top: 598.085px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 34; color: rgb(238, 238, 238);"><p style="text-align:left">Sales &amp; marketing</p></div></div>
+<div class="sl-block" data-block-id="3e226a61be3b2b0aafbcf88f7580c7fb" data-block-type="shape" data-id="shape-a39c37" data-name="shape-a39c37" style="width: 720px; height: 60.8298px; left: 80px; top: 587.17px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 33;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 720 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="720"></rect></svg></div></div>
+<div class="sl-block" data-block-id="08ff74d14120b9aec0f74c25e3acdb94" data-block-type="text" data-id="text-07cce9" data-name="text-07cce9" style="height: auto; width: 421.679px; left: 669.16px; top: 598.085px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 35; color: rgb(238, 238, 238);"><p style="text-align:left">$65,000</p></div></div>
+</div></div>
+</section>
+<section id="section-4" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="db7e70f805c7addddb3f2154f56533ae" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 10; text-align: left;"><h2>Graduate Outcomes Survey (GOS)</h2></div></div>
+<div class="sl-block" data-block-id="55a3acd5ea0f7c6726907ffbcb04a05f" data-block-type="text" data-id="text-53cd06" data-name="text-53cd06" style="height: auto; width: 347.368px; left: 880px; top: 648px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 75%;"><p style="text-align:left"><a href="https://www.qilt.edu.au/surveys/Data-Visualisation/gos" target="_blank">GOS</a><br>
+Source: <a href="https://www.qilt.edu.au/surveys/graduate-outcomes-survey-(gos)" target="_blank">QILT</a></p></div></div>
+<div class="sl-block sl-block-group" data-block-id="9715f950b3f1a9021b1515efa794cea3" data-block-type="group" data-id="group-fd9b83" data-name="group-fd9b83"><div class="sl-block-content sl-block-group-content" style="transform-origin: 665.419px 219.803px; z-index: 24;">
+<div class="sl-block" data-block-id="5b664545a04a4758775c8b9b6a8a27e1" data-block-type="text" data-id="text-88753d" data-name="text-88753d" style="height: auto; width: 421.679px; left: 98px; top: 200.303px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 26; color: rgb(238, 238, 238);"><p style="text-align:left">Economics</p></div></div>
+<div class="sl-block" data-block-id="1458cb0a1e1f8cf2e6d794bcea9543a1" data-block-type="shape" data-id="shape-a4645d" data-name="shape-a4645d" style="width: 880px; height: 60.8298px; left: 80px; top: 189.388px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 25;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 880 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="880"></rect></svg></div></div>
+<div class="sl-block" data-block-id="c5abb23666a9a539922f03784c90ef7c" data-block-type="text" data-id="text-428e4b" data-name="text-428e4b" style="height: auto; width: 421.679px; left: 829.16px; top: 200.303px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 27; color: rgb(238, 238, 238);"><p style="text-align:left">$72,000</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="54c18fcb56d83a6a0def614e324ea849" data-block-type="group" data-id="group-45e3fb" data-name="group-45e3fb"><div class="sl-block-content sl-block-group-content" style="transform-origin: 658.385px 286.633px; z-index: 16;">
+<div class="sl-block" data-block-id="c7b19bcd3cb363d040efeafe086cde8f" data-block-type="text" data-id="text-e4ccc4" data-name="text-e4ccc4" style="height: auto; width: 421.679px; left: 98px; top: 267.133px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; color: rgb(238, 238, 238);"><p style="text-align:left">Banking &amp; finance</p></div></div>
+<div class="sl-block" data-block-id="995032dc03b0bc10aa6011df757f1ee5" data-block-type="shape" data-id="shape-49fb35" data-name="shape-49fb35" style="width: 867.402px; height: 60.8298px; left: 80px; top: 256.218px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 17;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 867 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="867.402"></rect></svg></div></div>
+<div class="sl-block" data-block-id="4947b80f685a59554d1f1053e3027ff0" data-block-type="text" data-id="text-fb5c09" data-name="text-fb5c09" style="height: auto; width: 421.679px; left: 815.09px; top: 267.133px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; color: rgb(238, 238, 238);"><p style="text-align:left">$71,500</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="ad5323c57436231f785fdd67d1c9c1c3" data-block-type="group" data-id="group-f20c6c" data-name="group-f20c6c"><div class="sl-block-content sl-block-group-content" style="transform-origin: 653.683px 353.463px; z-index: 36;">
+<div class="sl-block" data-block-id="8aa15ea631a92bff773b147adea7d707" data-block-type="text" data-id="text-623187" data-name="text-623187" style="height: auto; width: 421.679px; left: 98.0001px; top: 333.963px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 38; color: rgb(238, 238, 238);"><p style="text-align:left">Other</p></div></div>
+<div class="sl-block" data-block-id="a28d7adc015a903b80b93bb8930061a3" data-block-type="shape" data-id="shape-fa14f9" data-name="shape-fa14f9" style="width: 850.839px; height: 60.8298px; left: 80px; top: 323.048px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 37;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 851 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="850.839"></rect></svg></div></div>
+<div class="sl-block" data-block-id="21cabee7555141d179a175e42acb070d" data-block-type="text" data-id="text-b08c22" data-name="text-b08c22" style="height: auto; width: 421.679px; left: 805.688px; top: 333.963px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 39; color: rgb(238, 238, 238);"><p style="text-align:left">$71,000</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="8903c2f775fb3150766a7bd7e1797054" data-block-type="group" data-id="group-5132f6" data-name="group-5132f6"><div class="sl-block-content sl-block-group-content" style="transform-origin: 640px 420.292px; z-index: 28;">
+<div class="sl-block" data-block-id="d69c3ae696dd4995fe31516de3ef0a1c" data-block-type="text" data-id="text-db4980" data-name="text-db4980" style="height: auto; width: 432.952px; left: 98.482px; top: 400.792px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 30; color: rgb(238, 238, 238);"><p style="text-align:left">Management &amp; commerce</p></div></div>
+<div class="sl-block" data-block-id="800d81b55b582052bfdb6a68b7383ad1" data-block-type="shape" data-id="shape-45d006" data-name="shape-45d006" style="width: 821.386px; height: 60.8298px; left: 80px; top: 389.877px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 29;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 821 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="821.386"></rect></svg></div></div>
+<div class="sl-block" data-block-id="b342a231aa5432d7008fa3401328aa13" data-block-type="text" data-id="text-5593b2" data-name="text-5593b2" style="height: auto; width: 432.952px; left: 767.048px; top: 400.792px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 31; color: rgb(238, 238, 238);"><p style="text-align:left">$70,000</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="5a7b2c738ca039ff54c0a0fb220d6996" data-block-type="group" data-id="group-f8abc4" data-name="group-f8abc4"><div class="sl-block-content sl-block-group-content" style="transform-origin: 632.881px 487.122px; z-index: 20;">
+<div class="sl-block" data-block-id="695826d08e89cddc7b79b6bd47645c2a" data-block-type="text" data-id="text-b1a500" data-name="text-b1a500" style="height: auto; width: 427.448px; left: 98.248px; top: 466.622px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 22; color: rgb(238, 238, 238);"><p style="text-align:left">Business management</p></div></div>
+<div class="sl-block" data-block-id="ec691d5790e381a1f768a299c2f51849" data-block-type="shape" data-id="shape-6f2a89" data-name="shape-6f2a89" style="width: 810.945px; height: 60.8298px; left: 80px; top: 456.707px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 21;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 811 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="810.945"></rect></svg></div></div>
+<div class="sl-block" data-block-id="6181e39923cc027c63ab1c5738517375" data-block-type="text" data-id="text-c7df98" data-name="text-c7df98" style="height: auto; width: 427.448px; left: 758.314px; top: 466.622px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 23; color: rgb(238, 238, 238);"><p style="text-align:left">$69,400</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="8125f842a3521d58c5b704e6c2944815" data-block-type="group" data-id="group-d0eda6" data-name="group-d0eda6"><div class="sl-block-content sl-block-group-content" style="transform-origin: 579.504px 553.952px; z-index: 12;">
+<div class="sl-block" data-block-id="ac2a74995a010326045ba5f5b40ab104" data-block-type="shape" data-id="shape-1af02e" data-name="shape-1af02e" style="width: 720px; height: 60.8298px; left: 80px; top: 523.537px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 720 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="720"></rect></svg></div></div>
+<div class="sl-block" data-block-id="dcd4eb5e144cb3c2db34db128c4bd9a8" data-block-type="text" data-id="text-79bf69" data-name="text-79bf69" style="height: auto; width: 421.679px; left: 98px; top: 534.452px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; color: rgb(238, 238, 238);"><p style="text-align: left;">Accounting</p></div></div>
+<div class="sl-block" data-block-id="a1f177009fa10beffdd2cbfefe2ad013" data-block-type="text" data-id="text-a4a3b7" data-name="text-a4a3b7" style="height: auto; width: 421.679px; left: 657.328px; top: 534.452px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; color: rgb(238, 238, 238);"><p style="text-align: left;">$65,200</p></div></div>
+</div></div>
+<div class="sl-block sl-block-group" data-block-id="eb2dfd867a54ed312ba10d570b4c5606" data-block-type="group" data-id="group-4472ee" data-name="group-4472ee"><div class="sl-block-content sl-block-group-content" style="transform-origin: 585.419px 620.782px; z-index: 32;">
+<div class="sl-block" data-block-id="e12e5a7c09c86c8790fdb406f3dac72c" data-block-type="text" data-id="text-bdf5a1" data-name="text-bdf5a1" style="height: auto; width: 421.679px; left: 98px; top: 601.282px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 34; color: rgb(238, 238, 238);"><p style="text-align:left">Sales &amp; marketing</p></div></div>
+<div class="sl-block" data-block-id="05b1da39762c9515bf7edfe0e1a416b1" data-block-type="shape" data-id="shape-a39c37" data-name="shape-a39c37" style="width: 720px; height: 60.8298px; left: 80px; top: 590.367px;"><div class="sl-block-content" data-shape-fill-color="rgb(128, 34, 95)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 33;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 720 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(128, 34, 95)" height="60.8298" rx="0" ry="0" width="720"></rect></svg></div></div>
+<div class="sl-block" data-block-id="dc5a0bbfbc80c192c8033d21b5253a20" data-block-type="text" data-id="text-07cce9" data-name="text-07cce9" style="height: auto; width: 421.679px; left: 669.16px; top: 601.282px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 35; color: rgb(238, 238, 238);"><p style="text-align:left">$65,000</p></div></div>
+</div></div>
+<div class="sl-block" data-block-id="08df49b511a298dc24813da0c16e2c44" data-block-type="text" data-id="text-787180" data-name="text-787180" data-origin-id="e12e5a7c09c86c8790fdb406f3dac72c" style="height: auto; width: 421.679px; left: 98px; top: 668.112px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 42; color: rgb(238, 238, 238);"><p style="text-align:left">Pharmacy</p></div></div>
+<div class="sl-block" data-block-id="ed05396bca56cef0ba26f2d450e58513" data-block-type="shape" data-id="shape-c54ad2" data-name="shape-c54ad2" data-origin-id="05b1da39762c9515bf7edfe0e1a416b1" style="width: 652.684px; height: 60.8298px; left: 80px; top: 657.197px;"><div class="sl-block-content" data-shape-fill-color="rgb(55, 58, 54)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 41;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 653 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(55, 58, 54)" height="60.8298" rx="0" ry="0" width="652.684"></rect></svg></div></div>
+<div class="sl-block" data-block-id="1ce003ed9217ada35617daddb05c82e8" data-block-type="text" data-id="text-3b7346" data-name="text-3b7346" data-origin-id="dc5a0bbfbc80c192c8033d21b5253a20" style="height: auto; width: 127.048px; left: 605.636px; top: 668.112px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 43; color: rgb(238, 238, 238);"><p style="text-align:left">$55,500</p></div></div>
+<div class="sl-block" data-block-id="466ca5af289631ee6b93d3c2cbd43449" data-block-type="text" data-id="text-ed63a9" data-name="text-ed63a9" data-origin-id="08df49b511a298dc24813da0c16e2c44" style="height: auto; width: 421.679px; left: 98px; top: 133.473px;"><div class="sl-block-content fragment fade-up" data-fragment-index="0" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 46; color: rgb(238, 238, 238);"><p style="text-align:left">Dentistry</p></div></div>
+<div class="sl-block" data-block-id="fd6b72775cd4b2d409ce389c078f0bd5" data-block-type="shape" data-id="shape-9f44c6" data-name="shape-9f44c6" data-origin-id="ed05396bca56cef0ba26f2d450e58513" style="width: 1075px; height: 60.8298px; left: 80px; top: 122.558px;"><div class="sl-block-content fragment fade-up" data-fragment-index="0" data-shape-fill-color="rgb(118, 35, 47)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 45;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 1075 61" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(118, 35, 47)" height="60.8298" rx="0" ry="0" width="1075"></rect></svg></div></div>
+<div class="sl-block" data-block-id="500f55736787808a5ea54a6562a40aa5" data-block-type="text" data-id="text-e92d32" data-name="text-e92d32" data-origin-id="1ce003ed9217ada35617daddb05c82e8" style="height: auto; width: 130.84px; left: 1013.59px; top: 133.473px;"><div class="sl-block-content fragment fade-up" data-fragment-index="0" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 47; color: rgb(238, 238, 238);"><p style="text-align:left">$94,400</p></div></div>
+</section>
+<section id="logistics-plan" class="slide level2 title-center" data-background-color="rgb(55, 58, 54)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.8em">Logistics &amp; plan</span></h2>
+</section>
+<section id="software" class="slide level2 compact">
+<h2>Software</h2>
+<div class="columns">
+<div class="column" style="width:56%;">
+<p>Excel</p>
+<p>You can get Excel &amp; other MS Office products through your MQ account</p>
+<div class="fragment" data-fragment-index="0">
+<p>Zoom</p>
+</div>
+<ul>
+<li class="fragment" data-fragment-index="0">
+How to use it (remember to test your mic)
+</li>
+<li class="fragment" data-fragment-index="0">
+We expect people to have their cameras on when in Zoom meetings
+</li>
+</ul>
+<div class="fragment" data-fragment-index="1">
+<p>Python</p>
+</div>
+<ul>
+<li class="fragment" data-fragment-index="1">
+We’ll cover installing &amp; using Python in next week’s lecture
+</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="2">
+<h3 id="textbook">Textbook</h3>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p>Wooldridge et al.&nbsp;(2021)</p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p>Introductory Econometrics<br> (2nd Asia-Pacific ed.)</p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><img data-src="assets/econ2041-l0/image-9.png" style="width:61.0%"></p>
+</div>
+</div></div>
+</section>
+<section id="what-is-our-goal-here" class="slide level2 title-center" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.8em">What is our goal here?</span></h2>
+<p>a.k.a. demystifying learning outcomes</p>
+</section>
+<section id="learning-outcomes" class="slide level2">
+<h2>Learning outcomes</h2>
+<div class="columns">
+<div class="column" style="width:24%;">
+<p><span class="lo-num">1</span></p>
+</div><div class="column" style="width:72%;">
+<p>Analyse &amp; apply key statistical concepts:</p>
+<ul>
+<li>probability distributions</li>
+<li>parameters, estimators &amp; sampling distributions</li>
+<li>point &amp; interval estimation</li>
+<li>hypothesis testing</li>
+</ul>
+<div class="fragment" data-fragment-index="0">
+<p>What does this mean in practice?</p>
+</div>
+<div class="fragment" data-fragment-index="0">
+<p>You should understand the building blocks of statistics as applied to economic questions:</p>
+<ul>
+<li>how we use samples to learn about a bigger group</li>
+<li>how confident we can be in our estimates</li>
+<li>how to tell if a result is real or just random</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="learning-outcomes-1" class="slide level2">
+<h2>Learning outcomes</h2>
+<div class="columns">
+<div class="column" style="width:24%;">
+<p><span class="lo-num">2</span></p>
+</div><div class="column" style="width:72%;">
+<p>Specify, estimate &amp; interpret a regression model</p>
+<div class="fragment current-visible" data-fragment-index="0">
+<p>What does this mean in practice?</p>
+</div>
+<div class="fragment current-visible" data-fragment-index="0">
+<p>You should be able to set up and use regression models to<br> examine data &amp; models</p>
+<ul>
+<li>explore how one variable (education) affects another (income)</li>
+<li>interpret regression tables (how economists present results)</li>
+</ul>
+</div>
+</div></div>
+</section>
+<section id="learning-outcomes-2" class="slide level2">
+<h2>Learning outcomes</h2>
+<div class="columns">
+<div class="column" style="width:24%;">
+<p><span class="lo-num" style="font-size: 180px">2</span></p>
+<p><img data-src="assets/econ2041-l0/image-10.png" style="width:62.0%"></p>
+</div><div class="column" style="width:72%;">
+<p>Specify, estimate &amp; interpret a regression model</p>
+<div class="columns">
+<div class="column" style="width:38%;">
+<p><img data-src="assets/econ2041-l0/image-11.png" style="width:100.0%"></p>
+</div><div class="column" style="width:58%;">
+<div class="fragment" data-fragment-index="0">
+<p><img data-src="assets/econ2041-l0/image-12.png" style="width:100.0%"></p>
+</div>
+</div></div>
+<h3 id="answer-did-it-work">Answer: Did it work?</h3>
+</div></div>
+</section>
+<section id="learning-outcomes-3" class="slide level2">
+<h2>Learning outcomes</h2>
+<div class="columns">
+<div class="column" style="width:24%;">
+<p><span class="lo-num">3</span></p>
+</div><div class="column" style="width:72%;">
+<p>Summarise and interpret the estimation results, and draw valid inferences using hypothesis tests</p>
+<div class="fragment" data-fragment-index="0">
+<p>What does this mean in practice?</p>
+</div>
+<div class="fragment" data-fragment-index="0">
+<p>Make sense of your results! Basically, you should know…</p>
+<ul>
+<li>what the numbers mean</li>
+<li>how strong the evidence is</li>
+<li>whether your conclusions are “real” or could be due to chance</li>
+</ul>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="1">
+<h3 id="move-from-output-rightarrow-insight">Move from output <span class="math inline">\rightarrow</span> insight</h3>
+</div>
+</section>
+<section id="learning-outcomes-4" class="slide level2">
+<h2>Learning outcomes</h2>
+<div class="columns">
+<div class="column" style="width:24%;">
+<p><span class="lo-num">4</span></p>
+</div><div class="column" style="width:72%;">
+<p>Critically evaluate standard regression model assumptions &amp; the consequences of violations</p>
+<div class="fragment" data-fragment-index="0">
+<p>What does this mean in practice?</p>
+</div>
+<div class="fragment" data-fragment-index="0">
+<p>You should know and understand…</p>
+<ul>
+<li>what can go wrong when the assumptions underlying a regression model don’t hold up</li>
+<li>what such violations mean for your results</li>
+</ul>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="1">
+<h3 id="become-informed-consumers">Become informed consumers</h3>
+</div>
+</section>
+<section id="learning-outcomes-5" class="slide level2">
+<h2>Learning outcomes</h2>
+<div class="columns">
+<div class="column" style="width:24%;">
+<p><span class="lo-num">5</span></p>
+</div><div class="column" style="width:72%;">
+<p>Use econometric software to solve econometric problems</p>
+<div class="fragment" data-fragment-index="0">
+<p>What does this mean in practice?</p>
+</div>
+<div class="fragment" data-fragment-index="0">
+<p>Use software to run econometric analyses</p>
+</div>
+<div class="fragment" data-fragment-index="1">
+<p><img data-src="assets/econ2041-l0/Python-logo-notext.svg.png" style="width:22.0%"></p>
+</div>
+</div></div>
+<div class="fragment" data-fragment-index="1">
+<h3 id="build-practical-skills">Build practical skills!</h3>
+</div>
+</section>
+<section id="how-to-do-well-in-econ2041" class="slide level2 title-center" data-background-image="assets/econ2041-l0/image-13.png" data-background-color="rgb(55, 58, 54)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.8em">How to do well in ECON2041</span></h2>
+</section>
+<section id="section-5" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="7131be2c1841f5be74c101580046ca9a" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content fragment" data-fragment-index="0" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="fc8ba1cddc67c5d49949db7bb9ab5e63" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block sl-block-group" data-block-id="ff6afb39392529f54219affd61f01625" data-block-type="group" data-id="group-560874" data-name="group-560874"><div class="sl-block-content sl-block-group-content" style="transform-origin: 800.834px 372.123px; z-index: 14;">
+<div class="sl-block" data-block-id="2892ed0076553f066817144591f380a8" data-block-type="shape" data-id="shape-98a43f" data-name="shape-98a43f" style="width: 604.017px; height: 119.449px; left: 623.651px; top: 314.054px;"><div class="sl-block-content fragment" data-fragment-index="0" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 604 119" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="119.449" rx="0" ry="0" width="604.017"></rect></svg></div></div>
+<div class="sl-block" data-block-id="6013c8a3cc141b5b2c8f44f8209adfac" data-block-type="shape" data-id="shape-f5c53e" data-name="shape-f5c53e" style="width: 282.246px; height: 608.684px; left: 537.219px; top: 67.781px;"><div class="sl-block-style" style="z-index: 16; transform: rotate(90deg);"><div class="sl-block-content fragment" data-fragment-index="0" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="arrow-down" style="z-index: 16;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 282 609" width="100%" xmlns="http://www.w3.org/2000/svg"><polygon class="shape-element" fill="#76232f" points="141.123,608.684 282.246,304.342 197.57219999999998,304.342 197.57219999999998,0 84.67379999999999,0 84.67379999999999,304.342 0,304.342 141.123,608.684"></polygon></svg></div></div></div>
+<div class="sl-block" data-block-id="933944c37ecf25e6c94ff66e107f913b" data-block-type="text" data-id="text-bb12ba" data-name="text-bb12ba" style="height: auto; width: 605.774px; left: 576.491px; top: 326.894px;"><div class="sl-block-content fragment" data-fragment-index="0" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Read the assigned textbook chapter + any other assigned readings</p></div></div>
+</div></div>
+<div class="sl-block" data-block-id="3ad23ff92c8e1a97a2c83f30a52027f0" data-block-type="shape" data-id="shape-3f8632" data-name="shape-3f8632" style="width: 666.189px; height: 315.989px; left: 373.811px; top: 320.58px;"><div class="sl-block-style" style="z-index: 12; opacity: 0.5;"><div class="sl-block-content fragment" data-fragment-index="0" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 666 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="666.189"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="6cb059a75e9f715b94959236adfc368c" data-block-type="shape" data-id="shape-a975f1" data-name="shape-a975f1" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content fragment" data-fragment-index="0" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="8d4965040aaf3a9920f3402ddfdb4ca5" data-block-type="shape" data-id="shape-306bd6" data-name="shape-306bd6" style="width: 325.469px; height: 174.803px; left: 34.4845px; top: 330.197px;"><div class="sl-block-content fragment" data-fragment-index="0" data-shape-corner-radius="42px" data-shape-fill-color="rgba(238, 238, 238, 0)" data-shape-stretch="true" data-shape-stroke-color="#76232f" data-shape-stroke-width="5px" data-shape-type="rect" style="z-index: 18;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 325 175" width="100%" xmlns="http://www.w3.org/2000/svg"><defs><clippath id="shape-mask-16-1753406915109"><rect fill="rgba(238, 238, 238, 0)" height="174.803" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></clippath></defs><rect class="shape-element" clip-path="url(#shape-mask-16-1753406915109)" fill="rgba(238, 238, 238, 0)" height="174.803" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></svg></div></div>
+<div class="sl-block" data-block-id="cb0c2b333fe7abab01cdf159e68ee4f2" data-block-type="text" data-id="text-1457a9" data-name="text-1457a9" style="height: auto; width: 188.728px; left: 485.121px; top: 275.5px;"><div class="sl-block-content fragment" data-fragment-index="0" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size:200px">1</span></h1></div></div>
+</section>
+<section id="section-6" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="b70e983b630b9cf6b44d6d7a261aa83a" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="5e1a72a0660563787c86572b26bcf387" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="b302194bd7f745758dd664016096e1f2" data-block-type="shape" data-id="shape-916305" data-name="shape-916305" style="width: 666.189px; height: 315.989px; left: 373.811px; top: 320.58px;"><div class="sl-block-style" style="z-index: 12; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 666 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="666.189"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="b144f858def757dc9e80c3232b284996" data-block-type="shape" data-id="shape-fc204d" data-name="shape-fc204d" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="9f3231f3355c90efc545be0627b44bf8" data-block-type="shape" data-id="shape-306bd6" data-name="shape-306bd6" style="width: 325.469px; height: 230.397px; left: 34.4845px; top: 499.197px;"><div class="sl-block-content" data-shape-corner-radius="42px" data-shape-fill-color="rgba(238, 238, 238, 0)" data-shape-stretch="true" data-shape-stroke-color="#76232f" data-shape-stroke-width="5px" data-shape-type="rect" style="z-index: 18;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 325 230" width="100%" xmlns="http://www.w3.org/2000/svg"><defs><clippath id="shape-mask-11-1753405738934"><rect fill="rgba(238, 238, 238, 0)" height="230.397" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></clippath></defs><rect class="shape-element" clip-path="url(#shape-mask-11-1753405738934)" fill="rgba(238, 238, 238, 0)" height="230.397" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></svg></div></div>
+<div class="sl-block sl-block-group" data-block-id="b524e059371c086c5c87a9100467d49f" data-block-type="group" data-id="group-560874" data-name="group-560874"><div class="sl-block-content sl-block-group-content" style="transform-origin: 800.645px 578.877px; z-index: 14;">
+<div class="sl-block" data-block-id="e16ef5bda857143c5855ac17534ab1ed" data-block-type="shape" data-id="shape-98a43f" data-name="shape-98a43f" data-origin-id="2892ed0076553f066817144591f380a8" style="width: 604.017px; height: 119.449px; left: 623.462px; top: 520.808px;"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 604 119" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="119.449" rx="0" ry="0" width="604.017"></rect></svg></div></div>
+<div class="sl-block" data-block-id="c437b5ccf9dc6e2f0084a9fdb468dd97" data-block-type="shape" data-id="shape-f5c53e" data-name="shape-f5c53e" data-origin-id="6013c8a3cc141b5b2c8f44f8209adfac" style="width: 282.246px; height: 608.684px; left: 537.03px; top: 274.535px;"><div class="sl-block-style" style="z-index: 16; transform: rotate(90deg);"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="arrow-down" style="z-index: 16;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 282 609" width="100%" xmlns="http://www.w3.org/2000/svg"><polygon class="shape-element" fill="#76232f" points="141.123,608.684 282.246,304.342 197.57219999999998,304.342 197.57219999999998,0 84.67379999999999,0 84.67379999999999,304.342 0,304.342 141.123,608.684"></polygon></svg></div></div></div>
+<div class="sl-block" data-block-id="d1b3e2982beb728d0f35a359f3fc595c" data-block-type="text" data-id="text-bfeb07" data-name="text-bfeb07" data-origin-id="933944c37ecf25e6c94ff66e107f913b" style="height: auto; width: 591.331px; left: 616.328px; top: 533.648px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Watch Essential Concepts videos Note: lecture builds on this material</p></div></div>
+</div></div>
+<div class="sl-block" data-block-id="b6609041921cd10c4664728990c95384" data-block-type="text" data-id="text-1457a9" data-name="text-1457a9" style="height: auto; width: 188.728px; left: 485.121px; top: 492.5px;"><div class="sl-block-content" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size: 180px;">2</span></h1></div></div>
+</section>
+<section id="section-7" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="cd8e50de88c4d5870cd67361404df63f" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="2be5e012f696d80d6e602781c424c2c0" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="60efc1ad8a934e95a1e01d57bee54cb8" data-block-type="shape" data-id="shape-306bd6" data-name="shape-306bd6" style="width: 325.469px; height: 220.803px; left: 34.4845px; top: 499.197px;"><div class="sl-block-content" data-shape-corner-radius="42px" data-shape-fill-color="rgba(238, 238, 238, 0)" data-shape-stretch="true" data-shape-stroke-color="#76232f" data-shape-stroke-width="5px" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 325 221" width="100%" xmlns="http://www.w3.org/2000/svg"><defs><clippath id="shape-mask-8-1753404680019"><rect fill="rgba(238, 238, 238, 0)" height="220.803" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></clippath></defs><rect class="shape-element" clip-path="url(#shape-mask-8-1753404680019)" fill="rgba(238, 238, 238, 0)" height="220.803" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></svg></div></div>
+<div class="sl-block" data-block-id="53608e818378ece5d1834b3bfed0491a" data-block-type="image" data-id="image-70cc22" data-name="image-70cc22" style="width: 825.254px; height: 393.421px; left: 369.793px; top: 326.579px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 15;"><img class="" data-crop-height="0.971061" data-crop-width="0.790262" data-crop-x="0" data-crop-y="0" data-natural-height="374" data-natural-width="964" src="assets/econ2041-l0/image-15.png" style="left: 0px; top: 0px; width: 1044px; height: 405px;"></div></div>
+<div class="sl-block" data-block-id="55fac807347853c70882ba9b3355c68d" data-block-type="shape" data-id="shape-916305" data-name="shape-916305" style="width: 666.189px; height: 315.989px; left: 373.811px; top: 320.58px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 666 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="666.189"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="ede70088200267ccec8cd167797a334f" data-block-type="shape" data-id="shape-fc204d" data-name="shape-fc204d" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 14; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 14;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+</section>
+<section id="section-8" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="08f9dd1b26e1404d5633f892690c182b" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="e9bf9e1bfb0c89f3c976c1d33bf2d4a8" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="42e3fb0eb51985f8108d82c60e70afcc" data-block-type="shape" data-id="shape-916305" data-name="shape-916305" style="width: 666.189px; height: 315.989px; left: 373.811px; top: 320.58px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 666 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="666.189"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="279cdf148706ea1af16793b4fadbf793" data-block-type="shape" data-id="shape-fc204d" data-name="shape-fc204d" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 13; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="8afed5347c6aa8bc34ac14e70ccd1f76" data-block-type="shape" data-id="shape-98a43f" data-name="shape-98a43f" style="width: 652.538px; height: 188.789px; left: 376.953px; top: 337.606px;"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 14;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 653 189" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="188.789" rx="0" ry="0" width="652.538"></rect></svg></div></div>
+<div class="sl-block" data-block-id="fda61b914f2a659b112ff0799a265a21" data-block-type="text" data-id="text-bfeb07" data-name="text-bfeb07" style="height: auto; width: 333.651px; left: 548.349px; top: 408.5px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Attend live lecture</p></div></div>
+<div class="sl-block" data-block-id="b7195aec31832ab3a6ce81478b046ac6" data-block-type="text" data-id="text-1457a9" data-name="text-1457a9" style="height: auto; width: 188.728px; left: 422.253px; top: 337.606px;"><div class="sl-block-content" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size: 180px;">3</span></h1></div></div>
+<div class="sl-block" data-block-id="646a79bcd889a47cd82dc4837c354e1b" data-block-type="shape" data-id="shape-72bd20" data-name="shape-72bd20" style="width: 321.886px; height: 382.394px; left: 34.4847px; top: 337.606px;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 17;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 322 382" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="382.394" rx="0" ry="0" width="321.886"></rect></svg></div></div>
+<div class="sl-block" data-block-id="f97ffefa9cad99704e192a8243f57702" data-block-type="image" data-id="image-38d6a5" data-name="image-38d6a5" style="width: 1239.86px; height: 462.857px; left: 36.14px; top: 216px; min-width: 1px; min-height: 1px;"><div class="sl-block-content fragment" data-fragment-index="0" style="z-index: 18;"><img class="" data-crop-height="0.983945" data-crop-width="0.93572" data-crop-x="0" data-crop-y="0.016055" data-natural-height="382" data-natural-width="1076" src="assets/econ2041-l0/image-16.png" style="left: 0px; top: -8px; width: 1325px; height: 470px;"></div></div>
+</section>
+<section id="section-9" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="2a5ef96e7fc0cf055df25447f3e969b5" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="ea1780ebbff4917ac5db6044d5266f0a" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="4748d61b48f10e5a29d589f8d94daf4c" data-block-type="shape" data-id="shape-e048ba" data-name="shape-e048ba" style="width: 354.93px; height: 315.989px; left: 685.07px; top: 320.58px;"><div class="sl-block-style" style="z-index: 13; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 355 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="354.93"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="63edd35a8a8c9ee27a867c2d416d2ec2" data-block-type="shape" data-id="shape-a975f1" data-name="shape-a975f1" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 12; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="48b46a639e749cd528db1d8b37c31dd5" data-block-type="shape" data-id="shape-306bd6" data-name="shape-306bd6" style="width: 325.469px; height: 165.373px; left: 345.744px; top: 328.644px;"><div class="sl-block-content" data-shape-corner-radius="42px" data-shape-fill-color="rgba(238, 238, 238, 0)" data-shape-stretch="true" data-shape-stroke-color="#76232f" data-shape-stroke-width="5px" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 325 165" width="100%" xmlns="http://www.w3.org/2000/svg"><defs><clippath id="shape-mask-13-1753406214714"><rect fill="rgba(238, 238, 238, 0)" height="165.373" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></clippath></defs><rect class="shape-element" clip-path="url(#shape-mask-13-1753406214714)" fill="rgba(238, 238, 238, 0)" height="165.373" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="325.469"></rect></svg></div></div>
+<div class="sl-block" data-block-id="395ffbc6223de1a7a043f483de37c84e" data-block-type="shape" data-id="shape-fd7d0e" data-name="shape-fd7d0e" style="width: 335.743px; height: 387.989px; left: 24.727px; top: 332.011px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 336 388" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="387.989" rx="0" ry="0" width="335.743"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="9630eac5f59f1c865c593ee4e282ceb2" data-block-type="shape" data-id="shape-677032" data-name="shape-677032" data-origin-id="e16ef5bda857143c5855ac17534ab1ed" style="width: 471.754px; height: 132.349px; left: 808.246px; top: 304.557px;"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 16;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 472 132" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="132.349" rx="0" ry="0" width="471.754"></rect></svg></div></div>
+<div class="sl-block" data-block-id="23092652aaa07515aaefd4f81abb52e1" data-block-type="shape" data-id="shape-f5c53e" data-name="shape-f5c53e" data-origin-id="c437b5ccf9dc6e2f0084a9fdb468dd97" style="width: 309.463px; height: 489.946px; left: 783.539px; top: 125.758px;"><div class="sl-block-style" style="z-index: 17; transform: rotate(90deg);"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="arrow-down" style="z-index: 17;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 309 490" width="100%" xmlns="http://www.w3.org/2000/svg"><polygon class="shape-element" fill="#76232f" points="154.7315,489.946 309.463,244.973 216.6241,244.973 216.6241,0 92.83890000000001,0 92.83890000000001,244.973 0,244.973 154.7315,489.946"></polygon></svg></div></div></div>
+<div class="sl-block" data-block-id="75c0e8f2aa7ba64987a3c720e6d49737" data-block-type="text" data-id="text-c9abca" data-name="text-c9abca" data-origin-id="d1b3e2982beb728d0f35a359f3fc595c" style="height: auto; width: 304.87px; left: 960px; top: 323.731px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Attempt tutorial questions</p></div></div>
+<div class="sl-block" data-auto-animate-delay="1" data-auto-animate-duration="0" data-block-id="570d37e4414ac0b8b5c4052d662676ed" data-block-type="image" data-id="image-10c8bd" data-name="image-10c8bd" style="width: 443.498px; height: 216px; left: 345.744px; top: 504px; min-width: 1px; min-height: 1px;"><div class="sl-block-content fragment" data-fragment-index="0" style="z-index: 19;"><img class="" data-natural-height="263" data-natural-width="540" src="assets/econ2041-l0/image-17.png"></div></div>
+<div class="sl-block" data-block-id="fbda927d86c46bbb9dd67d680b6fb317" data-block-type="text" data-id="text-93eb0b" data-name="text-93eb0b" style="height: auto; width: 188.728px; left: 800px; top: 271.442px;"><div class="sl-block-content" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size: 180px;">4</span></h1></div></div>
+</section>
+<section id="section-10" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="c8f42b8f3ea122e278a6ae781b8903c2" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="d6238d5e2af158f3bc835f2a6f660d56" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="9cdf17e47cb01ebaf8215c51d4273d53" data-block-type="shape" data-id="shape-e048ba" data-name="shape-e048ba" style="width: 354.93px; height: 315.989px; left: 685.07px; top: 320.58px;"><div class="sl-block-style" style="z-index: 13; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 355 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="354.93"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="473acc8418410abef715345a591b19fd" data-block-type="shape" data-id="shape-a975f1" data-name="shape-a975f1" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 12; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="2facb63795d5526ab18f03ec5430e985" data-block-type="shape" data-id="shape-fd7d0e" data-name="shape-fd7d0e" style="width: 335.743px; height: 387.989px; left: 24.727px; top: 332.011px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 336 388" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="387.989" rx="0" ry="0" width="335.743"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="9e9bfe22fb0abfb51dc1c8c170990610" data-block-type="text" data-id="text-932b2e" data-name="text-932b2e" style="height: auto; width: 304.87px; left: 607.252px; top: 402.906px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Attend tutorial!</p></div></div>
+<div class="sl-block" data-block-id="7a18f104c9e835794c097593f015c7de" data-block-type="text" data-id="text-93eb0b" data-name="text-93eb0b" style="height: auto; width: 188.728px; left: 441.741px; top: 326.011px;"><div class="sl-block-content" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size: 180px;">5</span></h1></div></div>
+<div class="sl-block" data-block-id="384ec934ac67a708fb8b8110bd0fc8bd" data-block-type="shape" data-id="shape-98a43f" data-name="shape-98a43f" style="width: 678.923px; height: 188.789px; left: 358.801px; top: 332.011px;"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 679 189" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="188.789" rx="0" ry="0" width="678.923"></rect></svg></div></div>
+</section>
+<section id="section-11" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="37b48e11a7a1c5e783fb32f86c104ff2" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="b7efc7b48a6c2f7db0c0e3aba1307b9a" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="ca880b01ba1cab8dd94044c4ef902455" data-block-type="shape" data-id="shape-a975f1" data-name="shape-a975f1" style="width: 997.008px; height: 145.436px; left: 40.7165px; top: 202.006px;"><div class="sl-block-style" style="z-index: 12; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 145" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="145.436" rx="0" ry="0" width="997.008"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="fbf6b8d0feb05b9a0cca5546cd8ddeee" data-block-type="shape" data-id="shape-fd7d0e" data-name="shape-fd7d0e" style="width: 615.273px; height: 387.989px; left: 24.727px; top: 332.011px;"><div class="sl-block-style" style="z-index: 11; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 615 388" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="387.989" rx="0" ry="0" width="615.273"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="37c2c5ac6a4cb0810db87859c960bc75" data-block-type="text" data-id="text-87952b" data-name="text-87952b" style="height: auto; width: 304.87px; left: 247.565px; top: 260.616px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Begin working on assessments</p></div></div>
+<div class="sl-block" data-block-id="f10155e9bd960713c39da5efb4ffd1ba" data-block-type="text" data-id="text-c719c3" data-name="text-c719c3" style="height: auto; width: 188.728px; left: 65.636px; top: 231.616px;"><div class="sl-block-content" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size: 180px;">6</span></h1></div></div>
+<div class="sl-block" data-block-id="97be83d241aa83fc0a3f0719a7ea24f4" data-block-type="shape" data-id="shape-d21a43" data-name="shape-d21a43" style="width: 576.591px; height: 188.789px; left: 40.7165px; top: 213.222px;"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 14;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 577 189" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="188.789" rx="0" ry="0" width="576.591"></rect></svg></div></div>
+<div class="sl-block" data-block-id="4b287d076bc05099a7393248cc26712c" data-block-type="shape" data-id="shape-306bd6" data-name="shape-306bd6" style="width: 367.008px; height: 165.373px; left: 672.992px; top: 331.813px;"><div class="sl-block-content" data-shape-corner-radius="42px" data-shape-fill-color="rgba(238, 238, 238, 0)" data-shape-stretch="true" data-shape-stroke-color="#76232f" data-shape-stroke-width="5px" data-shape-type="rect" style="z-index: 17;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 367 165" width="100%" xmlns="http://www.w3.org/2000/svg"><defs><clippath id="shape-mask-15-1753406849235"><rect fill="rgba(238, 238, 238, 0)" height="165.373" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="367.008"></rect></clippath></defs><rect class="shape-element" clip-path="url(#shape-mask-15-1753406849235)" fill="rgba(238, 238, 238, 0)" height="165.373" rx="42" ry="42" stroke="#76232f" stroke-width="10" width="367.008"></rect></svg></div></div>
+</section>
+<section id="section-12" class="slide level2 sl-canvas" data-auto-animate="true">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="0ad354925481f474982c0b60a1e0e3cb" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 34.4847px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left;"><h2>Each week, you should...</h2></div></div>
+<div class="sl-block" data-block-id="b53ef259f7bc7e73f97c6c304f0b2ef8" data-block-type="image" data-id="image-a2bf85" data-name="image-a2bf85" style="width: 1003.24px; height: 611px; left: 34.4847px; top: 109px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.964215" data-crop-width="1" data-crop-x="0" data-crop-y="0" data-natural-height="655" data-natural-width="1037" src="assets/econ2041-l0/image-14.png" style="left: 0px; top: 0px; width: 1003px; height: 634px;"></div></div>
+<div class="sl-block" data-block-id="14832aa667920ab2ec2aa084f735050d" data-block-type="shape" data-id="shape-e048ba" data-name="shape-e048ba" style="width: 354.93px; height: 315.989px; left: 685.07px; top: 320.58px;"><div class="sl-block-style" style="z-index: 13; opacity: 0.5;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 13;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 355 316" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="315.989" rx="0" ry="0" width="354.93"></rect></svg></div></div></div>
+<div class="sl-block" data-block-id="2f6e5a051ed0b1f59033eca3592113fb" data-block-type="shape" data-id="shape-a975f1" data-name="shape-a975f1" style="width: 997.008px; height: 238.442px; left: 40.7165px; top: 109px;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 12;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 997 238" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="238.442" rx="0" ry="0" width="997.008"></rect></svg></div></div>
+<div class="sl-block" data-block-id="267eb594636de2166ca8d5bdfc7953df" data-block-type="shape" data-id="shape-fd7d0e" data-name="shape-fd7d0e" style="width: 335.743px; height: 387.989px; left: 24.727px; top: 332.011px;"><div class="sl-block-content" data-shape-fill-color="rgb(255, 255, 255)" data-shape-stretch="true" data-shape-type="rect" style="z-index: 11;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 336 388" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="rgb(255, 255, 255)" height="387.989" rx="0" ry="0" width="335.743"></rect></svg></div></div>
+<div class="sl-block" data-block-id="e2df012f4ca1928e000fddb4e848434a" data-block-type="text" data-id="text-fee018" data-name="text-fee018" style="height: auto; width: 432.748px; left: 571.009px; top: 402.906px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; text-align: left; font-size: 120%; color: rgb(237, 235, 229);"><p>Ask for help if you need it!</p></div></div>
+<div class="sl-block" data-block-id="c791b1779a2e1219cc38692d3b7fa75f" data-block-type="text" data-id="text-c1138f" data-name="text-c1138f" style="height: auto; width: 188.728px; left: 400px; top: 334.5px;"><div class="sl-block-content" data-has-custom-html="" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 17; text-align: left; font-size: 135%; color: rgb(238, 238, 238); line-height: 0.845;"><h1><span style="font-size: 180px;">7</span></h1></div></div>
+<div class="sl-block" data-block-id="fcd373d2a3db5c740b5449d8960d199a" data-block-type="shape" data-id="shape-b1efd6" data-name="shape-b1efd6" style="width: 678.923px; height: 188.789px; left: 358.801px; top: 332.011px;"><div class="sl-block-content" data-shape-fill-color="#76232f" data-shape-stretch="true" data-shape-type="rect" style="z-index: 15;"><svg height="100%" preserveaspectratio="none" version="1.1" viewbox="0 0 679 189" width="100%" xmlns="http://www.w3.org/2000/svg"><rect class="shape-element" fill="#76232f" height="188.789" rx="0" ry="0" width="678.923"></rect></svg></div></div>
+</section>
+<section id="assessment" class="slide level2" data-background-color="rgb(255, 235, 207)">
+<h2>Assessment</h2>
+<div class="columns">
+<div class="column" style="width:34%;">
+<p>Quiz: 20%</p>
+</div><div class="column" style="width:62%;">
+<div class="fragment fade-in-then-semi-out" data-fragment-index="0">
+<p>Checks your grasp of core concepts and skills in applied econometrics, building on work from tutorials</p>
+<p><strong>Format:</strong> online quiz</p>
+</div>
+</div></div>
+<div class="columns">
+<div class="column" style="width:34%;">
+<p>Problem set: 30%</p>
+</div><div class="column" style="width:62%;">
+<div class="fragment fade-in-then-semi-out" data-fragment-index="1">
+<p>You’ll draw on content from lectures &amp; tutorials to apply econometrics to real problems</p>
+<p><strong>Format:</strong>&nbsp;short answer written submission</p>
+</div>
+</div></div>
+<div class="columns">
+<div class="column" style="width:34%;">
+<p>Final exam: 50%</p>
+</div><div class="column" style="width:62%;">
+<div class="fragment" data-fragment-index="2">
+<p>2-hour cumulative invigilated on-campus exam, held during Examination Period</p>
+</div>
+</div></div>
+</section>
+<section id="the-plan" class="slide level2 title-center" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.8em">The plan</span></h2>
+</section>
+<section id="week-1" class="slide level2">
+<h2>Week 1</h2>
+<div class="weekdetail">
+<section id="essential-concepts" class="col">
+<h4>Essential concepts</h4>
+<ul>
+<li>What is econometrics?</li>
+<li>What data do we use in econometrics?</li>
+</ul>
+</section>
+<section id="live-lecture" class="col">
+<h4>Live lecture</h4>
+<ul>
+<li>Intro to unit</li>
+<li>Grad salary prediction game</li>
+</ul>
+</section>
+<section id="tutorial" class="col">
+<h4>Tutorial</h4>
+<p><span class="tbd">No tutorial in week 1</span></p>
+</section>
+</div>
+</section>
+<section id="week-2" class="slide level2">
+<h2>Week 2</h2>
+<div class="weekdetail">
+<section id="essential-concepts-1" class="col">
+<h4>Essential concepts</h4>
+<ul>
+<li>Summation, proportions, percentages</li>
+<li>Partial derivatives, non-linear functions</li>
+</ul>
+</section>
+<section id="live-lecture-1" class="col">
+<h4>Live lecture</h4>
+<ul>
+<li>Intro to Python</li>
+<li>Write some code, bring laptops</li>
+</ul>
+</section>
+<section id="tutorial-1" class="col">
+<h4>Tutorial</h4>
+<p><span class="tbd">Placeholder: tutorial topic TBD</span></p>
+</section>
+</div>
+</section>
+<section id="plan-for-the-semester" class="slide level2">
+<h2>Plan for the semester</h2>
+<div class="lollipop">
+<div class="stop">
+<p><span class="num">1</span> What is econometrics?</p>
+</div>
+<div class="stop">
+<p><span class="num">2</span> Basic mathematical tools</p>
+</div>
+<div class="stop">
+<p><span class="num">3</span> Stats fundamentals</p>
+</div>
+<div class="stop">
+<p><span class="num">4</span> Stats fundamentals II</p>
+</div>
+<div class="stop">
+<p><span class="num">5</span> Simple regression</p>
+</div>
+<div class="stop">
+<p><span class="num">6</span> OLS properties &amp; fit</p>
+</div>
+<div class="stop assess">
+<p><span class="num">7</span> Flavors of OLS &amp; OVB <span class="tag">Quiz</span></p>
+</div>
+<div class="stop">
+<p><span class="num">8</span> Causality</p>
+</div>
+<div class="stop brk">
+
+</div>
+<div class="stop">
+<p><span class="num">9</span> Regression inference</p>
+</div>
+<div class="stop assess">
+<p><span class="num">10</span> Inference, continued <span class="tag">PS due 16 Oct</span></p>
+</div>
+<div class="stop">
+<p><span class="num">11</span> Diagnostics</p>
+</div>
+<div class="stop">
+<p><span class="num">12</span> Measurement error &amp; IRL</p>
+</div>
+<div class="stop">
+<p><span class="num">13</span> Revision</p>
+</div>
+</div>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="econ2041-l0_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="econ2041-l0_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="econ2041-l0_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="econ2041-l0_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="econ2041-l0_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="econ2041-l0_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="econ2041-l0_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="econ2041-l0_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="econ2041-l0_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>
+    // render slides.com .math-input blocks on raw-HTML ported slides,
+    // using the KaTeX instance Quarto already loads
+    window.addEventListener('load', function () {
+      if (typeof katex === 'undefined') return;
+      document.querySelectorAll('.math-input').forEach(function (el) {
+        var display = el.closest('[data-math-display="true"]') !== null;
+        var out = document.createElement('div');
+        out.className = 'math-output';
+        try { katex.render(el.textContent, out, {displayMode: display, throwOnError: false}); }
+        catch (e) { out.textContent = el.textContent; }
+        el.replaceWith(out);
+      });
+    });
+    </script>
+    
+
+</body></html>
