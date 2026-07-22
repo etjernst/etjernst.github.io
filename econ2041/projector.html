@@ -38,6 +38,13 @@
                   background: var(--accent); color: #fff; cursor: pointer; }
   .strip button:active { transform: translateY(1px); }
   .strip button.warn { background: var(--truth); }
+  .strip button.present { background: var(--gold); color: var(--ink); }
+  /* fold-out clusters: hidden until their toggle is pressed; display:contents
+     keeps their children in the same flex row as the core buttons */
+  .strip .group { display: none; }
+  .strip .group.show { display: contents; }
+  .strip button.ghost { background: transparent; color: var(--muted);
+    border: 1px solid var(--rule); font-weight: 600; }
   #ctl-status { color: var(--truth); font-weight: 600; min-width: 120px; }
   /* wage-style rounds: truth toggle + computed takeaway under the canvas */
   #wage-bar { display: none; align-items: center; gap: 16px; padding: 2px 28px; }
@@ -64,23 +71,29 @@
 <p id="wage-takeaway"></p>
 
 <div class="strip">
-  <input id="token-input" type="text" placeholder="instructor token" size="16">
-  <button onclick="AGG_PROJECTOR.saveToken()">Save token</button>
-  <span>|</span>
+  <button class="present" onclick="AGG_VIEW.present()">Present</button>
   <select id="round-select" onchange="AGG_PROJECTOR.selectRound()"></select>
-  <input id="new-label" type="text" placeholder="new round label" size="14">
-  <input id="new-prompt" type="text" placeholder="prompt shown to students" size="28">
-  <input id="new-truth" type="number" step="any" placeholder="truth" size="7">
-  <label><input id="new-lock" type="checkbox"> lock first answer</label>
-  <button onclick="AGG_PROJECTOR.newRound()">Create</button>
   <button onclick="AGG_PROJECTOR.open()">Open</button>
   <button onclick="AGG_PROJECTOR.close()">Close</button>
   <button class="warn" onclick="AGG_PROJECTOR.reveal()">Reveal truth</button>
-  <button onclick="AGG_PROJECTOR.coldOpen()">Cold open</button>
-  <button onclick="AGG_PROJECTOR.liveMode()">Live</button>
-  <button onclick="AGG_PROJECTOR.simulate()">Fallback (s)</button>
-  <button onclick="AGG_QR.toggle()">Big QR (q)</button>
+  <button class="ghost" id="improvise-toggle" onclick="AGG_VIEW.toggleGroup('improvise')">Improvise &#9656;</button>
+  <button class="ghost" id="more-toggle" onclick="AGG_VIEW.toggleGroup('more')">More &#9656;</button>
   <span id="ctl-status"></span>
+  <span class="group" id="improvise-group">
+    <input id="new-label" type="text" placeholder="new round label" size="14">
+    <input id="new-prompt" type="text" placeholder="prompt shown to students" size="28">
+    <input id="new-truth" type="number" step="any" placeholder="truth" size="7">
+    <label><input id="new-lock" type="checkbox"> lock first answer</label>
+    <button onclick="AGG_PROJECTOR.newRound()">Create</button>
+  </span>
+  <span class="group" id="more-group">
+    <button onclick="AGG_PROJECTOR.coldOpen()">Cold open</button>
+    <button onclick="AGG_PROJECTOR.liveMode()">Live</button>
+    <button onclick="AGG_PROJECTOR.simulate()">Fallback (s)</button>
+    <button onclick="AGG_QR.toggle()">Big QR (q)</button>
+    <input id="token-input" type="text" placeholder="instructor token" size="16">
+    <button onclick="AGG_PROJECTOR.saveToken()">Save token</button>
+  </span>
 </div>
 
 <div id="qr-overlay" style="display:none; position:fixed; inset:0; background:rgba(245,241,232,.97);
@@ -95,6 +108,33 @@
   window.AGG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXHmTGnRXYJ6La5t1LBELctAbnKodoW-pfZflYI1_tcUHWKoca3LAtY4GKshbF-CJgRw/exec';
 </script>
 <script src="js/projector.js"></script>
+<script>
+  // Strip view controls: Present = fullscreen + bare (only the chart, prompt,
+  // and N counter visible; "h" or leaving fullscreen brings the strip back).
+  // The improvise and more clusters fold out on demand so lecture day shows
+  // only the round picker and the open/close/reveal flow.
+  window.AGG_VIEW = {
+    // fullscreen entry/exit fires a resize, and projector.js re-renders the
+    // canvas on resize, so no explicit re-render call is needed here
+    present: function () {
+      var el = document.documentElement;
+      if (el.requestFullscreen) { el.requestFullscreen().catch(function () {}); }
+      document.body.classList.add('bare');
+    },
+    toggleGroup: function (name) {
+      var group = document.getElementById(name + '-group');
+      var btn = document.getElementById(name + '-toggle');
+      var open = group.classList.toggle('show');
+      btn.innerHTML = btn.innerHTML.replace(open ? '▸' : '▾', open ? '▾' : '▸');
+    },
+  };
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement) { document.body.classList.remove('bare'); }
+  });
+  // first run on a new machine: no token saved yet, so unfold the cluster
+  // that holds the token box
+  if (!localStorage.getItem('agg_token')) { AGG_VIEW.toggleGroup('more'); }
+</script>
 <script>
   // Full-screen exit-commit overlay (button or keypress "q"): big QR generated
   // remotely when online, URL text always shown as the offline fallback.
