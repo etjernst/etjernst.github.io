@@ -444,7 +444,7 @@
         '</div>';
     }
     if (p === pages.length - 1) {
-      html += '<button id="go-' + r.round_id + '" disabled>Submit all answers</button>';
+      html += '<button id="go-' + r.round_id + '" disabled>Submit answers</button>';
     }
     return html;
   }
@@ -531,8 +531,7 @@
       if (spec.help) wHtml += '<p class="help">' + esc(spec.help) + '</p>';
       wHtml += '<input type="range" id="slider-' + key + '" min="' + spec.min +
         '" max="' + spec.max + '" step="' + (spec.step || 'any') +
-        '" value="' + esc(answered ? String(cur)
-          : String((Number(spec.min) + Number(spec.max)) / 2)) + '">';
+        '" value="' + esc(answered ? String(cur) : String(spec.min)) + '">';
       return wHtml + '<p class="field-err" id="err-' + r.round_id + '-' + esc(fid) +
              '">' + esc(errMsg) + '</p></div>';
     }
