@@ -21,6 +21,7 @@
   #n-counter { font-size: 1.35rem; font-weight: 600; color: var(--accent);
                font-variant-numeric: tabular-nums; }
   #round-label { font-size: 1.35rem; font-weight: 400; color: var(--muted); }
+  #round-label::first-letter { text-transform: uppercase; }
   #round-prompt { margin: 2px 28px 0; font-size: 1.15rem; color: var(--ink); max-width: 80ch; }
   /* the canvas takes every pixel the header, prompt, and strip leave over,
      so fullscreen (F11) fills the screen instead of stopping at 60vh */
@@ -54,7 +55,10 @@
       border: 0; border-radius: 8px; background: var(--gold); color: var(--ink);
       cursor: pointer; font-family: inherit; }
   #truth-toggle-btn:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
-  #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.35rem; }
+  /* min-height reserves three bullet lines before the reveal fills them in,
+     so the chart above keeps its exact size when the bullets appear */
+  #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.35rem;
+                   min-height: 6.1rem; }
   #wage-takeaway ul { margin: 0; padding-left: 1.3em; }
   #wage-takeaway li { margin: 2px 0; }
   /* emphasis by color alone; the accent carries it without bold */
