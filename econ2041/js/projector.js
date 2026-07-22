@@ -490,20 +490,25 @@
     }
     var truthObj = (d.truth && typeof d.truth === 'object') ? d.truth : null;
     bar.style.display = 'flex';
+    // the takeaway block holds its space (visibility, not display) from the
+    // moment a wage round shows, so the chart never resizes at reveal
+    take.style.display = 'block';
     if (!truthObj) {
       state.showTruth = false;
       btn.disabled = true;
       btn.textContent = 'Truth unlocks at reveal';
-      take.style.display = 'none';
+      take.innerHTML = '';
+      take.style.visibility = 'hidden';
       return;
     }
     btn.disabled = false;
     btn.textContent = state.showTruth ? 'Hide the real numbers' : 'Reveal the real numbers';
     if (state.showTruth) {
       take.innerHTML = wageTakeaway(d, fields);
-      take.style.display = take.innerHTML ? 'block' : 'none';
+      take.style.visibility = take.innerHTML ? 'visible' : 'hidden';
     } else {
-      take.style.display = 'none';
+      take.innerHTML = '';
+      take.style.visibility = 'hidden';
     }
   }
 
