@@ -8,4 +8,7 @@ _site
 .tweet-cache
 Gemfile.lock
 vendor
+# the slide decks ship their own vendored runtime (fonts, katex, reveal)
+!econ2041/slides/vendor/
+!econ2041/slides/vendor/**
 
