@@ -14,11 +14,13 @@
          margin: 0; background: var(--bg); color: var(--ink);
          -webkit-font-smoothing: antialiased;
          display: flex; flex-direction: column; overflow: hidden; }
+  /* one type size across the header; color, not weight or size, separates the
+     three pieces (title ink, round label muted, N in the accent) */
   header { display: flex; align-items: baseline; gap: 24px; padding: 18px 28px 0; }
-  h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -.015em; margin: 0; }
-  #n-counter { font-size: 2rem; font-weight: 800; color: var(--accent);
+  h1 { font-size: 1.35rem; font-weight: 600; letter-spacing: -.015em; margin: 0; }
+  #n-counter { font-size: 1.35rem; font-weight: 600; color: var(--accent);
                font-variant-numeric: tabular-nums; }
-  #round-label { font-size: 1.15rem; color: var(--muted); }
+  #round-label { font-size: 1.35rem; font-weight: 400; color: var(--muted); }
   #round-prompt { margin: 2px 28px 0; font-size: 1.15rem; color: var(--ink); max-width: 80ch; }
   /* the canvas takes every pixel the header, prompt, and strip leave over,
      so fullscreen (F11) fills the screen instead of stopping at 60vh */
@@ -34,7 +36,7 @@
   .strip select { padding: 7px; border: 1px solid var(--rule); border-radius: 8px;
     background: var(--surface); color: var(--ink); font-family: inherit; font-size: .9rem; }
   .strip button { padding: 8px 13px; border: 0; border-radius: 8px; font-family: inherit;
-                  font-size: .9rem; font-weight: 700;
+                  font-size: .9rem; font-weight: 600;
                   background: var(--accent); color: #fff; cursor: pointer; }
   .strip button:active { transform: translateY(1px); }
   .strip button.warn { background: var(--truth); }
@@ -48,12 +50,15 @@
   #ctl-status { color: var(--truth); font-weight: 600; min-width: 120px; }
   /* wage-style rounds: truth toggle + computed takeaway under the canvas */
   #wage-bar { display: none; align-items: center; gap: 16px; padding: 2px 28px; }
-  #truth-toggle-btn { font-size: 1.05rem; font-weight: 700; padding: 10px 18px;
-      border: 0; border-radius: 8px; background: var(--truth); color: #fff;
+  #truth-toggle-btn { font-size: 1.05rem; font-weight: 600; padding: 10px 18px;
+      border: 0; border-radius: 8px; background: var(--gold); color: var(--ink);
       cursor: pointer; font-family: inherit; }
   #truth-toggle-btn:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
-  #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.25rem; max-width: 72ch; }
-  #wage-takeaway b { color: var(--accent); }
+  #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.35rem; }
+  #wage-takeaway ul { margin: 0; padding-left: 1.3em; }
+  #wage-takeaway li { margin: 2px 0; }
+  /* emphasis by color alone; the accent carries it without bold */
+  #wage-takeaway b { color: var(--accent); font-weight: normal; }
 </style>
 </head>
 <body>

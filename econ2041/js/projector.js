@@ -338,20 +338,22 @@
       }
     }
 
-    var padL = Math.floor(W * 0.20), padR = 60, padT = 46, padB = 70;
+    // the canvas draws at 2x resolution, so canvas px = half a screen px;
+    // fonts here are sized for the back of a lecture theater
+    var padL = Math.floor(W * 0.22), padR = 60, padT = 72, padB = 96;
     var plotW = W - padL - padR, plotH = H - padT - padB;
     var rowH = plotH / rows.length;
     function x(v) { return padL + (v - lo) / (hi - lo) * plotW; }
 
     // gridlines + axis labels on nice round steps
-    ctx.font = '22px system-ui, sans-serif';
+    ctx.font = '34px system-ui, sans-serif';
     niceTicks(lo, hi, 6).forEach(function (tv) {
       var tx = x(tv);
       ctx.strokeStyle = '#e6ddcd'; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.moveTo(tx, padT); ctx.lineTo(tx, padT + plotH); ctx.stroke();
       ctx.fillStyle = '#8a8175';
       var lbl = compact(tv, prefix);
-      ctx.fillText(lbl, tx - ctx.measureText(lbl).width / 2, padT + plotH + 44);
+      ctx.fillText(lbl, tx - ctx.measureText(lbl).width / 2, padT + plotH + 58);
     });
 
     // legend, top left of the plot area
@@ -367,23 +369,23 @@
     legendItems.forEach(function (item) {
       ctx.fillStyle = item.color;
       if (item.kind === 'diamond') {
-        drawDiamond(ctx, lx + 9, 22, 9);
+        drawDiamond(ctx, lx + 13, 32, 13);
       } else {
-        ctx.beginPath(); ctx.arc(lx + 9, 22, 8, 0, 2 * Math.PI); ctx.fill();
+        ctx.beginPath(); ctx.arc(lx + 13, 32, 12, 0, 2 * Math.PI); ctx.fill();
       }
-      lx += 28;
-      ctx.font = '22px system-ui, sans-serif';
-      ctx.fillStyle = '#8a8175';
-      ctx.fillText(item.text, lx, 30);
-      lx += ctx.measureText(item.text).width + 40;
+      lx += 40;
+      ctx.font = '32px system-ui, sans-serif';
+      ctx.fillStyle = '#6f695e';
+      ctx.fillText(item.text, lx, 43);
+      lx += ctx.measureText(item.text).width + 56;
     });
 
     rows.forEach(function (r, i) {
       var cy = padT + i * rowH + rowH / 2;
-      ctx.font = (rows.length > 8 ? '24px' : '28px') + ' system-ui, sans-serif';
+      ctx.font = (rows.length > 8 ? '34px' : '40px') + ' system-ui, sans-serif';
       ctx.fillStyle = '#241f1a';
       var lab = r.label;
-      ctx.fillText(lab, padL - 24 - ctx.measureText(lab).width, cy + 9);
+      ctx.fillText(lab, padL - 24 - ctx.measureText(lab).width, cy + 12);
       ctx.strokeStyle = '#e6ddcd'; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.moveTo(padL, cy); ctx.lineTo(padL + plotW, cy); ctx.stroke();
 
@@ -409,7 +411,7 @@
         var tx2 = x(r.truth);
         ctx.fillStyle = '#0f7a63';
         drawDiamond(ctx, tx2, cy, Math.max(ds.r + 3, 12));
-        ctx.font = '22px system-ui, sans-serif';
+        ctx.font = '30px system-ui, sans-serif';
         var tl = compact(r.truth, prefix);
         ctx.fillText(tl, tx2 - ctx.measureText(tl).width / 2, cy - rowH * 0.28);
       }
@@ -458,17 +460,17 @@
     var parts = [];
     if (over.diff > 0) {
       parts.push('Biggest overestimate: <b>' + escText(over.label) + '</b> (class median ' +
-        compact(over.median, prefix) + ', real ' + compact(over.truth, prefix) + ').');
+        compact(over.median, prefix) + ', real ' + compact(over.truth, prefix) + ')');
     }
     if (under.diff < 0) {
       parts.push('Biggest underestimate: <b>' + escText(under.label) + '</b> (class median ' +
-        compact(under.median, prefix) + ', real ' + compact(under.truth, prefix) + ').');
+        compact(under.median, prefix) + ', real ' + compact(under.truth, prefix) + ')');
     }
     if (tvals.length >= 2) {
       var spread = Math.max.apply(null, tvals) - Math.min.apply(null, tvals);
-      parts.push('Real spread across fields: <b>' + compact(spread, prefix) + '</b>.');
+      parts.push('Real spread across fields: <b>' + compact(spread, prefix) + '</b>');
     }
-    return parts.join(' ');
+    return '<ul>' + parts.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>';
   }
 
   function escText(s) {
