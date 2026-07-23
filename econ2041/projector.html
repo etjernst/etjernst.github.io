@@ -40,6 +40,7 @@
                   font-size: .9rem; font-weight: 600;
                   background: var(--accent); color: #fff; cursor: pointer; }
   .strip button:active { transform: translateY(1px); }
+  .strip button:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
   .strip button.warn { background: var(--truth); }
   .strip button.present { background: var(--gold); color: var(--ink); }
   /* fold-out clusters: hidden until their toggle is pressed; display:contents
@@ -84,7 +85,7 @@
   <select id="round-select" onchange="AGG_PROJECTOR.selectRound()"></select>
   <button onclick="AGG_PROJECTOR.open()">Open</button>
   <button onclick="AGG_PROJECTOR.close()">Close</button>
-  <button class="warn" onclick="AGG_PROJECTOR.reveal()">Reveal truth</button>
+  <button class="warn" id="unlock-btn" onclick="AGG_PROJECTOR.reveal()">Unlock results</button>
   <button class="ghost" id="improvise-toggle" onclick="AGG_VIEW.toggleGroup('improvise')">Improvise &#9656;</button>
   <button class="ghost" id="more-toggle" onclick="AGG_VIEW.toggleGroup('more')">More &#9656;</button>
   <span id="ctl-status"></span>

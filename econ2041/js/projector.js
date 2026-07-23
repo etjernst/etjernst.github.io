@@ -521,6 +521,16 @@
     el('round-label').textContent = d.label +
       (state.simulating ? '  [SIMULATED]' : '') +
       (state.coldOpen ? '  [COLD OPEN]' : '');
+    // Unlock is a server action that only means something on a closed round;
+    // grey it out otherwise so it cannot be confused with the truth toggle
+    var ub = el('unlock-btn');
+    if (ub) {
+      ub.disabled = d.status !== 'closed';
+      ub.title = d.status === 'closed' ? ''
+        : d.status === 'revealed'
+          ? 'Already unlocked; the gold button under the chart shows the truth'
+          : 'Close the round first';
+    }
     var promptEl = el('round-prompt');
     if (promptEl) promptEl.textContent = d.prompt || '';
     var wf = d.mode === 'form' ? wageFields(d.config) : null;
@@ -614,15 +624,15 @@
       }
       flash(res.ok ? action.replace('_', ' ') + ' done' : 'Failed: ' + res.error);
       if (res.ok && action === 'close_round') {
-        startGraceCountdown(Date.now() + 30000);
+        startGraceCountdown(Date.now() + 15000);
       }
       refreshRounds();
       poll();
     });
   }
 
-  // Lectern choreography after close: watch the 30s grace tick down, then
-  // reveal. The server refuses an early reveal anyway; this makes the wait
+  // Lectern choreography after close: watch the 15s grace tick down, then
+  // unlock. The server refuses an early reveal anyway; this makes the wait
   // visible instead of mysterious.
   function startGraceCountdown(untilTs) {
     if (state.graceTimer) clearInterval(state.graceTimer);
@@ -631,10 +641,10 @@
       if (left <= 0) {
         clearInterval(state.graceTimer);
         state.graceTimer = null;
-        el('ctl-status').textContent = 'grace over: reveal when ready';
+        el('ctl-status').textContent = 'grace over: unlock when ready';
         return;
       }
-      el('ctl-status').textContent = 'grace: reveal allowed in ' + left + 's';
+      el('ctl-status').textContent = 'grace: unlock allowed in ' + left + 's';
     }, 250);
   }
 
