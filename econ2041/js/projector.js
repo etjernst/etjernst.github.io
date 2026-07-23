@@ -313,11 +313,8 @@
       return { id: f.id, label: f.label, values: vals, median: median(vals),
                truth: truthObj ? truthObj[f.id] : undefined };
     });
-    // Frozen data after reveal, so this sort is stable: highest class median
-    // on top, and the rows do NOT re-sort when the truth toggle flips.
-    if (truthObj) {
-      rows.sort(function (a, b) { return (b.median || 0) - (a.median || 0); });
-    }
+    // Rows hold config order (alphabetical) through open, close, and reveal;
+    // no re-sorting, so a field never jumps position mid-lecture.
 
     var lo = Number(fields[0].min), hi = Number(fields[0].max);
     if (truthObj) {
