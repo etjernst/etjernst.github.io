@@ -342,7 +342,9 @@
   }
 
   function revealEta(r) {
-    if (!r.reveal_ts) return '<p class="muted">Reveal: at the next lecture.</p>';
+    // no reveal timestamp means the lecturer unlocks it live, so promising a
+    // time would be wrong; say nothing rather than guess
+    if (!r.reveal_ts) return '';
     return '<p class="muted">Reveal unlocks in ' +
            fmtCountdown(r.reveal_ts - serverNow()) + '.</p>';
   }
