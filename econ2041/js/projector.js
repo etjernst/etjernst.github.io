@@ -16,6 +16,12 @@
   var POLL_MS = 2000;
 
   var el = function (id) { return document.getElementById(id); };
+
+  // Bar colors for count charts. Purely decorative: each bar is labeled
+  // directly, so the hue carries nothing and two confusable colors cost
+  // nothing. Muted warm-earth tones that sit on the paper background, and
+  // none of them near the reserved truth green (#0f7a63).
+  var BAR_COLORS = ['#c9a24b', '#8c3a44', '#7f8451', '#b06a3b', '#5b6b7a', '#6f4a6d'];
   var state = {
     round: null,       // selected round_id
     data: null,        // last payload from ?q=data
@@ -25,6 +31,7 @@
     simValues: [],
     coldOpen: false,   // held-over reveal: one fetch, finished distribution, no polling
     graceTimer: null,
+    focusIdx: 0,       // form rounds: which field fills the canvas; null = tiled overview
   };
 
   // ---------- transport ----------
@@ -45,7 +52,7 @@
 
   // ---------- histogram (hand-rolled canvas; same renderer for live and simulate) ----------
 
-  function drawHistogram(values, truth) {
+  function drawHistogram(values, truth, spec) {
     var canvas = el('hist');
     var ctx = canvas.getContext('2d');
     var W = canvas.width = canvas.clientWidth * 2;   // 2x for crispness
@@ -58,17 +65,29 @@
       return;
     }
 
-    var lo = Math.min.apply(null, values);
-    var hi = Math.max.apply(null, values);
-    if (truth !== undefined && truth !== null) {
-      lo = Math.min(lo, truth); hi = Math.max(hi, truth);
+    // A bounded integer field (a 0-10 slider) owns its axis: autoscaling it
+    // produces 0.550-to-10.4 ticks and bins that straddle the integers.
+    var wholeUnits = spec && spec.min !== undefined && spec.min !== null &&
+      spec.max !== undefined && spec.max !== null && Number(spec.step) === 1 &&
+      Number(spec.min) === Math.floor(spec.min) && Number(spec.max) === Math.floor(spec.max) &&
+      Number(spec.max) - Number(spec.min) <= 40;
+    var lo, hi, k;
+    if (wholeUnits) {
+      lo = Number(spec.min) - 0.5;
+      hi = Number(spec.max) + 0.5;
+      k = Number(spec.max) - Number(spec.min) + 1;
+    } else {
+      lo = Math.min.apply(null, values);
+      hi = Math.max.apply(null, values);
+      if (truth !== undefined && truth !== null) {
+        lo = Math.min(lo, truth); hi = Math.max(hi, truth);
+      }
+      if (lo === hi) { lo -= 1; hi += 1; }
+      var span = hi - lo;
+      lo -= span * 0.05; hi += span * 0.05;
+      // adaptive bins: Sturges with sane floors/ceilings for a filling room
+      k = Math.max(8, Math.min(40, Math.ceil(Math.log2(values.length) + 1) * 2));
     }
-    if (lo === hi) { lo -= 1; hi += 1; }
-    var span = hi - lo;
-    lo -= span * 0.05; hi += span * 0.05;
-
-    // adaptive bins: Sturges with sane floors/ceilings for a filling room
-    var k = Math.max(8, Math.min(40, Math.ceil(Math.log2(values.length) + 1) * 2));
     var counts = new Array(k).fill(0);
     values.forEach(function (v) {
       var b = Math.min(k - 1, Math.floor(((v - lo) / (hi - lo)) * k));
@@ -76,10 +95,12 @@
     });
     var maxC = Math.max.apply(null, counts);
 
-    var padL = 60, padB = 70, padT = 30;
+    var anchored = spec && (spec.min_label || spec.max_label);
+    var padL = 60, padB = anchored ? 150 : 70, padT = 30;
     var plotW = W - padL - 20, plotH = H - padT - padB;
 
-    // bars
+    // bars: one color, because the bins are one distribution rather than
+    // distinct categories; per-bin colors would imply a difference in kind
     ctx.fillStyle = '#c9a24b';
     for (var i = 0; i < k; i++) {
       if (!counts[i]) continue;
@@ -94,11 +115,34 @@
     ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH);
     ctx.stroke();
     ctx.fillStyle = '#241f1a';
-    for (var t = 0; t <= 4; t++) {
-      var vx = lo + (t / 4) * (hi - lo);
-      var px = padL + (t / 4) * plotW;
-      var label = Math.abs(vx) >= 1000 ? vx.toFixed(0) : vx.toPrecision(3);
-      ctx.fillText(label, px - 20, padT + plotH + 40);
+    if (wholeUnits) {
+      // one tick per integer, centered under its own bar
+      var step = k > 12 ? Math.ceil(k / 12) : 1;
+      for (var v0 = Number(spec.min); v0 <= Number(spec.max); v0 += step) {
+        var pxi = padL + ((v0 - lo) / (hi - lo)) * plotW;
+        ctx.fillText(String(v0), pxi - 8, padT + plotH + 40);
+      }
+    } else {
+      for (var t = 0; t <= 4; t++) {
+        var vx = lo + (t / 4) * (hi - lo);
+        var px = padL + (t / 4) * plotW;
+        var label = Math.abs(vx) >= 1000 ? vx.toFixed(0) : vx.toPrecision(3);
+        ctx.fillText(label, px - 20, padT + plotH + 40);
+      }
+    }
+
+    // word anchors under the ends, so a 0-10 scale reads without the help text
+    if (anchored) {
+      ctx.font = '44px system-ui, sans-serif';
+      ctx.fillStyle = '#8a8175';
+      var baseY = padT + plotH + 110;
+      if (spec.min_label) ctx.fillText(spec.min_label, padL, baseY);
+      if (spec.max_label) {
+        var mw = ctx.measureText(spec.max_label).width;
+        ctx.fillText(spec.max_label, padL + plotW - mw, baseY);
+      }
+      ctx.font = '28px system-ui, sans-serif';
+      ctx.fillStyle = '#241f1a';
     }
 
     // truth overlay
@@ -118,22 +162,24 @@
     var W = canvas.width = canvas.clientWidth * 2;
     var H = canvas.height = canvas.clientHeight * 2;
     ctx.clearRect(0, 0, W, H);
-    ctx.font = '32px system-ui, sans-serif';
+    ctx.font = '48px system-ui, sans-serif';
     var maxC = Math.max.apply(null, counts.concat([1]));
-    var padL = 40, padT = 30;
-    var rowH = Math.min(110, (H - 2 * padT) / counts.length);
-    var labelW = W * 0.30, barMax = W - padL - labelW - 160;
+    var padL = 40;
+    var rowH = Math.min(190, (H - 60) / counts.length);
+    // few options leave the capped rows stranded at the top; center the block
+    var padT = Math.max(30, (H - rowH * counts.length) / 2);
+    var labelW = W * 0.34, barMax = W - padL - labelW - 200;
     counts.forEach(function (n, i) {
       var y = padT + i * rowH;
       var isTruth = truth !== undefined && truth !== null && Number(truth) === i;
       ctx.fillStyle = '#241f1a';
       ctx.fillText((options[i] || ('option ' + i)) + (isTruth ? ' ✓' : ''),
-                   padL, y + rowH * 0.55, labelW - 20);
-      ctx.fillStyle = isTruth ? '#0f7a63' : '#c9a24b';
+                   padL, y + rowH * 0.58, labelW - 20);
+      ctx.fillStyle = isTruth ? '#0f7a63' : BAR_COLORS[i % BAR_COLORS.length];
       var w = (n / maxC) * barMax;
-      ctx.fillRect(padL + labelW, y + rowH * 0.18, Math.max(w, 3), rowH * 0.55);
+      ctx.fillRect(padL + labelW, y + rowH * 0.16, Math.max(w, 4), rowH * 0.62);
       ctx.fillStyle = '#241f1a';
-      ctx.fillText(String(n), padL + labelW + w + 16, y + rowH * 0.55);
+      ctx.fillText(String(n), padL + labelW + w + 20, y + rowH * 0.58);
     });
   }
 
@@ -188,6 +234,40 @@
           x0, chartY, w, chartH);
       }
     });
+  }
+
+  // One field filling the whole canvas, drawn by the same full-size renderers
+  // the single-question rounds use. The tiled overview above reads on a laptop
+  // but its labels land at 9 effective pixels on a projector.
+  function drawFormFocus(fields, config, idx) {
+    var specs = formPanelSpecs(config);
+    if (!specs.length) return null;
+    var s = specs[idx];
+    var agg = (fields || {})[s.id] || {};
+    if (s.spec.type === 'numeric') {
+      drawHistogram(agg.values || [], null, s.spec);
+    } else {
+      var counts = (agg.counts && agg.counts.length)
+        ? agg.counts
+        : (s.spec.options || []).map(function () { return 0; });
+      drawCounts(counts, s.spec.options || [], null);
+    }
+    return s;
+  }
+
+  function stepFocus(delta) {
+    var d = state.data;
+    if (!d || d.mode !== 'form') return;
+    var n = formPanelSpecs(d.config).length;
+    if (!n) return;
+    var next = (state.focusIdx === null ? 0 : state.focusIdx + delta);
+    state.focusIdx = ((next % n) + n) % n;
+    render();
+  }
+
+  function toggleOverview() {
+    state.focusIdx = state.focusIdx === null ? 0 : null;
+    render();
   }
 
   function drawMiniHist(ctx, values, x0, y0, w, h, spec) {
@@ -535,7 +615,17 @@
     if (wf && d.fields) {
       drawWageRows(d, wf);
     } else if (d.mode === 'form' && d.fields) {
-      drawFormPanels(d.fields, d.config);
+      var specs = formPanelSpecs(d.config);
+      if (state.focusIdx === null || !specs.length) {
+        drawFormPanels(d.fields, d.config);
+      } else {
+        var i = ((state.focusIdx % specs.length) + specs.length) % specs.length;
+        state.focusIdx = i;
+        var fs = drawFormFocus(d.fields, d.config, i);
+        if (promptEl && fs) {
+          promptEl.textContent = fs.label + '   (' + (i + 1) + ' of ' + specs.length + ')';
+        }
+      }
     } else if (d.mode === 'categorical' && d.counts) {
       drawCounts(d.counts, (d.config && d.config.options) || [], d.truth);
     } else {
@@ -581,6 +671,7 @@
   function selectRound() {
     state.round = el('round-select').value;
     state.showTruth = false; // a fresh round starts with the truth hidden
+    state.focusIdx = 0;      // and on its first field, not wherever the last one sat
     poll();
   }
 
@@ -703,6 +794,15 @@
   document.addEventListener('keydown', function (e) {
     if (document.activeElement.tagName === 'INPUT') return;
     if (e.key === 'h') { document.body.classList.toggle('bare'); render(); }
+    var d = state.data;
+    if (!d || d.mode !== 'form' || wageFields(d.config)) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault(); stepFocus(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault(); stepFocus(-1);
+    } else if (e.key === 'a') {
+      toggleOverview();
+    }
   });
 
   // fullscreen (F11) and window changes re-render at the new canvas size
@@ -714,6 +814,7 @@
   }
 
   window.AGG_PROJECTOR = {
+    stepFocus: stepFocus, toggleOverview: toggleOverview,
     saveToken: saveToken, newRound: newRound, selectRound: selectRound,
     open: function () { roundAction('open_round'); },
     close: function () { roundAction('close_round'); },

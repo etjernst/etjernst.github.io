@@ -67,8 +67,11 @@
   canvas { width: 100%; height: auto; margin-top: 6px; }
   .note { background: #efe9dc; border-radius: 8px; padding: 10px 12px;
           font-size: .95rem; margin: 12px 0; }
-  .field { margin: 14px 0; }
-  .field-label { font-weight: 600; font-size: .98rem; margin: 0 0 4px; }
+  .field { margin: 14px 0; padding: 14px 16px; background: #fbf7ef;
+           border: 1px solid var(--rule); border-radius: 10px; }
+  .field .opts .opt { background: var(--surface); font-weight: 400; }
+  .field .opts .opt.picked { background: var(--accent); }
+  .field-label { font-weight: 600; font-size: .98rem; margin: 0 0 8px; }
   .field-err { color: var(--accent); font-weight: 600; font-size: .9rem; margin: 4px 0 0; min-height: 0; }
   .field-err:empty { display: none; }
   .help { color: var(--muted); font-size: .88rem; margin: 2px 0 6px; }
