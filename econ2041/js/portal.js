@@ -256,6 +256,13 @@
     });
   }
 
+  // A cap equal to the number of options is not really a cap, so say so.
+  function pickHint(maxSelections, optionCount) {
+    return maxSelections >= optionCount
+      ? 'Pick all that apply.'
+      : 'Pick up to ' + maxSelections + '.';
+  }
+
   function describeValue(round, value) {
     value = normalizeValue(value);
     if (value === null || value === undefined) return '';
@@ -369,11 +376,11 @@
       return '<button class="opt" data-round="' + r.round_id + '" data-i="' + i + '">' +
              esc(o) + '</button>';
     }).join('');
-    var multi = ms > 1
-      ? '<p class="muted">Pick up to ' + ms + '.</p>' +
-        '<button id="go-' + r.round_id + '" disabled>Submit picks</button>'
-      : '';
-    return '<div class="opts">' + btns + '</div>' + multi;
+    // the hint sits above the choices, so it is read before the picking
+    var hint = ms > 1 ? '<p class="muted">' + pickHint(ms, opts.length) + '</p>' : '';
+    var submit = ms > 1
+      ? '<button id="go-' + r.round_id + '" disabled>Submit picks</button>' : '';
+    return hint + '<div class="opts">' + btns + '</div>' + submit;
   }
 
   // ---------- form rendering: one scrollable screen ----------
@@ -555,14 +562,16 @@
       var opts = spec.options || [];
       var picks = Array.isArray(cur) ? cur
         : (cur === undefined || cur === null ? [] : [cur]);
+      // the hint sits under the question, above the choices, so it is read
+      // before the picking rather than after it
+      if ((spec.max_selections || 1) > 1) {
+        html += '<p class="muted">' + pickHint(spec.max_selections, opts.length) + '</p>';
+      }
       html += '<div class="opts">' + opts.map(function (o, i) {
         return '<button class="opt fopt' + (picks.indexOf(i) !== -1 ? ' picked' : '') +
                '" data-round="' + r.round_id + '" data-field="' + esc(fid) +
                '" data-i="' + i + '">' + esc(o) + '</button>';
       }).join('') + '</div>';
-      if ((spec.max_selections || 1) > 1) {
-        html += '<p class="muted">Pick up to ' + spec.max_selections + '.</p>';
-      }
     }
     return html + '<p class="field-err" id="err-' + r.round_id + '-' + esc(fid) +
                   '">' + esc(errMsg) + '</p></div>';
