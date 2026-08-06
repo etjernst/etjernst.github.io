@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A standalone explanation of simulations that compare district, village, and farm sampling choices for the Integrated Agricultural Household Survey (IAHS)">
+  <title>Choosing a sampling design for two adoption measures</title>
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="assets/katex/katex.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #10262b;
+      --primary: #0b505b;
+      --mid: #51777d;
+      --light: #7ba6ad;
+      --yellow: #fcea5a;
+      --slate: #3f5359;
+      --slate-light: #6c8186;
+      --paper: #f3f5f4;
+      --paper-dark: #e6ecea;
+      --divider: #d2dcda;
+      --white: #ffffff;
+      --max-text: 820px;
+      --max-wide: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--slate);
+      background: var(--paper);
+      font-family: "Inter", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .brand-stripe {
+      display: grid;
+      grid-template-columns: 66fr 16fr 18fr;
+      height: 8px;
+      width: 100%;
+    }
+    .brand-stripe span:nth-child(1) { background: var(--primary); }
+    .brand-stripe span:nth-child(2) { background: var(--yellow); }
+    .brand-stripe span:nth-child(3) { background: var(--mid); }
+
+    h1, h2, h3 {
+      color: var(--ink);
+      margin-top: 0;
+    }
+
+    h1 {
+      font-family: "Libre Baskerville", Georgia, serif;
+      font-size: clamp(2.35rem, 5vw, 4.5rem);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1.13;
+      margin-bottom: 24px;
+      max-width: 980px;
+    }
+
+    h2 {
+      font-size: clamp(1.65rem, 3vw, 2.5rem);
+      font-weight: 500;
+      letter-spacing: -0.022em;
+      line-height: 1.25;
+      margin-bottom: 22px;
+      max-width: 900px;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      font-weight: 600;
+      line-height: 1.42;
+      margin-bottom: 12px;
+    }
+
+    p, li, td, th, figcaption, summary {
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0 0 18px;
+      max-width: var(--max-text);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration-color: var(--light);
+      text-underline-offset: 3px;
+    }
+    a:hover, a:focus-visible {
+      color: var(--ink);
+      text-decoration-color: var(--yellow);
+    }
+
+    .hero {
+      background: var(--white);
+      min-height: 88vh;
+      padding: 86px 9vw 72px;
+    }
+
+    .eyebrow, .section-label {
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .hero-intro {
+      border-left: 3px solid var(--light);
+      color: var(--ink);
+      font-weight: 500;
+      max-width: 790px;
+      padding-left: 18px;
+    }
+
+    .hero-findings {
+      border-top: 1px solid var(--divider);
+      margin-top: 30px;
+      max-width: 820px;
+      padding-top: 22px;
+    }
+
+    .hero-findings p { margin-bottom: 10px; }
+    .hero-findings p:last-child { margin-bottom: 0; }
+
+    .keyword {
+      border-bottom: 5px solid var(--yellow);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .jump-links {
+      display: grid;
+      gap: 7px;
+      list-style: none;
+      margin: 34px 0 0;
+      max-width: 720px;
+      padding: 0;
+    }
+
+    .section {
+      min-height: 66vh;
+      padding: 92px 9vw;
+      position: relative;
+    }
+    .section--white { background: var(--white); }
+
+    .section-number {
+      color: rgba(11, 80, 91, 0.055);
+      font-size: clamp(4rem, 9vw, 7.2rem);
+      font-weight: 700;
+      line-height: 1;
+      position: absolute;
+      right: 8vw;
+      top: 54px;
+      user-select: none;
+    }
+
+    .lead {
+      border-left: 3px solid var(--light);
+      color: var(--ink);
+      font-size: inherit;
+      font-weight: 500;
+      max-width: var(--max-text);
+      padding-left: 18px;
+    }
+
+    .wide { max-width: var(--max-wide); }
+
+    .plain-list {
+      margin: 18px 0 24px;
+      max-width: var(--max-text);
+      padding-left: 24px;
+    }
+    .plain-list li { margin-bottom: 7px; }
+    .plain-list li:last-child { margin-bottom: 0; }
+
+    .estimand-grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 30px 0 24px;
+      max-width: var(--max-wide);
+    }
+    .estimand-card {
+      background: var(--white);
+      border: 1px solid var(--divider);
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+    }
+    .estimand-card p { max-width: none; }
+    .estimand-card .math-display {
+      margin-top: auto;
+      width: 100%;
+    }
+    .micro-label {
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .formula-note {
+      color: var(--slate);
+      margin: 8px 0 0;
+    }
+
+    .definition-table, .decision-table, .threshold-table {
+      border-collapse: collapse;
+      margin: 28px 0 32px;
+      max-width: var(--max-wide);
+      width: 100%;
+    }
+    .definition-table th, .definition-table td,
+    .decision-table th, .decision-table td,
+    .threshold-table th, .threshold-table td {
+      border-bottom: 1px solid var(--divider);
+      padding: 13px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .num { text-align: right !important; }
+
+    .math-display {
+      max-width: var(--max-text);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+    }
+    .katex-display { margin: 0.45em 0 0.65em; }
+
+    .figure-grid {
+      align-items: start;
+      display: grid;
+      gap: 26px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 34px 0 30px;
+      max-width: var(--max-wide);
+    }
+
+    figure {
+      margin: 0 0 34px;
+      max-width: 920px;
+    }
+    .figure-grid figure { margin-bottom: 0; }
+    figure img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    figcaption {
+      color: var(--slate);
+      line-height: 1.55;
+      margin-top: 12px;
+    }
+    .caption-title {
+      color: var(--ink);
+      display: block;
+      font-weight: 600;
+    }
+    .caption-context, .caption-takeaway { display: block; }
+
+    .figure-key {
+      border-left: 3px solid var(--divider);
+      margin: 22px 0 8px;
+      max-width: var(--max-text);
+      padding-left: 18px;
+    }
+    .figure-key p { margin-bottom: 6px; }
+
+    .takeaway {
+      border-left: 5px solid var(--yellow);
+      color: var(--ink);
+      font-weight: 600;
+      margin: 26px 0 28px;
+      max-width: var(--max-text);
+      padding: 4px 0 4px 18px;
+    }
+
+    .rule-steps {
+      counter-reset: rule;
+      list-style: none;
+      margin: 28px 0 32px;
+      max-width: var(--max-text);
+      padding: 0;
+    }
+    .rule-steps li {
+      border-top: 1px solid var(--divider);
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 34px 1fr;
+      padding: 14px 0;
+    }
+    .rule-steps li::before {
+      color: var(--primary);
+      content: counter(rule);
+      counter-increment: rule;
+      font-weight: 600;
+    }
+
+    details.appendix-details {
+      border-top: 1px solid var(--divider);
+      max-width: var(--max-wide);
+    }
+    details.appendix-details:last-of-type { border-bottom: 1px solid var(--divider); }
+    details.appendix-details summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 600;
+      list-style-position: outside;
+      padding: 18px 4px;
+    }
+    .appendix-body { padding: 2px 0 24px 28px; }
+
+    .footer {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 9vw;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .js .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .section { padding-left: 6vw; padding-right: 6vw; }
+      .estimand-grid, .figure-grid { grid-template-columns: 1fr; }
+      .section-number { display: none; }
+      .footer { gap: 8px; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <header class="hero" id="top">
+    <div class="eyebrow">Integrated Agricultural Household Survey (IAHS)</div>
+    <h1>Choosing one sample for two adoption measures</h1>
+    <p class="hero-intro">Ultimately, we want to use one sample to estimate both the <span class="keyword">farm-adoption share</span> and the <span class="keyword">agricultural-area adoption share</span>. We simulate the complete sampling process, from selecting districts and villages to selecting farms, while varying the sampling choices at all three stages.</p>
+    <div class="hero-findings">
+      <p>Count-based probability-proportional-to-size (PPS) sampling uses farm counts as the measure of size. Area-based PPS uses net sown area.</p>
+      <p>Both methods produce small errors. Across seven scenarios with 30 percent farm adoption, no farm-size or observed village predictor, and limited within-village clustering, root mean squared error (RMSE) for estimates pooled across the six study states remains below 3 percentage points.</p>
+      <p>Relative to area-based village PPS, count-based village PPS lowers farm-adoption RMSE by 0.14 to 0.22 percentage points.</p>
+      <p>Relative to count-based village PPS, area-based village PPS lowers agricultural-area adoption RMSE by 0.60 to 0.78 percentage points.</p>
+    </div>
+    <ol class="jump-links">
+      <li><a href="#estimands">1. What we want to estimate</a></li>
+      <li><a href="#experiment">2. Which sampling choices the simulations compare</a></li>
+      <li><a href="#scenarios">3. How adoption varies</a></li>
+      <li><a href="#estimation">4. How each simulation runs</a></li>
+      <li><a href="#decision-rule">5. How we compare designs</a></li>
+      <li><a href="#district-order">6. District ordering</a></li>
+      <li><a href="#village-pps">7. Village PPS</a></li>
+      <li><a href="#cutoff">8. Farm-size cutoff</a></li>
+      <li><a href="#village-order">9. Village ordering</a></li>
+      <li><a href="#carry-forward">10. Overall conclusion</a></li>
+      <li><a href="#technical-appendix">11. Technical appendix</a></li>
+    </ol>
+  </header>
+
+  <main>
+    <section class="section" id="estimands">
+      <span class="section-number" aria-hidden="true">1</span>
+      <div class="section-label">1. What we want to estimate</div>
+      <h2>One sampling design needs to serve two adoption measures</h2>
+      <p class="lead">These two measures, the farm-adoption share and the agricultural-area adoption share, answer different policy questions. A design that represents farm households efficiently may not represent agricultural area equally well.</p>
+
+      <div class="estimand-grid reveal">
+        <article class="estimand-card">
+          <div class="micro-label">Farm-adoption share</div>
+          <h3>How widely has the innovation spread across farms?</h3>
+          <p>The numerator counts farm households that use an innovation. Each farm household contributes once, regardless of farm size.</p>
+          <div class="math-display">\[
+            P_F = \frac{\sum_{i=1}^{N} A_i}{N}
+          \]</div>
+          <p class="formula-note">Here, \(A_i\) equals one when farm \(i\) adopts, and \(N\) is the number of farms.</p>
+        </article>
+        <article class="estimand-card">
+          <div class="micro-label">Agricultural-area adoption share</div>
+          <h3>How much agricultural area uses the innovation?</h3>
+          <p>The numerator measures land under an innovation. An adopting farm may use the innovation on only part of its agricultural area.</p>
+          <div class="math-display">\[
+            P_A = \frac{\sum_{i=1}^{N} a_i u_i}{\sum_{i=1}^{N} a_i}
+          \]</div>
+          <p class="formula-note">Here, \(a_i\) is farm \(i\)'s agricultural area, and \(u_i\) is the share of that area under the innovation.</p>
+        </article>
+      </div>
+
+      <p>The farm-adoption and agricultural-area adoption equations define population shares. We estimate both shares from the sample using inverse-probability survey weights, as explained in <a href="#estimation">Section 4</a>.</p>
+    </section>
+
+    <section class="section section--white" id="experiment">
+      <span class="section-number" aria-hidden="true">2</span>
+      <div class="section-label">2. Sampling choices included</div>
+      <h2>We run a compound experiment across all three sampling stages</h2>
+      <p class="lead">Compound here means that each simulated design combines one method for selecting districts, one method for selecting villages, and one farm-size cutoff within villages.</p>
+
+      <p>A measure of size determines how PPS inclusion probabilities vary across units. We use the same district measure of size throughout and compare two village measures of size.</p>
+
+      <table class="definition-table reveal">
+        <thead>
+          <tr><th>Sampling feature</th><th>What we hold fixed or compare</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>District measure of size</strong></td>
+            <td>Use average relevant-crop area from the Directorate of Economics and Statistics (DES) for 2022-23 through 2024-25 in every district design</td>
+          </tr>
+          <tr>
+            <td><strong>District selection method</strong></td>
+            <td>Select 50 distinct districts directly using the inclusion probabilities implied by relevant-crop area, or order the district frame by one of six candidate variables before systematic PPS</td>
+          </tr>
+          <tr>
+            <td><strong>Village measure of size</strong></td>
+            <td>Use either farm counts or net sown area to determine village inclusion probabilities</td>
+          </tr>
+          <tr>
+            <td><strong>Village selection method</strong></td>
+            <td>Select 10 distinct villages directly using village inclusion probabilities, or order the village frame by one candidate variable at a time before systematic PPS</td>
+          </tr>
+          <tr>
+            <td><strong>Farm-size cutoff</strong></td>
+            <td>Compare state-specific p70, p80, and p90 thresholds while assigning 5 of 15 interviews above the cutoff</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Direct PPS selects distinct units using unit inclusion probabilities without first ordering a sampling frame. Systematic PPS orders units, chooses one random start, and selects at regular intervals along the cumulative measure of size.</p>
+      <p>Relevant-crop area excludes clearly irrelevant crops such as sugarcane. Each replication selects 50 districts and 10 villages per district. A selected village contributes 15 farms when its frame contains at least 15 farms. Smaller villages contribute every available farm. Under area-based PPS with a p80 cutoff, about 1 to 8 percent of selected villages across states contain fewer than 15 farms.</p>
+      <p>At a 30 percent farm-adoption rate, we compare 13 adoption scenarios, 7 district selection methods, and 19 combinations of village measure of size, village selection method, and farm-size cutoff. Additional simulations repeat the top five sampling designs at 5 and 60 percent farm adoption.</p>
+    </section>
+
+    <section class="section" id="scenarios">
+      <span class="section-number" aria-hidden="true">3</span>
+      <div class="section-label">3. How adoption varies</div>
+      <h2>We vary district relationships separately from village and farm-size relationships</h2>
+      <p class="lead">Evaluating a candidate ordering variable requires an assumption about how adoption relates to that variable. Each scenario states that assumption explicitly.</p>
+
+      <p>We add a shared unobserved village component to every farm's adoption propensity. The intraclass correlation coefficient (ICC) measures the share of unobserved variation attributable to the common village component. The latent ICC is the underlying simulation ICC in the continuous adoption variable, before we convert it into a yes-or-no adoption outcome.</p>
+
+      <table class="definition-table reveal">
+        <thead>
+          <tr><th>Scenario group</th><th>Relationship with adoption</th><th>Within-village clustering</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>No observed predictor</strong><br>1 scenario</td>
+            <td>No observed district, village, or farm-size characteristic predicts adoption</td>
+            <td>Latent ICC 0.03</td>
+          </tr>
+          <tr>
+            <td><strong>One district predictor</strong><br>6 scenarios</td>
+            <td>One candidate district characteristic predicts adoption. Farm size and observed village characteristics do not</td>
+            <td>Latent ICC 0.03</td>
+          </tr>
+          <tr>
+            <td><strong>District, village, and farm-size predictors</strong><br>6 scenarios</td>
+            <td>One candidate characteristic predicts adoption at both district and village levels. Adoption also rises with farm size</td>
+            <td>Latent ICC 0.15</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Six candidate characteristics are irrigation, cultivator share, agricultural area per cultivator, literacy, <a href="#candidate-variable-definitions">agricultural market access</a>, and longitude. For an adoption probability \(p\), log odds equal \(\log[p/(1-p)]\). The log-odds scale keeps predicted probabilities between zero and one.</p>
+      <p>When a candidate characteristic predicts adoption, a one-standard-deviation increase in that characteristic raises log odds by 0.7. At a 30 percent starting probability, the increase raises predicted adoption to about 46 percent when other terms stay fixed.</p>
+      <p>We also add an unobserved district component to adoption propensity with a coefficient of 0.7. The unobserved component creates district variation that no candidate ordering can directly balance. We then calibrate farm-level probabilities so their average equals the simulated adoption rate for that district.</p>
+      <p>For adopters, we draw the share of agricultural area under the innovation from a beta distribution with mean 55 percent and concentration 6. A concentration parameter of 6 controls how widely farm-specific use shares vary around the mean. We set both values as simulation assumptions.</p>
+    </section>
+
+    <section class="section section--white" id="estimation">
+      <span class="section-number" aria-hidden="true">4</span>
+      <div class="section-label">4. How each simulation runs</div>
+      <h2>Every comparison uses the complete two-stage sample and the survey estimator</h2>
+      <p class="lead">The simulation fixes one synthetic population, repeatedly draws the complete sample, and compares each estimate with the known population share.</p>
+
+      <ol class="rule-steps">
+        <li><span>Build synthetic farms in every village of all 203 positive-support districts</span></li>
+        <li><span>Assign adoption using one of the 13 stated conditions</span></li>
+        <li><span>Select 50 districts within state-by-zone strata</span></li>
+        <li><span>Select 10 villages in each sampled district</span></li>
+        <li><span>Select 15 farms per village, or every available farm when fewer than 15 are listed</span></li>
+        <li><span>Estimate both adoption shares and repeat the process 1,000 times</span></li>
+      </ol>
+
+      <h3>The estimator pools farms across districts before taking each ratio</h3>
+      <div class="math-display">\[
+        \widehat P_F = \frac{\sum_{i \in s} w_i A_i}{\sum_{i \in s} w_i}
+        \qquad
+        \widehat P_A = \frac{\sum_{i \in s} w_i a_i u_i}{\sum_{i \in s} w_i a_i}
+      \]</div>
+      <p>The weight \(w_i\) is the inverse of farm \(i\)'s inclusion probability. Pooling the estimated numerators and denominators across all sampled districts matches how the survey will compute its estimates.</p>
+
+      <h3>RMSE combines sampling variation and bias</h3>
+      <div class="math-display">\[
+        \operatorname{RMSE}(\widehat\theta) =
+        \sqrt{\frac{1}{R}\sum_{r=1}^{R}(\widehat\theta_r-\theta)^2}
+      \]</div>
+      <p>Lower RMSE is better. Every result below reports RMSE or an RMSE difference in percentage points. Horizontal bars show paired 95 percent Monte Carlo intervals.</p>
+    </section>
+
+    <section class="section" id="decision-rule">
+      <span class="section-number" aria-hidden="true">5</span>
+      <div class="section-label">5. How we compare designs</div>
+      <h2>The decision rule combines two precision goals</h2>
+      <p class="lead">The rule first removes clearly inferior designs, then compares the survivors under several weights on farm-adoption precision. The coefficient of variation (CV) divides RMSE by the true simulated adoption share.</p>
+
+      <ol class="rule-steps">
+        <li><span>Remove a design if another design improves both adoption measures in the same condition</span></li>
+        <li><span>Use provisional CV targets of 5 percent for the six-state estimates and 15 percent for each state as guardrails</span></li>
+        <li><span>Compare weighted RMSE with 40, 50, and 60 percent weight on farm adoption</span></li>
+        <li><span>Require an improvement of at least 0.05 percentage points with paired uncertainty before treating a small difference as consequential</span></li>
+        <li><span>Check adoption rates of 5 and 60 percent and a moderate district gradient of 0.35</span></li>
+      </ol>
+
+      <div class="math-display">\[
+        L(w) = w\,\operatorname{RMSE}(\widehat P_F)
+        + (1-w)\,\operatorname{RMSE}(\widehat P_A)
+      \]</div>
+      <p>The main comparison uses \(w=0.60\). Weights of 0.40 and 0.50 show whether a conclusion depends on placing slightly more or less weight on farm-adoption precision. No complete design meets every provisional CV target in every neutral condition, so the guardrails identify weak cells rather than select a design by themselves.</p>
+    </section>
+
+    <section class="section section--white" id="district-order">
+      <span class="section-number" aria-hidden="true">6</span>
+      <div class="section-label">6. District ordering</div>
+      <h2>District ordering helps when its adoption gradient is real</h2>
+      <p class="lead">The full design varies district ordering together with village PPS, the farm-size cutoff, and village ordering.</p>
+
+      <div class="figure-key">
+        <p>Move left: the ordered district design has lower weighted RMSE</p>
+        <p>Move right: drawing districts without an observed ordering variable has lower weighted RMSE</p>
+        <p>Yellow marks the condition with no imposed observed relationship</p>
+      </div>
+
+      <div class="figure-grid reveal">
+        <figure>
+          <img src="assets/compound_dashboard/district_order_no_relationship_w60.png" alt="Paired weighted RMSE differences for six district orderings when no observed district characteristic predicts adoption">
+          <figcaption>
+            <span class="caption-title">No observed district characteristic predicts adoption</span>
+            <span class="caption-context">Area PPS, p90, and the area-per-cultivator village order are fixed</span>
+            <span class="caption-takeaway">Small gains and losses appear even when no candidate is a true predictor</span>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="assets/compound_dashboard/district_order_matched_relationship_w60.png" alt="Paired weighted RMSE differences when each district ordering variable predicts adoption in its matching scenario">
+          <figcaption>
+            <span class="caption-title">Each ordering variable predicts adoption in turn</span>
+            <span class="caption-context">The ordering variable matches the active district relationship</span>
+            <span class="caption-takeaway">Five matched orders help, while market-access ordering does not</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p>With the stronger 0.7 relationship, the matched ordering lowers weighted RMSE for irrigation, cultivator share, area per cultivator, literacy, and longitude. The gain ranges from 0.17 to 0.42 percentage points. Market-access ordering raises weighted RMSE by 0.20 points even when market access predicts adoption.</p>
+      <p>Across all neutral conditions and all village-stage arms, every systematic district order either has a clear loss in some cells or falls more than 0.10 points behind the best order in some cells. The rule therefore keeps the direct unordered district PPS draw as the baseline choice.</p>
+
+      <p>A district gradient describes how strongly farm adoption varies with an observed district characteristic. A 0.35 cultivator-share gradient means that a one-standard-deviation increase in cultivator share raises adoption log odds by 0.35.</p>
+      <h3>A moderate cultivator-share gradient favors ordering</h3>
+      <p>Starting from 30 percent adoption, the 0.35 gradient raises the predicted probability to about 38 percent, holding the unobserved component fixed.</p>
+      <figure class="reveal">
+        <img src="assets/compound_dashboard/district_order_moderate_gradient_035.png" alt="Six-state farm and agricultural-area RMSE under unordered district PPS and cultivator-share ordered systematic PPS when the district adoption gradient is 0.35">
+        <figcaption>
+          <span class="caption-title">Cultivator-share ordering under the 0.35 district gradient</span>
+          <span class="caption-context">The village design stays fixed at area PPS, p90, and area-per-cultivator ordering</span>
+          <span class="caption-takeaway">Ordering lowers farm RMSE by 0.19 points and agricultural-area RMSE by 0.13 points</span>
+        </figcaption>
+      </figure>
+      <p>The paired weighted-loss improvement is 0.16 to 0.17 percentage points across the three decision weights, and every paired interval excludes zero. District ordering is therefore a substantive assumption choice: cultivator-share ordering helps if that district gradient is credible, while the unordered draw is safer when no candidate relationship is imposed.</p>
+    </section>
+
+    <section class="section" id="village-pps">
+      <span class="section-number" aria-hidden="true">7</span>
+      <div class="section-label">7. Village PPS</div>
+      <h2>Village PPS creates a small, consistent precision trade-off</h2>
+      <p class="lead">Count-based village PPS is more precise for the farm-adoption share. Area-based village PPS is more precise for the agricultural-area adoption share.</p>
+
+      <div class="figure-key">
+        <p>Dark teal represents count-based village PPS</p>
+        <p>Light teal represents area-based village PPS</p>
+        <p>Each row holds the district method, p90 cutoff, and 5 of 15 allocation fixed</p>
+      </div>
+
+      <div class="figure-grid reveal">
+        <figure>
+          <img src="assets/compound_dashboard/pps_p90_farm_rmse_neutral.png" alt="Farm-adoption RMSE under count-based and area-based village PPS in each neutral adoption condition">
+          <figcaption>
+            <span class="caption-title">Farm-adoption precision</span>
+            <span class="caption-context">Absolute RMSE in each neutral 30 percent adoption condition</span>
+            <span class="caption-takeaway">Count PPS lowers RMSE by 0.14 to 0.22 percentage points</span>
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="assets/compound_dashboard/pps_p90_area_rmse_neutral.png" alt="Agricultural-area adoption RMSE under count-based and area-based village PPS in each neutral adoption condition">
+          <figcaption>
+            <span class="caption-title">Agricultural-area adoption precision</span>
+            <span class="caption-context">Absolute RMSE in each neutral 30 percent adoption condition</span>
+            <span class="caption-takeaway">Area PPS lowers RMSE by 0.60 to 0.78 percentage points</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p>Farm-adoption RMSE ranges from 1.99 to 2.74 points under count PPS and from 2.19 to 2.96 points under area PPS. Agricultural-area adoption RMSE ranges from 1.21 to 1.78 points under area PPS and from 1.86 to 2.55 points under count PPS. Both designs therefore keep six-state RMSE below 3 percentage points in the neutral conditions.</p>
+
+      <div class="figure-key">
+        <p>Positive values mean area PPS has lower weighted RMSE</p>
+        <p>Neutral conditions isolate district relationships</p>
+        <p>Stress conditions also add farm-size and village relationships with stronger clustering</p>
+      </div>
+      <figure class="reveal">
+        <img src="assets/compound_dashboard/pps_p90_weight_sensitivity_core.png" alt="Count minus area weighted RMSE for three farm weights in all 13 compound adoption conditions">
+        <figcaption>
+          <span class="caption-title">PPS comparison across all compound conditions</span>
+          <span class="caption-context">p90 and 5 of 15 interviews above the cutoff are fixed</span>
+          <span class="caption-takeaway">Area PPS has lower weighted RMSE at 40, 50, and 60 percent farm weight in every condition</span>
+        </figcaption>
+      </figure>
+
+      <h3>The area-PPS advantage is smallest at 5 percent adoption</h3>
+      <div class="figure-key">
+        <p>Positive values mean area PPS has lower weighted RMSE</p>
+        <p>The shaded band marks differences smaller than 0.05 percentage points</p>
+        <p>Circles are paired estimates and horizontal lines are 95 percent Monte Carlo intervals</p>
+      </div>
+      <figure class="reveal">
+        <img src="assets/compound_dashboard/pps_p90_adoption_rate_sensitivity_w60.png" alt="Count minus area weighted RMSE under 5, 30, and 60 percent farm adoption across the seven neutral conditions">
+        <figcaption>
+          <span class="caption-title">PPS sensitivity to the adoption rate</span>
+          <span class="caption-context">The decision gives 60 percent weight to farm-adoption precision</span>
+          <span class="caption-takeaway">Area PPS has lower point loss in every neutral condition at all three adoption rates</span>
+        </figcaption>
+      </figure>
+      <p>At 5 percent adoption, the area-PPS advantage is 0.04 to 0.11 percentage points. Five of seven neutral conditions clear the 0.05-point decision rule with paired uncertainty. At 60 percent adoption, the advantage grows to 0.19 to 0.27 points and all seven conditions clear the rule.</p>
+      <p class="takeaway">The PPS choice is a real trade-off, but the absolute differences are small. Under 40/60, 50/50, or 60/40 weights, the compound evidence supports area-based village PPS.</p>
+    </section>
+
+    <section class="section section--white" id="cutoff">
+      <span class="section-number" aria-hidden="true">8</span>
+      <div class="section-label">8. Farm-size cutoff</div>
+      <h2>Precision does not distinguish p80 from p90 sharply</h2>
+      <p class="lead">The cutoff comparison fixes area-based village PPS and allocates 5 of 15 interviews above the state-specific threshold.</p>
+
+      <div class="figure-key">
+        <p>Negative values mean p90 has lower weighted RMSE</p>
+        <p>The shaded band marks differences smaller than 0.05 percentage points</p>
+        <p>Each row shows one neutral district relationship</p>
+      </div>
+      <figure class="reveal">
+        <img src="assets/compound_dashboard/area_pps_cutoff_adoption_rate_sensitivity_w60.png" alt="Area-PPS p90 minus p80 weighted RMSE under 5, 30, and 60 percent farm adoption across the seven neutral conditions">
+        <figcaption>
+          <span class="caption-title">p90 compared with p80 under area PPS</span>
+          <span class="caption-context">The decision gives 60 percent weight to farm-adoption precision</span>
+          <span class="caption-takeaway">Every point difference is smaller than 0.05 percentage points</span>
+        </figcaption>
+      </figure>
+      <p>At 30 percent adoption, p90 lowers weighted RMSE by 0.01 to 0.03 points across the seven neutral conditions. At 5 percent adoption, the differences range from a p80 advantage below 0.01 points to a p90 advantage of 0.02 points. At 60 percent adoption, p90 lowers weighted RMSE by 0.01 to 0.03 points. Every difference is too small to choose the cutoff on precision alone.</p>
+
+      <h3>p80 is easier for villages to supply</h3>
+      <p>If a village has fewer than five farms above the cutoff, the design moves the remaining interviews below the cutoff. The sample still targets 15 interviews, but the planned larger-farm allocation becomes weaker.</p>
+      <figure class="reveal">
+        <img src="assets/compound_dashboard/area_pps_cutoff_availability.png" alt="PPS-weighted share of villages able to supply five farms above p80 and p90 in each state">
+        <figcaption>
+          <span class="caption-title">Availability of five farms above each cutoff</span>
+          <span class="caption-context">Shares are weighted by area-PPS village selection probabilities</span>
+          <span class="caption-takeaway">p80 improves availability in every state, with the largest difference in Punjab</span>
+        </figcaption>
+      </figure>
+      <p>Under area PPS, 86 to 99 percent of selected villages can supply five farms above p80. The range is 65 to 98 percent above p90. Punjab has the largest difference: 86 percent at p80 compared with 65 percent at p90.</p>
+      <p class="takeaway">Because the precision differences are small, p80's greater ability to supply five farms above the cutoff is the stronger argument for the operational choice.</p>
+    </section>
+
+    <section class="section" id="village-order">
+      <span class="section-number" aria-hidden="true">9</span>
+      <div class="section-label">9. Village ordering</div>
+      <h2>Village ordering does not produce a stable improvement</h2>
+      <p class="lead">In the 30 percent compound screen, agricultural area per cultivator has the lowest loss among the qualified area-PPS village orderings. The adoption-rate sensitivities compare this ordering with drawing villages directly from their PPS probabilities.</p>
+
+      <div class="figure-key">
+        <p>Negative values mean area-per-cultivator ordering has lower weighted RMSE</p>
+        <p>The shaded band marks differences smaller than 0.05 percentage points</p>
+        <p>Area PPS, p90, and 60 percent farm weight are fixed</p>
+      </div>
+      <figure class="reveal">
+        <img src="assets/compound_dashboard/area_pps_village_order_adoption_rate_sensitivity_w60.png" alt="Area-per-cultivator village order minus unordered village PPS weighted RMSE under 5, 30, and 60 percent adoption">
+        <figcaption>
+          <span class="caption-title">Area-per-cultivator village ordering</span>
+          <span class="caption-context">Each row is one neutral district relationship</span>
+          <span class="caption-takeaway">Point estimates and intervals vary across relationships and adoption rates</span>
+        </figcaption>
+      </figure>
+      <p>At 30 percent adoption, area-per-cultivator ordering lowers point loss in six of seven neutral conditions. At 5 percent adoption, no comparison clears the 0.05-point rule with paired uncertainty. At 60 percent adoption, the irrigation condition clears the rule, while the other six conditions do not. The direction remains mixed across adoption rates and district relationships.</p>
+      <p class="takeaway">The compound evidence does not cleanly justify committing to one village ordering variable. Drawing villages directly from their PPS probabilities remains the simpler default.</p>
+    </section>
+
+    <section class="section section--white" id="carry-forward">
+      <span class="section-number" aria-hidden="true">10</span>
+      <div class="section-label">10. Overall conclusion</div>
+      <h2>Five designs isolate the choices that matter</h2>
+      <p class="lead">The adoption-rate sensitivities compare one feature-assembled design, three direct feature comparisons, and one simple-random-sample benchmark.</p>
+
+      <p>All five designs draw districts directly from their PPS probabilities. The separate 0.35-gradient sensitivity compares cultivator-share district ordering with the direct district draw while holding the primary village design fixed.</p>
+
+      <table class="decision-table reveal">
+        <thead>
+          <tr><th>Design</th><th>Why it is included</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Area PPS, p90, villages ordered by area per cultivator</td>
+            <td>Feature-assembled design from the 30 percent screen</td>
+          </tr>
+          <tr>
+            <td>Count PPS, p90, villages drawn without an observed order</td>
+            <td>Direct PPS comparison</td>
+          </tr>
+          <tr>
+            <td>Area PPS, p80, villages drawn without an observed order</td>
+            <td>Cutoff comparison</td>
+          </tr>
+          <tr>
+            <td>Area PPS, p90, villages drawn without an observed order</td>
+            <td>Village-order comparison</td>
+          </tr>
+          <tr>
+            <td>Simple random sample of 150 farms within each sampled district</td>
+            <td>Diagnostic precision benchmark</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Synthesis</h3>
+      <ul class="plain-list">
+        <li>Area-based village PPS has lower combined loss under farm weights from 40 to 60 percent</li>
+        <li>p80 and p90 are practically tied on precision</li>
+        <li>p80 makes the 5 of 15 allocation easier to implement</li>
+        <li>No village ordering variable has a stable advantage</li>
+        <li>Cultivator-share district ordering helps when a district adoption gradient is imposed</li>
+      </ul>
+      <p>The village-stage evidence therefore points to area-based PPS with a p80 cutoff, 5 of 15 interviews allocated above the cutoff, and villages drawn without sorting on an observed characteristic. The district-stage choice depends on whether the team considers a positive cultivator-share adoption gradient plausible enough to design around.</p>
+    </section>
+
+    <section class="section" id="technical-appendix">
+      <span class="section-number" aria-hidden="true">11</span>
+      <div class="section-label">11. Technical appendix</div>
+      <h2>Definitions and construction details</h2>
+      <p class="lead">Each subsection is collapsed by default. A link to a subsection opens it automatically.</p>
+
+      <details class="appendix-details" id="district-frame-definition">
+        <summary>How I define the district frame</summary>
+        <div class="appendix-body">
+          <p>The study frame excludes five West Bengal districts in the Eastern Himalayan Region: Alipurduar, Darjeeling, Jalpaiguri, Kalimpong, and Cooch Behar. Kolkata has no rural villages in the sampling frame. The compound experiment therefore uses 203 positive-support districts.</p>
+          <p>Purulia remains in the main frame. It is the only district in the West Bengal Eastern Plateau and Hills stratum and therefore enters the 50-district sample with certainty.</p>
+        </div>
+      </details>
+
+      <details class="appendix-details" id="candidate-variable-definitions">
+        <summary>How I define the candidate ordering variables</summary>
+        <div class="appendix-body">
+          <table class="definition-table">
+            <tbody>
+              <tr><td><strong>Irrigation share</strong></td><td>Irrigated area divided by irrigated plus unirrigated area</td></tr>
+              <tr><td><strong>Cultivator share</strong></td><td>Main and marginal cultivators divided by cultivators plus agricultural laborers</td></tr>
+              <tr><td><strong>Agricultural area per cultivator</strong></td><td>Net sown area divided by main and marginal cultivators</td></tr>
+              <tr><td><strong>Literacy rate</strong></td><td>Literate population divided by population age seven and above</td></tr>
+              <tr><td><strong>Agricultural market access</strong></td><td>Equal-weight mean of four village indicators: a market, weekly haat, agricultural marketing society, and agricultural credit society</td></tr>
+              <tr><td><strong>Longitude</strong></td><td>Longitude of the village centroid</td></tr>
+            </tbody>
+          </table>
+          <p>Village ordering uses the village-level value. District ordering aggregates the same information across villages in the district.</p>
+        </div>
+      </details>
+
+      <details class="appendix-details" id="candidate-standardization">
+        <summary>How I standardize the candidate variables and generate adoption</summary>
+        <div class="appendix-body">
+          <p>For district adoption, I subtract each state-by-zone stratum's unweighted mean and divide by its unweighted standard deviation. For village adoption, I apply the same calculation across villages within a district. A standardized value of one is therefore one standard deviation above the relevant mean.</p>
+          <div class="math-display">\[
+            q_{dhk} = \operatorname{logit}^{-1}
+            \left(\alpha_{hk} + \beta_D z_{dhk} + 0.7u_{dh}\right)
+          \]</div>
+          <p>We write district \(d\)'s target farm-adoption probability in stratum \(h\) under candidate \(k\) as \(q_{dhk}\). The intercept \(\alpha_{hk}\) sets the cultivator-weighted mean adoption rate in the stratum. The standardized candidate value is \(z_{dhk}\). The standardized unobserved district component is \(u_{dh}\). The main compound screen sets \(\beta_D\) to 0.7 when candidate \(k\) is active and to zero in the no-relationship condition.</p>
+          <div class="math-display">\[
+            p_{ivd} = \operatorname{logit}^{-1}
+            \left(a_d + \beta_F f_{ivd} + \beta_V z_{vd} + b_{vd}\right)
+          \]</div>
+          <p>We write farm \(i\)'s adoption probability in village \(v\) and district \(d\) as \(p_{ivd}\). The district intercept \(a_d\) makes the mean farm probability equal \(q_{dhk}\). Standardized log farm area is \(f_{ivd}\). The standardized active village candidate is \(z_{vd}\). The village component is \(b_{vd}\). Neutral conditions set \(\beta_F=\beta_V=0\) and use latent ICC 0.03. Stress conditions set \(\beta_F=\beta_V=0.7\) and use latent ICC 0.15.</p>
+        </div>
+      </details>
+
+      <details class="appendix-details" id="farm-size-percentiles">
+        <summary>How I interpolate the state farm-size percentiles</summary>
+        <div class="appendix-body">
+          <p>The 2015-16 Agriculture Census reports the number and operated area of holdings in ten farm-size classes. For each state and percentile, I locate the class containing the requested cumulative share of holdings. Within that bounded class, I fit a truncated exponential distribution whose mean matches the published class mean. I then read the p70, p80, or p90 threshold from that fitted distribution.</p>
+          <table class="threshold-table">
+            <thead>
+              <tr><th>State</th><th class="num">p70 (ha)</th><th class="num">p80 (ha)</th><th class="num">p90 (ha)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bihar</td><td class="num">0.399</td><td class="num">0.551</td><td class="num">0.845</td></tr>
+              <tr><td>Haryana</td><td class="num">2.130</td><td class="num">3.154</td><td class="num">4.978</td></tr>
+              <tr><td>Odisha</td><td class="num">0.970</td><td class="num">1.404</td><td class="num">1.892</td></tr>
+              <tr><td>Punjab</td><td class="num">4.107</td><td class="num">5.090</td><td class="num">7.446</td></tr>
+              <tr><td>Uttar Pradesh</td><td class="num">0.692</td><td class="num">0.992</td><td class="num">1.631</td></tr>
+              <tr><td>West Bengal</td><td class="num">0.795</td><td class="num">0.963</td><td class="num">1.677</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="appendix-details" id="sampling-algorithms">
+        <summary>How direct and systematic PPS differ</summary>
+        <div class="appendix-body">
+          <p>Direct PPS selects the required number of distinct units from their inclusion probabilities without ordering the frame on an observed characteristic. The implementation uses fixed-size Sampford PPS without replacement.</p>
+          <p>Systematic PPS first orders units by one candidate characteristic. It then chooses one random start and selects units at regular intervals along the cumulative PPS size measure. District orders share the same random start within a stratum and replication. Village orders share the same random start within a district and replication.</p>
+        </div>
+      </details>
+
+      <details class="appendix-details" id="sources-and-reproducibility">
+        <summary>What data and code produce the dashboard</summary>
+        <div class="appendix-body">
+          <p>Village farm counts, net sown area, irrigation, cultivator composition, literacy, market access, and location come from the Census village frame. State farm-size distributions come from the 2015-16 Agriculture Census. District PPS size measures come from average DES relevant-crop area for 2022-23 through 2024-25.</p>
+          <p>The figure script is <code>explorations/sampling/python/plot_compound_dashboard.py</code>. It reads the R=1,000 compound outputs at 30 percent adoption and the 5 percent, 60 percent, and 0.35-gradient sensitivity outputs. A manifest beside the figures records input and output hashes.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Integrated Agricultural Household Survey (IAHS)</span>
+    <span>Compound sampling simulation explainer</span>
+  </footer>
+
+  <script src="assets/katex/katex.min.js"></script>
+  <script src="assets/katex/contrib/auto-render.min.js"></script>
+  <script>
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "\\[", right: "\\]", display: true },
+        { left: "\\(", right: "\\)", display: false }
+      ],
+      throwOnError: false
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      reveals.forEach((element) => observer.observe(element));
+    } else {
+      reveals.forEach((element) => element.classList.add("visible"));
+    }
+
+    const openLinkedAppendix = () => {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      if (!targetId) return;
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const disclosure = target.matches("details") ? target : target.closest("details");
+      if (!disclosure) return;
+      disclosure.open = true;
+      window.requestAnimationFrame(() => target.scrollIntoView({ block: "start" }));
+    };
+
+    openLinkedAppendix();
+    window.addEventListener("hashchange", openLinkedAppendix);
+  </script>
+</body>
+</html>
