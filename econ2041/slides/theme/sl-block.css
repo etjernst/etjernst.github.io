@@ -59,3 +59,22 @@
 .katex-display {
   margin: 0;
 }
+/* the same crop model on Markdown-emitted slides: a fixed box that clips,
+   holding the image at the size and offset the deck was drawn with */
+.reveal .sl-crop {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  max-width: 100%;
+  vertical-align: top;
+}
+.reveal .sl-crop img {
+  position: absolute;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: none;
+}

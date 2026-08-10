@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="econ2041-python_files/libs/clipboard/clipboard.min.js"></script>
-<script src="econ2041-python_files/libs/quarto-html/tabby.min.js"></script>
-<script src="econ2041-python_files/libs/quarto-html/popper.min.js"></script>
-<script src="econ2041-python_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="econ2041-python_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="econ2041-python_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="econ2041-python_files/libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="econ2041-income-happiness_files/libs/clipboard/clipboard.min.js"></script>
+<script src="econ2041-income-happiness_files/libs/quarto-html/tabby.min.js"></script>
+<script src="econ2041-income-happiness_files/libs/quarto-html/popper.min.js"></script>
+<script src="econ2041-income-happiness_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="econ2041-income-happiness_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="econ2041-income-happiness_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="econ2041-income-happiness_files/libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.22">
 
-  <title>econ2041-python</title>
+  <title>econ2041-income-happiness</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="econ2041-python_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="econ2041-python_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="econ2041-income-happiness_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="econ2041-income-happiness_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -28,11 +28,27 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="econ2041-python_files/libs/revealjs/dist/theme/quarto-2b264b6ca8d52e6b5040b3c103c569bd.css">
-  <link href="econ2041-python_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="econ2041-python_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="econ2041-python_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="econ2041-python_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="econ2041-income-happiness_files/libs/revealjs/dist/theme/quarto-2b264b6ca8d52e6b5040b3c103c569bd.css">
+  <script defer="" src="vendor/katex/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link href="econ2041-income-happiness_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="econ2041-income-happiness_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="econ2041-income-happiness_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="econ2041-income-happiness_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -128,10 +144,11 @@
     <div class="slides">
 
 
-<section id="econ-2041" class="slide level2 cover title-left" data-background-image="assets/econ2041-python/Cover.png" style="color: rgb(238, 238, 238)">
+<section id="econ-2041" class="slide level2 cover title-left" data-background-image="assets/econ2041-income-happiness/slides2.png" style="color: rgb(0, 0, 0)">
 <h2>ECON 2041</h2>
+<div style="position: absolute; left: 0; top: 178px; width: 1088px; height: 268px; background: rgba(238, 238, 238, 0.6); z-index: -1;"></div>
 <h3 id="introductory-econometrics">Introductory Econometrics</h3>
-<h3 id="get-using-python">Get using Python</h3>
+<h3 id="income-happiness"><span style="color: rgb(255, 255, 255)">Income &amp; happiness</span></h3>
 <!-- =================================================================== -->
 </section>
 <section id="semester-roadmap" class="slide level2">
@@ -140,10 +157,10 @@
 <div class="stop">
 <p><span class="num">1</span> What is econometrics?</p>
 </div>
-<div class="stop now">
+<div class="stop">
 <p><span class="num">2</span> Basic mathematical tools</p>
 </div>
-<div class="stop ahead">
+<div class="stop now">
 <p><span class="num">3</span> Stats fundamentals</p>
 </div>
 <div class="stop ahead">
@@ -182,293 +199,111 @@
 </div>
 <!-- =================================================================== -->
 </section>
-<section id="plan-for-today" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(238, 238, 238)">
-<h2>Plan for today</h2>
+<section id="happiness" class="slide level2 title-left" data-auto-animate="true" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2 data-id="quarto-animate-title"><span style="font-size:135px">Happiness</span></h2>
+<!-- =================================================================== -->
+</section>
+<section id="happiness-2" class="slide level2" data-auto-animate="true" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2 data-id="quarto-animate-title"><span style="font-size:1.0em">Happiness</span></h2>
+<p>Cantril Ladder score</p>
+<p>Source: <a href="https://www.gallup.com/analytics/318875/global-research.aspx">Gallup World Poll</a></p>
+<div style="width: 76%; margin: 28px auto 0;">
+<p><em>Please imagine a ladder, with steps numbered from 0 at the bottom to 10 at the top. The top of the ladder represents the best possible life for you, and the bottom of the ladder represents the worst possible life for you. On which step of the ladder would you say you personally feel you stand at this time?</em></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="gdp-per-capita" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.0em">GDP per capita</span></h2>
+<p>GDP per person, adjusted for inflation and purchasing power</p>
 <ul>
-<li class="fragment">Why you should learn to code</li>
-<li class="fragment">What is Python &amp; why are we using it?</li>
-<li class="fragment">Setting up Google Colab</li>
-<li class="fragment">Python basics</li>
+<li>Total value added from the production of G&amp;S in country</li>
+<li>Divided by population</li>
+<li>PPP-adjusted</li>
+<li>In "international dollars"</li>
+<li>Source: World Bank</li>
 </ul>
 <!-- =================================================================== -->
 </section>
-<section id="the-elephant-in-the-class-room" class="slide level2 split" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
-<h2></h2>
-<div class="split-title">
-<p>The elephant<br>in the<br>(class)room</p>
-</div>
-<div class="split-art">
-<p><img data-src="assets/econ2041-python/elephantRoom.png"></p>
-<div class="split-credit fragment" data-fragment-index="0">
-<p>Image generated using Adobe Express (Premium)<br>Prompt: elephant in the classroom</p>
-</div>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="the-elephant-ai" class="slide level2" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
-<h2></h2>
-<p><img data-src="assets/econ2041-python/elephant-ai.png" style="width:100.0%"></p>
-<!-- =================================================================== -->
-</section>
-<section id="the-elephant-lecture" class="slide level2" data-background-image="assets/econ2041-python/elephant-lecture.png" data-background-size="cover" data-background-position="center">
-<h2></h2>
-<!-- =================================================================== -->
-</section>
-<section id="what-s-your-background" class="slide level2" data-background-color="rgb(128, 34, 95)">
-<h2>What's your background?</h2>
-<div class="columns">
-<div class="column" style="width:58%;">
-<p>Quick survey on your background &amp; interests</p>
-<p><br></p>
-<ol type="1">
-<li>Open your portal link<br>https://emiliatjernstrom.com/econ2041/portal.html <br><br>OR scan the QR code, then enter your code</li>
-<li>Answer the five questions and hit Submit</li>
-</ol>
-<p><br></p>
-<p>Portal answers are anonymous &amp; ungraded</p>
-</div><div class="column" style="width:36%;">
-<div style="text-align: center;">
-<p><img data-src="assets/econ2041-python/portal-qr.png" style="background: #fff; padding: 18px; border-radius: 8px; display: inline-block;" width="300"></p>
-</div>
-</div></div>
-<!-- =================================================================== -->
-</section>
-<section id="why-you-should-still-learn-to" class="slide level2">
-<h2>Why you should still learn to code</h2>
+<section id="cross-sectional-data" class="slide level2" data-background-color="rgb(128, 34, 95)">
+<h2><span style="font-size:1.0em">Cross-sectional data </span></h2>
+<ul>
+<li>144 countries in 2024</li>
+<li>GDP per capita (<span class="math inline">X</span>) &amp; happiness (<span class="math inline">Y</span>) are both continuous RVs</li>
+<li>Why? They're draws from a larger conceptual population</li>
+</ul>
 <div class="fragment" data-fragment-index="0">
-<div style="text-align: right; margin-bottom: 0.6em">
-... even though AI can (sort of) do it for you
-</div>
+<p>Experiment</p>
+<ul>
+<li>draw a set of respondents from each country</li>
+<li>calculate their average life satisfaction</li>
+</ul>
 </div>
 <div class="fragment" data-fragment-index="1">
-<p>Coding builds core <strong>transferable</strong> skills</p>
+<p>Sample space</p>
 <ul>
-<li>teaches problem solving</li>
-<li>sharpens logic &amp; structure</li>
-<li>trains you to check &amp; debug</li>
+<li>set of all possible tuples of country averages you could get</li>
+<li>X maps each outcome of that process to a number</li>
 </ul>
 </div>
 <!-- =================================================================== -->
 </section>
-<section id="why-you-should-still-learn-to-2" class="slide level2">
-<h2>Why you should still learn to code</h2>
-<div style="text-align: right; margin-bottom: 0.6em">
-... even though AI can (sort of) do it for you
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Coding builds core <strong>transferable</strong> skills</p>
-<ul>
-<li>teaches problem solving</li>
-<li>sharpens logic &amp; structure</li>
-<li>trains you to check &amp; debug</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<!-- the next slide fills this column in; holding the space here keeps the
-     block below from jumping down when it does -->
-<div style="visibility: hidden">
-<p>Coding makes you stand out</p>
-<ul>
-<li>signals technical fluency</li>
-<li>shows initiative &amp; curiosity</li>
-<li>you will do more than peers who rely on AI</li>
-</ul>
-</div>
-</div></div>
-<p><br> AI can't replace understanding</p>
-<ul>
-<li>AI guesses but you still need to judge</li>
-<li>bad code may still run</li>
-<li>without knowing the basics you can't fix errors</li>
-</ul>
-<!-- =================================================================== -->
-</section>
-<section id="why-you-should-still-learn-to-3" class="slide level2">
-<h2>Why you should still learn to code</h2>
-<div style="text-align: right; margin-bottom: 0.6em">
-... even though AI can (sort of) do it for you
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Coding builds core <strong>transferable</strong> skills</p>
-<ul>
-<li>teaches problem solving</li>
-<li>sharpens logic &amp; structure</li>
-<li>trains you to check &amp; debug</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p>Coding makes you stand out</p>
-<ul>
-<li>signals technical fluency</li>
-<li>shows initiative &amp; curiosity</li>
-<li>you will do more than peers who rely on AI</li>
-</ul>
-</div></div>
-<p><br> AI can't replace understanding</p>
-<ul>
-<li>AI guesses but you still need to judge</li>
-<li>bad code may still run</li>
-<li>without knowing the basics you can't fix errors</li>
-</ul>
-<!-- =================================================================== -->
-</section>
-<section id="s9" class="slide level2">
-<h2></h2>
-<div class="r-stack">
-<div class="fragment fade-out" data-fragment-index="0">
-<p><img data-src="assets/econ2041-python/image-1.png" style="width:88.0%"></p>
-</div>
-<div class="fragment" data-fragment-index="0">
-<p><img data-src="assets/econ2041-python/image-2.png" style="width:90.0%"></p>
-</div>
-</div>
-<div class="fragment fade-out" data-fragment-index="0">
-<p>Source: <a href="https://arxiv.org/pdf/2507.09089">Becker et al. (2025)</a></p>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="what-is-python" class="slide level2 title-left" data-background-color="rgb(55, 58, 54)" style="color: rgb(255, 255, 255)">
-<h2><span style="font-size:135px">What is Python?</span></h2>
-<!-- =================================================================== -->
-</section>
-<section id="python" class="slide level2" data-background-color="rgb(242, 237, 232)">
-<h2>Python!</h2>
-<p>We'll use Python &amp; Jupyter notebooks for our econometric data work</p>
-<p><a href="http://www.python.org/">Python</a>&nbsp;is...</p>
-<p><span style="color:rgb(68, 68, 68)">one of the most popular programming languages</span></p>
-<div class="bleed">
-<div class="r-stack">
-<p><img data-src="assets/econ2041-python/image-3.png"></p>
-<div class="fragment" data-fragment-index="0">
-<p><img data-src="assets/econ2041-python/image-4.png"></p>
-</div>
-</div>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="python-2" class="slide level2" data-background-color="rgb(242, 237, 232)">
-<h2>Python!</h2>
-<p>We'll use Python &amp; Jupyter notebooks for our econometric data work</p>
-<div class="columns">
-<div class="column" style="width:22%;">
-<p><a href="http://www.python.org/">Python</a>&nbsp;is...</p>
-</div><div class="column" style="width:74%;">
-<p><span style="color:rgb(68, 68, 68)">a free &amp; open-source general-purpose programming language</span></p>
-<p>used <strong>for</strong></p>
-<ul>
-<li>AI</li>
-<li>scientific computing</li>
-<li>communication</li>
-<li>web development</li>
-<li>CGI and graphical user interfaces</li>
-<li>game development</li>
-<li>etc.</li>
-</ul>
-</div></div>
-<!-- =================================================================== -->
-</section>
-<section id="python-3" class="slide level2" data-background-color="rgb(242, 237, 232)">
-<h2>Python!</h2>
-<p>We'll use Python &amp; Jupyter notebooks for our econometric data work</p>
-<div class="columns">
-<div class="column" style="width:22%;">
-<p><a href="http://www.python.org/">Python</a>&nbsp;is...</p>
-</div><div class="column" style="width:74%;">
-<p><span style="color:rgb(68, 68, 68)">a free &amp; open-source general-purpose programming language</span></p>
-<p>used <strong>by</strong></p>
-<ul>
-<li>Google</li>
-<li>OpenAI</li>
-<li>Netflix</li>
-<li>Meta</li>
-<li>Dropbox</li>
-<li>Amazon</li>
-<li>Reddit</li>
-<li>etc.</li>
-</ul>
-</div></div>
-<!-- =================================================================== -->
-</section>
-<section id="jupyter-notebooks" class="slide level2" data-background-color="rgb(242, 237, 232)">
-<h2>Jupyter notebooks</h2>
-<p>We'll use Python &amp; Jupyter notebooks for our econometric data work</p>
-<p><strong>Jupyter notebooks</strong>: one of the many ways of interacting with Python</p>
-<div class="fragment">
-<p><br>They let you use your browser to</p>
-<ul>
-<li>write &amp; execute Python commands</li>
-<li>format output, including tables, figures, animations, etc.</li>
-<li>combine text, mathematical expressions, and code</li>
-</ul>
-<!-- =================================================================== -->
-</div>
-</section>
-<section id="jupyter-notebooks-2" class="slide level2" data-background-color="rgb(242, 237, 232)">
-<h2>Jupyter notebooks</h2>
-<p>We'll use Python &amp; Jupyter notebooks for our econometric data work</p>
-<p><strong>Jupyter notebooks</strong>: one of the many ways of interacting with Python</p>
-<p><br>Jupyter isn't the only way to code in Python, but it's GREAT for</p>
-<ul>
-<li>getting started coding in Python</li>
-<li>testing new ideas</li>
-<li>interacting with small pieces of code</li>
-<li>using online interactive environments such as Google Colab</li>
-<li>sharing / collaborating on research</li>
-</ul>
-<!-- =================================================================== -->
-</section>
-<section id="we-work-in-colab" class="slide level2" data-background-color="#012449" style="color: rgb(238, 238, 238)">
-<h2>We work in Colab</h2>
-<div class="columns">
-<div class="column" style="width:65%;">
-<p>Everything in this unit runs in <strong>Google Colab</strong>,<br> in your browser</p>
-<ul>
-<li>nothing to install</li>
-<li>works on any machine you sit at</li>
-<li>your work saves to your Google Drive</li>
-</ul>
-</div><div class="column" style="width:35%;">
-<p><img data-src="assets/econ2041-python/googleColab.png" style="width:70.0%"></p>
-</div></div>
-<!-- =================================================================== -->
-</section>
-<section id="google-colab" class="slide level2" data-background-color="rgb(118, 35, 47)">
-<h2>Google Colab</h2>
-<p>Colab allows you to run Python (in a Jupyter notebook) <br>on a Google-provided remote cloud computer</p>
-<p><br> Amazingly, this is free but it does require a Google account</p>
-<p>One cool feature of this is that you can run it from your smartphone</p>
-<!-- =================================================================== -->
-</section>
-<section id="over-to-the-notebook" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(238, 238, 238)">
-<h2>Over to the notebook</h2>
+<section id="now-let-s-open-the-data" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.0em">Now let's open the data!</span></h2>
 <p>Open this week's lecture notebook and follow along:</p>
 <p><br></p>
-<h3 id="httpsemiliatjernstrom.comecon2041lecturesw02">https://emiliatjernstrom.com/econ2041/lectures/w02</h3>
+<h3 id="httpsemiliatjernstrom.comecon2041lecturesw03">https://emiliatjernstrom.com/econ2041/lectures/w03</h3>
 <p><br></p>
 <p>It will open directly in Colab</p>
 <p>Click <strong>Copy to Drive</strong> first, so your edits save</p>
 <!-- =================================================================== -->
 </section>
-<section id="now-you-know" class="slide level2 title-left" data-background-color="rgb(55, 58, 54)" style="color: rgb(255, 255, 255)">
-<h2><span style="font-size:135px">Now you know...</span></h2>
+<section id="some-take-aways" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.0em">Some take-aways</span></h2>
+<ul>
+<li>We can tell stories with data</li>
+</ul>
+<ul>
+<li class="fragment">Visualization is powerful</li>
+<li class="fragment">Always explore first</li>
+</ul>
 <!-- =================================================================== -->
 </section>
-<section id="s52" class="slide level2 title-left" data-background-color="rgb(55, 58, 54)" style="color: rgb(238, 238, 238)">
-<h2></h2>
-<ul>
-<li class="fragment" data-fragment-index="0">
-How to open and run a Jupyter notebook
-</li>
-<li class="fragment" data-fragment-index="1">
-How to get Python to print something for you
-</li>
-<li class="fragment" data-fragment-index="2">
-How to use Python as a calculator
-</li>
-</ul>
-<div class="fragment" data-fragment-index="2">
-<p><br><br><br> I hope you're excited about applying these skills<br> and building on them!</p>
+<section id="forecast-your-semester" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.0em">Before you go: forecast your semester</span></h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<p>One more portal round, open now</p>
+<p><br></p>
+<ol type="1">
+<li>Open your portal link<br>https://emiliatjernstrom.com/econ2041/portal.html <br><br>OR scan the QR code, then enter your code</li>
+<li>Forecast your own final mark, then judge three hypothetical students</li>
+</ol>
+<p><br></p>
+<p>Portal answers are anonymous &amp; ungraded</p>
+<p>Results revealed in week 4</p>
+</div><div class="column" style="width:36%;">
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/portal-qr.png" style="background: #fff; padding: 18px; border-radius: 8px; display: inline-block;" width="300"></p>
 </div>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="ses-survey" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2><span style="font-size:1.0em">The SES survey</span></h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<p>Shapes Macquarie's teaching, support, and services</p>
+<ul>
+<li>Results affect university rankings, which in turn affects how employers view us... and you!</li>
+<li>You can win $1,000!</li>
+<li>Open until 30 August</li>
+<li>Link in your student email<br>(from ses@srcentre.com.au), or scan the code</li>
+</ul>
+</div><div class="column" style="width:36%;">
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/ses-qr.png" style="background: #fff; padding: 18px; border-radius: 8px; display: inline-block;" width="300"></p>
+</div>
+</div></div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -478,18 +313,18 @@ How to use Python as a calculator
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="econ2041-python_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="econ2041-python_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="econ2041-python_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="econ2041-python_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="econ2041-python_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="econ2041-python_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="econ2041-python_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="econ2041-python_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="econ2041-python_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="econ2041-income-happiness_files/libs/revealjs/plugin/zoom/zoom.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
