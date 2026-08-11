@@ -27,8 +27,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="econ2041-income-happiness_files/libs/revealjs/dist/theme/quarto-7f78a1e74d6f4349833a38fa7d286806.css">
+  <link rel="stylesheet" href="econ2041-income-happiness_files/libs/revealjs/dist/theme/quarto-121aab7fedc412aa4fb0c033dc682b78.css">
   <script defer="" src="vendor/katex/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
@@ -214,6 +280,7 @@
 <section id="gdp-per-capita" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
 <h2><span style="font-size:1.0em">GDP per capita</span></h2>
 <p>GDP per person, adjusted for inflation and purchasing power</p>
+<p><br></p>
 <ul>
 <li>Total value added from the production of G&amp;S in country</li>
 <li>Divided by population</li>
@@ -231,17 +298,17 @@
 <li>Why? They're draws from a larger conceptual population</li>
 </ul>
 <div class="fragment" data-fragment-index="0">
-<p>Experiment</p>
+<p><br> Experiment</p>
 <ul>
 <li>draw a set of respondents from each country</li>
 <li>calculate their average life satisfaction</li>
 </ul>
 </div>
 <div class="fragment" data-fragment-index="1">
-<p>Sample space</p>
+<p><br> Sample space</p>
 <ul>
 <li>set of all possible tuples of country averages you could get</li>
-<li>X maps each outcome of that process to a number</li>
+<li><span class="math inline">X</span> maps each outcome of that process to a number</li>
 </ul>
 </div>
 <!-- =================================================================== -->
@@ -253,7 +320,311 @@
 <h3 id="httpsemiliatjernstrom.comecon2041lecturesw03">https://emiliatjernstrom.com/econ2041/lectures/w03</h3>
 <p><br></p>
 <p>It will open directly in Colab</p>
-<p>Click <strong>Copy to Drive</strong> first, so your edits save</p>
+<p>Click <strong>Copy to Drive</strong> first, so you can save any edits</p>
+<p>The notebook reproduces every figure in today's slides</p>
+<!-- =================================================================== -->
+</section>
+<section id="describe-table" class="slide level2">
+<h2><span style="font-size:1.0em">The mean and the median disagree about GDP</span></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>happy[[<span class="st">'Happiness'</span>, <span class="st">'GDP_pc'</span>]].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.85em; margin-top: 24px;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>count</th>
+<th>mean</th>
+<th>std</th>
+<th>min</th>
+<th>25%</th>
+<th>50%</th>
+<th>75%</th>
+<th>max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Happiness</td>
+<td>144</td>
+<td>5.58</td>
+<td>1.15</td>
+<td>1.36</td>
+<td>4.71</td>
+<td>5.87</td>
+<td>6.47</td>
+<td>7.74</td>
+</tr>
+<tr class="even">
+<td>GDP_pc</td>
+<td>144</td>
+<td>27,642</td>
+<td>26,296</td>
+<td>1,409</td>
+<td>7,057</td>
+<td>17,796</td>
+<td>42,378</td>
+<td>134,549</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="happiness-histogram" class="slide level2">
+<h2><span style="font-size:1.0em">Most countries rate between 4 &amp; 7</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/happiness_histogram.png" style="width:80.0%"></p>
+</div>
+<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gdp-histogram" class="slide level2">
+<h2><span style="font-size:1.0em">GDP per capita is strongly right-skewed</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/gdp_histogram.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="histogram-code" class="slide level2">
+<h2><span style="font-size:1.0em">Each picture is one line of code</span></h2>
+<p><br></p>
+<div style="font-size: 1.25em;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>sns.histplot(happy[<span class="st">'GDP_pc'</span>], bins<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="conditioning-divider" class="slide level2 title-left" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2>Happiness, given GDP</h2>
+<p><span class="math inline">\mathbb{E}[\,\text{Happiness} \mid \text{GDP per capita}\,]</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="boolean-mask" class="slide level2">
+<h2><span style="font-size:1.0em">Conditioning is a Boolean</span></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>median_gdp <span class="op">=</span> happy[<span class="st">'GDP_pc'</span>].median()</span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> happy[<span class="st">'GDP_pc'</span>] <span class="op">&gt;</span> median_gdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment" style="font-size: 0.85em; margin-top: 24px;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Entity</th>
+<th>GDP_pc</th>
+<th>mask</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Afghanistan</td>
+<td>1,964</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td>Albania</td>
+<td>21,641</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td>Algeria</td>
+<td>15,502</td>
+<td>False</td>
+</tr>
+<tr class="even">
+<td>Argentina</td>
+<td>26,772</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td>Armenia</td>
+<td>20,079</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="conditional-distributions" class="slide level2">
+<h2><span style="font-size:1.0em">Happiness conditional on GDP</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/happiness_by_gdpgroup.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="conditional-distributions-indep" class="slide level2">
+<h2><span style="font-size:1.0em">Happiness conditional on GDP: independent?</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/happiness_by_gdpgroup.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="joint-scatter" class="slide level2">
+<h2><span style="font-size:1.0em">The joint distribution: one dot per country</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/scatter_plain.png" style="width:80.0%"></p>
+</div>
+<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="scatter-code" class="slide level2">
+<h2><span style="font-size:1.0em">The joint distribution is one line of code, too</span></h2>
+<p><br></p>
+<div style="font-size: 1.15em;">
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>happy, x<span class="op">=</span><span class="st">'GDP_pc'</span>, y<span class="op">=</span><span class="st">'Happiness'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="joint-scatter-colored" class="slide level2">
+<h2><span style="font-size:1.0em">The median split, in color</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/happiness_vs_gdp.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-question" class="slide level2 title-left" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2>Is the median the right split?</h2>
+<ul>
+<li>Richer half vs poorer half</li>
+<li>Top third vs bottom third</li>
+<li>Top quarter vs bottom quarter</li>
+<li>Top tenth vs bottom tenth</li>
+</ul>
+<!-- =================================================================== -->
+</section>
+<section id="split-table" class="slide level2">
+<h2><span style="font-size:1.0em">More extreme comparisons</span></h2>
+<p><br><br></p>
+<div style="font-size: 0.8em; margin-top: 24px;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Rule</th>
+<th>N high</th>
+<th>N low</th>
+<th>Mean high</th>
+<th>Mean low</th>
+<th>Gap</th>
+<th>s.e.(gap)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Richer half vs poorer half</td>
+<td>72</td>
+<td>72</td>
+<td>6.35</td>
+<td>4.82</td>
+<td>1.53</td>
+<td>0.14</td>
+</tr>
+<tr class="even">
+<td>Top third vs bottom third</td>
+<td>48</td>
+<td>48</td>
+<td>6.58</td>
+<td>4.47</td>
+<td>2.11</td>
+<td>0.14</td>
+</tr>
+<tr class="odd">
+<td>Top quarter vs bottom quarter</td>
+<td>36</td>
+<td>36</td>
+<td>6.73</td>
+<td>4.33</td>
+<td>2.41</td>
+<td>0.16</td>
+</tr>
+<tr class="even">
+<td>Top tenth vs bottom tenth</td>
+<td>15</td>
+<td>15</td>
+<td>6.88</td>
+<td>4.03</td>
+<td>2.85</td>
+<td>0.26</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-hist-half" class="slide level2">
+<h2><span style="font-size:1.0em">The humps pull apart, and get bumpier</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_hist_half.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-hist-third" class="slide level2">
+<h2><span style="font-size:1.0em">The humps pull apart, and get bumpier</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_hist_third.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-hist-quarter" class="slide level2">
+<h2><span style="font-size:1.0em">The humps pull apart, and get bumpier</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_hist_quarter.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-hist-tenth" class="slide level2">
+<h2><span style="font-size:1.0em">The humps pull apart, and get bumpier</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_hist_tenth.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-scatter-half" class="slide level2">
+<h2><span style="font-size:1.0em">What each rule throws away</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_scatter_half.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-scatter-third" class="slide level2">
+<h2><span style="font-size:1.0em">What each rule throws away</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_scatter_third.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-scatter-quarter" class="slide level2">
+<h2><span style="font-size:1.0em">What each rule throws away</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_scatter_quarter.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-scatter-tenth" class="slide level2">
+<h2><span style="font-size:1.0em">What each rule throws away</span></h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-income-happiness/split_scatter_tenth.png" style="width:80.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="split-verdict" class="slide level2 title-left" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
+<h2>Nothing in the data tells you which cut is correct</h2>
 <!-- =================================================================== -->
 </section>
 <section id="some-take-aways" class="slide level2" data-background-color="rgb(128, 34, 95)" style="color: rgb(255, 255, 255)">
@@ -279,7 +650,7 @@
 </ol>
 <p><br></p>
 <p>Portal answers are anonymous &amp; ungraded</p>
-<p>Results revealed in week 4</p>
+<p>Results revealed next week</p>
 </div><div class="column" style="width:36%;">
 <div style="text-align: center;">
 <p><img data-src="assets/econ2041-income-happiness/portal-qr.png" style="background: #fff; padding: 18px; border-radius: 8px; display: inline-block;" width="300"></p>
