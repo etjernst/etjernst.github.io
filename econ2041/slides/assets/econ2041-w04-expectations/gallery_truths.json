@@ -24,38 +24,53 @@
  "quad_pick_dx": 1.09,
  "quad_pick_dy": 89.0,
  "quad_pick_xy": 97.0,
+ "marks2025_n": 267,
+ "marks2025_median": 65.0,
+ "marks2025_share_75": 0.28,
+ "marks2025_share_85": 0.1,
+ "marks2025_share_fail": 0.19,
+ "forecast_n": 41,
+ "forecast_median": 75.0,
+ "forecast_share_75": 0.59,
+ "forecast_share_85": 0.2,
+ "fulleffort_median": 85.0,
+ "contrast_mean": 6.4,
+ "contrast_median": 7.0,
+ "contrast_up": 0.78,
+ "contrast_same": 0.1,
+ "contrast_down": 0.12,
  "vig_rowshares": {
   "Rarely": [
-   45.0,
-   29.0,
-   27.0
+   44.0,
+   30.0,
+   26.0
   ],
   "Some weeks": [
-   18.0,
+   20.0,
    26.0,
-   56.0
+   54.0
   ],
   "Most weeks": [
-   43.0,
-   27.0,
-   30.0
+   42.0,
+   26.0,
+   32.0
   ]
  },
  "vig_rowcounts": {
   "Rarely": [
    22,
-   14,
+   15,
    13
   ],
   "Some weeks": [
-   6,
+   7,
    9,
    19
   ],
   "Most weeks": [
    16,
    10,
-   11
+   12
   ]
  },
  "vig_hours_marginal": [
