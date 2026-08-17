@@ -23,5 +23,44 @@
  "quad_sum_neg": -3395.0,
  "quad_pick_dx": 1.09,
  "quad_pick_dy": 89.0,
- "quad_pick_xy": 97.0
+ "quad_pick_xy": 97.0,
+ "vig_rowshares": {
+  "Rarely": [
+   45.0,
+   29.0,
+   27.0
+  ],
+  "Some weeks": [
+   18.0,
+   26.0,
+   56.0
+  ],
+  "Most weeks": [
+   43.0,
+   27.0,
+   30.0
+  ]
+ },
+ "vig_rowcounts": {
+  "Rarely": [
+   22,
+   14,
+   13
+  ],
+  "Some weeks": [
+   6,
+   9,
+   19
+  ],
+  "Most weeks": [
+   16,
+   10,
+   11
+  ]
+ },
+ "vig_hours_marginal": [
+  37.0,
+  28.0,
+  36.0
+ ]
 }
