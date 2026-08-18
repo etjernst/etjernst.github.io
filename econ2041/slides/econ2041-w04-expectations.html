@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="econ2041-w04-expectations_files/libs/clipboard/clipboard.min.js"></script>
+<script src="econ2041-w04-expectations_files/libs/quarto-html/tabby.min.js"></script>
+<script src="econ2041-w04-expectations_files/libs/quarto-html/popper.min.js"></script>
+<script src="econ2041-w04-expectations_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="econ2041-w04-expectations_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="econ2041-w04-expectations_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="econ2041-w04-expectations_files/libs/quarto-html/quarto-syntax-highlighting-7b4406b7675125bc2ba204020e191172.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.22">
+
+  <title>econ2041-w04-expectations</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="econ2041-w04-expectations_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="econ2041-w04-expectations_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="econ2041-w04-expectations_files/libs/revealjs/dist/theme/quarto-121aab7fedc412aa4fb0c033dc682b78.css">
+  <script defer="" src="vendor/katex/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link href="econ2041-w04-expectations_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="econ2041-w04-expectations_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="econ2041-w04-expectations_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="econ2041-w04-expectations_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="theme/sl-block.css">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="econ-2041" class="slide level2 cover cover-panel title-left" data-background-image="assets/econ2041-w04-expectations/slides2.png" style="color: rgb(0, 0, 0)">
+<h2>ECON 2041</h2>
+<h3 id="introductory-econometrics">Introductory Econometrics</h3>
+<h3 id="great-expectations"><span style="color: rgb(255, 255, 255)">Great expectations</span></h3>
+<!-- =================================================================== -->
+</section>
+<section id="semester-roadmap" class="slide level2">
+<h2>Plan for the semester</h2>
+<div class="lollipop">
+<div class="stop">
+<p><span class="num">1</span> What is econometrics?</p>
+</div>
+<div class="stop">
+<p><span class="num">2</span> Basic mathematical tools</p>
+</div>
+<div class="stop">
+<p><span class="num">3</span> Stats fundamentals</p>
+</div>
+<div class="stop now">
+<p><span class="num">4</span> Stats fundamentals&nbsp;II</p>
+</div>
+<div class="stop ahead">
+<p><span class="num">5</span> Simple regression</p>
+</div>
+<div class="stop ahead">
+<p><span class="num">6</span> OLS properties&nbsp;&amp;&nbsp;fit</p>
+</div>
+<div class="stop assess ahead">
+<p><span class="num">7</span> Flavors of OLS &amp; OVB <span class="tag">Quiz</span></p>
+</div>
+<div class="stop ahead">
+<p><span class="num">8</span> Causality</p>
+</div>
+<div class="stop brk">
+
+</div>
+<div class="stop ahead">
+<p><span class="num">9</span> Regression inference</p>
+</div>
+<div class="stop assess ahead">
+<p><span class="num">10</span> Inference, continued <span class="tag">PS&nbsp;due&nbsp;16&nbsp;Oct</span></p>
+</div>
+<div class="stop ahead">
+<p><span class="num">11</span> Diagnostics</p>
+</div>
+<div class="stop ahead">
+<p><span class="num">12</span> Measurement error &amp; IRL</p>
+</div>
+<div class="stop ahead">
+<p><span class="num">13</span> Revision</p>
+</div>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="plan-for-today" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(238, 238, 238)">
+<h2>Plan for today</h2>
+<ul>
+<li class="fragment">Your grade forecasts, revealed</li>
+<li class="fragment">Income and life expectancy in the US</li>
+<li class="fragment">Discrete or categorical?</li>
+<li class="fragment">The correlation gallery</li>
+<li class="fragment">Where a covariance comes from</li>
+</ul>
+<!-- =================================================================== -->
+</section>
+<section id="forecasts-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>What you expect of yourself</h2>
+<!-- =================================================================== -->
+</section>
+<section id="form-recap" class="slide level2">
+<h2>What I asked you</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p>Your own semester</p>
+<p><br></p>
+<ul>
+<li>Expected final mark (0-100)</li>
+<li>Plans:
+<ul>
+<li>attend live?</li>
+<li>study hours?</li>
+<li>try tutorials before class?</li>
+</ul></li>
+<li>The mark if you did "everything"</li>
+</ul>
+</div><div class="column fragment" style="width:59%;">
+<p>Three hypothetical students</p>
+<p><br></p>
+<ul>
+<li>Attends live lecture:
+<ul>
+<li>rarely</li>
+<li>some weeks</li>
+<li>most weeks</li>
+</ul></li>
+<li>Study hours:
+<ul>
+<li>under 2</li>
+<li>2 to 5</li>
+<li>5+</li>
+</ul></li>
+<li>Try tutorials first: no / yes</li>
+</ul>
+<p>For each: - a mark - % chance they pass, - % chance they get a D</p>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="own-forecast" class="slide level2">
+<h2>Nobody expects to fail; the median is 75</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_build_1_own.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="own-contrast" class="slide level2">
+<h2>Full effort: you expect it to add about 7 marks</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_build_2_fulleffort.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="last-year-marks" class="slide level2">
+<h2>Last year's marks: median 65, one in five failed</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_build_3_marks2025.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="plans-attendance" class="slide level2">
+<h2>Attendance plans: flat, on 6 and 6 people</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_plans_attendance.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="plans-hours" class="slide level2">
+<h2>Study-hour plans: 72, 76, 73</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_plans_hours.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="plans-tutorials" class="slide level2">
+<h2>Tutorials first: 70 vs 78, on 13 and 28 people</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_plans_tutorials.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="plans-confidence" class="slide level2">
+<h2>Confidence in the plan barely matters</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_plans_confidence.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="own-contrast-diff" class="slide level2">
+<h2>Effort, student by student: median gap 7</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_contrast_diff.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vignettes-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>What you expect of others</h2>
+<!-- =================================================================== -->
+</section>
+<section id="vig-attendance" class="slide level2">
+<h2>By assigned attendance: 64, 74, 76</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vig_attendance.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vig-hours" class="slide level2">
+<h2>Study hours: 64, 70, 78</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vig_hours.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vig-tutorials" class="slide level2">
+<h2>Tutorials before class: 67 against 75</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vig_tutorials.png" style="width:90.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vig-independence-design" class="slide level2">
+<h2>Independence by design</h2>
+<p>Share of hypothetical students at each study-hours level, within each attendance level</p>
+<table class="plain" style="font-size: 0.85em; margin-top: 18px; border-collapse: collapse;">
+<thead>
+<tr><th style="text-align:left; border-bottom: none;"></th><th colspan="3" style="text-align:center; border-bottom: 1px solid #241f1a;">Assigned study hours per week</th><th style="border-bottom: none;"></th></tr>
+<tr><th style="text-align:left;">Assigned attendance</th><th style="text-align:right;">Under 2</th><th style="text-align:right;">2 to 5</th><th style="text-align:right;">More than 5</th><th style="text-align:right;"><em>N</em></th></tr>
+</thead>
+<tbody>
+<tr><td>Rarely</td><td style="text-align:right;">44%</td><td style="text-align:right;">30%</td><td style="text-align:right;">26%</td><td style="text-align:right;">50</td></tr>
+<tr><td>Some weeks</td><td style="text-align:right;">20%</td><td style="text-align:right;">26%</td><td style="text-align:right;">54%</td><td style="text-align:right;">35</td></tr>
+<tr><td>Most weeks</td><td style="text-align:right;">42%</td><td style="text-align:right;">26%</td><td style="text-align:right;">32%</td><td style="text-align:right;">38</td></tr>
+<tr style="border-top: 1px solid #241f1a;"><td>All vignettes</td><td style="text-align:right;">37%</td><td style="text-align:right;">28%</td><td style="text-align:right;">36%</td><td style="text-align:right;">123</td></tr>
+</tbody>
+</table>
+<!-- =================================================================== -->
+</section>
+<section id="vig-independence-marks" class="slide level2">
+<h2>Predicted marks, given "rarely"</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vig_given_att_1.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vig-given-att-2" class="slide level2">
+<h2>Predicted marks, given "some weeks"</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vig_given_att_2.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vig-given-att-3" class="slide level2">
+<h2>Marks are not independent of attendance</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vig_given_att_3.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="vignette-grid" class="slide level2">
+<h2>Pass chance, given attendance and hours</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/grades_vignette_grid_pass.png" style="width:64.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="pass-vs-distinction" class="slide level2">
+<h2>A distinction is a pass; 10 answers disagreed</h2>
+<p>For each hypothetical student, two chances:</p>
+<ul>
+<li><span class="math inline">P(\text{mark} \geq 50)</span>, the chance of a pass</li>
+<li><span class="math inline">P(\text{mark} \geq 75)</span>, the chance of a distinction</li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>Every mark of 75 or more is also a mark of 50 or more</p>
+<p><span class="math inline">\{\text{mark} \geq 75\} \subset \{\text{mark} \geq 50\}</span>, so <span class="math inline">P(\text{mark} \geq 75) \leq P(\text{mark} \geq 50)</span></p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>10 of 120 answers had the distinction chance above the pass chance</p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="chetty-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>Income and life expectancy</h2>
+<!-- =================================================================== -->
+</section>
+<section id="eda-why" class="slide level2">
+<h2>Exploratory data analysis: why?</h2>
+<p>We always start by looking at the data</p>
+<ul>
+<li>Check your understanding of the variables</li>
+<li>Guide subsequent analysis</li>
+<li>Give context to results</li>
+<li>Generate additional questions</li>
+<li>Offer simple, but possibly important answers!</li>
+</ul>
+<!-- =================================================================== -->
+</section>
+<section id="descriptives-powerful" class="slide level2">
+<h2>Descriptives can be incredibly powerful</h2>
+<p>Descriptive statistics</p>
+<ul>
+<li>mean</li>
+<li>median</li>
+<li>variance</li>
+<li>correlations</li>
+<li>conditional expectations</li>
+</ul>
+<!-- =================================================================== -->
+</section>
+<section id="life-expectancy-at-birth" class="slide level2">
+<h2>Life expectancy at birth</h2>
+<div class="columns">
+<div class="column" style="width:69%;">
+<div class="fragment" data-fragment-index="0">
+<div class="sl-crop" style="width:888px; height:576px">
+<img src="assets/econ2041-w04-expectations/image.png" style="left:-14px; top:-15px; width:915px; height:776px">
+</div>
+</div>
+</div><div class="column" style="width:27%;">
+<p>Life expectancy is based on an estimate of the average age that members of a particular population group will be when they die</p>
+<div class="fragment" data-fragment-index="0">
+<p>Source: <a href="https://ourworldindata.org/life-expectancy">Our World in Data</a></p>
+</div>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="life-expectancy-by-current-age" class="slide level2">
+<h2>Life expectancy by current age</h2>
+<div class="r-stack">
+<div class="fragment" data-fragment-index="0">
+<div class="sl-crop" style="width:951px; height:577px">
+<img src="assets/econ2041-w04-expectations/image-1.png" style="left:0px; top:-13px; width:962px; height:816px">
+</div>
+</div>
+<div class="sl-crop" style="width:947px; height:576px">
+<img src="assets/econ2041-w04-expectations/image-2.png" style="left:-9px; top:-13px; width:970px; height:823px">
+</div>
+</div>
+<p>Source: <a href="https://ourworldindata.org/life-expectancy">Our World in Data</a></p>
+<!-- =================================================================== -->
+</section>
+<section id="chetty-guess" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>Guess the gap</h2>
+<p>US men, aged 40, 2001 to 2014</p>
+<p>How many more years does a man in the richest 1% expect to live than a man in the poorest 1%?</p>
+<p><br></p>
+<p>Portal round open now: tell your neighbor your number first, then slide</p>
+<!-- =================================================================== -->
+</section>
+<section id="chetty-reveal" class="slide level2">
+<h2>The gap is 14.6 years</h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="sl-crop" style="width:712px; height:504px">
+<img src="assets/econ2041-w04-expectations/image-3.png" style="left:0px; top:-32px; width:712px; height:536px">
+</div>
+</div><div class="column" style="width:34%;">
+<p>Men, age 40</p>
+<ul>
+<li>Poorest 1%: 72.7 years</li>
+<li>Richest 1%: 87.3 years</li>
+</ul>
+<p>Women: a gap of 10.1 years</p>
+<p>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4866586/">Chetty et al. (2016)</a></p>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="life-expectancy-in-the-united-states-2" class="slide level2 sl-canvas" data-auto-animate="true" data-background-color="rgb(207, 226, 243)">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="04cf76cbb7f851a70e5b153e00f6caa1" data-block-type="image" data-id="image-85b50a" data-name="image-85b50a" style="width: 711.709px; height: 504px; left: 80px; top: 216px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.940574" data-crop-width="1" data-crop-x="0" data-crop-y="0.059426" data-natural-height="975" data-natural-width="1295" src="assets/econ2041-w04-expectations/image-3.png" style="left: 0px; top: -32px; width: 712px; height: 536px;"></div></div>
+<div class="sl-block" data-block-id="006fdd194ab440ff55b0bd83773d07a8" data-block-type="text" data-id="text-665e36" data-name="text-665e36" style="height: auto; width: 343.984px; left: 936.016px; top: 678px;"><div class="sl-block-content" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.56;"><p>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4866586/" target="_blank">Chetty et al. (2016)</a></p></div></div>
+<div class="sl-block" data-block-id="1fc3a33f47d58408895742d5acd7186b" data-block-type="math" data-id="math-86e729" data-name="math-86e729" style="width: auto; height: auto; left: 820.893px; top: 360px;"><div class="sl-block-content notranslate" data-math-display="true" style="z-index: 12; font-size: 90%;"><div class="math-input">E[Y | X=x]</div></div></div>
+<div class="sl-block" data-block-id="558c5867ecaa8541e98ffb58351c82ee" data-block-type="text" data-id="text-4dcc6d" data-name="text-4dcc6d" style="height: auto; width: 459.107px; left: 820.893px; top: 216px;"><div class="sl-block-content" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 120%; line-height: 1.56;">
+<p><i>Y</i>: life expectancy at age 40</p>
+<p><i>X</i>: income percentile&nbsp;</p>
+</div></div>
+<div class="sl-block" data-block-id="87f4a4b54ba79870dd83ab0f25dadc4d" data-block-type="line" data-id="line-e12004" data-name="line-e12004" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 273.311px; top: 229.91px;"><div class="sl-block-content fragment" data-fragment-index="1" data-line-color="#0284ca" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="0" data-line-x2="2.6665808528839056e-14" data-line-y1="435.4857016309491" data-line-y2="0" style="z-index: 14;"><svg height="435.4857016309491" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 1 435.4857016309491" width="1" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="#0284ca" stroke-dasharray="0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="1b5cfaff833932e755e0056e45fa90d5" data-block-type="line" data-id="line-a75464" data-name="line-a75464" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 135.803px; top: 490.396px;"><div class="sl-block-content fragment" data-fragment-index="2" data-line-color="#0284ca" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="137.508" data-line-x2="0" data-line-y1="0" data-line-y2="0" style="z-index: 15;"><svg height="1" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 137.508 1" width="137.508" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M137.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="#0284ca" stroke-dasharray="0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177 0 8.029882352941177" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M137.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M137.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="0246530dac3d490347a2debc21a4527d" data-block-type="line" data-id="line-ad097a" data-name="line-ad097a" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 135.803px; top: 352.964px;"><div class="sl-block-content fragment" data-fragment-index="4" data-line-color="#9900ff" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="512.7249940625677" data-line-x2="0" data-line-y1="0" data-line-y2="0" style="z-index: 16;"><svg height="1" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 512.7249940625677 1" width="512.7249940625677" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M512.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="#9900ff" stroke-dasharray="0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409 0 8.12261895337409" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M512.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M512.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="8d95ac0ca53cbdeba44b9eb1afceabb7" data-block-type="line" data-id="line-44b9eb" data-name="line-44b9eb" style="width: auto; height: auto; min-width: 0px; min-height: 0px; left: 648.528px; top: 229.91px;"><div class="sl-block-content fragment" data-fragment-index="3" data-line-color="#9900ff" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="0" data-line-x2="2.6665808528839056e-14" data-line-y1="435.4857016309491" data-line-y2="0" style="z-index: 17;"><svg height="435.4857016309491" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 1 435.4857016309491" width="1" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="#9900ff" stroke-dasharray="0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="ab87a4c6b759fa901775e42dde4bd76b" data-block-type="text" data-id="text-290a0f" data-name="text-290a0f" style="height: auto; width: 459.107px; left: 820.893px; top: 468px;"><div class="sl-block-content fragment" data-fragment-index="0" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; text-align: left; font-size: 120%;">
+<p>Compare:</p>
+<ul>
+<li><i>E</i>[<i>Y</i> | <i>X</i> = p20]</li>
+<li><span style="color:rgb(0, 0, 0)"><i>E</i>[<i>Y</i> | <i>X</i> = p80]</span></li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-id="687e6bae9de92ddf08e26b5fb47ed97d" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; text-align: left;"><h2><span style="color:rgb(0, 0, 0)">Life expectancy in the United States</span></h2></div></div>
+<!-- =================================================================== -->
+</section>
+<section id="life-expectancy-in-the-united-states-3" class="slide level2 sl-canvas" data-auto-animate="true" data-background-color="rgb(207, 226, 243)">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="be66b302c089cca5323a9e4593255ff7" data-block-type="image" data-id="image-85b50a" data-name="image-85b50a" style="width: 711.709px; height: 504px; left: 80px; top: 216px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.940574" data-crop-width="1" data-crop-x="0" data-crop-y="0.059426" data-natural-height="975" data-natural-width="1295" src="assets/econ2041-w04-expectations/image-3.png" style="left: 0px; top: -32px; width: 712px; height: 536px;"></div></div>
+<div class="sl-block" data-block-id="bcfacfa13b0ee0881ddfc18e8e8705b9" data-block-type="text" data-id="text-665e36" data-name="text-665e36" style="height: auto; width: 343.984px; left: 936.016px; top: 678px;"><div class="sl-block-content" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.56;"><p>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4866586/" target="_blank">Chetty et al. (2016)</a></p></div></div>
+<div class="sl-block" data-block-id="408f5240ed199baa67a1c75ab0c0d07d" data-block-type="math" data-id="math-86e729" data-name="math-86e729" style="width: auto; height: auto; left: 820.893px; top: 360px;"><div class="sl-block-content notranslate" data-math-display="true" style="z-index: 12; font-size: 90%;"><div class="math-input">E[Y | X=x]</div></div></div>
+<div class="sl-block" data-block-id="aee01ee6609915fefaaaf97e84bb79ea" data-block-type="text" data-id="text-4dcc6d" data-name="text-4dcc6d" style="height: auto; width: 459.107px; left: 820.893px; top: 216px;"><div class="sl-block-content" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 120%; line-height: 1.56;">
+<p><i>Y</i>: life expectancy at age 40</p>
+<p><i>X</i>: income percentile&nbsp;</p>
+</div></div>
+<div class="sl-block" data-block-id="474d75be5001218e1b57fd3dc11b036b" data-block-type="line" data-id="line-e12004" data-name="line-e12004" style="width: auto; height: auto; left: 155.311px; top: 229.91px;"><div class="sl-block-content" data-line-color="#0284ca" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="0" data-line-x2="2.6665808528839056e-14" data-line-y1="435.4857016309491" data-line-y2="0" style="z-index: 14;"><svg height="435.4857016309491" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 1 435.4857016309491" width="1" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="#0284ca" stroke-dasharray="0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="64ce464dca79ec80840c4c3352ce4b92" data-block-type="line" data-id="line-a75464" data-name="line-a75464" style="width: auto; height: auto; left: 135.803px; top: 595.528px;"><div class="sl-block-content" data-line-color="#0284ca" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="19.50800000000001" data-line-x2="0" data-line-y1="0" data-line-y2="0" style="z-index: 15;"><svg height="1" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 19.50800000000001 1" width="19.50800000000001" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M19.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="#0284ca" stroke-dasharray="0 9.254000000000005 0 9.254000000000005 0 9.254000000000005" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M19.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M19.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="6e01c8a4c3c7f788aaf5919973298a78" data-block-type="line" data-id="line-ad097a" data-name="line-ad097a" style="width: auto; height: auto; left: 135.803px; top: 288.964px;"><div class="sl-block-content fragment" data-fragment-index="0" data-line-color="#9900ff" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="638.725" data-line-x2="0" data-line-y1="0" data-line-y2="0" style="z-index: 16;"><svg height="1" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 638.725 1" width="638.725" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M638.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="#9900ff" stroke-dasharray="0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M638.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M638.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="510de9088d2eea1dfd2d067b6b73e8ec" data-block-type="line" data-id="line-44b9eb" data-name="line-44b9eb" style="width: auto; height: auto; left: 774.528px; top: 229.91px;"><div class="sl-block-content fragment" data-fragment-index="0" data-line-color="#9900ff" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="0" data-line-x2="2.6665808528839056e-14" data-line-y1="435.4857016309491" data-line-y2="0" style="z-index: 17;"><svg height="435.4857016309491" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 1 435.4857016309491" width="1" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="#9900ff" stroke-dasharray="0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="51161bdd257898adbe4c0140bf83c765" data-block-type="text" data-id="text-290a0f" data-name="text-290a0f" style="height: auto; width: 459.107px; left: 820.893px; top: 468px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 18; text-align: left; font-size: 120%;">
+<p>Compare:</p>
+<ul>
+<li><i>E</i>[<i>Y</i> | <i>X</i> = p20]</li>
+<li><span style="color:rgb(0, 0, 0)"><i>E</i>[<i>Y</i> | <i>X</i> = p80]</span></li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-id="6508672cd353674d894ddd3603666086" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; text-align: left;"><h2><span style="color:rgb(0, 0, 0)">Life expectancy in the United States</span></h2></div></div>
+<!-- =================================================================== -->
+</section>
+<section id="life-expectancy-in-the-united-states-4" class="slide level2 sl-canvas" data-auto-animate="true" data-background-color="rgb(207, 226, 243)">
+<h2 data-id="quarto-animate-title"></h2>
+<div class="sl-block" data-block-id="2b004ea903e20f3a1fa288e7d586a6a2" data-block-type="image" data-id="image-85b50a" data-name="image-85b50a" style="width: 711.709px; height: 504px; left: 80px; top: 216px; min-width: 1px; min-height: 1px;"><div class="sl-block-content" style="z-index: 10;"><img class="" data-crop-height="0.940574" data-crop-width="1" data-crop-x="0" data-crop-y="0.059426" data-natural-height="975" data-natural-width="1295" src="assets/econ2041-w04-expectations/image-3.png" style="left: 0px; top: -32px; width: 712px; height: 536px;"></div></div>
+<div class="sl-block" data-block-id="62459715a16d05945f8b9e893e071a54" data-block-type="text" data-id="text-665e36" data-name="text-665e36" style="height: auto; width: 343.984px; left: 936.016px; top: 678px;"><div class="sl-block-content" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; text-align: left; font-size: 90%; line-height: 1.56;"><p>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4866586/" target="_blank">Chetty et al. (2016)</a></p></div></div>
+<div class="sl-block" data-block-id="f5293021255da8f2879babd18c2d9675" data-block-type="math" data-id="math-86e729" data-name="math-86e729" style="width: auto; height: auto; left: 820.893px; top: 360px;"><div class="sl-block-content notranslate" data-math-display="true" style="z-index: 12; font-size: 90%;"><div class="math-input">E[Y | X=x, Z = z]</div></div></div>
+<div class="sl-block" data-block-id="9900718e4a69396d0c0139623d48d12b" data-block-type="text" data-id="text-4dcc6d" data-name="text-4dcc6d" style="height: auto; width: 459.107px; left: 820.893px; top: 216px;"><div class="sl-block-content" data-has-line-height="" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; text-align: left; font-size: 120%; line-height: 1.56;">
+<p><i>Y</i>: life expectancy at age 40</p>
+<p><i>X</i>: income percentile&nbsp;</p>
+</div></div>
+<div class="sl-block" data-block-id="566a8520e1f87c81d54847b6fc087f97" data-block-type="text" data-id="text-290a0f" data-name="text-290a0f" style="height: auto; width: 459.107px; left: 820.893px; top: 468px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; text-align: left; font-size: 120%;">
+<p>Compare:</p>
+<ul>
+<li><i>E</i>[<i>Y</i> | <i>X</i> = p20]</li>
+<li><span style="color:rgb(0, 0, 0)"><i>E</i>[<i>Y</i> | <i>X</i> = p80]</span></li>
+</ul>
+</div></div>
+<div class="sl-block" data-block-id="1fd518e06c30a0e07c12680f12ebc340" data-block-type="line" data-id="line-e12004" data-name="line-e12004" style="width: auto; height: auto; left: 155.311px; top: 229.91px;"><div class="sl-block-content" data-line-color="#0284ca" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="0" data-line-x2="2.6665808528839056e-14" data-line-y1="435.4857016309491" data-line-y2="0" style="z-index: 15;"><svg height="435.4857016309491" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 1 435.4857016309491" width="1" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="#0284ca" stroke-dasharray="0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="f4e5c071354e7ca78927b6baeb1e3078" data-block-type="line" data-id="line-a75464" data-name="line-a75464" style="width: auto; height: auto; left: 135.803px; top: 595.528px;"><div class="sl-block-content" data-line-color="#0284ca" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="19.50800000000001" data-line-x2="0" data-line-y1="0" data-line-y2="0" style="z-index: 16;"><svg height="1" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 19.50800000000001 1" width="19.50800000000001" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M19.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="#0284ca" stroke-dasharray="0 9.254000000000005 0 9.254000000000005 0 9.254000000000005" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M19.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M19.508 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="910be5bedd62a181fcbab8334331f980" data-block-type="line" data-id="line-ad097a" data-name="line-ad097a" style="width: auto; height: auto; left: 135.803px; top: 288.964px;"><div class="sl-block-content" data-line-color="#9900ff" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="638.725" data-line-x2="0" data-line-y1="0" data-line-y2="0" style="z-index: 17;"><svg height="1" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 638.725 1" width="638.725" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M638.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="#9900ff" stroke-dasharray="0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038 0 8.07246835443038" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M638.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M638.725 0 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="4dc09363d64a3edacf17b91ecd3d6ce3" data-block-type="line" data-id="line-44b9eb" data-name="line-44b9eb" style="width: auto; height: auto; left: 774.528px; top: 229.91px;"><div class="sl-block-content" data-line-color="#9900ff" data-line-end-type="none" data-line-start-type="none" data-line-style="dotted" data-line-width="4px" data-line-x1="0" data-line-x2="2.6665808528839056e-14" data-line-y1="435.4857016309491" data-line-y2="0" style="z-index: 18;"><svg height="435.4857016309491" preserveaspectratio="xMidYMid" version="1.1" viewbox="0 0 1 435.4857016309491" width="1" xmlns="http://www.w3.org/2000/svg"><path class="line-element" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="#9900ff" stroke-dasharray="0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243 0 8.046031511684243" stroke-linecap="round" stroke-width="4"></path><path class="line-skeleton" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)"></path><path class="line-hitarea" d="M0 435.486 L0 0" fill="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" stroke-width="15"></path></svg></div></div>
+<div class="sl-block" data-block-id="2d5a499e26a108eceabcae109def0301" data-block-type="text" data-id="text-e037e0" data-name="text-e037e0" style="height: auto; width: 1120px; left: 26.9785px; top: 35px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 19; text-align: left;"><h2><span style="color:rgb(0, 0, 0)">Life expectancy in the United States</span></h2></div></div>
+<!-- =================================================================== -->
+</section>
+<section id="unconditional-vs-conditional-expectation" class="slide level2" data-background-color="rgb(207, 226, 243)">
+<h2><span style="color:rgb(0, 0, 0)">Unconditional vs. conditional expectation</span></h2>
+<p><span class="math inline">E[Y]</span> hides a lot of heterogeneity that we can see with <span class="math inline">E[Y | X]</span>!</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="sl-crop" style="width:582px; height:412px">
+<img src="assets/econ2041-w04-expectations/image-3.png" style="left:0px; top:-26px; width:582px; height:438px">
+</div>
+</div><div class="column" style="width:51%;">
+<div class="sl-crop" style="width:635px; height:412px">
+<img src="assets/econ2041-w04-expectations/image.png" style="left:-10px; top:-11px; width:655px; height:555px">
+</div>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="importance-of-looking-beyond-averages" class="slide level2" data-background-color="rgb(207, 226, 243)">
+<h2>Importance of looking beyond averages!</h2>
+<p>Low-income men in the US have <span class="math inline">\approx</span> LE as Zimbabwean men!</p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="sl-crop" style="width:582px; height:412px">
+<img src="assets/econ2041-w04-expectations/image-3.png" style="left:0px; top:-26px; width:582px; height:438px">
+</div>
+</div><div class="column" style="width:51%;">
+<div class="sl-crop" style="width:680px; height:412px">
+<img src="assets/econ2041-w04-expectations/image-4.png" style="left:0px; top:-9px; width:687px; height:583px">
+</div>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="is-this-a-causal-relationship" class="slide level2" data-background-color="rgb(207, 226, 243)">
+<h2><span style="color:rgb(0, 0, 0)">Is this a causal relationship? </span></h2>
+<div class="columns">
+<div class="column" style="width:62%;">
+<div class="sl-crop" style="width:712px; height:504px">
+<img src="assets/econ2041-w04-expectations/image-3.png" style="left:0px; top:-32px; width:712px; height:536px">
+</div>
+</div><div class="column" style="width:34%;">
+<div class="fragment" data-fragment-index="0">
+<p>Does this suggest that giving more money to those at the bottom of the income distribution would <span class="math inline">\uparrow</span> their life expectancy?</p>
+</div>
+<p>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4866586/">Chetty et al. (2016)</a></p>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="descriptives-can-be-incredibly-powerful-2" class="slide level2" data-background-color="rgb(207, 226, 243)">
+<h2><span style="color:rgb(0, 0, 0)">Descriptives can be incredibly powerful!</span></h2>
+<p>Place matters!</p>
+<div class="columns">
+<div class="column" style="width:63%;">
+<p><img data-src="assets/econ2041-w04-expectations/image-5.png" style="width:90.0%"></p>
+</div><div class="column" style="width:33%;">
+<p>It's better to be poor in<br> New York than in Detroit</p>
+<p>Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4866586/">Chetty et al. (2016)</a></p>
+</div></div>
+<!-- =================================================================== -->
+</section>
+<section id="types-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>Discrete or categorical?</h2>
+<!-- =================================================================== -->
+</section>
+<section id="types-gap" class="slide level2">
+<h2>The recording's rule needs a companion</h2>
+<p>Essential Concepts, week 3: discrete takes a finite set of values, continuous takes a continuum</p>
+<p><br></p>
+<p>But every column in every dataset has finitely many values</p>
+<ul>
+<li>PISA <code>escs</code>, the socio-economic index: 62 distinct values in 12,136 rows</li>
+<li>PISA <code>math</code> score: 3,858 distinct values</li>
+</ul>
+<p><br></p>
+<div class="fragment">
+<p>Ask what the variable measures in the world, not how many values the column has</p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="types-three" class="slide level2">
+<h2>Three kinds of variables in the world</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>In the world</th>
+<th>Example</th>
+<th>Arithmetic makes sense?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A count</td>
+<td>number of siblings: 0, 1, 2, ...</td>
+<td>yes: an average of 1.4 siblings</td>
+</tr>
+<tr class="even">
+<td>A measurement</td>
+<td>math score, socio-economic index, height</td>
+<td>yes: any value in a range, rounded when recorded</td>
+</tr>
+<tr class="odd">
+<td>A label</td>
+<td>degree enrolled in, suburb, gender</td>
+<td>no: there is no average suburb</td>
+</tr>
+</tbody>
+</table>
+<!-- =================================================================== -->
+</section>
+<section id="types-codes" class="slide level2">
+<h2>Codes look numeric, and Python averages them</h2>
+<p>Education recorded as 1 = completed primary, 2 = completed high school, 3 = completed a degree</p>
+<p><br></p>
+<p><code>df['education'].mean()</code> returns 2.3</p>
+<p><br></p>
+<div class="fragment">
+<p>2.3 is a fact about the codes, not about anyone's education</p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="types-binning" class="slide level2">
+<h2>Rounding keeps arithmetic, binning kills it</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Rounded</p>
+<ul>
+<li>A score of 61.4 recorded as 61</li>
+<li>Average of 61, 74, 58: 64.3, and it means something</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<p>Binned</p>
+<ul>
+<li>PISA <code>book</code>: books at home, recorded as 0-10, 11-25, 26-100, 101-200, 201-500, 500+</li>
+<li>Average of "101-200" and "26-100": nothing</li>
+</ul>
+</div></div>
+<p><br></p>
+<div class="fragment">
+<p>Books at home is a count in the world; the survey turned it into a label at collection time</p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="types-terms" class="slide level2">
+<h2>Two words for the label case, both in use</h2>
+<ul>
+<li>The Essential Concepts recordings say discrete for anything that is not continuous</li>
+<li>Categorical is the everyday word for the label kind: it names why averaging is nonsense</li>
+<li>You will meet both; when a variable is a label, say categorical and nobody will object</li>
+</ul>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>The correlation gallery</h2>
+<p>Six clouds of dots</p>
+<p>For each one: tell your neighbor your guess, then slide to your own answer on the portal</p>
+<p>Then we see the room's guesses against the truth</p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-1" class="slide level2">
+<h2>Gallery 1: math and reading, 12,136 students</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_1_math_read.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-1-reveal" class="slide level2">
+<h2>Gallery 1: math and reading, r = 0.79</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_1_math_read_reveal.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-2" class="slide level2">
+<h2>Gallery 2: math and family background</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_2_math_escs.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-2-reveal" class="slide level2">
+<h2>Gallery 2: math and family background, 0.38</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_2_math_escs_reveal.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-3" class="slide level2">
+<h2>Gallery 3: happiness and GDP, 144 countries</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_3_happy_gdp.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-3-reveal" class="slide level2">
+<h2>Gallery 3: happiness and GDP, r = 0.69</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_3_happy_gdp_reveal.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-3-log" class="slide level2">
+<h2>Same countries, log GDP: r = 0.79</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_3b_happy_loggdp_reveal.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-4" class="slide level2">
+<h2>Gallery 4: fertility and life expectancy</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_4_fert_le.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: UN World Population Prospects, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-4-reveal" class="slide level2">
+<h2>Gallery 4: fertility and life expectancy, -0.80</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_4_fert_le_reveal.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: UN World Population Prospects, via Our World in Data</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-5" class="slide level2">
+<h2>Gallery 5: the same pair, 25 students</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_5_math_escs_n25.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD), 25 students drawn at random</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-5-reveal" class="slide level2">
+<h2>Gallery 5: 25 students, r = 0.49</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_5_math_escs_n25_reveal.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD), 25 students drawn at random</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-5-sampling" class="slide level2">
+<h2>A thousand samples of 25: r from -0.4 to 0.8</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_5_sampling_hist.png" style="width:66.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-6" class="slide level2">
+<h2>Gallery 6: one last cloud</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_6_ushape.png" style="width:60.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="gallery-6-reveal" class="slide level2">
+<h2>Gallery 6: r = -0.03, yet y depends on x</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/gallery_6_ushape_reveal.png" style="width:60.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="quad-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>Where a covariance comes from</h2>
+<!-- =================================================================== -->
+</section>
+<section id="quad-1" class="slide level2">
+<h2>300 students, math against family background</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/quad_1_cloud.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD), 300 students drawn at random</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="quad-2" class="slide level2">
+<h2>Step 1: find the two means</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/quad_2_means.png" style="width:60.0%"></p>
+</div>
+<p><span class="src">Data: PISA 2022, Australia (OECD), 300 students drawn at random</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="quad-3" class="slide level2">
+<h2>Step 2: each student's two deviations</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/quad_3_one_student.png" style="width:60.0%"></p>
+</div>
+<p><span class="math inline">(x_i - \bar{x})(y_i - \bar{y}) = (+1.09)(+89) = +97</span></p>
+<!-- =================================================================== -->
+</section>
+<section id="quad-4" class="slide level2">
+<h2>Step 3: the sign of the product is the quadrant</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/quad_4_signs.png" style="width:60.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="quad-5" class="slide level2">
+<h2>Step 4: add up: 199 pull up, 101 pull down</h2>
+<div style="text-align: center;">
+<p><img data-src="assets/econ2041-w04-expectations/quad_5_counts.png" style="width:60.0%"></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="cov-to-r" class="slide level2">
+<h2>Nonsense units, so we standardize</h2>
+<p><span class="math display">\text{cov}(X, Y) = \frac{1}{n}\sum_i (x_i - \bar{x})(y_i - \bar{y}) = 29 \;\text{index points} \times \text{score points}</span></p>
+<p><br></p>
+<div class="fragment">
+<p><span class="math display">r = \frac{\text{cov}(X, Y)}{s_X \, s_Y} = \frac{29}{0.78 \times 91.7} = 0.41</span></p>
+</div>
+<!-- =================================================================== -->
+</section>
+<section id="take-aways" class="slide level2" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
+<h2>Some take-aways</h2>
+<ul>
+<li>A conditional expectation is a function: one average for every value of X</li>
+<li>Averaging hides the ends: 14.6 years, inside one country</li>
+<li>Correlation sees straight lines only, and a sample's r is itself random</li>
+<li>The covariance is a vote by quadrant; dividing by the SDs removes the units</li>
+</ul>
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="econ2041-w04-expectations_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>
+    // render slides.com .math-input blocks on raw-HTML ported slides,
+    // using the KaTeX instance Quarto already loads
+    window.addEventListener('load', function () {
+      if (typeof katex === 'undefined') return;
+      document.querySelectorAll('.math-input').forEach(function (el) {
+        var display = el.closest('[data-math-display="true"]') !== null;
+        var out = document.createElement('div');
+        out.className = 'math-output';
+        try { katex.render(el.textContent, out, {displayMode: display, throwOnError: false}); }
+        catch (e) { out.textContent = el.textContent; }
+        el.replaceWith(out);
+      });
+    });
+    </script>
+    
+
+</body></html>
