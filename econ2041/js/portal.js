@@ -21,7 +21,11 @@
   var serverOffset = 0; // server now minus client now; countdowns use this
   var homeRounds = [];
   var pendingSelections = {}; // round_id -> array of selected option indices
+  var shownPractice = {};     // round_id -> practice_shown already logged
   var formState = {};         // round_id -> { answers: {fieldId: value}, touched: {} }
+  var DRAW_SIZE = 3;          // items per practice draw
+  var practiceState = {};     // round_id -> { phase, draw, answers, optOrder, given, fb }
+  var loggedTabOpen = false;  // practice_tab_open once per page session
 
   // ---------- variant assignment (parity-tested against Code.gs) ----------
 
@@ -37,6 +41,23 @@
   function variantOf(seed, roundId, k) {
     if (!k || k < 2) return 0;
     return hashStr(seed + ':' + roundId) % k;
+  }
+
+  // Math.random Fisher-Yates: practice option order and draw fill must vary
+  // per render, unlike the seed-deterministic vignette shuffle below.
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i >= 1; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function range(n) {
+    var out = [];
+    for (var i = 0; i < n; i++) out.push(i);
+    return out;
   }
 
   // ---------- vignette assignment (parity-tested against Code.gs) ----------
@@ -117,6 +138,157 @@
     var s = values.slice().sort(function (a, b) { return a - b; });
     var m = Math.floor(s.length / 2);
     return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+  }
+
+  // ---------- fitline: scatter + line canvas (shared by the guessing card,
+  // the locked view, and the reveal) ----------
+
+  function fmtNum(v) {
+    return String(Math.round(Number(v) * 100) / 100);
+  }
+
+  function lineEquation(cfg, alpha, beta) {
+    var yl = (cfg && cfg.y_label) || 'y', xl = (cfg && cfg.x_label) || 'x';
+    return esc(yl) + ' = ' + fmtNum(alpha) + (beta >= 0 ? ' + ' : ' − ') +
+      fmtNum(Math.abs(beta)) + ' × ' + esc(xl);
+  }
+
+  // Fitline canvases size themselves to the card column: CSS keeps the box
+  // at 100% of its container width, and this locks the backing store to that
+  // measured width at a fixed aspect ratio, scaled by devicePixelRatio, so
+  // lines and dots stay crisp instead of a 320px bitmap stretching to fit.
+  // The aspect ratio comes from the canvas's own width/height HTML attributes
+  // the first time it is sized, then is cached so later resizes cannot drift.
+  var FIT_CANVAS_CLASS = 'fit-canvas';
+
+  function sizeFitCanvas(canvas) {
+    var w = Math.round(canvas.getBoundingClientRect().width);
+    if (!w) return null;
+    if (!canvas._fitAspect) {
+      canvas._fitAspect = (canvas.width && canvas.height)
+        ? canvas.width / canvas.height : 320 / 230;
+    }
+    var h = Math.round(w / canvas._fitAspect);
+    var dpr = window.devicePixelRatio || 1;
+    canvas.classList.add(FIT_CANVAS_CLASS);
+    canvas.style.height = h + 'px';
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { w: w, h: h };
+  }
+
+  // Round tick positions inside [lo, hi]: step from {1,2,5} x 10^k so that
+  // about n ticks fit.
+  function niceTicks(lo, hi, n) {
+    var span = hi - lo;
+    if (!(span > 0)) return [];
+    var raw = span / n, mag = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10));
+    var step = [1, 2, 5, 10].map(function (m) { return m * mag; })
+      .filter(function (s) { return s >= raw; })[0];
+    var out = [], t = Math.ceil(lo / step) * step;
+    for (; t <= hi + step * 1e-9; t += step) out.push(Math.round(t * 1e6) / 1e6);
+    return out;
+  }
+
+  // opts: { mine: {alpha,beta}, truth: {alpha,beta}, pairs: [{alpha,beta}] }.
+  // pairs draw first as thin translucent "spaghetti", truth in bold green,
+  // mine as a solid accent line on top, so a student's own guess never gets
+  // buried under the class's.
+  function drawFitCanvas(canvas, config, opts) {
+    if (!canvas || !config) return;
+    opts = opts || {};
+    canvas._fitConfig = config;
+    canvas._fitOpts = opts;
+    var dims = sizeFitCanvas(canvas);
+    if (!dims) return; // not laid out yet (e.g. a hidden tab)
+    var ctx = canvas.getContext('2d');
+    var W = dims.w, H = dims.h;
+    var padL = 40, padR = 8, padT = 8, padB = 34;
+    var xr = config.x_range || {}, yr = config.y_range || {};
+    var xlo = Number(xr.min), xhi = Number(xr.max);
+    var ylo = Number(yr.min), yhi = Number(yr.max);
+    function X(v) { return padL + (v - xlo) / (xhi - xlo) * (W - padL - padR); }
+    function Y(v) { return H - padB - (v - ylo) / (yhi - ylo) * (H - padT - padB); }
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = '#d8cdb8'; ctx.lineWidth = 1;
+    ctx.strokeRect(padL, padT, W - padL - padR, H - padT - padB);
+    // ticks and axis titles live in the padding, so the plot spans the card
+    ctx.fillStyle = '#6b6259'; ctx.font = '11px system-ui, sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    niceTicks(xlo, xhi, 6).forEach(function (t) {
+      ctx.fillText(String(t), X(t), H - padB + 3);
+    });
+    ctx.fillText(String(config.x_label || 'x'), padL + (W - padL - padR) / 2, H - padB + 17);
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    niceTicks(ylo, yhi, 5).forEach(function (t) {
+      ctx.fillText(String(t), padL - 4, Y(t));
+    });
+    ctx.save();
+    ctx.translate(10, padT + (H - padT - padB) / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(String(config.y_label || 'y'), 0, 0);
+    ctx.restore();
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    if (xlo < 0 && xhi > 0) { // dashed guide at x = 0: the intercept is read here
+      ctx.save(); ctx.setLineDash([4, 4]); ctx.strokeStyle = '#8c8377'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(X(0), padT); ctx.lineTo(X(0), H - padB); ctx.stroke();
+      ctx.restore();
+    }
+    ctx.fillStyle = 'rgba(74,127,181,0.55)';
+    (config.x || []).forEach(function (xv, i) {
+      var yv = (config.y || [])[i];
+      if (yv === undefined) return;
+      ctx.beginPath(); ctx.arc(X(xv), Y(yv), 2.6, 0, 2 * Math.PI); ctx.fill();
+    });
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(padL, padT, W - padL - padR, H - padT - padB);
+    ctx.clip();
+    function drawLine(alpha, beta, color, width, alphaOp) {
+      ctx.strokeStyle = color; ctx.lineWidth = width;
+      ctx.globalAlpha = alphaOp === undefined ? 1 : alphaOp;
+      ctx.beginPath();
+      ctx.moveTo(X(xlo), Y(alpha + beta * xlo));
+      ctx.lineTo(X(xhi), Y(alpha + beta * xhi));
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    (opts.pairs || []).forEach(function (p) {
+      drawLine(Number(p.alpha), Number(p.beta), '#c9a24b', 1.4, 0.35);
+    });
+    if (opts.truth) drawLine(Number(opts.truth.alpha), Number(opts.truth.beta), '#0f7a63', 3, 1);
+    if (opts.mine) drawLine(Number(opts.mine.alpha), Number(opts.mine.beta), '#76232f', 2.6, 1);
+    ctx.restore();
+  }
+
+  function fitlineCommitHtml(r) {
+    var c = r.config || {};
+    var a = c.alpha || {}, b = c.beta || {};
+    var midA = fmtNum(a.start !== undefined ? Number(a.start) : (Number(a.min) + Number(a.max)) / 2);
+    var midB = fmtNum(b.start !== undefined ? Number(b.start) : (Number(b.min) + Number(b.max)) / 2);
+    return '<canvas id="fit-' + r.round_id + '" width="320" height="230"></canvas>' +
+      '<div class="field"><p class="field-label">Intercept: ' + esc(c.y_label || 'y') +
+      ' when ' + esc(c.x_label || 'x') + ' = 0</p>' +
+      '<input type="range" id="fa-slider-' + r.round_id + '" min="' + a.min +
+      '" max="' + a.max + '" step="' + (a.step || 'any') + '" value="' + midA + '">' +
+      '<input type="number" id="fa-num-' + r.round_id + '" step="' + (a.step || 'any') +
+      '" inputmode="decimal" value="' + midA + '"></div>' +
+      '<div class="field"><p class="field-label">Slope: change in ' + esc(c.y_label || 'y') +
+      ' per unit ' + esc(c.x_label || 'x') + '</p>' +
+      '<input type="range" id="fb-slider-' + r.round_id + '" min="' + b.min +
+      '" max="' + b.max + '" step="' + (b.step || 'any') + '" value="' + midB + '">' +
+      '<input type="number" id="fb-num-' + r.round_id + '" step="' + (b.step || 'any') +
+      '" inputmode="decimal" value="' + midB + '"></div>' +
+      '<button id="go-' + r.round_id + '">Submit</button>';
+  }
+
+  function fitlineCommittedHtml(r) {
+    var mv = normalizeValue(r.my_value);
+    if (!mv || typeof mv !== 'object') return '<p class="mine">Your line is in.</p>';
+    return '<canvas id="fitc-' + r.round_id + '" width="320" height="230"></canvas>' +
+      '<p class="mine">Your line: <strong>' +
+      lineEquation(r.config, mv.alpha, mv.beta) + '</strong></p>';
   }
 
   function compact(v, prefix) {
@@ -245,7 +417,8 @@
     s.className = cls || '';
   }
 
-  function stateChip(state) {
+  function stateChip(state, practice) {
+    if (practice) return '<span class="chip chip-practice">practice</span>';
     var labels = { open: 'open', closed: 'awaiting reveal', revealed: 'revealed' };
     return '<span class="chip chip-' + state + '">' + (labels[state] || state) + '</span>';
   }
@@ -254,6 +427,49 @@
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
+  }
+
+  // Authored text (prompts, field labels, explanations) may carry newlines,
+  // which HTML collapses to a space. Escape first, then turn the newlines into
+  // breaks, so the escaping still owns everything the author wrote. Used to put
+  // the question being asked about on its own line, under the instruction.
+  function escLines(s) {
+    return esc(s).replace(/\r?\n/g, '<br>');
+  }
+
+  function practiceLabelHtml(label, isCode) {
+    return String(label).split(/\r?\n/).map(function (line) {
+      if (isCode && /^ {4}\S/.test(line)) {
+        return '<code class="practice-code-line">' + esc(line.slice(4)) + '</code>';
+      }
+      return esc(line);
+    }).join('<br>');
+  }
+
+  function practiceFigureHtml(spec) {
+    var src = String((spec && spec.figure) || '');
+    var alt = String((spec && spec.figure_alt) || '');
+    if (!/^assets\/practice\/[a-z0-9][a-z0-9-]*\.png$/.test(src) || !alt) return '';
+    return '<figure class="practice-figure"><img src="' + esc(src) +
+      '" alt="' + esc(alt) + '" loading="lazy" decoding="async"></figure>';
+  }
+
+  // Escaping and math coexist: esc() turns "<" into "&lt;" in the markup, and
+  // the typesetter reads text content, where it is "<" again. Call this after
+  // every innerHTML write. A missing library is not an error worth surfacing
+  // to a student mid-lecture; the LaTeX source just stays visible.
+  var MATH_DELIMS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '\\[', right: '\\]', display: true },
+    { left: '$', right: '$', display: false },
+    { left: '\\(', right: '\\)', display: false },
+  ];
+
+  function typeset(node) {
+    if (!node || typeof window.renderMathInElement !== 'function') return;
+    try {
+      window.renderMathInElement(node, { delimiters: MATH_DELIMS, throwOnError: false });
+    } catch (e) { /* leave the source text as written */ }
   }
 
   // A cap equal to the number of options is not really a cap, so say so.
@@ -280,27 +496,422 @@
     return picks.map(function (p) { return opts[p] === undefined ? p : opts[p]; }).join(', ');
   }
 
+  // ---------- routing: lecture is the default; #practice is the tab ----------
+
+  function practiceRounds() {
+    return homeRounds.filter(function (r) { return r.practice; });
+  }
+
+  function lectureRounds() {
+    return homeRounds.filter(function (r) { return !r.practice; });
+  }
+
+  function slugOf(r) {
+    return (r.config && r.config.slug) || r.round_id;
+  }
+
+  function route() {
+    var h = window.location.hash || '';
+    if (h.indexOf('#practice') !== 0) return { view: 'lecture', slug: null };
+    var rest = h.slice('#practice'.length);
+    if (rest.charAt(0) === '/' && rest.length > 1) {
+      return { view: 'practice', slug: rest.slice(1) };
+    }
+    return { view: 'practice', slug: null };
+  }
+
   function render() {
+    var pools = practiceRounds();
+    var tabs = el('tabs');
+    if (tabs) tabs.style.display = pools.length ? 'flex' : 'none';
+    // no pools on the server means no practice surface at all, whatever the hash
+    var rt = pools.length ? route() : { view: 'lecture', slug: null };
+    if (tabs) {
+      el('tab-lecture').className = 'tab' + (rt.view === 'lecture' ? ' active' : '');
+      el('tab-practice').className = 'tab' + (rt.view === 'practice' ? ' active' : '');
+    }
+    // the refresh button re-fetches the round list, which only the lecture
+    // tab needs (a round can open mid-session); next to "Draw three more"
+    // it reads as a second, mystery draw button, so practice hides it
+    var refresh = el('refresh-btn');
+    if (refresh) refresh.style.display = rt.view === 'practice' ? 'none' : '';
     var wrap = el('rounds');
     wrap.innerHTML = '';
-    if (homeRounds.length === 0) {
+    if (rt.view === 'practice') {
+      if (rt.slug) renderTopic(wrap, rt.slug);
+      else renderPracticeHome(wrap);
+      typeset(wrap);
+      return;
+    }
+    renderLecture(wrap);
+  }
+
+  function renderLecture(wrap) {
+    var rounds = lectureRounds();
+    if (rounds.length === 0) {
       wrap.innerHTML = '<p class="muted">Nothing is open right now. ' +
         'New questions appear here during and after each lecture.</p>';
       return;
     }
-    homeRounds.forEach(function (r) {
+    rounds.forEach(function (r) {
       var card = document.createElement('div');
       card.className = 'round';
       card.innerHTML = cardHtml(r);
       wrap.appendChild(card);
     });
-    homeRounds.forEach(function (r) { wireCard(r); });
+    typeset(wrap);
+    rounds.forEach(function (r) { wireCard(r); });
+  }
+
+  // ---------- practice: front page, topic subpage, draw flow ----------
+
+  function answeredMap(r) {
+    var mv = normalizeValue(r.my_value);
+    return (mv && typeof mv === 'object' && !Array.isArray(mv)) ? mv : {};
+  }
+
+  function latestPick(v) {
+    return Number(Array.isArray(v) ? v[0] : v);
+  }
+
+  // Per-item status in pool order, from the home fetch: 'unseen' | 'tried'
+  // (answered, latest answer not right) | 'right' (latest answer correct).
+  // Null while committed is 'unknown', so a cold cache renders no strip
+  // rather than an all-hollow lie.
+  function itemStatuses(r) {
+    if (r.committed === 'unknown') return null;
+    var mine = answeredMap(r);
+    var truth = (r.feedback && r.feedback.truth) || {};
+    return formFieldSpecs(r.config).map(function (s) {
+      var v = mine[s.id];
+      if (v === undefined || v === null) return 'unseen';
+      return (truth[s.id] !== undefined && latestPick(v) === Number(truth[s.id]))
+        ? 'right' : 'tried';
+    });
+  }
+
+  // One progress square per pool item; the mini variant sits on the
+  // front-page cards. The counts ride along as the tooltip and the
+  // accessible label, since the squares themselves are the display.
+  function squaresHtml(r, mini) {
+    var sts = itemStatuses(r);
+    if (!sts || !sts.length) return '';
+    var tried = 0, right = 0;
+    sts.forEach(function (st) {
+      if (st !== 'unseen') tried++;
+      if (st === 'right') right++;
+    });
+    var title = 'Tried ' + tried + ' of ' + sts.length + ', ' + right + ' right';
+    return '<span class="' + (mini ? 'mini-strip' : 'sq-strip') +
+      '" role="img" title="' + title + '" aria-label="' + title + '">' +
+      sts.map(function (st) { return '<span class="sq ' + st + '"></span>'; }).join('') +
+      '</span>';
+  }
+
+  function renderPracticeHome(wrap) {
+    if (!loggedTabOpen) {
+      loggedTabOpen = true;
+      telemetry.log('practice_tab_open', '', null);
+    }
+    var intro = document.createElement('p');
+    intro.className = 'prompt';
+    intro.textContent = 'What do you want to practice today?';
+    wrap.appendChild(intro);
+    practiceRounds().forEach(function (r) {
+      var card = document.createElement('a');
+      card.className = 'round is-practice topic-card';
+      card.href = '#practice/' + slugOf(r);
+      card.innerHTML = '<span class="round-label">' + esc(r.label) + '</span>' +
+        (r.prompt ? '<p class="muted">' + escLines(r.prompt) + '</p>' : '') +
+        squaresHtml(r, true);
+      wrap.appendChild(card);
+    });
+  }
+
+  function practiceStateFor(r) {
+    var id = r.round_id;
+    if (!practiceState[id]) {
+      practiceState[id] = { phase: 'idle', draw: [], answers: {}, optOrder: {} };
+    }
+    return practiceState[id];
+  }
+
+  // Draw preference: unseen first, then previously-wrong (the home fetch
+  // already carries this seed's latest answers and their keys), then random
+  // refill. All three groups are shuffled, so nothing about item order is
+  // load-bearing; the draw event logs the served ids.
+  function drawItems(r, n) {
+    var mine = answeredMap(r);
+    var truth = (r.feedback && r.feedback.truth) || {};
+    var unseen = [], wrong = [], rest = [];
+    formFieldSpecs(r.config).forEach(function (s) {
+      var v = mine[s.id];
+      if (v === undefined || v === null) { unseen.push(s.id); return; }
+      if (truth[s.id] !== undefined && latestPick(v) !== Number(truth[s.id])) {
+        wrong.push(s.id);
+      } else {
+        rest.push(s.id);
+      }
+    });
+    var order = shuffle(unseen).concat(shuffle(wrong)).concat(shuffle(rest));
+    return order.slice(0, Math.min(n, order.length));
+  }
+
+  function specById(r) {
+    var out = {};
+    formFieldSpecs(r.config).forEach(function (s) { out[s.id] = s; });
+    return out;
+  }
+
+  function renderTopic(wrap, slug) {
+    var r = null;
+    practiceRounds().forEach(function (x) { if (slugOf(x) === slug) r = x; });
+    var crumb = '<p class="crumb"><a href="#practice">&#8592; All topics</a></p>';
+    if (!r) {
+      wrap.innerHTML = crumb +
+        '<p class="muted">That practice topic isn&#8217;t here. Pick one from the list.</p>';
+      return;
+    }
+    var id = r.round_id;
+    if (!shownPractice[id]) {
+      // opens the time-on-task clock: the first moment this student could be
+      // reading this topic's questions
+      shownPractice[id] = true;
+      telemetry.log('practice_shown', id, null);
+      telemetry.log('practice_topic_open', id, null);
+    }
+    var ps = practiceStateFor(r);
+    var html = crumb + '<div class="round-head">' +
+      '<span class="chip chip-practice">practice</span>' +
+      '<span class="round-label">' + esc(r.label) + '</span></div>' +
+      squaresHtml(r, false);
+    var poolN = formFieldSpecs(r.config).length;
+    var drawN = Math.min(DRAW_SIZE, poolN);
+    var drawWord = drawN === 3 ? 'three' : String(drawN);
+    if (ps.phase === 'answer') {
+      ps.draw.forEach(function (fid) {
+        html += practiceItemHtml(r, fid, ps);
+      });
+      html += '<button id="go-draw-' + id + '" disabled>Check my answers</button>';
+    } else if (ps.phase === 'feedback') {
+      html += drawFeedbackHtml(r, ps) +
+        '<button id="draw-' + id + '">Draw ' + drawWord + ' more</button>';
+    } else {
+      html += '<button id="draw-' + id + '">Draw ' + drawWord + ' questions</button>';
+    }
+    wrap.innerHTML = html;
+    wireTopic(r, ps);
+  }
+
+  // One pool item, options in this draw's shuffled display order; the data-i
+  // attribute keeps the canonical index, so storage and telemetry never see
+  // display order.
+  function practiceItemHtml(r, fid, ps) {
+    var s = specById(r)[fid];
+    if (!s) return '';
+    var spec = s.spec;
+    var html = '<div class="field"><p class="field-label">' +
+      practiceLabelHtml(s.label, spec.code) + '</p>' + practiceFigureHtml(spec);
+    if (spec.help) html += '<p class="help">' + esc(spec.help) + '</p>';
+    if (spec.type === 'numeric') {
+      var cur = ps.answers[fid];
+      html += '<input type="number" step="' + (spec.step || 'any') +
+        '" inputmode="decimal" id="pnum-' + r.round_id + '-' + esc(fid) +
+        '" placeholder="Your answer" value="' +
+        esc(cur === undefined || cur === null ? '' : String(cur)) + '">';
+    } else {
+      var opts = spec.options || [];
+      var order = ps.optOrder[fid] || range(opts.length);
+      html += '<div class="opts">' + order.map(function (ci) {
+        return '<button class="opt popt' +
+          (ps.answers[fid] === ci ? ' picked' : '') +
+          '" data-round="' + r.round_id + '" data-field="' + esc(fid) +
+          '" data-i="' + ci + '">' + esc(opts[ci]) + '</button>';
+      }).join('') + '</div>';
+    }
+    return html + '</div>';
+  }
+
+  function startDraw(r, ps) {
+    ps.draw = drawItems(r, DRAW_SIZE);
+    ps.answers = {};
+    ps.optOrder = {};
+    var byId = specById(r);
+    ps.draw.forEach(function (fid) {
+      var spec = (byId[fid] || {}).spec || {};
+      ps.optOrder[fid] = shuffle(range((spec.options || []).length));
+    });
+    ps.phase = 'answer';
+    telemetry.log('practice_draw', r.round_id, { items: ps.draw });
+    render();
+  }
+
+  function wireTopic(r, ps) {
+    var id = r.round_id;
+    var drawBtn = el('draw-' + id);
+    if (drawBtn) drawBtn.onclick = function () { startDraw(r, ps); };
+    var goBtn = el('go-draw-' + id);
+    var byId = specById(r);
+
+    function updateGate() {
+      if (!goBtn) return;
+      var done = ps.draw.every(function (fid) {
+        var v = ps.answers[fid];
+        if (v === undefined || v === null) return false;
+        var spec = (byId[fid] || {}).spec || {};
+        if (spec.type === 'numeric') {
+          return String(v).trim() !== '' && isFinite(Number(v));
+        }
+        return typeof v === 'number';
+      });
+      goBtn.disabled = !done;
+    }
+
+    ps.draw.forEach(function (fid) {
+      var spec = (byId[fid] || {}).spec || {};
+      if (spec.type !== 'numeric') return;
+      var num = el('pnum-' + id + '-' + fid);
+      if (!num) return;
+      num.oninput = function () {
+        ps.answers[fid] = num.value.trim();
+        updateGate();
+      };
+    });
+
+    document.querySelectorAll('.popt[data-round="' + id + '"]').forEach(function (b) {
+      b.onclick = function () {
+        var fid = b.getAttribute('data-field');
+        ps.answers[fid] = Number(b.getAttribute('data-i'));
+        document.querySelectorAll(
+          '.popt[data-round="' + id + '"][data-field="' + fid + '"]'
+        ).forEach(function (g) {
+          g.classList.toggle('picked', Number(g.getAttribute('data-i')) === ps.answers[fid]);
+        });
+        updateGate();
+      };
+    });
+
+    if (goBtn) {
+      goBtn.onclick = function () {
+        var value = {};
+        for (var i = 0; i < ps.draw.length; i++) {
+          var fid = ps.draw[i];
+          var v = ps.answers[fid];
+          if (v === undefined || v === null) return; // gate should prevent this
+          var spec = (byId[fid] || {}).spec || {};
+          value[fid] = spec.type === 'numeric' ? Number(v) : v;
+        }
+        commitDraw(r, ps, value, goBtn);
+      };
+    }
+
+    updateGate();
+  }
+
+  // Commit one draw. On confirmation, merge the answers and the returned
+  // feedback into the round's standing state (the server merges the same way,
+  // so a later home fetch agrees), then show the per-item marking.
+  function commitDraw(r, ps, value, btn) {
+    var seed = getSeed();
+    if (btn) btn.disabled = true;
+    var payload = {
+      action: 'submit',
+      seed: seed,
+      round: r.round_id,
+      value: value,
+      nonce: AGGT.makeNonce(seed, r.round_id),
+    };
+    telemetry.log('commit_tap', r.round_id, null);
+    AGGT.submitWithRetry(ENDPOINT, payload, function (state, attempt, res) {
+      if (state === 'sending') {
+        setStatus(attempt ? 'Sending… (retry ' + attempt + ')' : 'Sending…', 'busy');
+      } else if (state === 'confirmed') {
+        setStatus('', '');
+        r.committed = 'yes';
+        var mine = answeredMap(r);
+        Object.keys(value).forEach(function (k) { mine[k] = value[k]; });
+        r.my_value = mine;
+        var fb = res && res.feedback;
+        if (fb) {
+          var have = r.feedback || { truth: {}, explain: {} };
+          Object.keys(fb.truth || {}).forEach(function (k) {
+            have.truth[k] = fb.truth[k];
+          });
+          Object.keys(fb.explain || {}).forEach(function (k) {
+            have.explain[k] = fb.explain[k];
+          });
+          r.feedback = have;
+        }
+        ps.given = value;
+        ps.fb = fb || { truth: {}, explain: {} };
+        ps.phase = 'feedback';
+        render();
+      } else if (state === 'rejected') {
+        if (btn) btn.disabled = false;
+        setStatus(ERRORS[res.error] || ('Not accepted: ' + res.error), 'err');
+        if (res.error === 'bad_seed') {
+          localStorage.removeItem('agg_seed');
+          show('seed-section');
+        }
+        if (res.error === 'form_unknown_field' || res.error === 'no_such_round') boot();
+      } else if (state === 'failed') {
+        if (btn) btn.disabled = false;
+        setStatus('Still couldn’t reach the server after several tries. ' +
+                  'Check your connection (cellular often works when wifi is jammed) ' +
+                  'and tap again.', 'err');
+      }
+    });
+  }
+
+  // Per-item marking for one draw, same three verdicts as the lecture-side
+  // feedback cards: right, wrong, and (unreachable here, since the gate
+  // requires an answer) blank.
+  function drawFeedbackHtml(r, ps) {
+    var truth = (ps.fb && ps.fb.truth) || {};
+    var explain = (ps.fb && ps.fb.explain) || {};
+    var byId = specById(r);
+    var right = 0, marked = 0;
+    var items = ps.draw.map(function (fid) {
+      var s = byId[fid];
+      var key = truth[fid];
+      if (!s || key === undefined) return '';
+      marked++;
+      var given = ps.given[fid];
+      var correct = latestPick(given) === Number(key);
+      if (correct) right++;
+      var verdict = correct
+        ? '<span class="fb-right">Correct.</span> ' +
+          esc(describeFieldValue(s.spec, given))
+        : '<span class="fb-wrong">Not this time.</span> You said ' +
+          '<strong>' + esc(describeFieldValue(s.spec, given)) +
+          '</strong>; the answer is <strong>' +
+          esc(describeFieldValue(s.spec, key)) + '</strong>.';
+      var why = explain[fid];
+      return '<div class="fb-item ' + (correct ? 'is-right' : 'is-wrong') +
+             '"><p class="fb-q">' + practiceLabelHtml(s.label, s.spec.code) + '</p>' +
+             practiceFigureHtml(s.spec) +
+             '<p class="fb-verdict">' + verdict + '</p>' +
+             (why ? '<p class="fb-explain">' + escLines(why) + '</p>' : '') +
+             '</div>';
+    }).join('');
+    var score = marked
+      ? '<p class="fb-score">You got ' + right + ' of ' + marked + '.</p>'
+      : '';
+    return '<div class="fb">' + score + items + '</div>';
   }
 
   function cardHtml(r) {
-    var head = '<div class="round-head">' + stateChip(r.state) +
+    var head = '<div class="round-head">' + stateChip(r.state, r.practice) +
                '<span class="round-label">' + esc(r.label) + '</span></div>' +
-               '<p class="prompt">' + esc(r.prompt || '') + '</p>';
+               '<p class="prompt">' + escLines(r.prompt || '') + '</p>';
+    // A practice round never closes and never reveals, so its only two
+    // shapes are "not answered yet" and "answered, here is how it went".
+    if (r.practice && r.committed === 'yes') {
+      return head + practiceFeedbackHtml(r) +
+        (r.lock_rule === 'resubmit'
+          ? '<button class="ghost" id="change-' + r.round_id + '">Try these again</button>'
+          : '');
+    }
     if (r.state === 'open' && r.committed !== 'yes') {
       return head + commitHtml(r) +
         (r.committed === 'unknown'
@@ -328,6 +939,7 @@
 
   function committedHtml(r) {
     if (r.committed !== 'yes') return '<p class="muted">You didn’t answer this one.</p>';
+    if (r.mode === 'fitline') return fitlineCommittedHtml(r);
     if (r.mode === 'form') {
       var mv = normalizeValue(r.my_value);
       if (!mv || typeof mv !== 'object') {
@@ -348,6 +960,57 @@
            esc(describeValue(r, r.my_value)) + '</strong></p>';
   }
 
+  // Per-item marking for a practice round. Three outcomes per item, because a
+  // blank answer is a different thing from a wrong one and a student who
+  // skipped should not read "not quite".
+  function practiceFeedbackHtml(r) {
+    var fb = r.feedback;
+    if (!fb || !fb.truth) return '<p class="muted">Your answers are in.</p>';
+    var mine = normalizeValue(r.my_value) || {};
+    var specs = formFieldSpecs(r.config);
+    var right = 0, marked = 0;
+
+    var items = specs.map(function (s) {
+      var key = fb.truth[s.id];
+      if (key === undefined) return ''; // unkeyed field, nothing to mark
+      marked++;
+      var given = mine[s.id];
+      var blank = given === undefined || given === null ||
+                  (Array.isArray(given) && given.length === 0);
+      var correct = !blank && Number(
+        Array.isArray(given) ? given[0] : given) === Number(key);
+      if (correct) right++;
+
+      var verdict;
+      if (blank) {
+        verdict = '<span class="fb-blank">You skipped this one.</span> ' +
+                  'The answer is <strong>' + esc(describeFieldValue(s.spec, key)) +
+                  '</strong>.';
+      } else if (correct) {
+        verdict = '<span class="fb-right">Correct.</span> ' +
+                  esc(describeFieldValue(s.spec, given));
+      } else {
+        verdict = '<span class="fb-wrong">Not this time.</span> You said ' +
+                  '<strong>' + esc(describeFieldValue(s.spec, given)) +
+                  '</strong>; the answer is <strong>' +
+                  esc(describeFieldValue(s.spec, key)) + '</strong>.';
+      }
+
+      var why = (fb.explain || {})[s.id];
+      var tone = blank ? 'is-blank' : (correct ? 'is-right' : 'is-wrong');
+      return '<div class="fb-item ' + tone + '"><p class="fb-q">' +
+             practiceLabelHtml(s.label, s.spec.code) + '</p>' +
+             practiceFigureHtml(s.spec) +
+             '<p class="fb-verdict">' + verdict + '</p>' +
+             (why ? '<p class="fb-explain">' + escLines(why) + '</p>' : '') + '</div>';
+    }).join('');
+
+    var score = marked
+      ? '<p class="fb-score">You got ' + right + ' of ' + marked + '.</p>'
+      : '';
+    return '<div class="fb">' + score + items + '</div>';
+  }
+
   function revealEta(r) {
     // no reveal timestamp means the lecturer unlocks it live, so promising a
     // time would be wrong; say nothing rather than guess
@@ -358,6 +1021,7 @@
 
   function commitHtml(r) {
     if (r.mode === 'form') return formCommitHtml(r);
+    if (r.mode === 'fitline') return fitlineCommitHtml(r);
     if (r.mode === 'numeric') {
       var c = r.config || {};
       var slider = (c.min !== undefined && c.max !== undefined)
@@ -544,7 +1208,7 @@
       return wHtml + '<p class="field-err" id="err-' + r.round_id + '-' + esc(fid) +
              '">' + esc(errMsg) + '</p></div>';
     }
-    var html = '<div class="field"><p class="field-label">' + esc(label) + '</p>';
+    var html = '<div class="field"><p class="field-label">' + escLines(label) + '</p>';
     if (spec.help) html += '<p class="help">' + esc(spec.help) + '</p>';
     if (spec.type === 'numeric') {
       var hasRange = spec.min !== undefined && spec.max !== undefined;
@@ -584,6 +1248,19 @@
     var changeBtn = el('change-' + id);
     if (changeBtn) {
       changeBtn.onclick = function () {
+        if (r.practice) {
+          // a retry starts blank: prefilling after the answers have been shown
+          // turns a second attempt into copying the two red ones across
+          var stp = formStateFor(r);
+          stp.answers = {};
+          stp.page = 0;
+          stp.fieldErrors = {};
+          saveDraft(r);
+          r.committed = 'no';
+          delete r.feedback;
+          render();
+          return;
+        }
         if (r.mode === 'form') {
           // prefill the form from the committed object so a revision starts
           // from the standing answers, not a blank slate
@@ -605,6 +1282,7 @@
       };
     }
     if (r.mode === 'form') { wireForm(r); return; }
+    if (r.mode === 'fitline') { wireFitline(r); return; }
     var goBtn = el('go-' + id);
     var slider = el('slider-' + id);
     var num = el('num-' + id);
@@ -792,6 +1470,47 @@
     updateProgress();
   }
 
+  // ---------- fitline wiring: live scatter+line, or the committed static one ----------
+
+  function wireFitline(r) {
+    var id = r.round_id;
+    if (r.committed === 'yes') {
+      var mv = normalizeValue(r.my_value);
+      var lockedCanvas = el('fitc-' + id);
+      if (lockedCanvas && mv && typeof mv === 'object') {
+        drawFitCanvas(lockedCanvas, r.config, { mine: mv });
+      }
+      return;
+    }
+    var canvas = el('fit-' + id);
+    var aSlider = el('fa-slider-' + id), aNum = el('fa-num-' + id);
+    var bSlider = el('fb-slider-' + id), bNum = el('fb-num-' + id);
+    var goBtn = el('go-' + id);
+
+    function current() {
+      return { alpha: Number(aNum.value), beta: Number(bNum.value) };
+    }
+    function redraw() {
+      drawFitCanvas(canvas, r.config, { mine: current() });
+    }
+    if (aSlider && aNum) {
+      aSlider.oninput = function () { aNum.value = aSlider.value; redraw(); };
+      aNum.oninput = function () { aSlider.value = aNum.value; redraw(); };
+    }
+    if (bSlider && bNum) {
+      bSlider.oninput = function () { bNum.value = bSlider.value; redraw(); };
+      bNum.oninput = function () { bSlider.value = bNum.value; redraw(); };
+    }
+    if (goBtn) {
+      goBtn.onclick = function () {
+        var v = current();
+        if (!isFinite(v.alpha) || !isFinite(v.beta)) return;
+        commit(r, v, goBtn);
+      };
+    }
+    redraw();
+  }
+
   // ---------- actions ----------
 
   function commit(r, value, btn) {
@@ -812,6 +1531,9 @@
         setStatus('', '');
         r.committed = 'yes';
         r.my_value = (res && res.locked && r.my_value !== null) ? r.my_value : value;
+        // practice rounds answer the student on the submit response itself;
+        // there is no reveal to wait for
+        if (res && res.feedback) r.feedback = res.feedback;
         delete pendingSelections[r.round_id];
         if (r.mode === 'form') clearDraft(r);
         render();
@@ -851,6 +1573,7 @@
       if (state === 'confirmed') {
         if (typeof res.now === 'number') serverOffset = res.now - Date.now();
         renderResult(r, res, box);
+        typeset(box);
       } else if (state === 'rejected') {
         box.innerHTML = '<p class="muted">' +
           esc(ERRORS[res.error] || res.error) + '</p>';
@@ -860,8 +1583,29 @@
     });
   }
 
+  // Reveal on the phone: the same scatter-plus-spaghetti language as the
+  // projector, at card width — every committed line thin and translucent,
+  // the OLS truth line bold green, this student's own line on top.
+  function renderFitlineResult(r, res, box) {
+    var c = r.config || {};
+    var mv = normalizeValue(res.my_value);
+    var html = '<p class="mine">Class lines: <strong>' + res.n + '</strong></p>' +
+      '<canvas id="fitr-' + r.round_id + '" width="320" height="240"></canvas>';
+    if (res.truth) {
+      html += '<p class="mine">True line: <strong>' +
+        lineEquation(c, res.truth.alpha, res.truth.beta) + '</strong></p>';
+    }
+    box.innerHTML = html;
+    drawFitCanvas(el('fitr-' + r.round_id), c, {
+      pairs: res.pairs || [],
+      mine: (mv && typeof mv === 'object') ? mv : undefined,
+      truth: res.truth,
+    });
+  }
+
   function renderResult(r, res, box) {
     if (r.mode === 'form') return renderFormResult(r, res, box);
+    if (r.mode === 'fitline') return renderFitlineResult(r, res, box);
     var html = '<p class="mine">Class answers: <strong>' + res.n + '</strong></p>';
     if (res.my_value !== null && res.my_value !== undefined) {
       html += '<p class="mine">Yours: <strong>' +
@@ -1007,7 +1751,7 @@
     var html = '<p class="mine">Class answers: <strong>' + res.n + '</strong></p>';
     specs.forEach(function (s) {
       var agg = fields[s.id] || {};
-      html += '<p class="field-label">' + esc(s.label) + '</p>';
+      html += '<p class="field-label">' + escLines(s.label) + '</p>';
       if (s.spec.type === 'numeric') {
         html += '<canvas id="hist-' + r.round_id + '-' + esc(s.id) +
                 '" width="320" height="110"></canvas>';
@@ -1085,9 +1829,13 @@
         if (state === 'confirmed') {
           serverOffset = res.now - Date.now();
           // what needs you comes first: open rounds, then awaiting-reveal,
-          // then revealed (newest first within each group)
+          // then revealed (newest first within each group). Practice sits
+          // below all of them: it is always open, so it would otherwise
+          // permanently outrank the lecture round it should never bury.
           var rank = { open: 0, closed: 1, revealed: 2 };
           homeRounds = res.rounds.slice().sort(function (a, b) {
+            var p = (a.practice ? 1 : 0) - (b.practice ? 1 : 0);
+            if (p) return p;
             var d = (rank[a.state] || 0) - (rank[b.state] || 0);
             if (d) return d;
             return (b.close_ts || b.reveal_ts || 0) - (a.close_ts || a.reveal_ts || 0);
@@ -1111,6 +1859,25 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     telemetry = AGGT.createTelemetry(ENDPOINT, getSeed);
+    el('tab-lecture').onclick = function () {
+      // clearing the hash without a reload keeps the fetched state
+      if (window.location.hash) {
+        history.pushState(null, '', window.location.pathname);
+        render();
+      }
+    };
+    el('tab-practice').onclick = function () { window.location.hash = '#practice'; };
+    window.addEventListener('hashchange', render);
+    // Redraw every mounted fit-line canvas at its new column width instead of
+    // rebuilding the whole round list; each canvas remembers its own config
+    // and draw opts from the last drawFitCanvas call.
+    window.addEventListener('resize', function () {
+      var canvases = document.querySelectorAll('.' + FIT_CANVAS_CLASS);
+      for (var i = 0; i < canvases.length; i++) {
+        var c = canvases[i];
+        if (c._fitConfig) drawFitCanvas(c, c._fitConfig, c._fitOpts);
+      }
+    });
     boot();
   });
 

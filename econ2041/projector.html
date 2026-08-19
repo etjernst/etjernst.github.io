@@ -64,6 +64,11 @@
   #wage-takeaway li { margin: 2px 0; }
   /* emphasis by color alone; the accent carries it without bold */
   #wage-takeaway b { color: var(--accent); font-weight: normal; }
+  /* fitline rounds: class median alpha/beta vs the OLS truth, reveal only */
+  #fit-stats { display: none; margin: 4px 28px 8px; font-size: 1.3rem; }
+  #fit-stats ul { margin: 0; padding-left: 1.3em; }
+  #fit-stats li { margin: 2px 0; }
+  #fit-stats b { color: var(--accent); font-weight: normal; }
 </style>
 </head>
 <body>
@@ -79,6 +84,7 @@
   <button id="truth-toggle-btn" onclick="AGG_PROJECTOR.toggleTruth()">Truth unlocks at reveal</button>
 </div>
 <p id="wage-takeaway"></p>
+<p id="fit-stats"></p>
 
 <div class="strip">
   <button class="present" onclick="AGG_VIEW.present()">Present</button>
@@ -119,6 +125,11 @@
 <script>
   window.AGG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXHmTGnRXYJ6La5t1LBELctAbnKodoW-pfZflYI1_tcUHWKoca3LAtY4GKshbF-CJgRw/exec';
 </script>
+<!-- vendored, never a CDN: the lectern screen must render with no network
+     beyond the Apps Script endpoint itself -->
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/contrib/auto-render.min.js"></script>
 <script src="js/projector.js"></script>
 <script>
   // Strip view controls: Present = fullscreen + bare (only the chart, prompt,

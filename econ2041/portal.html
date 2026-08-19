@@ -9,6 +9,9 @@
     color-scheme: light;
     --bg: #f5f1e8; --ink: #241f1a; --muted: #8a8175; --accent: #76232f;
     --surface: #fffdf8; --rule: #e6ddcd; --gold: #c9a24b; --truth: #0f7a63;
+    /* practice rounds are private and always open; live rounds happen in the
+       room. The two must be tellable apart at a glance. */
+    --practice: #2c5c8a; --right: #0f7a63; --wrong: #a33b2a;
   }
   * { box-sizing: border-box; }
   body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -43,6 +46,26 @@
   #status.err { color: var(--accent); font-weight: 600; margin-top: 12px; }
   #status.busy { color: var(--muted); margin-top: 12px; }
   .muted { color: var(--muted); font-size: .95rem; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 4px; }
+  .tabs .tab { background: var(--bg); color: var(--ink); border: 1px solid var(--rule);
+               font-weight: 700; padding: 10px; margin-top: 0; }
+  .tabs .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .crumb { margin: 2px 0 10px; font-size: .95rem; }
+  .crumb a { color: var(--practice); text-decoration: none; font-weight: 600; }
+  /* front-page topic cards: the whole card is the link */
+  a.topic-card { display: block; text-decoration: none; color: inherit;
+                 padding: 12px 16px; cursor: pointer; }
+  a.topic-card:hover, a.topic-card:focus-visible { border-color: var(--practice); }
+  a.topic-card p { margin: 4px 0 0; }
+  /* per-item progress squares: hollow = not seen, gold = tried, green =
+     currently right; the mini variant sits on the front-page cards */
+  .sq-strip { display: flex; gap: 5px; flex-wrap: wrap; margin: 8px 0 2px; }
+  .sq-strip .sq { width: 13px; height: 13px; border-radius: 3px; }
+  .mini-strip { display: flex; gap: 3px; flex-wrap: wrap; margin: 7px 0 1px; }
+  .mini-strip .sq { width: 8px; height: 8px; border-radius: 2px; }
+  .sq.unseen { border: 1.5px solid #b8ad9c; background: transparent; }
+  .sq.tried  { background: var(--gold); }
+  .sq.right  { background: var(--truth); }
   .round { border: 1px solid var(--rule); border-radius: 10px; padding: 16px; margin: 14px 0;
            background: var(--surface); }
   .round-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
@@ -53,6 +76,26 @@
   .chip-open { background: rgba(15,122,99,.12); color: var(--truth); }
   .chip-closed { background: rgba(201,162,75,.22); color: #8a6a1f; }
   .chip-revealed { background: rgba(118,35,47,.12); color: var(--accent); }
+  .chip-practice { background: rgba(44,92,138,.12); color: var(--practice); }
+  /* the chip says "practice" in words too; color alone excludes anyone who
+     cannot separate the two hues */
+  .round.is-practice { border-left: 3px solid var(--practice); }
+  .fb { border-top: 1px solid var(--rule); margin-top: 12px; padding-top: 10px; }
+  .fb-score { font-weight: 700; margin: 0 0 10px; }
+  /* one card per item, matching .field on the answering side: three items of
+     question, verdict, and explanation run together without a boundary */
+  .fb-item { margin: 14px 0; padding: 14px 16px; background: #fbf7ef;
+             border: 1px solid var(--rule); border-radius: 10px;
+             border-left: 3px solid var(--rule); }
+  .fb-item.is-right { border-left-color: var(--right); }
+  .fb-item.is-wrong { border-left-color: var(--wrong); }
+  .fb-item.is-blank { border-left-color: var(--muted); }
+  .fb-q { font-weight: 600; font-size: .98rem; margin: 0 0 8px; }
+  .fb-verdict { margin: 0 0 6px; font-size: .95rem; }
+  .fb-right { color: var(--right); font-weight: 700; }
+  .fb-wrong { color: var(--wrong); font-weight: 700; }
+  .fb-blank { color: var(--muted); font-weight: 700; }
+  .fb-explain { margin: 0; font-size: .95rem; color: var(--ink); }
   .opts { display: flex; flex-direction: column; gap: 8px; }
   .opts .opt { background: var(--bg); color: var(--ink); text-align: left; padding: 12px 14px;
                border: 1px solid var(--rule); font-weight: 600; }
@@ -72,6 +115,14 @@
   .field .opts .opt { background: var(--surface); font-weight: 400; }
   .field .opts .opt.picked { background: var(--accent); }
   .field-label { font-weight: 600; font-size: .98rem; margin: 0 0 8px; }
+  .practice-code-line { display: block; overflow-wrap: anywhere; padding: 5px 7px;
+                        background: #efe9dc; border-radius: 4px;
+                        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+                        font-size: .86rem; font-weight: 500; line-height: 1.35; }
+  .practice-figure { width: 100%; aspect-ratio: 25 / 18; margin: 8px 0 12px;
+                     overflow: hidden; background: #fff; border: 1px solid var(--rule);
+                     border-radius: 6px; }
+  .practice-figure img { display: block; width: 100%; height: 100%; object-fit: contain; }
   .field-err { color: var(--accent); font-weight: 600; font-size: .9rem; margin: 4px 0 0; min-height: 0; }
   .field-err:empty { display: none; }
   .help { color: var(--muted); font-size: .88rem; margin: 2px 0 6px; }
@@ -114,8 +165,14 @@
 
   <div id="home-section" style="display:none">
     <span class="badge" id="seed-badge"></span>
+    <!-- the practice tab renders only when the home fetch shows at least one
+         practice round, so a deploy with no pools changes nothing visible -->
+    <div class="tabs" id="tabs" style="display:none">
+      <button class="tab" id="tab-lecture">Lecture</button>
+      <button class="tab" id="tab-practice">Practice</button>
+    </div>
     <div id="rounds"></div>
-    <button class="ghost" onclick="PORTAL.boot()">Refresh</button>
+    <button class="ghost" id="refresh-btn" onclick="PORTAL.boot()">Refresh</button>
   </div>
 
   <div id="status"></div>
@@ -125,6 +182,12 @@
   // Set once at deploy time: the Apps Script web app URL (ends in /exec).
   window.AGG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXHmTGnRXYJ6La5t1LBELctAbnKodoW-pfZflYI1_tcUHWKoca3LAtY4GKshbF-CJgRw/exec';
 </script>
+<!-- KaTeX is vendored, never a CDN: the lecture must not depend on a third
+     party being reachable from the theatre's wifi. Fonts load lazily, so a
+     round with no math transfers none of them. -->
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/contrib/auto-render.min.js"></script>
 <script src="js/transport.js"></script>
 <script src="js/portal.js"></script>
 </body>

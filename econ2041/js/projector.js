@@ -17,6 +17,22 @@
 
   var el = function (id) { return document.getElementById(id); };
 
+  // Same contract as the portal's: typeset after writing text, and stay silent
+  // if the vendored library is missing rather than blanking the lectern screen.
+  var MATH_DELIMS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '\\[', right: '\\]', display: true },
+    { left: '$', right: '$', display: false },
+    { left: '\\(', right: '\\)', display: false },
+  ];
+
+  function typeset(node) {
+    if (!node || typeof window.renderMathInElement !== 'function') return;
+    try {
+      window.renderMathInElement(node, { delimiters: MATH_DELIMS, throwOnError: false });
+    } catch (e) { /* leave the source text as written */ }
+  }
+
   // Bar colors for count charts. Purely decorative: each bar is labeled
   // directly, so the hue carries nothing and two confusable colors cost
   // nothing. Muted warm-earth tones that sit on the paper background, and
@@ -348,6 +364,102 @@
     return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
   }
 
+  // ---------- fitline rounds: scatter, live spaghetti, reveal OLS line ----------
+  // Live: scatter plus every committed (alpha, beta) so far as thin gold
+  // strokes, updating as commits land the way the histogram updates now.
+  // Reveal: adds the OLS truth line in bold green on top of the spaghetti,
+  // and the stats line under the canvas compares class median alpha/beta
+  // to the OLS values (never seeds; d.pairs already carries none).
+
+  function fmtNum(v) {
+    return String(Math.round(Number(v) * 100) / 100);
+  }
+
+  function drawFitline(d) {
+    var canvas = el('hist');
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width = canvas.clientWidth * 2;
+    var H = canvas.height = canvas.clientHeight * 2;
+    ctx.clearRect(0, 0, W, H);
+    var config = d.config || {};
+    var xr = config.x_range || {}, yr = config.y_range || {};
+    var xlo = Number(xr.min), xhi = Number(xr.max);
+    var ylo = Number(yr.min), yhi = Number(yr.max);
+    var padL = 100, padR = 50, padT = 30, padB = 100;
+    var plotW = W - padL - padR, plotH = H - padT - padB;
+    function X(v) { return padL + (v - xlo) / (xhi - xlo) * plotW; }
+    function Y(v) { return padT + plotH - (v - ylo) / (yhi - ylo) * plotH; }
+
+    ctx.strokeStyle = '#d8cdb8'; ctx.lineWidth = 2;
+    ctx.strokeRect(padL, padT, plotW, plotH);
+
+    ctx.font = '30px system-ui, sans-serif';
+    ctx.fillStyle = '#8a8175';
+    if (config.x_label) ctx.fillText(config.x_label, padL, padT + plotH + 56);
+    if (config.y_label) {
+      ctx.save();
+      ctx.translate(36, padT + plotH / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText(config.y_label, -ctx.measureText(config.y_label).width / 2, 0);
+      ctx.restore();
+    }
+
+    if (xlo < 0 && xhi > 0) { // dashed guide at x = 0, where the intercept is read
+      ctx.save(); ctx.setLineDash([8, 8]); ctx.strokeStyle = '#8c8377'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(X(0), padT); ctx.lineTo(X(0), padT + plotH); ctx.stroke();
+      ctx.restore();
+    }
+    ctx.fillStyle = 'rgba(74,127,181,0.6)';
+    (config.x || []).forEach(function (xv, i) {
+      var yv = (config.y || [])[i];
+      if (yv === undefined) return;
+      ctx.beginPath(); ctx.arc(X(xv), Y(yv), 6, 0, 2 * Math.PI); ctx.fill();
+    });
+
+    ctx.save();
+    ctx.beginPath(); ctx.rect(padL, padT, plotW, plotH); ctx.clip();
+    function drawLine(alpha, beta, color, width, op) {
+      ctx.strokeStyle = color; ctx.lineWidth = width;
+      ctx.globalAlpha = op === undefined ? 1 : op;
+      ctx.beginPath();
+      ctx.moveTo(X(xlo), Y(alpha + beta * xlo));
+      ctx.lineTo(X(xhi), Y(alpha + beta * xhi));
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    (d.pairs || []).forEach(function (p) {
+      drawLine(Number(p.alpha), Number(p.beta), '#c9a24b', 2, 0.4);
+    });
+    if (d.truth) drawLine(Number(d.truth.alpha), Number(d.truth.beta), '#0f7a63', 6, 1);
+    ctx.restore();
+
+    if (!d.pairs || !d.pairs.length) {
+      ctx.font = '32px system-ui, sans-serif';
+      ctx.fillStyle = '#8a8175';
+      ctx.fillText('Waiting for the first line…', padL + 30, padT + plotH / 2);
+    }
+  }
+
+  function syncFitlineChrome(d) {
+    var stats = el('fit-stats');
+    if (!stats) return;
+    if (!d.truth) { stats.style.display = 'none'; stats.innerHTML = ''; return; }
+    var alphas = (d.pairs || []).map(function (p) { return Number(p.alpha); });
+    var betas = (d.pairs || []).map(function (p) { return Number(p.beta); });
+    var ma = median(alphas), mb = median(betas);
+    var parts = [];
+    if (ma !== undefined) {
+      parts.push('Class median intercept: <b>' + fmtNum(ma) + '</b> &nbsp;vs OLS&nbsp; <b>' +
+        fmtNum(d.truth.alpha) + '</b>');
+    }
+    if (mb !== undefined) {
+      parts.push('Class median slope: <b>' + fmtNum(mb) + '</b> &nbsp;vs OLS&nbsp; <b>' +
+        fmtNum(d.truth.beta) + '</b>');
+    }
+    stats.style.display = parts.length ? 'block' : 'none';
+    stats.innerHTML = '<ul>' + parts.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>';
+  }
+
   function compact(v, prefix) {
     var body = Math.abs(v) >= 1000
       ? (Math.round(v / 100) / 10) + 'k'
@@ -609,7 +721,7 @@
           : 'Close the round first';
     }
     var promptEl = el('round-prompt');
-    if (promptEl) promptEl.textContent = d.prompt || '';
+    if (promptEl) { promptEl.textContent = d.prompt || ''; typeset(promptEl); }
     var wf = d.mode === 'form' ? wageFields(d.config) : null;
     syncWageChrome(d, wf);
     if (wf && d.fields) {
@@ -624,12 +736,20 @@
         var fs = drawFormFocus(d.fields, d.config, i);
         if (promptEl && fs) {
           promptEl.textContent = fs.label + '   (' + (i + 1) + ' of ' + specs.length + ')';
+          typeset(promptEl);
         }
       }
     } else if (d.mode === 'categorical' && d.counts) {
       drawCounts(d.counts, (d.config && d.config.options) || [], d.truth);
+    } else if (d.mode === 'fitline') {
+      syncFitlineChrome(d);
+      drawFitline(d);
     } else {
       drawHistogram(d.values || [], d.truth);
+    }
+    if (d.mode !== 'fitline') {
+      var fitStats = el('fit-stats');
+      if (fitStats) { fitStats.style.display = 'none'; fitStats.innerHTML = ''; }
     }
   }
 
@@ -830,6 +950,8 @@
   window.AGG_PROJECTOR._test = {
     drawWageRows: drawWageRows,
     wageFields: wageFields,
+    drawFitline: drawFitline,
+    syncFitlineChrome: syncFitlineChrome,
     setShowTruth: function (v) { state.showTruth = v; },
   };
 

@@ -101,10 +101,21 @@
       }
     }
 
+    // Visibility transitions are what make time on task mean anything: without
+    // them, a tab left open behind another app reads as an hour of work. The
+    // hidden event is logged before the flush so it rides the same batch.
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'hidden') flush();
+      if (document.visibilityState === 'hidden') {
+        log('hidden', '', null);
+        flush();
+      } else {
+        log('visible', '', null);
+      }
     });
-    window.addEventListener('pagehide', flush);
+    window.addEventListener('pagehide', function () {
+      log('hidden', '', { via: 'pagehide' });
+      flush();
+    });
 
     return { log: log, flush: flush };
   }
