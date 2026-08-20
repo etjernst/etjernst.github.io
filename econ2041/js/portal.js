@@ -576,32 +576,44 @@
 
   // Per-item status in pool order, from the home fetch: 'unseen' | 'tried'
   // (answered, latest answer not right) | 'right' (latest answer correct).
-  // Null while committed is 'unknown', so a cold cache renders no strip
-  // rather than an all-hollow lie.
+  // A cold cache cannot recover completion yet, but still returns hollow
+  // placeholders so every topic card keeps its one-square-per-item strip.
   function itemStatuses(r) {
-    if (r.committed === 'unknown') return null;
+    var specs = formFieldSpecs(r.config);
+    if (r.committed === 'unknown') {
+      return {
+        known: false,
+        values: specs.map(function () { return 'unseen'; }),
+      };
+    }
     var mine = answeredMap(r);
     var truth = (r.feedback && r.feedback.truth) || {};
-    return formFieldSpecs(r.config).map(function (s) {
-      var v = mine[s.id];
-      if (v === undefined || v === null) return 'unseen';
-      return (truth[s.id] !== undefined && latestPick(v) === Number(truth[s.id]))
-        ? 'right' : 'tried';
-    });
+    return {
+      known: true,
+      values: specs.map(function (s) {
+        var v = mine[s.id];
+        if (v === undefined || v === null) return 'unseen';
+        return (truth[s.id] !== undefined && latestPick(v) === Number(truth[s.id]))
+          ? 'right' : 'tried';
+      }),
+    };
   }
 
   // One progress square per pool item; the mini variant sits on the
   // front-page cards. The counts ride along as the tooltip and the
   // accessible label, since the squares themselves are the display.
   function squaresHtml(r, mini) {
-    var sts = itemStatuses(r);
-    if (!sts || !sts.length) return '';
+    var progress = itemStatuses(r);
+    var sts = progress.values;
+    if (!sts.length) return '';
     var tried = 0, right = 0;
     sts.forEach(function (st) {
       if (st !== 'unseen') tried++;
       if (st === 'right') right++;
     });
-    var title = 'Tried ' + tried + ' of ' + sts.length + ', ' + right + ' right';
+    var title = progress.known
+      ? 'Tried ' + tried + ' of ' + sts.length + ', ' + right + ' right'
+      : 'Progress loading for ' + sts.length + ' questions';
     return '<span class="' + (mini ? 'mini-strip' : 'sq-strip') +
       '" role="img" title="' + title + '" aria-label="' + title + '">' +
       sts.map(function (st) { return '<span class="sq ' + st + '"></span>'; }).join('') +
