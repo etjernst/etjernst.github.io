@@ -116,7 +116,6 @@
   tbody tr:last-child td { border-bottom: 0; }
   .topic-name { font-weight: 750; }
   .topic-meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
-  .suppressed { color: var(--blue); font-weight: 750; }
   .chart-shell {
     background: var(--surface);
     border-top: 2px solid var(--ink);
@@ -134,7 +133,6 @@
   .day-value { min-height: 22px; text-align: center; color: var(--muted); font-size: .72rem; }
   .bar-track { height: 132px; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid #aeb3bc; }
   .bar { width: min(28px, 74%); min-height: 0; background: var(--blue); border-radius: 3px 3px 0 0; }
-  .bar.suppressed-bar { height: 18px !important; background: repeating-linear-gradient(135deg, var(--gold) 0 4px, #ead8a8 4px 8px); }
   .day-label { min-height: 34px; padding-top: 6px; text-align: center; color: var(--muted); font-size: .7rem; overflow-wrap: anywhere; }
   .daily-table { margin-top: 12px; }
   .daily-table summary { cursor: pointer; color: var(--blue); font-weight: 700; }
@@ -275,7 +273,7 @@
       </div>
     </section>
 
-    <p class="note">Counts come from voluntary submitted practice draws. They use pseudonymous portal codes, may include test or spare codes, and are not attendance or assessment records. Values from one to four are displayed as &lt;5; an additive total may be Hidden to protect a small topic.</p>
+    <p class="note">Counts come from voluntary submitted practice draws. They use pseudonymous portal codes, may include test or spare codes, and are not attendance or assessment records. All counts are exact aggregates; individual codes and answers are never shown.</p>
     <p class="quality" id="quality-note"></p>
   </section>
 </main>
