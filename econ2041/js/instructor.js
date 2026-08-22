@@ -39,9 +39,9 @@
     return cell && typeof cell.display === 'string' ? cell.display : '-';
   }
 
-  function markSuppressed(node, cell) {
+  function renderCell(node, cell) {
     node.textContent = formatCell(cell);
-    node.className = cell && cell.suppressed ? 'suppressed' : '';
+    node.className = '';
   }
 
   function localTime(ts, timezone) {
@@ -56,11 +56,10 @@
     }
   }
 
-  function addCell(row, label, text, suppressed) {
+  function addCell(row, label, text) {
     var td = document.createElement('td');
     td.setAttribute('data-label', label);
     td.textContent = text;
-    if (suppressed) td.className = 'suppressed';
     row.appendChild(td);
   }
 
@@ -80,15 +79,14 @@
         (topic.duplicate_slug ? ' - configuration warning' : '');
       name.appendChild(metaLine);
       row.appendChild(name);
-      addCell(row, 'Codes', formatCell(topic.distinct_codes), topic.distinct_codes.suppressed);
-      addCell(row, 'Draws', formatCell(topic.draws), topic.draws.suppressed);
-      addCell(row, 'Questions tried', formatCell(topic.questions_tried), topic.questions_tried.suppressed);
-      addCell(row, 'Pool complete', formatCell(topic.pool_completions), topic.pool_completions.suppressed);
-      addCell(row, 'Past 24h', formatCell(topic.recent_24h.distinct_codes),
-        topic.recent_24h.distinct_codes.suppressed);
+      addCell(row, 'Codes', formatCell(topic.distinct_codes));
+      addCell(row, 'Draws', formatCell(topic.draws));
+      addCell(row, 'Questions tried', formatCell(topic.questions_tried));
+      addCell(row, 'Pool complete', formatCell(topic.pool_completions));
+      addCell(row, 'Past 24h', formatCell(topic.recent_24h.distinct_codes));
       addCell(row, 'Last activity', topic.last_activity_hour
         ? localTime(topic.last_activity_hour, summary.timezone)
-        : (topic.distinct_codes.suppressed ? 'Hidden' : 'No activity'), false);
+        : 'No activity');
       body.appendChild(row);
     });
     if (!(summary.topics || []).length) {
@@ -120,10 +118,10 @@
       var track = document.createElement('div');
       track.className = 'bar-track';
       var bar = document.createElement('div');
-      bar.className = 'bar' + (day.draws.suppressed ? ' suppressed-bar' : '');
+      bar.className = 'bar';
       var count = typeof day.draws.count === 'number' ? day.draws.count : 0;
-      bar.style.height = day.draws.suppressed ? '18px' :
-        (count ? Math.max(6, Math.round(124 * count / max)) + 'px' : '0');
+      bar.style.height = count
+        ? Math.max(6, Math.round(124 * count / max)) + 'px' : '0';
       track.appendChild(bar);
       var label = document.createElement('div');
       label.className = 'day-label';
@@ -134,18 +132,18 @@
       chart.appendChild(wrap);
 
       var row = document.createElement('tr');
-      addCell(row, 'Date', day.date, false);
-      addCell(row, 'Distinct codes', formatCell(day.distinct_codes), day.distinct_codes.suppressed);
-      addCell(row, 'Draws', formatCell(day.draws), day.draws.suppressed);
+      addCell(row, 'Date', day.date);
+      addCell(row, 'Distinct codes', formatCell(day.distinct_codes));
+      addCell(row, 'Draws', formatCell(day.draws));
       table.appendChild(row);
     });
   }
 
   function render(summary) {
-    markSuppressed(el('total-codes'), summary.overall.distinct_codes);
-    markSuppressed(el('total-draws'), summary.overall.draws);
-    markSuppressed(el('total-questions'), summary.overall.questions_tried);
-    markSuppressed(el('recent-codes'), summary.overall.recent_24h.distinct_codes);
+    renderCell(el('total-codes'), summary.overall.distinct_codes);
+    renderCell(el('total-draws'), summary.overall.draws);
+    renderCell(el('total-questions'), summary.overall.questions_tried);
+    renderCell(el('recent-codes'), summary.overall.recent_24h.distinct_codes);
     renderTopics(summary);
     renderActivity(summary.days);
 
