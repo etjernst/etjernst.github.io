@@ -638,6 +638,10 @@
         squaresHtml(r, true);
       wrap.appendChild(card);
     });
+    var notice = document.createElement('p');
+    notice.className = 'muted';
+    notice.textContent = 'Practice answers are recorded under your portal code so you can see your progress and teaching staff can monitor overall use. Practice is voluntary and not assessed.';
+    wrap.appendChild(notice);
   }
 
   function practiceStateFor(r) {
