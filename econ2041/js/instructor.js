@@ -56,6 +56,17 @@
     }
   }
 
+  function shortDate(isoDate, timezone) {
+    if (!isoDate) return 'practice opened';
+    try {
+      return new Intl.DateTimeFormat('en-AU', {
+        timeZone: timezone, day: 'numeric', month: 'short',
+      }).format(new Date(isoDate + 'T12:00:00Z'));
+    } catch (e) {
+      return isoDate;
+    }
+  }
+
   function addCell(row, label, text) {
     var td = document.createElement('td');
     td.setAttribute('data-label', label);
@@ -99,11 +110,14 @@
     }
   }
 
-  function renderActivity(days) {
+  function renderActivity(days, startDate, timezone) {
     var chart = el('activity-chart');
     var table = el('daily-body');
     chart.innerHTML = '';
     table.innerHTML = '';
+    chart.className = 'chart' + ((days || []).length > 7 ? ' dense' : '');
+    chart.style.setProperty('--day-count', Math.max(1, (days || []).length));
+    el('activity-window').textContent = 'Since ' + shortDate(startDate, timezone);
     var visible = (days || []).map(function (d) {
       return d.draws && typeof d.draws.count === 'number' ? d.draws.count : 0;
     });
@@ -145,7 +159,7 @@
     renderCell(el('total-questions'), summary.overall.questions_tried);
     renderCell(el('recent-codes'), summary.overall.recent_24h.distinct_codes);
     renderTopics(summary);
-    renderActivity(summary.days);
+    renderActivity(summary.days, summary.activity_start_date, summary.timezone);
 
     var generated = localTime(summary.generated_at, summary.timezone);
     var through = summary.data_through
