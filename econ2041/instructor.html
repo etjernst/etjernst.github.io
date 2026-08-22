@@ -125,7 +125,7 @@
   .chart {
     height: 190px;
     display: grid;
-    grid-template-columns: repeat(14, minmax(22px, 1fr));
+    grid-template-columns: repeat(var(--day-count, 14), minmax(22px, 1fr));
     align-items: end;
     gap: 7px;
   }
@@ -172,10 +172,10 @@
     .topic-table td:first-child { display: block; padding-bottom: 9px; text-align: left; }
     .topic-table td:not(:first-child)::before { content: attr(data-label); color: var(--muted); font-size: .74rem; font-weight: 700; text-transform: uppercase; text-align: left; }
     .chart-shell { padding-inline: 7px; }
-    .chart { height: 170px; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 2px; }
+    .chart { height: 170px; grid-template-columns: repeat(var(--day-count, 14), minmax(0, 1fr)); gap: 2px; }
     .bar-track { height: 112px; }
     .day-value { font-size: .64rem; }
-    .day:nth-child(odd) .day-label { visibility: hidden; }
+    .chart.dense .day:nth-child(odd) .day-label { visibility: hidden; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
@@ -259,7 +259,7 @@
     <section class="section" aria-labelledby="activity-heading">
       <div class="section-head">
         <h2 id="activity-heading">Submitted draws</h2>
-        <p>Last 14 days</p>
+        <p id="activity-window">Since practice opened</p>
       </div>
       <div class="chart-shell">
         <div class="chart" id="activity-chart" aria-hidden="true"></div>
