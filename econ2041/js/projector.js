@@ -775,14 +775,16 @@
     return get('?q=rounds').then(function (res) {
       var sel = el('round-select');
       sel.innerHTML = '';
-      (res.rounds || []).forEach(function (r) {
+      // practice pools are always-open self-study, never projected
+      var rounds = (res.rounds || []).filter(function (r) { return !r.practice; });
+      rounds.forEach(function (r) {
         var o = document.createElement('option');
         o.value = r.round_id;
         o.textContent = r.label + ' (' + (r.state || r.status) + ')';
         sel.appendChild(o);
       });
-      if (res.rounds && res.rounds.length && !state.round) {
-        state.round = res.rounds[res.rounds.length - 1].round_id;
+      if (rounds.length && !state.round) {
+        state.round = rounds[rounds.length - 1].round_id;
       }
       if (state.round) sel.value = state.round;
     });
