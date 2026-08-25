@@ -941,7 +941,7 @@
     if (r.state === 'open') {
       var change = r.lock_rule === 'resubmit'
         ? '<button class="ghost" id="change-' + r.round_id + '">Change my answer</button>'
-        : '<p class="muted">First answer locked in.</p>';
+        : '<p class="muted">Your answer is locked in</p>';
       return head + committedHtml(r) + change + revealEta(r);
     }
     if (r.state === 'closed') {
