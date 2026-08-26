@@ -11,6 +11,7 @@
   var LOCAL_KEY = 'agg_instructor_token_persistent';
   var LEGACY_KEY = 'agg_token';
   var activeToken = '';
+  var allItems = [];
 
   function el(id) { return document.getElementById(id); }
 
@@ -110,6 +111,149 @@
     }
   }
 
+  // Ascending first-try share, so the question the largest fraction of
+  // students got wrong on their first look sits at the top. Items under the
+  // display threshold have no share to rank on and park at the bottom.
+  function sortItems(items) {
+    function share(item) {
+      return item.first_try && typeof item.first_try.share === 'number'
+        ? item.first_try.share : null;
+    }
+    function attempts(item) {
+      return item.first_try && typeof item.first_try.attempts === 'number'
+        ? item.first_try.attempts : 0;
+    }
+    return items.slice().sort(function (a, b) {
+      var sa = share(a);
+      var sb = share(b);
+      if (sa === null && sb !== null) return 1;
+      if (sb === null && sa !== null) return -1;
+      if (sa !== null && sa !== sb) return sa - sb;
+      return attempts(b) - attempts(a);
+    });
+  }
+
+  function addShareCell(row, label, cell) {
+    var td = document.createElement('td');
+    td.setAttribute('data-label', label);
+    var value = document.createElement('span');
+    value.className = 'share' +
+      (cell && typeof cell.share === 'number' && cell.share < 0.5 ? ' low' : '');
+    value.textContent = formatCell(cell);
+    td.appendChild(value);
+    var n = document.createElement('span');
+    n.className = 'share-n';
+    n.textContent = (cell && typeof cell.attempts === 'number' ? cell.attempts : 0) +
+      ' answered';
+    td.appendChild(n);
+    row.appendChild(td);
+  }
+
+  function collectItems(summary) {
+    var out = [];
+    (summary.topics || []).forEach(function (topic) {
+      (topic.items || []).forEach(function (item) {
+        out.push({
+          round_id: topic.round_id,
+          topic_label: topic.label,
+          field_id: item.field_id,
+          label: item.label,
+          tag: item.tag,
+          code: !!item.code,
+          first_try: item.first_try,
+          all_attempts: item.all_attempts,
+        });
+      });
+    });
+    return out;
+  }
+
+  function fillTopicFilter(summary) {
+    var select = el('item-topic');
+    var current = select.value;
+    select.innerHTML = '';
+    var all = document.createElement('option');
+    all.value = '';
+    all.textContent = 'All topics';
+    select.appendChild(all);
+    (summary.topics || []).forEach(function (topic) {
+      var option = document.createElement('option');
+      option.value = topic.round_id;
+      option.textContent = topic.label;
+      select.appendChild(option);
+    });
+    select.value = current;
+    if (select.selectedIndex < 0) select.value = '';
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // Mirrors portal.js: a four-space indent inside a code-flagged stem marks a
+  // line the student sees as code, and the authored newlines become breaks.
+  function stemHtml(label, isCode) {
+    return String(label).split(/\r?\n/).map(function (line) {
+      if (isCode && /^ {4}\S/.test(line)) {
+        return '<code class="practice-code-line">' + esc(line.slice(4)) + '</code>';
+      }
+      return esc(line);
+    }).join('<br>');
+  }
+
+  // Question stems are authored with the same LaTeX the portal renders, so
+  // the table typesets them the same way. A missing library leaves the source
+  // visible rather than failing the render.
+  var MATH_DELIMS = [
+    { left: '$$', right: '$$', display: true },
+    { left: '\\[', right: '\\]', display: true },
+    { left: '$', right: '$', display: false },
+    { left: '\\(', right: '\\)', display: false },
+  ];
+
+  function typeset(node) {
+    if (!node || typeof window.renderMathInElement !== 'function') return;
+    try {
+      window.renderMathInElement(node, { delimiters: MATH_DELIMS, throwOnError: false });
+    } catch (e) { /* leave the source text as written */ }
+  }
+
+  function renderItems() {
+    var body = el('item-body');
+    var filter = el('item-topic').value;
+    body.innerHTML = '';
+    var items = sortItems(allItems.filter(function (item) {
+      return !filter || item.round_id === filter;
+    }));
+    items.forEach(function (item) {
+      var row = document.createElement('tr');
+      var name = document.createElement('td');
+      var stem = document.createElement('span');
+      stem.className = 'item-stem';
+      stem.innerHTML = stemHtml(item.label, item.code);
+      name.appendChild(stem);
+      var metaLine = document.createElement('span');
+      metaLine.className = 'item-meta';
+      metaLine.textContent = item.topic_label + (item.tag ? ' - ' + item.tag : '');
+      name.appendChild(metaLine);
+      row.appendChild(name);
+      addShareCell(row, 'First try', item.first_try);
+      addShareCell(row, 'All attempts', item.all_attempts);
+      body.appendChild(row);
+    });
+    if (!items.length) {
+      var empty = document.createElement('tr');
+      var td = document.createElement('td');
+      td.colSpan = 3;
+      td.textContent = 'No practice answers yet.';
+      empty.appendChild(td);
+      body.appendChild(empty);
+    }
+    typeset(body);
+  }
+
   function renderActivity(days, startDate, timezone) {
     var chart = el('activity-chart');
     var table = el('daily-body');
@@ -159,6 +303,15 @@
     renderCell(el('total-questions'), summary.overall.questions_tried);
     renderCell(el('recent-codes'), summary.overall.recent_24h.distinct_codes);
     renderTopics(summary);
+    allItems = collectItems(summary);
+    fillTopicFilter(summary);
+    renderItems();
+    el('min-attempts').textContent = summary.min_attempts || 3;
+    var first = summary.overall.first_try;
+    el('items-window').textContent = first && typeof first.share === 'number'
+      ? 'Hardest first - ' + first.display + ' of ' + first.attempts +
+        ' first answers correct'
+      : 'Hardest first';
     renderActivity(summary.days, summary.activity_start_date, summary.timezone);
 
     var generated = localTime(summary.generated_at, summary.timezone);
@@ -248,6 +401,7 @@
     load(false);
   });
   el('refresh').addEventListener('click', function () { load(true); });
+  el('item-topic').addEventListener('change', renderItems);
   el('clear-access').addEventListener('click', function () { clearStoredAccess(true); });
 
   activeToken = storedToken();

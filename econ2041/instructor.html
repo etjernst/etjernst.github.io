@@ -5,56 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="agg-endpoint" content="https://script.google.com/macros/s/AKfycbzXHmTGnRXYJ6La5t1LBELctAbnKodoW-pfZflYI1_tcUHWKoca3LAtY4GKshbF-CJgRw/exec">
 <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data:; script-src 'self'; style-src 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'">
+      content="default-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'">
 <title>ECON2041 practice activity</title>
 <style>
+  /* Same tokens as portal.html and projector.html: the three pages are one
+     surface and must not read as separate products. */
   :root {
     color-scheme: light;
-    --page: #f4f5f7;
-    --surface: #ffffff;
-    --ink: #202124;
-    --muted: #686d76;
-    --rule: #d9dce2;
-    --accent: #76232f;
+    --bg: #f5f1e8; --ink: #241f1a; --muted: #8a8175; --accent: #76232f;
+    --surface: #fffdf8; --rule: #e6ddcd; --gold: #c9a24b; --truth: #0f7a63;
     --blue: #2c5c8a;
-    --green: #0f7a63;
-    --gold: #b78d2e;
     --danger: #a33b2a;
+    --card-edge: #ece3d3;
+    --shadow: 0 1px 2px rgba(60,40,20,.06);
   }
   * { box-sizing: border-box; }
-  html { background: var(--page); }
+  html { background: var(--bg); }
   body {
     margin: 0;
     color: var(--ink);
-    background: var(--page);
+    background: var(--bg);
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.45;
+    line-height: 1.5;
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
   }
-  button, input { font: inherit; letter-spacing: 0; }
+  button, input, select { font: inherit; letter-spacing: 0; }
   button {
-    min-height: 42px;
+    min-height: 44px;
     border: 1px solid transparent;
-    border-radius: 6px;
-    padding: 9px 14px;
+    border-radius: 8px;
+    padding: 10px 15px;
     color: #fff;
     background: var(--accent);
     font-weight: 700;
+    letter-spacing: .01em;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
   }
+  button:active { transform: translateY(1px); }
   button .icon { width: 17px; height: 17px; flex: 0 0 17px; }
-  button.secondary { color: var(--ink); background: var(--surface); border-color: var(--rule); }
-  button:disabled { cursor: wait; opacity: .62; }
-  button:focus-visible, input:focus-visible { outline: 3px solid #88add0; outline-offset: 2px; }
+  button.secondary { color: var(--accent); background: var(--bg); border-color: var(--rule); }
+  button:disabled { background: #d8c3c6; color: #fff; cursor: wait; }
+  button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid var(--blue); outline-offset: 2px;
+  }
   .shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
   .topbar {
     background: var(--surface);
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--card-edge);
   }
   .topbar .shell {
     min-height: 76px;
@@ -64,29 +66,32 @@
     gap: 20px;
     padding: 14px 0;
   }
-  .unit { margin: 0 0 2px; color: var(--accent); font-size: .78rem; font-weight: 800; text-transform: uppercase; }
-  h1 { margin: 0; font-size: 1.35rem; line-height: 1.2; }
-  h2 { margin: 0; font-size: 1rem; }
+  .unit { margin: 0 0 2px; color: var(--accent); font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+  h1 { margin: 0; font-size: 1.3rem; font-weight: 800; letter-spacing: -.015em; line-height: 1.2; }
+  h2 { margin: 0; font-size: 1rem; font-weight: 700; }
   .toolbar { display: flex; align-items: center; gap: 8px; }
   main { padding: 28px 0 56px; }
   .access {
     width: min(460px, 100%);
-    margin: 7vh auto 0;
+    margin: 6vh auto 0;
     background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 8px;
+    border: 1px solid var(--card-edge);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
     padding: 24px;
   }
   .access label { display: block; font-weight: 700; margin-bottom: 7px; }
   .access input[type=password] {
-    width: 100%; min-height: 44px; padding: 10px 12px;
-    color: var(--ink); background: #fff; border: 1px solid #aeb3bc; border-radius: 6px;
+    width: 100%; min-height: 44px; padding: 12px;
+    font-size: 1.1rem;
+    color: var(--ink); background: var(--surface);
+    border: 1px solid var(--rule); border-radius: 8px;
   }
   .remember { display: flex !important; align-items: flex-start; gap: 9px; margin: 12px 0 16px; font-weight: 500 !important; }
   .remember input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--accent); }
   .access button { width: 100%; }
   .status { min-height: 24px; margin: 12px 0 0; color: var(--muted); }
-  .status.error { color: var(--danger); font-weight: 650; }
+  .status.error { color: var(--danger); font-weight: 600; }
   .dashboard[hidden], .access[hidden] { display: none; }
   .dashboard-head {
     display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
@@ -97,29 +102,55 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     background: var(--surface);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
+    border: 1px solid var(--card-edge);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
     margin: 0 0 28px;
   }
   .metric { min-width: 0; padding: 18px 20px; border-left: 1px solid var(--rule); }
   .metric:first-child { border-left: 0; }
-  .metric-name { display: block; color: var(--muted); font-size: .78rem; font-weight: 700; text-transform: uppercase; }
-  .metric-value { display: block; margin-top: 4px; font-size: 1.85rem; line-height: 1.1; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .metric-name { display: block; color: var(--muted); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .metric-value { display: block; margin-top: 4px; font-size: 1.85rem; line-height: 1.1; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
   .section { margin-top: 30px; }
   .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 10px; }
   .section-head p { margin: 0; color: var(--muted); font-size: .86rem; }
-  .table-wrap { overflow-x: auto; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+  .table-wrap {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--card-edge);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+  }
   table { width: 100%; border-collapse: collapse; background: var(--surface); font-variant-numeric: tabular-nums; }
   th, td { padding: 12px 14px; text-align: right; border-bottom: 1px solid var(--rule); vertical-align: middle; }
-  th { color: var(--muted); font-size: .76rem; text-transform: uppercase; font-weight: 800; white-space: nowrap; }
+  th { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; white-space: nowrap; }
   th:first-child, td:first-child { text-align: left; }
   tbody tr:last-child td { border-bottom: 0; }
-  .topic-name { font-weight: 750; }
+  .topic-name { font-weight: 700; }
   .topic-meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 2px; }
+  .item-controls { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .item-controls label { color: var(--muted); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+  .item-controls select {
+    min-height: 40px; padding: 8px 10px; font: inherit; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+    max-width: min(320px, 100%);
+  }
+  .item-table td:first-child { max-width: 620px; }
+  .item-stem { display: block; }
+  .practice-code-line { display: block; overflow-wrap: anywhere; padding: 4px 6px;
+                        margin: 3px 0; background: #efe9dc; border-radius: 4px;
+                        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+                        font-size: .84rem; line-height: 1.35; }
+  .item-meta { display: block; color: var(--muted); font-size: .78rem; margin-top: 3px; }
+  .share { font-weight: 700; }
+  .share.low { color: var(--danger); }
+  .share-n { display: block; color: var(--muted); font-size: .76rem; font-weight: 400; }
   .chart-shell {
     background: var(--surface);
-    border-top: 2px solid var(--ink);
-    border-bottom: 1px solid var(--rule);
+    border: 1px solid var(--card-edge);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
     padding: 18px 16px 12px;
   }
   .chart {
@@ -131,19 +162,19 @@
   }
   .day { min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
   .day-value { min-height: 22px; text-align: center; color: var(--muted); font-size: .72rem; }
-  .bar-track { height: 132px; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid #aeb3bc; }
-  .bar { width: min(28px, 74%); min-height: 0; background: var(--blue); border-radius: 3px 3px 0 0; }
+  .bar-track { height: 132px; display: flex; align-items: flex-end; justify-content: center; border-bottom: 1px solid var(--rule); }
+  .bar { width: min(28px, 74%); min-height: 0; background: var(--gold); border-radius: 4px 4px 0 0; }
   .day-label { min-height: 34px; padding-top: 6px; text-align: center; color: var(--muted); font-size: .7rem; overflow-wrap: anywhere; }
   .daily-table { margin-top: 12px; }
-  .daily-table summary { cursor: pointer; color: var(--blue); font-weight: 700; }
-  .daily-table table { margin-top: 8px; border: 1px solid var(--rule); }
+  .daily-table summary { cursor: pointer; color: var(--blue); font-weight: 600; }
+  .daily-table table { margin-top: 8px; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
   .note {
-    margin: 26px 0 0;
-    border-left: 3px solid var(--gold);
-    padding: 9px 12px;
+    margin: 22px 0 0;
+    padding: 10px 12px;
+    border-radius: 8px;
     color: var(--muted);
-    background: #fffaf0;
-    font-size: .88rem;
+    background: #efe9dc;
+    font-size: .9rem;
   }
   .quality { color: var(--muted); font-size: .8rem; margin: 9px 0 0; }
   @media (max-width: 760px) {
@@ -164,10 +195,11 @@
     .summary-band { grid-template-columns: 1fr 1fr; }
     .metric { padding: 14px 12px; }
     .metric-value { font-size: 1.5rem; }
-    .table-wrap { overflow: visible; border-bottom: 0; }
+    .table-wrap { overflow: hidden; }
     table.topic-table, .topic-table thead, .topic-table tbody, .topic-table tr, .topic-table td { display: block; width: 100%; }
     .topic-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .topic-table tr { padding: 12px 14px; background: var(--surface); border-bottom: 1px solid var(--rule); }
+    .topic-table tr:last-child { border-bottom: 0; }
     .topic-table td { display: grid; grid-template-columns: minmax(110px, 1fr) auto; gap: 10px; padding: 6px 0; border: 0; text-align: right; }
     .topic-table td:first-child { display: block; padding-bottom: 9px; text-align: left; }
     .topic-table td:not(:first-child)::before { content: attr(data-label); color: var(--muted); font-size: .74rem; font-weight: 700; text-transform: uppercase; text-align: left; }
@@ -256,6 +288,30 @@
       </div>
     </section>
 
+    <section class="section" aria-labelledby="items-heading">
+      <div class="section-head">
+        <h2 id="items-heading">Questions</h2>
+        <p id="items-window">Hardest first</p>
+      </div>
+      <div class="item-controls">
+        <label for="item-topic">Topic</label>
+        <select id="item-topic"><option value="">All topics</option></select>
+      </div>
+      <div class="table-wrap">
+        <table class="topic-table item-table">
+          <thead>
+            <tr>
+              <th scope="col">Question</th>
+              <th scope="col">First try</th>
+              <th scope="col">All attempts</th>
+            </tr>
+          </thead>
+          <tbody id="item-body"></tbody>
+        </table>
+      </div>
+      <p class="note">Shares below <span id="min-attempts">3</span> first-try answers print as a dash rather than a number. Practice is voluntary, so the students who answer select themselves and a first-try share reads as an optimistic estimate of how the same question would go on a quiz sat by everyone. A very low share can mean an ambiguous question rather than a hard concept, so read the question before dropping it. The all-attempts column counts every answer, including re-draws, which reach a question only after a student has been through the whole pool once.</p>
+    </section>
+
     <section class="section" aria-labelledby="activity-heading">
       <div class="section-head">
         <h2 id="activity-heading">Submitted draws</h2>
@@ -278,6 +334,11 @@
   </section>
 </main>
 
+<!-- KaTeX is vendored, never a CDN, matching portal.html: question stems carry
+     the same LaTeX the students see and must render the same way here. -->
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/contrib/auto-render.min.js"></script>
 <script src="js/instructor.js"></script>
 </body>
 </html>
