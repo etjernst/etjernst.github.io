@@ -1,0 +1,63 @@
+{
+ "n": 79,
+ "n_zero_egm": 9,
+ "ue_median_pct": 3.34,
+ "n_high_ue": 39,
+ "means": {
+  "exp_per_adult": 441.0,
+  "egm_per_1000": 4.7,
+  "ue_pct": 3.5
+ },
+ "losses": {
+  "median": 468.0,
+  "max": 1076.0,
+  "max_lga": "City of Brimbank"
+ },
+ "corr": {
+  "egm_per_1000": 0.78,
+  "ue_rate": 0.45,
+  "seifa_dis": -0.29
+ },
+ "simple": {
+  "coefs": {
+   "Intercept": 71.2,
+   "egm_per_1000": 78.3
+  },
+  "n": 79,
+  "r2": 0.605
+ },
+ "sub_low": {
+  "coefs": {
+   "Intercept": 31.9,
+   "egm_per_1000": 72.3
+  },
+  "n": 40,
+  "r2": 0.706
+ },
+ "sub_high": {
+  "coefs": {
+   "Intercept": 128.7,
+   "egm_per_1000": 80.3
+  },
+  "n": 39,
+  "r2": 0.569
+ },
+ "multi_dummy": {
+  "coefs": {
+   "Intercept": 16.1,
+   "egm_per_1000": 75.9,
+   "high_ue": 134.7
+  },
+  "n": 79,
+  "r2": 0.669
+ },
+ "multi_ue": {
+  "coefs": {
+   "Intercept": -115.9,
+   "egm_per_1000": 72.8,
+   "ue_pct": 61.2
+  },
+  "n": 79,
+  "r2": 0.708
+ }
+}
