@@ -112,38 +112,67 @@
     var maxC = Math.max.apply(null, counts);
 
     var anchored = spec && (spec.min_label || spec.max_label);
-    var padL = 60, padB = anchored ? 150 : 70, padT = 30;
-    var plotW = W - padL - 20, plotH = H - padT - padB;
+    var padL = 110, padB = anchored ? 150 : 70, padT = 30;
+    var plotW = W - padL - 40, plotH = H - padT - padB;
 
     // bars: one color, because the bins are one distribution rather than
     // distinct categories; per-bin colors would imply a difference in kind
-    ctx.fillStyle = '#c9a24b';
     for (var i = 0; i < k; i++) {
       if (!counts[i]) continue;
       var x = padL + (i / k) * plotW;
       var h = (counts[i] / maxC) * plotH;
+      ctx.fillStyle = '#c9a24b';
       ctx.fillRect(x + 1, padT + plotH - h, plotW / k - 2, h);
+      ctx.strokeStyle = '#f5f1e8'; ctx.lineWidth = 2;
+      ctx.strokeRect(x + 1, padT + plotH - h, plotW / k - 2, h);
     }
 
-    // x axis and labels
+    // axes
     ctx.strokeStyle = '#8a8175'; ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH);
+    ctx.lineTo(padL + plotW, padT + plotH);
     ctx.stroke();
+
+    // y ticks: whole students, never a fractional count
+    var yStep = Math.max(1, Math.ceil(maxC / 5));
+    ctx.fillStyle = '#241f1a'; ctx.textAlign = 'right';
+    for (var c = 0; c <= maxC; c += yStep) {
+      var cy = padT + plotH - (c / maxC) * plotH;
+      ctx.beginPath();
+      ctx.moveTo(padL - 10, cy); ctx.lineTo(padL, cy);
+      ctx.stroke();
+      ctx.fillText(String(c), padL - 18, cy + 10);
+    }
+    ctx.textAlign = 'left';
+    ctx.save();
+    ctx.translate(28, padT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillStyle = '#8a8175';
+    ctx.fillText('Students', -ctx.measureText('Students').width / 2, 0);
+    ctx.restore();
+
+    // x labels: the end ticks align inward so neither runs off the canvas
     ctx.fillStyle = '#241f1a';
+    function xTick(px, label, isFirst, isLast) {
+      ctx.textAlign = isFirst ? 'left' : (isLast ? 'right' : 'center');
+      ctx.fillText(label, px, padT + plotH + 40);
+      ctx.textAlign = 'left';
+    }
     if (wholeUnits) {
       // one tick per integer, centered under its own bar
       var step = k > 12 ? Math.ceil(k / 12) : 1;
-      for (var v0 = Number(spec.min); v0 <= Number(spec.max); v0 += step) {
+      var last = Number(spec.max);
+      for (var v0 = Number(spec.min); v0 <= last; v0 += step) {
         var pxi = padL + ((v0 - lo) / (hi - lo)) * plotW;
-        ctx.fillText(String(v0), pxi - 8, padT + plotH + 40);
+        xTick(pxi, String(v0), v0 === Number(spec.min), v0 + step > last);
       }
     } else {
       for (var t = 0; t <= 4; t++) {
         var vx = lo + (t / 4) * (hi - lo);
         var px = padL + (t / 4) * plotW;
         var label = Math.abs(vx) >= 1000 ? vx.toFixed(0) : vx.toPrecision(3);
-        ctx.fillText(label, px - 20, padT + plotH + 40);
+        xTick(px, label, t === 0, t === 4);
       }
     }
 
@@ -303,14 +332,26 @@
       counts[b] += 1;
     });
     var maxC = Math.max.apply(null, counts);
-    ctx.fillStyle = '#c9a24b';
+    var gut = 38, bw = w - gut, base = y0 + h - 24;
     for (var i = 0; i < k; i++) {
       if (!counts[i]) continue;
       var bh = (counts[i] / maxC) * (h - 24);
-      ctx.fillRect(x0 + (i / k) * w + 1, y0 + (h - 24) - bh, w / k - 2, bh);
+      ctx.fillStyle = '#c9a24b';
+      ctx.fillRect(x0 + gut + (i / k) * bw + 1, base - bh, bw / k - 2, bh);
+      ctx.strokeStyle = '#f5f1e8'; ctx.lineWidth = 1;
+      ctx.strokeRect(x0 + gut + (i / k) * bw + 1, base - bh, bw / k - 2, bh);
     }
+    // a count axis, so the tile is read rather than eyeballed
+    ctx.strokeStyle = '#8a8175'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x0 + gut, y0); ctx.lineTo(x0 + gut, base); ctx.lineTo(x0 + w, base);
+    ctx.stroke();
     ctx.fillStyle = '#8a8175';
-    ctx.fillText(String(lo), x0, y0 + h - 2);
+    ctx.textAlign = 'right';
+    ctx.fillText(String(maxC), x0 + gut - 6, y0 + 14);
+    ctx.fillText('0', x0 + gut - 6, base);
+    ctx.textAlign = 'left';
+    ctx.fillText(String(lo), x0 + gut, y0 + h - 2);
     var hiLabel = String(hi);
     ctx.fillText(hiLabel, x0 + w - ctx.measureText(hiLabel).width, y0 + h - 2);
   }
