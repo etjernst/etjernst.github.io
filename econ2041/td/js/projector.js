@@ -570,7 +570,16 @@
 
     // the canvas draws at 2x resolution, so canvas px = half a screen px;
     // fonts here are sized for the back of a lecture theater
-    var padL = Math.floor(W * 0.22), padR = 60, padT = 72, padB = 96;
+    // the label gutter grows with the widest row label so long labels never
+    // clip at the left edge; the plot keeps at least 55% of the width
+    var rowFont = (rows.length > 8 ? '34px' : '40px') + ' system-ui, sans-serif';
+    ctx.font = rowFont;
+    var labelMax = 0;
+    rows.forEach(function (r) {
+      labelMax = Math.max(labelMax, ctx.measureText(r.label).width);
+    });
+    var padL = Math.floor(Math.min(W * 0.45, Math.max(W * 0.22, labelMax + 48)));
+    var padR = 60, padT = 72, padB = 96;
     var plotW = W - padL - padR, plotH = H - padT - padB;
     var rowH = plotH / rows.length;
     function x(v) { return padL + (v - lo) / (hi - lo) * plotW; }
@@ -612,7 +621,7 @@
 
     rows.forEach(function (r, i) {
       var cy = padT + i * rowH + rowH / 2;
-      ctx.font = (rows.length > 8 ? '34px' : '40px') + ' system-ui, sans-serif';
+      ctx.font = rowFont;
       ctx.fillStyle = '#241f1a';
       var lab = r.label;
       ctx.fillText(lab, padL - 24 - ctx.measureText(lab).width, cy + 12);
