@@ -631,7 +631,7 @@
       var ds = dotStyle(r.values.length);
       ctx.fillStyle = '#c9a24b';
       ctx.globalAlpha = ds.alpha;
-      var jMax = Math.max(rowH * 0.30, ds.r);
+      var jMax = Math.max(rowH * 0.17, ds.r); // dots span a third of the row, so rows read apart
       r.values.forEach(function (v, j) {
         ctx.beginPath();
         ctx.arc(x(v), cy + jitterFrac(j) * 2 * jMax, ds.r, 0, 2 * Math.PI);
