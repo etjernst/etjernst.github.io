@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ECON2041 class aggregate</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f5f1e8; --ink: #241f1a; --muted: #8a8175; --accent: #76232f;
+    --surface: #fffdf8; --rule: #e6ddcd; --gold: #c9a24b; --truth: #0f7a63;
+  }
+  html, body { height: 100%; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         margin: 0; background: var(--bg); color: var(--ink);
+         -webkit-font-smoothing: antialiased;
+         display: flex; flex-direction: column; overflow: hidden; }
+  /* one type size across the header; color, not weight or size, separates the
+     three pieces (title ink, round label muted, N in the accent) */
+  header { display: flex; align-items: baseline; gap: 24px; padding: 18px 28px 0; }
+  h1 { font-size: 1.35rem; font-weight: 600; letter-spacing: -.015em; margin: 0; }
+  #n-counter { font-size: 1.35rem; font-weight: 600; color: var(--accent);
+               font-variant-numeric: tabular-nums; }
+  #round-label { font-size: 1.35rem; font-weight: 400; color: var(--muted); }
+  #round-label::first-letter { text-transform: uppercase; }
+  #round-prompt { margin: 2px 28px 0; font-size: 1.15rem; color: var(--ink); max-width: 80ch; }
+  /* the canvas takes every pixel the header, prompt, and strip leave over,
+     so fullscreen (F11) fills the screen instead of stopping at 60vh */
+  #hist { flex: 1 1 auto; min-height: 0; width: 96vw; align-self: center;
+          display: block; margin: 8px auto; }
+  body.bare .strip { display: none; }  /* "h" hides the controls for projection */
+  .strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+           padding: 10px 28px; background: #efe9dc; font-size: .9rem;
+           border-top: 1px solid var(--rule); }
+  .strip input[type=text], .strip input[type=number] {
+    padding: 7px; border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--surface); color: var(--ink); font-family: inherit; font-size: .9rem; }
+  .strip select { padding: 7px; border: 1px solid var(--rule); border-radius: 8px;
+    background: var(--surface); color: var(--ink); font-family: inherit; font-size: .9rem; }
+  .strip button { padding: 8px 13px; border: 0; border-radius: 8px; font-family: inherit;
+                  font-size: .9rem; font-weight: 600;
+                  background: var(--accent); color: #fff; cursor: pointer; }
+  .strip button:active { transform: translateY(1px); }
+  .strip button:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
+  .strip button.warn { background: var(--truth); }
+  .strip button.present { background: var(--gold); color: var(--ink); }
+  /* fold-out clusters: hidden until their toggle is pressed; display:contents
+     keeps their children in the same flex row as the core buttons */
+  .strip .group { display: none; }
+  .strip .group.show { display: contents; }
+  .strip button.ghost { background: transparent; color: var(--muted);
+    border: 1px solid var(--rule); font-weight: 600; }
+  #ctl-status { color: var(--truth); font-weight: 600; min-width: 120px; }
+  /* wage-style rounds: truth toggle + computed takeaway under the canvas */
+  #wage-bar { display: none; align-items: center; gap: 16px; padding: 2px 28px; }
+  #truth-toggle-btn { font-size: 1.05rem; font-weight: 600; padding: 10px 18px;
+      border: 0; border-radius: 8px; background: var(--gold); color: var(--ink);
+      cursor: pointer; font-family: inherit; }
+  #truth-toggle-btn:disabled { background: #cfc9bb; color: #6f695e; cursor: default; }
+  /* min-height reserves three bullet lines before the reveal fills them in,
+     so the chart above keeps its exact size when the bullets appear */
+  #wage-takeaway { display: none; margin: 4px 28px 8px; font-size: 1.35rem;
+                   min-height: 6.1rem; }
+  #wage-takeaway ul { margin: 0; padding-left: 1.3em; }
+  #wage-takeaway li { margin: 2px 0; }
+  /* emphasis by color alone; the accent carries it without bold */
+  #wage-takeaway b { color: var(--accent); font-weight: normal; }
+  /* fitline rounds: class median alpha/beta vs the OLS truth, reveal only */
+  #fit-stats { display: none; margin: 4px 28px 8px; font-size: 1.3rem; }
+  #fit-stats ul { margin: 0; padding-left: 1.3em; }
+  #fit-stats li { margin: 2px 0; }
+  #fit-stats b { color: var(--accent); font-weight: normal; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Class aggregate</h1>
+  <span id="round-label">loading…</span>
+  <span id="n-counter">N = 0</span>
+</header>
+<p id="round-prompt"></p>
+
+<canvas id="hist"></canvas>
+<div id="wage-bar">
+  <button id="truth-toggle-btn" onclick="AGG_PROJECTOR.toggleTruth()">Truth unlocks at reveal</button>
+</div>
+<p id="wage-takeaway"></p>
+<p id="fit-stats"></p>
+
+<div class="strip">
+  <button class="present" onclick="AGG_VIEW.present()">Present</button>
+  <select id="round-select" onchange="AGG_PROJECTOR.selectRound()"></select>
+  <button onclick="AGG_PROJECTOR.open()">Open</button>
+  <button onclick="AGG_PROJECTOR.close()">Close</button>
+  <button class="warn" id="unlock-btn" onclick="AGG_PROJECTOR.reveal()">Unlock results</button>
+  <button onclick="AGG_PROJECTOR.stepFocus(-1)" title="Previous question (left arrow)">&#8592;</button>
+  <button onclick="AGG_PROJECTOR.stepFocus(1)" title="Next question (right arrow)">&#8594;</button>
+  <button class="ghost" onclick="AGG_PROJECTOR.toggleOverview()" title="All questions at once (a)">All</button>
+  <button class="ghost" id="improvise-toggle" onclick="AGG_VIEW.toggleGroup('improvise')">Improvise &#9656;</button>
+  <button class="ghost" id="more-toggle" onclick="AGG_VIEW.toggleGroup('more')">More &#9656;</button>
+  <span id="ctl-status"></span>
+  <span class="group" id="improvise-group">
+    <input id="new-label" type="text" placeholder="new round label" size="14">
+    <input id="new-prompt" type="text" placeholder="prompt shown to students" size="28">
+    <input id="new-truth" type="number" step="any" placeholder="truth" size="7">
+    <label><input id="new-lock" type="checkbox"> lock first answer</label>
+    <button onclick="AGG_PROJECTOR.newRound()">Create</button>
+  </span>
+  <span class="group" id="more-group">
+    <button onclick="AGG_PROJECTOR.coldOpen()">Cold open</button>
+    <button onclick="AGG_PROJECTOR.liveMode()">Live</button>
+    <button onclick="AGG_QR.toggle()">Big QR (q)</button>
+    <input id="token-input" type="text" placeholder="instructor token" size="16">
+    <button onclick="AGG_PROJECTOR.saveToken()">Save token</button>
+  </span>
+</div>
+
+<div id="qr-overlay" style="display:none; position:fixed; inset:0; background:rgba(245,241,232,.97);
+     z-index:10; text-align:center; padding-top:8vh;">
+  <h2 style="font-size:2.2rem; margin-bottom:4vh;">Commit your answer before you leave</h2>
+  <div id="qr-overlay-img"></div>
+  <p id="qr-overlay-url" style="font-size:2rem; font-family:ui-monospace,monospace;"></p>
+  <p style="color:#777">tap your saved portal link, or scan</p>
+</div>
+
+<script>
+  window.AGG_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzKOPMghaAk0E304pD8OtaLW9kMdlpnd0yz_HrsQgY0_gkPzc_KTZTh3LWXjxOMeFg2/exec';
+</script>
+<!-- vendored, never a CDN: the lectern screen must render with no network
+     beyond the Apps Script endpoint itself -->
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/contrib/auto-render.min.js"></script>
+<script src="js/projector.js"></script>
+<script>
+  // Strip view controls: Present = fullscreen + bare (only the chart, prompt,
+  // and N counter visible; "h" or leaving fullscreen brings the strip back).
+  // The improvise and more clusters fold out on demand so lecture day shows
+  // only the round picker and the open/close/reveal flow.
+  window.AGG_VIEW = {
+    // fullscreen entry/exit fires a resize, and projector.js re-renders the
+    // canvas on resize, so no explicit re-render call is needed here
+    present: function () {
+      var el = document.documentElement;
+      if (el.requestFullscreen) { el.requestFullscreen().catch(function () {}); }
+      document.body.classList.add('bare');
+    },
+    toggleGroup: function (name) {
+      var group = document.getElementById(name + '-group');
+      var btn = document.getElementById(name + '-toggle');
+      var open = group.classList.toggle('show');
+      btn.innerHTML = btn.innerHTML.replace(open ? '▸' : '▾', open ? '▾' : '▸');
+    },
+  };
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement) { document.body.classList.remove('bare'); }
+  });
+  // first run on a new machine: no token saved yet, so unfold the cluster
+  // that holds the token box
+  if (!localStorage.getItem('agg_token')) { AGG_VIEW.toggleGroup('more'); }
+</script>
+<script>
+  // Full-screen exit-commit overlay (button or keypress "q"): big QR generated
+  // remotely when online, URL text always shown as the offline fallback.
+  // The lecture slides carry the join QR; the projector shows none while live.
+  (function () {
+    var portalUrl = window.location.href.replace(/projector\.html.*/, 'portal.html');
+    var shortUrl = portalUrl.replace(/^https?:\/\//, '');
+
+    function qrImg(size) {
+      var img = new Image();
+      img.width = size; img.height = size;
+      img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' +
+                size + '&data=' + encodeURIComponent(portalUrl);
+      return img;
+    }
+
+    var overlay = document.getElementById('qr-overlay');
+    var overlayReady = false;
+    window.AGG_QR = {
+      toggle: function () {
+        var showing = overlay.style.display !== 'none';
+        if (showing) { overlay.style.display = 'none'; return; }
+        if (!overlayReady) {
+          overlayReady = true;
+          document.getElementById('qr-overlay-img').appendChild(qrImg(360));
+          document.getElementById('qr-overlay-url').textContent = shortUrl;
+        }
+        overlay.style.display = 'block';
+      },
+    };
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'q' && document.activeElement.tagName !== 'INPUT') AGG_QR.toggle();
+    });
+  })();
+</script>
+</body>
+</html>
