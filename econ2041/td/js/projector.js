@@ -598,7 +598,7 @@
     // legend, top left of the plot area
     var legendItems = [
       { kind: 'dot', color: '#c9a24b', text: 'one answer' },
-      { kind: 'dot', color: '#76232f', text: 'class median' },
+      { kind: 'dot', color: '#76232f', text: 'median answer' },
     ];
     if (state.showTruth && truthObj) {
       legendItems.push({ kind: 'diamond', color: '#0f7a63',
@@ -700,11 +700,11 @@
     var under = diffs.reduce(function (a, b) { return b.diff < a.diff ? b : a; });
     var parts = [];
     if (over.diff > 0) {
-      parts.push('Biggest overestimate: <b>' + escText(over.label) + '</b> (class median ' +
+      parts.push('Biggest overestimate: <b>' + escText(over.label) + '</b> (median answer ' +
         compact(over.median, prefix) + ', real ' + compact(over.truth, prefix) + ')');
     }
     if (under.diff < 0) {
-      parts.push('Biggest underestimate: <b>' + escText(under.label) + '</b> (class median ' +
+      parts.push('Biggest underestimate: <b>' + escText(under.label) + '</b> (median answer ' +
         compact(under.median, prefix) + ', real ' + compact(under.truth, prefix) + ')');
     }
     if (tvals.length >= 2) {
