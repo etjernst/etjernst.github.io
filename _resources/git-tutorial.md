@@ -12,34 +12,56 @@ category: for students
   --paper:#fbfbfd; --paper-alt:#f1f0f9; --white:#fff;
   --accent:#5b4bdb; --code-ink:#3a2eb0; --accent-wash:rgba(91,75,219,.07);
   --border:#e7e6f1;
+  --pre-bg:#f5f5fb; --cmt:#5c6072; --add-ink:#1a7f37; --del-ink:#cf222e;
+  --diff-head:#f6f8fa; --diff-ln:#8c959f; --diff-ln-bg:#fafbfc;
+  --add-bg:#e6ffec; --add-ln-bg:#ccffd8; --del-bg:#ffebe9; --del-ln-bg:#ffd7d5;
+  --num-shade:rgba(91,75,219,.11); --link-line:rgba(91,75,219,.25);
   --display:'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-family:'Roboto', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
   color:var(--ink); font-size:1.06rem; line-height:1.72;
   max-width:740px; margin:1.5rem auto 0;
 }
 .gittut *{box-sizing:border-box;}
+html[data-theme='dark'] .gittut{
+  --ink-strong:#ececf1; --ink:#d2d2da; --slate:#9a9eb0;
+  --paper:#1c1c1d; --paper-alt:#25252b; --white:#1f1f24;
+  --accent:#a399ff; --code-ink:#c3bcff; --accent-wash:rgba(163,153,255,.13);
+  --border:#3a3a44;
+  --pre-bg:#232329; --cmt:#9a9eb0; --add-ink:#57c26e; --del-ink:#f47067;
+  --diff-head:#26262c; --diff-ln:#7d8190; --diff-ln-bg:#212126;
+  --add-bg:rgba(46,160,67,.16); --add-ln-bg:rgba(46,160,67,.28);
+  --del-bg:rgba(248,81,73,.14); --del-ln-bg:rgba(248,81,73,.26);
+  --num-shade:rgba(163,153,255,.10); --link-line:rgba(163,153,255,.35);
+}
+.gittut .gt-diff{border:1px solid var(--border); border-radius:8px; overflow:hidden; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.7; margin:1.1rem 0; color:var(--ink-strong);}
+.gittut .gt-diff-file{background:var(--diff-head); border-bottom:1px solid var(--border); padding:7px 12px; color:var(--slate);}
+.gittut .gt-diff-row{display:flex;}
+.gittut .gt-diff-ln{display:inline-block; width:2.4em; text-align:right; padding:0 8px; color:var(--diff-ln); background:var(--diff-ln-bg);}
+.gittut .gt-diff-code{padding:0 10px; white-space:pre;}
+.gittut .gt-diff-add{background:var(--add-bg);} .gittut .gt-diff-add .gt-diff-ln{background:var(--add-ln-bg);} .gittut .gt-diff-add .gt-diff-mark{color:var(--add-ink);}
+.gittut .gt-diff-del{background:var(--del-bg);} .gittut .gt-diff-del .gt-diff-ln{background:var(--del-ln-bg);} .gittut .gt-diff-del .gt-diff-mark{color:var(--del-ink);}
 /* Align the al-folio page header (full container width) with the narrow body column,
    so the title and description never reach into the floating TOC's left gutter. */
 #main-content .post-header{max-width:740px; margin-left:auto; margin-right:auto;}
 .gittut .gt-sec{position:relative; padding:2.3rem 0;}
 .gittut .gt-sec:first-of-type{padding-top:1rem;}
 .gittut .gt-sec.gt-shade{background:var(--paper-alt); border:1px solid var(--border); border-radius:16px; padding:2.3rem 1.9rem; margin:1.1rem 0;}
-.gittut .gt-sec.gt-shade .gt-num{right:.7rem; color:rgba(91,75,219,.11);}
+.gittut .gt-sec.gt-shade .gt-num{right:.7rem; color:var(--num-shade);}
 .gittut .gt-sec.gt-shade pre{background:var(--white);}
 .gittut .gt-num{position:absolute; top:1.7rem; right:-.2rem; font-family:var(--display); font-weight:700; font-size:clamp(3rem,9vw,5rem); line-height:1; color:var(--accent-wash); user-select:none; pointer-events:none; z-index:0;}
 .gittut .gt-eyebrow{font-family:var(--display); font-weight:500; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin:0 0 .5rem;}
 .gittut h2{font-family:var(--display); font-weight:700; color:var(--ink-strong); font-size:clamp(1.55rem,3.4vw,2.15rem); line-height:1.15; margin:.15rem 0 1rem; position:relative; z-index:1;}
 .gittut h3{font-family:var(--display); font-weight:500; color:var(--ink-strong); font-size:1.18rem; margin:1.8rem 0 .5rem;}
 .gittut p{margin:0 0 1rem;}
-.gittut a{color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(91,75,219,.25);}
+.gittut a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--link-line);}
 .gittut a:hover{border-bottom-color:var(--accent);}
 .gittut .gt-lede{font-family:var(--display); font-weight:500; font-size:1.45rem; line-height:1.45; color:var(--ink-strong); letter-spacing:-.005em; margin:.1rem 0 1.5rem;}
 .gittut .gt-lede code{font-size:.74em;}
 .gittut code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em; background:var(--accent-wash); color:var(--code-ink); padding:.12em .4em; border-radius:5px;}
-.gittut pre{background:#f5f5fb; color:var(--ink-strong); border:1px solid var(--border); border-radius:10px; padding:13px 16px; overflow:auto; font-size:.86rem; line-height:1.62; margin:1.1rem 0; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+.gittut pre{background:var(--pre-bg); color:var(--ink-strong); border:1px solid var(--border); border-radius:10px; padding:13px 16px; overflow:auto; font-size:.86rem; line-height:1.62; margin:1.1rem 0; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
 .gittut pre code{background:none; color:inherit; padding:0; font-size:1em;}
-.gittut pre .o{color:#5c6072;}
-.gittut pre .add{color:#1a7f37;} .gittut pre .del{color:#cf222e;}
+.gittut pre .o{color:var(--cmt);}
+.gittut pre .add{color:var(--add-ink);} .gittut pre .del{color:var(--del-ink);}
 .gittut .gt-callout{background:var(--accent-wash); border-left:3px solid var(--accent); border-radius:0 9px 9px 0; padding:.85rem 1.1rem; margin:1.2rem 0; font-size:.99rem;}
 .gittut .gt-callout strong{color:var(--accent);}
 .gittut table{width:100%; border-collapse:collapse; font-size:.92rem; margin:1rem 0;}
@@ -217,19 +239,19 @@ secrets*</code></pre>
 <p>Reading a diff can help you figure out why your regression no longer runs (hint: that edit you made at 1 a.m. last Tuesday), and how you can make sure you remain the author of your own project even if you're leaning on AI to help troubleshoot your code.</p>
 <p>Two commands: <code>git diff</code> shows you what you've changed but haven't yet staged; <code>git diff --staged</code> shows you what you've staged and what you are about to commit. A leading <code>-</code> marks a red line you removed; a leading <code>+</code> marks a green line you added. A line that you have edited appears as both, stacked.</p>
 <p>I prefer to read diffs on GitHub, where a single new line will look like this:</p>
-<div style="border:1px solid #d0d7de; border-radius:8px; overflow:hidden; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.7; margin:1.1rem 0;">
-  <div style="background:#f6f8fa; border-bottom:1px solid #d0d7de; padding:7px 12px; color:#57606a;">clean.do</div>
+<div class="gt-diff">
+  <div class="gt-diff-file">clean.do</div>
   <div>
-    <div style="display:flex;"><span style="display:inline-block; width:2.4em; text-align:right; padding:0 8px; color:#8c959f; background:#fafbfc;">1</span><span style="padding:0 10px; white-space:pre;">&nbsp; use survey_data, clear</span></div>
-    <div style="display:flex; background:#e6ffec;"><span style="display:inline-block; width:2.4em; text-align:right; padding:0 8px; color:#8c959f; background:#ccffd8;">2</span><span style="padding:0 10px; white-space:pre;"><span style="color:#1a7f37;">+</span> keep if year &gt;= 2010</span></div>
+    <div class="gt-diff-row"><span class="gt-diff-ln">1</span><span class="gt-diff-code">&nbsp; use survey_data, clear</span></div>
+    <div class="gt-diff-row gt-diff-add"><span class="gt-diff-ln">2</span><span class="gt-diff-code"><span class="gt-diff-mark">+</span> keep if year &gt;= 2010</span></div>
   </div>
 </div>
 <p>and a changed line shows the old version in red above the new one in green:</p>
-<div style="border:1px solid #d0d7de; border-radius:8px; overflow:hidden; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.7; margin:1.1rem 0;">
-  <div style="background:#f6f8fa; border-bottom:1px solid #d0d7de; padding:7px 12px; color:#57606a;">clean.do</div>
+<div class="gt-diff">
+  <div class="gt-diff-file">clean.do</div>
   <div>
-    <div style="display:flex; background:#ffebe9;"><span style="display:inline-block; width:2.4em; text-align:right; padding:0 8px; color:#8c959f; background:#ffd7d5;">13</span><span style="padding:0 10px; white-space:pre;"><span style="color:#cf222e;">-</span> drop if income &lt; 0</span></div>
-    <div style="display:flex; background:#e6ffec;"><span style="display:inline-block; width:2.4em; text-align:right; padding:0 8px; color:#8c959f; background:#ccffd8;">13</span><span style="padding:0 10px; white-space:pre;"><span style="color:#1a7f37;">+</span> drop if income &lt; 0 | missing(income)</span></div>
+    <div class="gt-diff-row gt-diff-del"><span class="gt-diff-ln">13</span><span class="gt-diff-code"><span class="gt-diff-mark">-</span> drop if income &lt; 0</span></div>
+    <div class="gt-diff-row gt-diff-add"><span class="gt-diff-ln">13</span><span class="gt-diff-code"><span class="gt-diff-mark">+</span> drop if income &lt; 0 | missing(income)</span></div>
   </div>
 </div>
 <p>The diff shows you what changed, so make your commit messages useful to future-you. They should say what you've done in words, to make the history readable later on. Compare a useless message to a helpful one:</p>
