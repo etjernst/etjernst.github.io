@@ -190,6 +190,17 @@ blockquote {
   color: var(--global-bg-color);
 }
 
+// phones: keep the photo small so the bio starts on the first screen
+@media (max-width: 575.98px) {
+  .profile,
+  .profile.float-left,
+  .profile.float-right {
+    max-width: 180px;
+    margin: 0 auto 1rem;
+    float: none !important;
+  }
+}
+
 @media (min-width: 576px) {
   .profile {
     width: 25%;
