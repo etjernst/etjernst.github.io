@@ -41,7 +41,7 @@ Depending on the topic of the literature review, it can make sense to add additi
 - **Time frame**
 - **Measurement**
   > If the outcome variable or the key "treatment" variable is measured very differently across studies, it can be worth categorizing studies on this dimension. For example, "air pollution" can be measured in many ways:
-  > - Hourly $O_{3}$, $CO$, and $NO_{2}$ from California Air Resources Board monitor, 2.7 miles from study site.
+  > - Hourly O₃, CO, and NO₂ from California Air Resources Board monitor, 2.7 miles from study site.
   > - Weekly zip code-level average. Computed as weighted average across all monitors within 20-miles of mother's zip code.
   > - Daily aerosol weighted averages for sub-districts. Constructed from satellite ozone monitoring points ~175km apart. In total, 226 unique ozone pollution grid points generated measurements for 3700 sub-districts.
 
