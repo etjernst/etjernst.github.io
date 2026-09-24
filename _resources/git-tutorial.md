@@ -135,7 +135,7 @@ html[data-theme='dark'] .gittut{
 <p>The fastest way to learn git is to use it. So let's install git, set it up, start a repository, and save a couple of snapshots, so that you try out all the most useful commands.</p>
 
 <h3>Install git</h3>
-<p>First you need git itself. On **Windows**, download Git for Windows from <a href="https://git-scm.com/downloads">git-scm.com</a> and accept the defaults. This will also install Git Bash, the terminal that you'll type in. On a **Mac**, run <code>xcode-select --install</code> in the Terminal app, or download from the same site. To check that it worked, open bash (Windows) or the terminal (Mac) and run:</p>
+<p>First you need git itself. On <strong>Windows</strong>, download Git for Windows from <a href="https://git-scm.com/downloads">git-scm.com</a> and accept the defaults. This will also install Git Bash, the terminal that you'll type in. On a <strong>Mac</strong>, run <code>xcode-select --install</code> in the Terminal app, or download from the same site. To check that it worked, open bash (Windows) or the terminal (Mac) and run:</p>
 <pre><code>git --version   <span class="o"># prints the version if git is installed</span></code></pre>
 
 <h3>Set up git, once per computer</h3>
