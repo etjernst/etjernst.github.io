@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Version control with Git
+title: Version control
 description: A short, follow-along guide to tracking your work with Git and reading diffs, for the age of AI-assisted coding.
 img: assets/img/git-tutorial-card.jpg
 importance: 2

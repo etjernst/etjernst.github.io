@@ -231,17 +231,22 @@ In your matrix, that saturation will look like new rows that repeat values you a
 <script>
 (function(){
   var toc=document.querySelector('.litrev .lr-toc');
-  if(!toc || !('IntersectionObserver' in window)) return;
+  if(!toc) return;
   var links={};
   toc.querySelectorAll('a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
-  var spy=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        for(var k in links){links[k].classList.remove('active');}
-        if(links[e.target.id]) links[e.target.id].classList.add('active');
-      }
-    });
-  },{rootMargin:'-15% 0px -75% 0px'});
-  document.querySelectorAll('.litrev h2[id], .litrev h3[id]').forEach(function(h){if(links[h.id]) spy.observe(h);});
+  var heads=Array.prototype.filter.call(document.querySelectorAll('.litrev h2[id], .litrev h3[id]'),function(h){return links[h.id];});
+  if(!heads.length) return;
+  var current=null;
+  function update(){
+    var line=(window.innerHeight||document.documentElement.clientHeight)*0.25, pick=heads[0];
+    heads.forEach(function(h){if(h.getBoundingClientRect().top<=line) pick=h;});
+    if(pick===current) return;
+    if(current) links[current.id].classList.remove('active');
+    links[pick.id].classList.add('active');
+    current=pick;
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
 })();
 </script>
