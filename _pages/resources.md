@@ -10,6 +10,8 @@ horizontal: false
 published: true
 ---
 
+<style>.projects .card-title{font-size:1.25rem;}</style>
+
 <div class="projects">
 {%- if page.display_categories %}
   {%- for category in page.display_categories %}

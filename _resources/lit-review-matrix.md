@@ -171,10 +171,10 @@ The original file had merged sample, data source, and method into one column, an
 <thead><tr><th>Paper</th><th><code>location</code></th><th><code>time_period</code></th><th><code>explanatory</code></th><th><code>outcome_measure</code></th><th><code>identification</code></th></tr></thead>
 <tbody>
 <tr><td>Adhvaryu et al. (2016)</td><td>Western Sub-Saharan Africa</td><td>Aug. 1985-Dec. 2006</td><td>PM2.5; dust</td><td>Child mortality rates</td><td>Panel</td></tr>
-<tr><td>Arceo, Hanna, and Oliva (2016)</td><td>Mexico: many municipalities of Mexico City</td><td>1997-2006</td><td>PM10; O3; SO2; CO</td><td>Weekly, municipality-level, mortality rates</td><td>Instrumental Variable</td></tr>
+<tr><td>Arceo, Hanna, and Oliva (2016)</td><td>Mexico: many municipalities of Mexico City</td><td>1997-2006</td><td>PM10; O3; SO2; CO</td><td>Weekly, municipality-level, mortality rates</td><td>Instrumental variables</td></tr>
 <tr><td>Bharadwaj et al. (2017)</td><td>Santiago, Chile</td><td>births between 1992-2001 and corresponding test scores between 2002-2010</td><td>PM10; O3; CO</td><td>National 4th grade test score</td><td>Panel</td></tr>
 <tr><td>Chang et al. (2016)</td><td>Northern California</td><td>2001-2003</td><td>PM2.5; PM10; NO2; O3; CO</td><td>Worker Productivity</td><td>Panel</td></tr>
-<tr><td>Chay and Greenstone (2005)</td><td>United States</td><td>1969-1990</td><td>TSP; TSPs</td><td>Measure of pollution impact: Housing prices</td><td>IV</td></tr>
+<tr><td>Chay and Greenstone (2005)</td><td>United States</td><td>1969-1990</td><td>TSP</td><td>Measure of pollution impact: Housing prices</td><td>Instrumental variables</td></tr>
 </tbody>
 </table>
 </div>
