@@ -40,7 +40,7 @@ html[data-theme='dark'] .litrev{
 
 A literature review matrix is a spreadsheet with one row per paper and one column per thing you want to know about each paper: its research question, data, method, results, and limitations.
 Filling it in forces you to read each paper for the same information, and sorting it later shows you patterns across papers that are hard to see one PDF at a time.
-Raul Pacheco-Vega calls this the [conceptual synthesis Excel dump](https://www.raulpacheco.org/2016/06/synthesizing-different-bodies-of-work-in-your-literature-review-the-conceptual-synthesis-excel-dump-technique/), and his site has [many more literature review resources](https://www.raulpacheco.org/resources/literature-reviews/).
+Raul Pacheco-Vega called this the [conceptual synthesis Excel dump](https://www.raulpacheco.org/2016/06/synthesizing-different-bodies-of-work-in-your-literature-review-the-conceptual-synthesis-excel-dump-technique/), and his site has [many more literature review resources](https://www.raulpacheco.org/resources/literature-reviews/).
 
 ## Find papers with Google Scholar
 
