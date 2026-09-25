@@ -40,6 +40,8 @@ html[data-theme='dark'] .litrev{
 .litrev .lr-toc{background:var(--paper-alt); border:1px solid var(--border); border-radius:12px; padding:1.05rem 1.3rem; margin:1.2rem 0 .5rem;}
 .litrev .lr-toc p{font-weight:500; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin:0 0 .55rem;}
 .litrev .lr-toc ol{margin:0; padding:0 0 0 1.2rem; font-size:.96rem;}
+.litrev .lr-toc > ol{columns:2; column-gap:1.8rem;}
+.litrev .lr-toc > ol > li{break-inside:avoid;}
 .litrev .lr-toc ol ol{list-style:none; padding-left:.9rem; font-size:.9rem;}
 .litrev .lr-toc li{margin:.18rem 0;}
 .litrev .lr-toc a{color:var(--ink); border-bottom:none;}
@@ -48,6 +50,7 @@ html[data-theme='dark'] .litrev{
   .litrev .lr-toc{position:fixed; top:118px; left:calc(50vw - 600px); width:200px; margin:0; padding:0; background:none; border:none; border-radius:0; max-height:calc(100vh - 150px); overflow:auto;}
   .litrev .lr-toc p{margin:0 0 .6rem;}
   .litrev .lr-toc ol{padding-left:1.15rem; font-size:.9rem;}
+  .litrev .lr-toc > ol{columns:1;}
   .litrev .lr-toc ol ol{padding-left:.6rem; font-size:.84rem;}
   .litrev .lr-toc li{margin:.34rem 0;}
   .litrev .lr-toc a{color:var(--slate);}
@@ -191,7 +194,7 @@ I always include the columns below, whatever your topic; you may want extra ones
 | `outcome_measure` | How the paper measures the outcome: the source, unit, and time frame (deaths before age one, from birth histories) |
 | `explanatory` | The main explanatory variable |
 | `explanatory_measure` | How the paper measures the explanatory variable |
-| `method` | The empirical method: fixed effects, instrumental variables, regression discontinuity, a randomized trial, or a natural experiment that provides exogenous variation |
+| `method` | The empirical method, which in applied microeconomics is typically the identification strategy: panel data with fixed effects, instrumental variables, regression discontinuity, a randomized trial, or a natural experiment that provides exogenous variation; for a randomized trial, describe the treatment |
 | `data_source` | The datasets: a Demographic and Health Survey, a census, administrative records, or the authors' own survey |
 | `sample` | Who or what the data cover, and the population they come from. Knowing the population and how the sample was drawn helps you judge how far the results generalize |
 | `sampling_method` | How units entered the data: a random sample, a census of all units, program participants, or a convenience sample |
