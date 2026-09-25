@@ -123,7 +123,8 @@ html[data-theme='dark'] .gittut{
 <span class="gt-num">01</span>
 <p class="gt-eyebrow">the problem</p>
 <h2>You already know why you need this</h2>
-<p class="gt-lede">Picture your thesis folder. <br>In it, you might have files like <code>paper_final.do</code>, <code>paper_final_v2.do</code>, <code>paper_final_USE_THIS.do</code>, and <code>paper_final_v2_actually.do</code>. You need to update Figure 3, but you can't remember which script created it. One of the .do files is broken, and it's 11 p.m. the night before your submission deadline.</p>
+<p class="gt-lede">Picture your thesis folder.</p>
+<p>In it, you might have files like <code>paper_final.do</code>, <code>paper_final_v2.do</code>, <code>paper_final_USE_THIS.do</code>, and <code>paper_final_v2_actually.do</code>. You need to update Figure 3, but you can't remember which script created it. One of the .do files is broken, and it's 11 p.m. the night before your submission deadline.</p>
 <p>We've all had this folder and this experience, and it's not a fun one. Git is the way out, and the best part is how little of it you need: a handful of commands gets you most of the payoff. Open a terminal and follow along (reading about git works about as well as reading about swimming).</p>
 <p>One more reason to use git, which matters more every day: when you put a chunk of your code into an AI chat window and it hands you back a "fixed" version, git helps you see exactly what it changed, which is great for understanding the fix... and for undoing it if it turns out to be wrong.</p>
 </section>
