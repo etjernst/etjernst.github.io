@@ -15,13 +15,9 @@ Remaining:
 - Conversion recipe per the aq_ssa bundle: strip the project preamble but keep custom macros pandoc needs (e.g., `\figref`), then `pandoc main.tex -f latex -t markdown --wrap=none` (NOT `--citeproc`, which hangs/hogs memory on big bibs), then point figure paths at PNGs and add a plain-text header (no YAML front matter, or Jekyll converts the .md to HTML).
 - Consider linking each bundle from its bib entry on the publications page.
 
-## 2. Clean up the literature review resource
+## 2. Literature review matrix page
 
-`_resources/annotated-bib.md` (the Conceptual Synthesis Excel Dump page) needs a cleanup pass.
-
-- Tighten the prose and check that the external links (Raul Pacheco's pages) still resolve.
-- Consider splitting Google Scholar tips and the Excel dump into separate sections or separate resource cards.
-- Could also modernize: mention reference managers (Zotero) and AI-assisted literature triage, since students ask about both.
+- Could mention reference managers (Zotero) and AI-assisted literature triage, since students ask about both
 
 ## 3. Old content still appearing
 
