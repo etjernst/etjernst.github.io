@@ -1,0 +1,163 @@
+{
+ "n": 79,
+ "ue_median_pct": 3.34,
+ "ue_cat": {
+  "cuts_pct": [
+   2.88,
+   4.02
+  ],
+  "counts": {
+   "low": 27,
+   "medium": 26,
+   "high": 26
+  },
+  "mean_ue_pct": {
+   "low": 2.1,
+   "medium": 3.5,
+   "high": 5.0
+  }
+ },
+ "simple": {
+  "coefs": {
+   "Intercept": 71.2,
+   "egm_per_1000": 78.3
+  },
+  "n": 79,
+  "r2": 0.605
+ },
+ "multi_dummy": {
+  "coefs": {
+   "Intercept": 16.1,
+   "egm_per_1000": 75.9,
+   "high_ue": 134.7
+  },
+  "n": 79,
+  "r2": 0.669
+ },
+ "multi_ue": {
+  "coefs": {
+   "Intercept": -115.9,
+   "egm_per_1000": 72.8,
+   "ue_pct": 61.2
+  },
+  "n": 79,
+  "r2": 0.708
+ },
+ "inter": {
+  "coefs": {
+   "Intercept": 31.9,
+   "egm_per_1000": 72.3,
+   "high_ue": 96.7,
+   "egm_per_1000:high_ue": 8.0
+  },
+  "n": 79,
+  "r2": 0.67
+ },
+ "inter_star": {
+  "coefs": {
+   "Intercept": 31.9,
+   "egm_per_1000": 72.3,
+   "high_ue": 96.7,
+   "egm_per_1000:high_ue": 8.0
+  },
+  "n": 79,
+  "r2": 0.67
+ },
+ "cat_trap": {
+  "coefs": {
+   "Intercept": -85.7,
+   "egm_per_1000": 76.5,
+   "ue_code": 83.3
+  },
+  "n": 79,
+  "r2": 0.671
+ },
+ "cat": {
+  "coefs": {
+   "Intercept": 13.3,
+   "C(ue_cat)[T.medium]": 28.5,
+   "C(ue_cat)[T.high]": 167.1,
+   "egm_per_1000": 76.9
+  },
+  "n": 79,
+  "r2": 0.68
+ },
+ "seifa": {
+  "coefs": {
+   "Intercept": 678.0,
+   "egm_per_1000": 75.7,
+   "SEIFA_dis_score": -0.6
+  },
+  "n": 79,
+  "r2": 0.615
+ },
+ "seifa_ue": {
+  "coefs": {
+   "Intercept": -471.7,
+   "egm_per_1000": 73.9,
+   "ue_pct": 66.0,
+   "SEIFA_dis_score": 0.3
+  },
+  "n": 79,
+  "r2": 0.71
+ },
+ "splits": {
+  "low": {
+   "coefs": {
+    "Intercept": 34.7,
+    "egm_per_1000": 72.1
+   },
+   "n": 27
+  },
+  "medium": {
+   "coefs": {
+    "Intercept": 24.7,
+    "egm_per_1000": 80.4
+   },
+   "n": 26
+  },
+  "high": {
+   "coefs": {
+    "Intercept": 170.1,
+    "egm_per_1000": 79.0
+   },
+   "n": 26
+  }
+ },
+ "inter_lines": {
+  "low": {
+   "intercept": 31.9,
+   "slope": 72.3
+  },
+  "high": {
+   "intercept": 128.7,
+   "slope": 80.3
+  }
+ },
+ "corr": {
+  "exp_per_adult": {
+   "exp_per_adult": 1.0,
+   "egm_per_1000": 0.78,
+   "ue_pct": 0.45,
+   "SEIFA_dis_score": -0.29
+  },
+  "egm_per_1000": {
+   "exp_per_adult": 0.78,
+   "egm_per_1000": 1.0,
+   "ue_pct": 0.17,
+   "SEIFA_dis_score": -0.25
+  },
+  "ue_pct": {
+   "exp_per_adult": 0.45,
+   "egm_per_1000": 0.17,
+   "ue_pct": 1.0,
+   "SEIFA_dis_score": -0.47
+  },
+  "SEIFA_dis_score": {
+   "exp_per_adult": -0.29,
+   "egm_per_1000": -0.25,
+   "ue_pct": -0.47,
+   "SEIFA_dis_score": 1.0
+  }
+ }
+}
