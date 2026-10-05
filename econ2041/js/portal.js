@@ -368,6 +368,7 @@
     bad_choice: 'That choice didn’t work. Tap an option and try again.',
     missing_field: 'Something was empty. Enter a value and try again.',
     not_yet: 'The reveal hasn’t unlocked yet.',
+    not_open: 'Guest access isn’t open right now. Ask the presenter for a code.',
     form_missing_field: 'This one still needs an answer.',
     form_unknown_field: 'Something went out of sync. Refresh the page and try again.',
     vignette_mismatch: 'The page went stale. Refresh and try again; your answers are saved on this phone.',
@@ -1831,9 +1832,32 @@
 
   // ---------- boot ----------
 
+  // ?guest=1 asks the server for a fresh code (only while the instructor has
+  // opened guest access) and then boots exactly as ?seed= would have
+  function bootAsGuest() {
+    history.replaceState(null, '', window.location.pathname);
+    show('seed-section');
+    setStatus('Getting you a code…', 'busy');
+    AGGT.submitWithRetry(ENDPOINT, { action: 'guest' },
+      function (state, attempt, res) {
+        if (state === 'confirmed' && res.seed) {
+          localStorage.setItem('agg_seed', String(res.seed).toUpperCase());
+          boot();
+        } else if (state === 'rejected') {
+          setStatus(ERRORS[res.error] || ('Could not join: ' + res.error), 'err');
+        } else if (state === 'failed') {
+          setStatus('Could not reach the class server. Tap Refresh to try again.', 'err');
+        }
+      });
+  }
+
   function boot() {
     var seed = getSeed();
     if (!ENDPOINT) { setStatus('Page not configured: missing endpoint URL.', 'err'); return; }
+    if (!seed && new URLSearchParams(window.location.search).get('guest')) {
+      bootAsGuest();
+      return;
+    }
     if (!seed) { show('seed-section'); return; }
     el('seed-badge').textContent = seed;
     show('home-section');

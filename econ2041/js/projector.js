@@ -570,7 +570,16 @@
 
     // the canvas draws at 2x resolution, so canvas px = half a screen px;
     // fonts here are sized for the back of a lecture theater
-    var padL = Math.floor(W * 0.22), padR = 60, padT = 72, padB = 96;
+    // the label gutter grows with the widest row label so long labels never
+    // clip at the left edge; the plot keeps at least 55% of the width
+    var rowFont = (rows.length > 8 ? '34px' : '40px') + ' system-ui, sans-serif';
+    ctx.font = rowFont;
+    var labelMax = 0;
+    rows.forEach(function (r) {
+      labelMax = Math.max(labelMax, ctx.measureText(r.label).width);
+    });
+    var padL = Math.floor(Math.min(W * 0.45, Math.max(W * 0.22, labelMax + 48)));
+    var padR = 60, padT = 72, padB = 96;
     var plotW = W - padL - padR, plotH = H - padT - padB;
     var rowH = plotH / rows.length;
     function x(v) { return padL + (v - lo) / (hi - lo) * plotW; }
@@ -589,7 +598,7 @@
     // legend, top left of the plot area
     var legendItems = [
       { kind: 'dot', color: '#c9a24b', text: 'one answer' },
-      { kind: 'dot', color: '#76232f', text: 'class median' },
+      { kind: 'dot', color: '#76232f', text: 'median answer' },
     ];
     if (state.showTruth && truthObj) {
       legendItems.push({ kind: 'diamond', color: '#0f7a63',
@@ -612,7 +621,7 @@
 
     rows.forEach(function (r, i) {
       var cy = padT + i * rowH + rowH / 2;
-      ctx.font = (rows.length > 8 ? '34px' : '40px') + ' system-ui, sans-serif';
+      ctx.font = rowFont;
       ctx.fillStyle = '#241f1a';
       var lab = r.label;
       ctx.fillText(lab, padL - 24 - ctx.measureText(lab).width, cy + 12);
@@ -622,7 +631,7 @@
       var ds = dotStyle(r.values.length);
       ctx.fillStyle = '#c9a24b';
       ctx.globalAlpha = ds.alpha;
-      var jMax = Math.max(rowH * 0.30, ds.r);
+      var jMax = Math.max(rowH * 0.17, ds.r); // dots span a third of the row, so rows read apart
       r.values.forEach(function (v, j) {
         ctx.beginPath();
         ctx.arc(x(v), cy + jitterFrac(j) * 2 * jMax, ds.r, 0, 2 * Math.PI);
@@ -691,11 +700,11 @@
     var under = diffs.reduce(function (a, b) { return b.diff < a.diff ? b : a; });
     var parts = [];
     if (over.diff > 0) {
-      parts.push('Biggest overestimate: <b>' + escText(over.label) + '</b> (class median ' +
+      parts.push('Biggest overestimate: <b>' + escText(over.label) + '</b> (median answer ' +
         compact(over.median, prefix) + ', real ' + compact(over.truth, prefix) + ')');
     }
     if (under.diff < 0) {
-      parts.push('Biggest underestimate: <b>' + escText(under.label) + '</b> (class median ' +
+      parts.push('Biggest underestimate: <b>' + escText(under.label) + '</b> (median answer ' +
         compact(under.median, prefix) + ', real ' + compact(under.truth, prefix) + ')');
     }
     if (tvals.length >= 2) {

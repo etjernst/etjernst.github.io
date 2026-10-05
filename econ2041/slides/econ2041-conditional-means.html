@@ -28,7 +28,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="econ2041-conditional-means_files/libs/revealjs/dist/theme/quarto-25ebd4aa213106a66d17abe1754b4f84.css">
+  <link rel="stylesheet" href="econ2041-conditional-means_files/libs/revealjs/dist/theme/quarto-7db863f938fdb37ca6ccb5e0ef0c1a14.css">
   <script defer="" src="vendor/katex/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
@@ -668,7 +668,7 @@
 <p><br> <br></p>
 <ul>
 <li>Covariance has nonsense units</li>
-<li>When estimated conditional means line up, we can summarize them by a straight line</li>
+<li>A straight line describes <span class="math inline">E[Y \mid X]</span> when the conditional means line up</li>
 <li>Least squares picks the line with the smallest sum of squared residuals</li>
 <li>The slope of our regression line is <span class="math inline">\text{cov}(X, Y) / \text{var}(X)</span></li>
 <li>Residuals are signed gaps to our line</li>
@@ -1050,6 +1050,35 @@
         catch (e) { out.textContent = el.textContent; }
         el.replaceWith(out);
       });
+    });
+    </script>
+    <script>
+    // "?speaker" in the address opens the plugin's speaker view in its own window
+    // once the deck is ready and hands it the deck address; the speaker view then
+    // connects back by heartbeat, as it does after S. The browser has to allow
+    // popups from localhost for the window to appear.
+    window.addEventListener('load', function () {
+      if (!/[?&]speaker(=|&|$)/.test(location.search) || /receiver/i.test(location.search) || typeof Reveal === 'undefined') return;
+      var open = function () {
+        var lib = document.querySelector('script[src*="revealjs/dist/reveal.js"]');
+        if (!lib) return;
+        var view = lib.getAttribute('src').replace(/dist\/reveal\.js.*$/, 'plugin/notes/speaker-view.html');
+        var w = window.open(view, 'reveal.js - Notes', 'width=1100,height=700');
+        if (!w) return;
+        var search = location.search.replace(/[?&]speaker(=[^&]*)?/, '').replace(/^&/, '?');
+        var url = location.protocol + '//' + location.host + location.pathname + search;
+        var connected = false;
+        window.addEventListener('message', function (ev) {
+          var d; try { d = JSON.parse(ev.data); } catch (e) { return; }
+          if (d && d.namespace === 'reveal-notes' && (d.type === 'connected' || d.type === 'heartbeat')) connected = true;
+        });
+        var tries = 0;
+        var tick = setInterval(function () {
+          if (connected || ++tries > 40 || w.closed) { clearInterval(tick); return; }
+          w.postMessage(JSON.stringify({namespace: 'reveal-notes', type: 'connect', state: Reveal.getState(), url: url}), '*');
+        }, 500);
+      };
+      if (Reveal.isReady && Reveal.isReady()) open(); else Reveal.on('ready', open);
     });
     </script>
     

@@ -94,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="econ2041-pokies_files/libs/revealjs/dist/theme/quarto-b4d5df644ed7ba13415514f0e8e106a3.css">
+  <link rel="stylesheet" href="econ2041-pokies_files/libs/revealjs/dist/theme/quarto-7db863f938fdb37ca6ccb5e0ef0c1a14.css">
   <script defer="" src="vendor/katex/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
@@ -274,6 +274,28 @@
 <li class="fragment">Your intuition vs. the data</li>
 <li class="fragment">More than one X: multivariate regression</li>
 </ul>
+<!-- =================================================================== -->
+</section>
+<section id="quiz-details" class="slide level2">
+<h2>Our knowledge quiz: in this room next Tuesday</h2>
+<p><br><br></p>
+<p>In person, during the live lecture on Tuesday 8 September</p>
+<p><br></p>
+<div class="fragment">
+<p>10 questions: 8 multiple choice and 2 short answer, 20 marks in total</p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>Everything through single regression</p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>You may bring one double-sided A4 sheet of notes and a non-programmable calculator</p>
+</div>
+<p><br></p>
+<div class="fragment">
+<p>Use the practice questions on the portal!</p>
+</div>
 <!-- =================================================================== -->
 </section>
 <section id="ols-intercept-formula" class="slide level2">
@@ -553,8 +575,8 @@ y_i = \beta_0 + \beta_1 x_i + u_i</span></p>
 <p><br><br></p>
 <ol type="1">
 <li>How strong is the pokies-losses correlation?</li>
-<li>Are losses higher where unemployment is higher?</li>
 <li>Which of the three tracks losses most closely?</li>
+<li>Are losses higher where unemployment is higher?</li>
 </ol>
 <p><br></p>
 <p>https://emiliatjernstrom.com/econ2041/portal.html</p>
@@ -1135,6 +1157,35 @@ ue_pct          61.1848     11.845     5.165       0.000      37.593      84.776
         catch (e) { out.textContent = el.textContent; }
         el.replaceWith(out);
       });
+    });
+    </script>
+    <script>
+    // "?speaker" in the address opens the plugin's speaker view in its own window
+    // once the deck is ready and hands it the deck address; the speaker view then
+    // connects back by heartbeat, as it does after S. The browser has to allow
+    // popups from localhost for the window to appear.
+    window.addEventListener('load', function () {
+      if (!/[?&]speaker(=|&|$)/.test(location.search) || /receiver/i.test(location.search) || typeof Reveal === 'undefined') return;
+      var open = function () {
+        var lib = document.querySelector('script[src*="revealjs/dist/reveal.js"]');
+        if (!lib) return;
+        var view = lib.getAttribute('src').replace(/dist\/reveal\.js.*$/, 'plugin/notes/speaker-view.html');
+        var w = window.open(view, 'reveal.js - Notes', 'width=1100,height=700');
+        if (!w) return;
+        var search = location.search.replace(/[?&]speaker(=[^&]*)?/, '').replace(/^&/, '?');
+        var url = location.protocol + '//' + location.host + location.pathname + search;
+        var connected = false;
+        window.addEventListener('message', function (ev) {
+          var d; try { d = JSON.parse(ev.data); } catch (e) { return; }
+          if (d && d.namespace === 'reveal-notes' && (d.type === 'connected' || d.type === 'heartbeat')) connected = true;
+        });
+        var tries = 0;
+        var tick = setInterval(function () {
+          if (connected || ++tries > 40 || w.closed) { clearInterval(tick); return; }
+          w.postMessage(JSON.stringify({namespace: 'reveal-notes', type: 'connect', state: Reveal.getState(), url: url}), '*');
+        }, 500);
+      };
+      if (Reveal.isReady && Reveal.isReady()) open(); else Reveal.on('ready', open);
     });
     </script>
     
