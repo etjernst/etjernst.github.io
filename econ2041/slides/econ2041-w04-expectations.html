@@ -28,7 +28,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="econ2041-w04-expectations_files/libs/revealjs/dist/theme/quarto-10e96813a50d534790130b02e16b501c.css">
+  <link rel="stylesheet" href="econ2041-w04-expectations_files/libs/revealjs/dist/theme/quarto-7db863f938fdb37ca6ccb5e0ef0c1a14.css">
   <script defer="" src="vendor/katex/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
@@ -203,9 +203,7 @@
 <ul>
 <li class="fragment">Your grade forecasts, revealed</li>
 <li class="fragment">Income and life expectancy in the US</li>
-<li class="fragment">Discrete or categorical?</li>
-<li class="fragment">A correlation gallery</li>
-<li class="fragment">Where a covariance comes from</li>
+<li class="fragment">Next week: a correlation gallery, and where a covariance comes from</li>
 </ul>
 <!-- =================================================================== -->
 </section>
@@ -531,252 +529,12 @@
 </div></div>
 <!-- =================================================================== -->
 </section>
-<section id="types-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
-<h2>Discrete or categorical?</h2>
-<!-- =================================================================== -->
-</section>
-<section id="types-gap" class="slide level2">
-<h2>A practical rule</h2>
-<p><strong>Discrete:</strong> takes a finite set of values</p>
-<p><br></p>
-<p><strong>Continuous:</strong> takes a continuum</p>
-<p><br></p>
-<p>But every column in every dataset has finitely many values</p>
-<ul>
-<li>PISA <code>escs</code>, the socio-economic index: 62 distinct values in 12,136 rows</li>
-<li>PISA <code>math</code> score: 3,858 distinct values</li>
-</ul>
-<p><br></p>
-<div class="fragment">
-<p>Ask what the variable measures in the world, not how many values the column has</p>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="types-three" class="slide level2">
-<h2>Three kinds of variables in the world</h2>
-<p><br> <br></p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>In the world</th>
-<th>Example</th>
-<th>Arithmetic makes sense?</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A count</td>
-<td>number of siblings: 0, 1, 2, ...</td>
-<td>yes: an average of 1.4 siblings</td>
-</tr>
-<tr class="even">
-<td>A measurement</td>
-<td>math score, socio-economic index, height</td>
-<td>yes: any value in a range, rounded when recorded</td>
-</tr>
-<tr class="odd">
-<td>A label</td>
-<td>degree enrolled in, suburb, gender</td>
-<td>no: there is no average suburb</td>
-</tr>
-</tbody>
-</table>
-<!-- =================================================================== -->
-</section>
-<section id="types-codes" class="slide level2">
-<h2>Watch out for numeric-looking codes</h2>
-<p>Education recorded as</p>
-<ul>
-<li>1 = completed primary</li>
-<li>2 = completed high school</li>
-<li>3 = completed a degree...</li>
-</ul>
-<p><br></p>
-<p><code>df['education'].mean()</code> returns 2.3</p>
-<p><br></p>
-<div class="fragment">
-<p>2.3 is a fact about the codes, not about anyone's education</p>
-</div>
-</section>
-<section id="gallery-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
-<h2>Correlations</h2>
-<p>Six correlations</p>
-<p>For each one: guess the correlation</p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-1" class="slide level2 vfill">
-<h2>Gallery 1: math &amp; reading</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_1_math_read.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-1-reveal" class="slide level2 vfill">
-<h2>Gallery 1: math &amp; reading</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_1_math_read_reveal.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-2" class="slide level2 vfill">
-<h2>Gallery 2: math &amp; family background</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_2_math_escs.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-2-reveal" class="slide level2 vfill">
-<h2>Gallery 2: math &amp; family background, 0.38</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_2_math_escs_reveal.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-3" class="slide level2 vfill">
-<h2>Gallery 3: happiness &amp; GDP</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_3_happy_gdp.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-3-reveal" class="slide level2 vfill">
-<h2>Gallery 3:happiness &amp; GDP</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_3_happy_gdp_reveal.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-3-log" class="slide level2 vfill">
-<h2>Same countries, log GDP: r = 0.79</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_3b_happy_loggdp_reveal.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: Gallup World Poll &amp; World Bank, via Our World in Data</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-4" class="slide level2 vfill">
-<h2>Gallery 4: fertility &amp; life expectancy</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_4_fert_le.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: UN World Population Prospects, via Our World in Data</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-4-reveal" class="slide level2 vfill">
-<h2>Gallery 4: fertility &amp; life expectancy, -0.80</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_4_fert_le_reveal.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: UN World Population Prospects, via Our World in Data</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-5" class="slide level2 vfill">
-<h2>Gallery 5: math &amp; family background, <span class="math inline">N=25</span></h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_5_math_escs_n25.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD), 25 students drawn at random</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-5-reveal" class="slide level2 vfill">
-<h2>Gallery 5: 25 students, r = 0.49</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_5_math_escs_n25_reveal.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD), 25 students drawn at random</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-5-sampling" class="slide level2 vfill">
-<h2>A thousand samples of 25: -0.4 to 0.8</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_5_sampling_hist.png" style="width:66.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD)</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-6" class="slide level2 vfill">
-<h2>Gallery 6: one more</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_6_ushape.png" style="width:60.0%"></p>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="gallery-6-reveal" class="slide level2 vfill">
-<h2>Gallery 6: r = -0.03, yet y depends on x</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/gallery_6_ushape_reveal.png" style="width:60.0%"></p>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="quad-divider" class="slide level2 title-left" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
-<h2>Where a covariance comes from</h2>
-<!-- =================================================================== -->
-</section>
-<section id="quad-1" class="slide level2 vfill">
-<h2>300 students, math against family background</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/quad_1_cloud.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD), 300 students drawn at random</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="quad-2" class="slide level2 vfill">
-<h2>Step 1: find the two means</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/quad_2_means.png" style="width:60.0%"></p>
-</div>
-<p><span class="src">Data: PISA 2022, Australia (OECD), 300 students drawn at random</span></p>
-<!-- =================================================================== -->
-</section>
-<section id="quad-3" class="slide level2 vfill">
-<h2>Step 2: each student has two deviations</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/quad_3_one_student.png" style="width:60.0%"></p>
-</div>
-<!-- $(x_i - \bar{x})(y_i - \bar{y}) = (+1.09)(+89) = +97$ -->
-<!-- =================================================================== -->
-</section>
-<section id="quad-4" class="slide level2 vfill">
-<h2>Step 3: the sign of the product is the quadrant</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/quad_4_signs.png" style="width:60.0%"></p>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="quad-5" class="slide level2 vfill">
-<h2>Step 4: add them up</h2>
-<div class="fill">
-<p><img data-src="assets/econ2041-w04-expectations/quad_5_counts.png" style="width:60.0%"></p>
-</div>
-<!-- =================================================================== -->
-</section>
-<section id="cov-to-r" class="slide level2">
-<h2>Nonsense units, so we standardize</h2>
-<p><span class="math display">\text{cov}(X, Y) = \frac{1}{n}\sum_i (x_i - \bar{x})(y_i - \bar{y}) = 29 \;\text{index points} \times \text{score points}</span></p>
-<p><br></p>
-<div class="fragment">
-<p><span class="math display">r = \frac{\text{cov}(X, Y)}{s_X \, s_Y} = \frac{29}{0.78 \times 91.7} = 0.41</span></p>
-</div>
-<!-- =================================================================== -->
-</section>
 <section id="take-aways" class="slide level2" data-background-color="rgb(118, 35, 47)" style="color: rgb(255, 255, 255)">
 <h2>Some take-aways</h2>
 <ul>
 <li>A conditional expectation is a function: one average for every value of X</li>
 <li>Averaging hides the ends: 14.6 years, inside one country</li>
-<li>Correlation sees straight lines only, and a sample's r is itself random</li>
-<li>The covariance is a vote by quadrant; dividing by the SDs removes the units</li>
+<li>Next week: the correlation gallery and where a covariance comes from</li>
 </ul>
 </section>
     </div>
@@ -1155,6 +913,35 @@
         catch (e) { out.textContent = el.textContent; }
         el.replaceWith(out);
       });
+    });
+    </script>
+    <script>
+    // "?speaker" in the address opens the plugin's speaker view in its own window
+    // once the deck is ready and hands it the deck address; the speaker view then
+    // connects back by heartbeat, as it does after S. The browser has to allow
+    // popups from localhost for the window to appear.
+    window.addEventListener('load', function () {
+      if (!/[?&]speaker(=|&|$)/.test(location.search) || /receiver/i.test(location.search) || typeof Reveal === 'undefined') return;
+      var open = function () {
+        var lib = document.querySelector('script[src*="revealjs/dist/reveal.js"]');
+        if (!lib) return;
+        var view = lib.getAttribute('src').replace(/dist\/reveal\.js.*$/, 'plugin/notes/speaker-view.html');
+        var w = window.open(view, 'reveal.js - Notes', 'width=1100,height=700');
+        if (!w) return;
+        var search = location.search.replace(/[?&]speaker(=[^&]*)?/, '').replace(/^&/, '?');
+        var url = location.protocol + '//' + location.host + location.pathname + search;
+        var connected = false;
+        window.addEventListener('message', function (ev) {
+          var d; try { d = JSON.parse(ev.data); } catch (e) { return; }
+          if (d && d.namespace === 'reveal-notes' && (d.type === 'connected' || d.type === 'heartbeat')) connected = true;
+        });
+        var tries = 0;
+        var tick = setInterval(function () {
+          if (connected || ++tries > 40 || w.closed) { clearInterval(tick); return; }
+          w.postMessage(JSON.stringify({namespace: 'reveal-notes', type: 'connect', state: Reveal.getState(), url: url}), '*');
+        }, 500);
+      };
+      if (Reveal.isReady && Reveal.isReady()) open(); else Reveal.on('ready', open);
     });
     </script>
     
