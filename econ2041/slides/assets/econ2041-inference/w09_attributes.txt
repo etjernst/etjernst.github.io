@@ -1,0 +1,27 @@
+== t by hand ==
+10.866254878788773
+
+== params ==
+Intercept       71.172193
+egm_per_1000    78.296793
+dtype: float64
+
+== bse ==
+Intercept       38.992319
+egm_per_1000     7.205499
+dtype: float64
+
+== tvalues ==
+Intercept        1.825287
+egm_per_1000    10.866255
+dtype: float64
+
+== pvalues ==
+Intercept       7.183543e-02
+egm_per_1000    3.310386e-17
+dtype: float64
+
+== conf_int ==
+                      0           1
+Intercept     -6.471434  148.815821
+egm_per_1000  63.948811   92.644775
