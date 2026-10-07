@@ -1866,7 +1866,9 @@
     // survives the concurrency cap instead of demanding a manual refresh
     AGGT.submitWithRetry(ENDPOINT, { action: 'home', seed: seed },
       function (state, attempt, res) {
-        if (state === 'confirmed') {
+        if (state === 'sending' && attempt > 0) {
+          setStatus('The class server is slow right now. Still trying…', 'busy');
+        } else if (state === 'confirmed') {
           serverOffset = res.now - Date.now();
           // what needs you comes first: open rounds, then awaiting-reveal,
           // then revealed (newest first within each group). Practice sits

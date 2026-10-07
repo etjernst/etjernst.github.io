@@ -19,16 +19,28 @@
   var MAX_ATTEMPTS = 6;
   var BASE_DELAY_MS = 1000;
   var FLUSH_AT = 20; // events buffered before an opportunistic mid-session flush
+  // Apps Script sometimes stalls a request for a minute or more while a
+  // retry lands in seconds; abandon the stalled attempt and retry instead.
+  var ATTEMPT_TIMEOUT_MS = 25000;
 
   function post(endpoint, payload) {
+    var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, ATTEMPT_TIMEOUT_MS) : null;
     return fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload),
       redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined,
     }).then(function (r) {
       if (!r.ok) throw new Error('http_' + r.status);
       return r.json();
+    }).then(function (res) {
+      clearTimeout(timer);
+      return res;
+    }, function (err) {
+      clearTimeout(timer);
+      throw err;
     });
   }
 
