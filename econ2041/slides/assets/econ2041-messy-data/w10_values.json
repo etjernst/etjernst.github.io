@@ -1,0 +1,147 @@
+{
+ "messy": {
+  "rows": 82,
+  "lgas": 79,
+  "n_dup": 3,
+  "dup_lgas": [
+   "Shire of Campaspe",
+   "Shire of Melton",
+   "Shire of Loddon"
+  ],
+  "code_lga": "City of Whittlesea",
+  "code_lga_true": 732.0,
+  "pct_lga": "City of Greater Dandenong",
+  "pct_value": 6.42,
+  "pct_true": 0.0642,
+  "zero_pokie_lgas": 9,
+  "planted": 3
+ },
+ "tests": {
+  "clean": {
+   "n": 79,
+   "F": 7.28,
+   "p": 0.0013,
+   "df_num": 2,
+   "df_denom": 75,
+   "ssr_u": 1848963.0,
+   "ssr_r": 2208120.0,
+   "r2_u": 0.669,
+   "r2_r": 0.605,
+   "F_crit": 2.37,
+   "reject": true,
+   "coef": {
+    "Intercept": 189.78,
+    "egm_per_1000": 75.203,
+    "high_ue": 130.294,
+    "SEIFA_dis_score": -0.168
+   },
+   "se": {
+    "Intercept": 429.292,
+    "egm_per_1000": 6.908,
+    "high_ue": 37.124,
+    "SEIFA_dis_score": 0.414
+   },
+   "pval": {
+    "Intercept": 0.6597,
+    "egm_per_1000": 0.0,
+    "high_ue": 0.0008,
+    "SEIFA_dis_score": 0.6858
+   }
+  },
+  "doubled": {
+   "n": 158,
+   "F": 14.96,
+   "p": 0.0,
+   "df_num": 2,
+   "df_denom": 154,
+   "ssr_u": 3697927.0,
+   "ssr_r": 4416241.0,
+   "r2_u": 0.669,
+   "r2_r": 0.605,
+   "F_crit": 2.34,
+   "reject": true,
+   "coef": {
+    "Intercept": 189.78,
+    "egm_per_1000": 75.203,
+    "high_ue": 130.294,
+    "SEIFA_dis_score": -0.168
+   },
+   "se": {
+    "Intercept": 299.587,
+    "egm_per_1000": 4.821,
+    "high_ue": 25.908,
+    "SEIFA_dis_score": 0.289
+   },
+   "pval": {
+    "Intercept": 0.5274,
+    "egm_per_1000": 0.0,
+    "high_ue": 0.0,
+    "SEIFA_dis_score": 0.5614
+   },
+   "F_ratio": 2.05
+  },
+  "code999": {
+   "n": 79,
+   "F": 1.57,
+   "p": 0.2157,
+   "df_num": 2,
+   "df_denom": 75,
+   "ssr_u": 3701369.0,
+   "ssr_r": 3855883.0,
+   "r2_u": 0.509,
+   "r2_r": 0.489,
+   "F_crit": 2.37,
+   "reject": false,
+   "coef": {
+    "Intercept": 130.769,
+    "egm_per_1000": 79.617,
+    "high_ue": 84.765,
+    "SEIFA_dis_score": -0.129
+   },
+   "se": {
+    "Intercept": 607.394,
+    "egm_per_1000": 9.774,
+    "high_ue": 52.526,
+    "SEIFA_dis_score": 0.585
+   },
+   "pval": {
+    "Intercept": 0.8301,
+    "egm_per_1000": 0.0,
+    "high_ue": 0.1108,
+    "SEIFA_dis_score": 0.8257
+   }
+  },
+  "cleaned": {
+   "n": 78,
+   "F": 6.57,
+   "p": 0.0024,
+   "df_num": 2,
+   "df_denom": 74,
+   "ssr_u": 1752739.0,
+   "ssr_r": 2063804.0,
+   "r2_u": 0.682,
+   "r2_r": 0.625,
+   "F_crit": 2.38,
+   "reject": true,
+   "coef": {
+    "Intercept": 179.051,
+    "egm_per_1000": 76.006,
+    "high_ue": 122.016,
+    "SEIFA_dis_score": -0.161
+   },
+   "se": {
+    "Intercept": 420.821,
+    "egm_per_1000": 6.783,
+    "high_ue": 36.62,
+    "SEIFA_dis_score": 0.405
+   },
+   "pval": {
+    "Intercept": 0.6717,
+    "egm_per_1000": 0.0,
+    "high_ue": 0.0013,
+    "SEIFA_dis_score": 0.6925
+   }
+  }
+ },
+ "p_threshold": 0.1
+}
