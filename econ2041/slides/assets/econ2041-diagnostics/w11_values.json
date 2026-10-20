@@ -1,0 +1,95 @@
+{
+  "happy": {
+    "n": 144,
+    "year": 2024,
+    "lin_b0": 4.75,
+    "lin_b1": 0.0302,
+    "lin_r2": 0.47,
+    "log_b0": -2.23,
+    "log_b1": 0.81,
+    "log_r2": 0.63,
+    "log_10pct": 0.077,
+    "log_double": 0.56,
+    "times_richer_one_step": 3.5,
+    "reset_lin_F": 25.22,
+    "reset_lin_p": 4.430122822451849e-10,
+    "reset_log_F": 0.76,
+    "reset_log_p": 0.47,
+    "richest": "Singapore",
+    "richest_gdp": 134549,
+    "richest_actual": 6.57,
+    "richest_pred_lin": 8.81,
+    "richest_pred_log": 7.28,
+    "resid_groups": [
+      {
+        "gdp_from": 1409,
+        "gdp_to": 9163,
+        "n": 43,
+        "mean_resid": -0.45,
+        "share_negative": 0.77
+      },
+      {
+        "gdp_from": 9416,
+        "gdp_to": 71035,
+        "n": 95,
+        "mean_resid": 0.27,
+        "share_negative": 0.32
+      },
+      {
+        "gdp_from": 75698,
+        "gdp_to": 134549,
+        "n": 6,
+        "mean_resid": -1.04,
+        "share_negative": 1.0
+      }
+    ],
+    "lin_mean_resid_by_third": {
+      "low": -0.44,
+      "mid": 0.37,
+      "high": 0.07
+    }
+  },
+  "airbnb": {
+    "n": 12419,
+    "b0": 92.89,
+    "b1": 155.01,
+    "se_default": 1.85,
+    "se_robust": 3.66,
+    "se_ratio": 2.0,
+    "ci_default": [
+      151.4,
+      158.6
+    ],
+    "ci_robust": [
+      147.8,
+      162.2
+    ],
+    "bp_lm": 1769.0,
+    "bp_p": 0.0,
+    "resid_sd_by_bedrooms": {
+      "1.0": 126,
+      "2.0": 192,
+      "3.0": 312,
+      "4.0": 438,
+      "5.0": 475,
+      "6.0": 473
+    },
+    "share_up_to_max_shown": 0.998,
+    "bedroom_counts": {
+      "0.0": 1,
+      "1.0": 5271,
+      "2.0": 4078,
+      "3.0": 1788,
+      "4.0": 838,
+      "5.0": 345,
+      "6.0": 69,
+      "7.0": 7,
+      "8.0": 6,
+      "9.0": 6,
+      "10.0": 4,
+      "11.0": 4,
+      "13.0": 1,
+      "14.0": 1
+    }
+  }
+}
