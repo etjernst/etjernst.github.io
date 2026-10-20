@@ -1,0 +1,7 @@
+# RESET, linear
+<F test: F=25.21835447783917, p=4.430122822451849e-10, df_denom=140, df_num=2>
+# RESET, log
+<F test: F=0.7550738223574323, p=0.47188004415451346, df_denom=140, df_num=2>
+# BP, Airbnb
+LM statistic: 1769.0
+p-value: 0.0
