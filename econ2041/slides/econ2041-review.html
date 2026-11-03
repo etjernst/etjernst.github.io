@@ -300,11 +300,11 @@
 <p><span class="math display">y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + u</span></p>
 <p><br></p>
 <div class="fragment">
-<p><span class="math inline">\beta_1</span>: average difference in <span class="math inline">y</span> per 1 unit of <span class="math inline">x_1</span>, with the same <span class="math inline">x_2</span></p>
+<p><span class="math inline">\beta_1</span>: average difference in <span class="math inline">y</span> per 1 unit of <span class="math inline">x_1</span>, holding <span class="math inline">x_2</span> fixed</p>
 </div>
 <p><br></p>
 <div class="fragment">
-<p>Dummy <span class="math inline">x_2</span>: average difference in <span class="math inline">y</span> between groups 1 and 0, with the same <span class="math inline">x_1</span></p>
+<p>Dummy <span class="math inline">x_2</span>: average difference in <span class="math inline">y</span> between groups 1 and 0, holding <span class="math inline">x_1</span> fixed</p>
 </div>
 <!-- =================================================================== -->
 </section>
@@ -331,8 +331,8 @@ entire_home   100.2121      4.231     23.686      0.000      91.920     108.504<
 <div class="columns">
 <div class="column" style="width:62%;">
 <p><br><br></p>
-<p>On the next slide: 4 sentences about <code>entire_home</code></p>
-<p>Pick the 1 that's right</p>
+<p>On the next slide: 4 sentences about the coefficient on <code>entire_home</code> in our Airbnb regression</p>
+<p>Pick the one that's right</p>
 <p><br></p>
 <p>https://emiliatjernstrom.com/econ2041/portal.html</p>
 </div><div class="column" style="width:34%;">
@@ -344,8 +344,9 @@ entire_home   100.2121      4.231     23.686      0.000      91.920     108.504<
 </section>
 <section id="dummy-question" class="slide level2">
 <h2>Reading the entire-home coefficient</h2>
-<p>Coefficient on <code>entire_home</code>: 100.21</p>
-<p>All 4 are for listings with the same guests and rating</p>
+<p><span class="math display">\text{price} = \beta_0 + \beta_1\,\text{guests} + \beta_2\,\text{rating} + \beta_3\,\text{entire} + u</span></p>
+<p>entire = 1 for an entire home, 0 for a room; <span class="math inline">\hat{\beta}_3 = 100.21</span></p>
+<p>In all 4, guests and rating are held fixed</p>
 <p><br></p>
 <p>A. An entire home costs $100.21 a night, on average</p>
 <p>B. An entire home costs $100.21 more a night than a room, on average <span class="fragment" data-fragment-index="1" style="color: rgb(200, 16, 46)"><span class="math inline">\leftarrow</span></span></p>
@@ -416,11 +417,12 @@ guests:entire_home    23.0458      6.190      3.723      0.000      10.913      
 </section>
 <section id="inter-question" class="slide level2">
 <h2>Reading the interaction coefficient</h2>
-<p>Coefficient on <code>guests:entire_home</code>: 23.05</p>
+<p><span class="math display">\text{price} = \beta_0 + \beta_1\,\text{guests} + \beta_2\,\text{entire} + \beta_3\,(\text{guests} \times \text{entire}) + u</span></p>
+<p><span class="math inline">\hat{\beta}_3 = 23.05</span></p>
 <p><br></p>
 <p>A. For entire homes, the slope on guests is $23.05 per guest</p>
 <p>B. Entire homes have a slope on guests $23.05 steeper than rooms <span class="fragment" data-fragment-index="1" style="color: rgb(200, 16, 46)"><span class="math inline">\leftarrow</span></span></p>
-<p>C. Entire homes cost $23.05 more a night than rooms with the same guests</p>
+<p>C. Entire homes cost $23.05 more a night than rooms, holding guests fixed</p>
 <p>D. Each extra guest is associated with a price $23.05 higher for every listing</p>
 <p><span class="src">Vote on the portal: https://emiliatjernstrom.com/econ2041/portal.html</span></p>
 <!-- =================================================================== -->
